@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,14 +42,16 @@ function main(contents, targetLanguageCode, parent) {
   /**
    *  Optional. The ISO-639 language code of the input text if
    *  known, for example, "en-US" or "sr-Latn". Supported language codes are
-   *  listed in Language Support. If the source language isn't specified, the API
-   *  attempts to identify the source language automatically and returns the
-   *  source language within the response.
+   *  listed in Language
+   *  Support (https://cloud.google.com/translate/docs/languages). If the source
+   *  language isn't specified, the API attempts to identify the source language
+   *  automatically and returns the source language within the response.
    */
   // const sourceLanguageCode = 'abc123'
   /**
    *  Required. The ISO-639 language code to use for translation of the input
-   *  text, set to one of the language codes listed in Language Support.
+   *  text, set to one of the language codes listed in Language
+   *  Support (https://cloud.google.com/translate/docs/languages).
    */
   // const targetLanguageCode = 'abc123'
   /**
@@ -72,6 +74,8 @@ function main(contents, targetLanguageCode, parent) {
    *    `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
    *  - General (built-in) models:
    *    `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+   *  - Translation LLM models:
+   *    `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
    *  For global (non-regionalized) requests, use `location-id` `global`.
    *  For example,
    *  `projects/{project-number-or-id}/locations/global/models/general/nmt`.
@@ -84,6 +88,10 @@ function main(contents, targetLanguageCode, parent) {
    *  an INVALID_ARGUMENT (400) error is returned.
    */
   // const glossaryConfig = {}
+  /**
+   *  Optional. Transliteration to be applied.
+   */
+  // const transliterationConfig = {}
   /**
    *  Optional. The labels with user-defined metadata for the request.
    *  Label keys and values can be no longer than 63 characters

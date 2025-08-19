@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +16,13 @@
 // ** https://github.com/googleapis/synthtool **
 // ** All changes to this file may be overwritten. **
 
+import * as v1 from './v1';
 import * as v1beta from './v1beta';
 
-const PromotionsServiceClient = v1beta.PromotionsServiceClient;
-type PromotionsServiceClient = v1beta.PromotionsServiceClient;
+const PromotionsServiceClient = v1.PromotionsServiceClient;
+type PromotionsServiceClient = v1.PromotionsServiceClient;
 
-export {v1beta, PromotionsServiceClient};
-export default {v1beta, PromotionsServiceClient};
+export {v1, v1beta, PromotionsServiceClient};
+export default {v1, v1beta, PromotionsServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

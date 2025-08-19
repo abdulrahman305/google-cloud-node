@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,9 +30,15 @@ function main(name) {
    */
   /**
    *  Required. Resource name of the listing to delete.
-   *  e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+   *  e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
    */
   // const name = 'abc123'
+  /**
+   *  Optional. If the listing is commercial then this field must be set to true,
+   *  otherwise a failure is thrown. This acts as a safety guard to avoid
+   *  deleting commercial listings accidentally.
+   */
+  // const deleteCommercial = true
 
   // Imports the Analyticshub library
   const {AnalyticsHubServiceClient} = require('@google-cloud/bigquery-analyticshub').v1;

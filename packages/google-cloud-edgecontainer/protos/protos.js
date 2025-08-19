@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,6 +82,22 @@
                         return values;
                     })();
     
+                    /**
+                     * ResourceState enum.
+                     * @name google.cloud.edgecontainer.v1.ResourceState
+                     * @enum {number}
+                     * @property {number} RESOURCE_STATE_UNSPECIFIED=0 RESOURCE_STATE_UNSPECIFIED value
+                     * @property {number} RESOURCE_STATE_LOCK_DOWN=1 RESOURCE_STATE_LOCK_DOWN value
+                     * @property {number} RESOURCE_STATE_LOCK_DOWN_PENDING=2 RESOURCE_STATE_LOCK_DOWN_PENDING value
+                     */
+                    v1.ResourceState = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "RESOURCE_STATE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "RESOURCE_STATE_LOCK_DOWN"] = 1;
+                        values[valuesById[2] = "RESOURCE_STATE_LOCK_DOWN_PENDING"] = 2;
+                        return values;
+                    })();
+    
                     v1.Cluster = (function() {
     
                         /**
@@ -112,6 +128,7 @@
                          * @property {google.cloud.edgecontainer.v1.Cluster.ReleaseChannel|null} [releaseChannel] Cluster releaseChannel
                          * @property {google.cloud.edgecontainer.v1.Cluster.ISurvivabilityConfig|null} [survivabilityConfig] Cluster survivabilityConfig
                          * @property {Array.<string>|null} [externalLoadBalancerIpv6AddressPools] Cluster externalLoadBalancerIpv6AddressPools
+                         * @property {google.cloud.edgecontainer.v1.Cluster.IConnectionState|null} [connectionState] Cluster connectionState
                          */
     
                         /**
@@ -326,6 +343,14 @@
                         Cluster.prototype.externalLoadBalancerIpv6AddressPools = $util.emptyArray;
     
                         /**
+                         * Cluster connectionState.
+                         * @member {google.cloud.edgecontainer.v1.Cluster.IConnectionState|null|undefined} connectionState
+                         * @memberof google.cloud.edgecontainer.v1.Cluster
+                         * @instance
+                         */
+                        Cluster.prototype.connectionState = null;
+    
+                        /**
                          * Creates a new Cluster instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.edgecontainer.v1.Cluster
@@ -401,6 +426,8 @@
                             if (message.externalLoadBalancerIpv6AddressPools != null && message.externalLoadBalancerIpv6AddressPools.length)
                                 for (var i = 0; i < message.externalLoadBalancerIpv6AddressPools.length; ++i)
                                     writer.uint32(/* id 25, wireType 2 =*/202).string(message.externalLoadBalancerIpv6AddressPools[i]);
+                            if (message.connectionState != null && Object.hasOwnProperty.call(message, "connectionState"))
+                                $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.encode(message.connectionState, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
                             return writer;
                         };
     
@@ -428,12 +455,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Cluster.decode = function decode(reader, length) {
+                        Cluster.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -554,6 +583,10 @@
                                         if (!(message.externalLoadBalancerIpv6AddressPools && message.externalLoadBalancerIpv6AddressPools.length))
                                             message.externalLoadBalancerIpv6AddressPools = [];
                                         message.externalLoadBalancerIpv6AddressPools.push(reader.string());
+                                        break;
+                                    }
+                                case 27: {
+                                        message.connectionState = $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -716,6 +749,11 @@
                                 for (var i = 0; i < message.externalLoadBalancerIpv6AddressPools.length; ++i)
                                     if (!$util.isString(message.externalLoadBalancerIpv6AddressPools[i]))
                                         return "externalLoadBalancerIpv6AddressPools: string[] expected";
+                            }
+                            if (message.connectionState != null && message.hasOwnProperty("connectionState")) {
+                                var error = $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.verify(message.connectionState);
+                                if (error)
+                                    return "connectionState." + error;
                             }
                             return null;
                         };
@@ -881,6 +919,11 @@
                                 for (var i = 0; i < object.externalLoadBalancerIpv6AddressPools.length; ++i)
                                     message.externalLoadBalancerIpv6AddressPools[i] = String(object.externalLoadBalancerIpv6AddressPools[i]);
                             }
+                            if (object.connectionState != null) {
+                                if (typeof object.connectionState !== "object")
+                                    throw TypeError(".google.cloud.edgecontainer.v1.Cluster.connectionState: object expected");
+                                message.connectionState = $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.fromObject(object.connectionState);
+                            }
                             return message;
                         };
     
@@ -925,6 +968,7 @@
                                 object.targetVersion = "";
                                 object.releaseChannel = options.enums === String ? "RELEASE_CHANNEL_UNSPECIFIED" : 0;
                                 object.survivabilityConfig = null;
+                                object.connectionState = null;
                             }
                             if (message.name != null && message.hasOwnProperty("name"))
                                 object.name = message.name;
@@ -987,6 +1031,8 @@
                                 for (var j = 0; j < message.externalLoadBalancerIpv6AddressPools.length; ++j)
                                     object.externalLoadBalancerIpv6AddressPools[j] = message.externalLoadBalancerIpv6AddressPools[j];
                             }
+                            if (message.connectionState != null && message.hasOwnProperty("connectionState"))
+                                object.connectionState = $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.toObject(message.connectionState, options);
                             return object;
                         };
     
@@ -1126,12 +1172,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ControlPlane.decode = function decode(reader, length) {
+                            ControlPlane.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.remote = $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane.Remote.decode(reader, reader.uint32());
@@ -1349,12 +1397,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Remote.decode = function decode(reader, length) {
+                                Remote.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane.Remote();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         default:
                                             reader.skipType(tag & 7);
@@ -1460,6 +1510,7 @@
                                  * @property {number|null} [nodeCount] Local nodeCount
                                  * @property {string|null} [machineFilter] Local machineFilter
                                  * @property {google.cloud.edgecontainer.v1.Cluster.ControlPlane.SharedDeploymentPolicy|null} [sharedDeploymentPolicy] Local sharedDeploymentPolicy
+                                 * @property {string|null} [controlPlaneNodeStorageSchema] Local controlPlaneNodeStorageSchema
                                  */
     
                                 /**
@@ -1510,6 +1561,14 @@
                                 Local.prototype.sharedDeploymentPolicy = 0;
     
                                 /**
+                                 * Local controlPlaneNodeStorageSchema.
+                                 * @member {string} controlPlaneNodeStorageSchema
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.ControlPlane.Local
+                                 * @instance
+                                 */
+                                Local.prototype.controlPlaneNodeStorageSchema = "";
+    
+                                /**
                                  * Creates a new Local instance using the specified properties.
                                  * @function create
                                  * @memberof google.cloud.edgecontainer.v1.Cluster.ControlPlane.Local
@@ -1541,6 +1600,8 @@
                                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.machineFilter);
                                     if (message.sharedDeploymentPolicy != null && Object.hasOwnProperty.call(message, "sharedDeploymentPolicy"))
                                         writer.uint32(/* id 4, wireType 0 =*/32).int32(message.sharedDeploymentPolicy);
+                                    if (message.controlPlaneNodeStorageSchema != null && Object.hasOwnProperty.call(message, "controlPlaneNodeStorageSchema"))
+                                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.controlPlaneNodeStorageSchema);
                                     return writer;
                                 };
     
@@ -1568,12 +1629,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Local.decode = function decode(reader, length) {
+                                Local.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane.Local();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.nodeLocation = reader.string();
@@ -1589,6 +1652,10 @@
                                             }
                                         case 4: {
                                                 message.sharedDeploymentPolicy = reader.int32();
+                                                break;
+                                            }
+                                        case 5: {
+                                                message.controlPlaneNodeStorageSchema = reader.string();
                                                 break;
                                             }
                                         default:
@@ -1644,6 +1711,9 @@
                                         case 2:
                                             break;
                                         }
+                                    if (message.controlPlaneNodeStorageSchema != null && message.hasOwnProperty("controlPlaneNodeStorageSchema"))
+                                        if (!$util.isString(message.controlPlaneNodeStorageSchema))
+                                            return "controlPlaneNodeStorageSchema: string expected";
                                     return null;
                                 };
     
@@ -1685,6 +1755,8 @@
                                         message.sharedDeploymentPolicy = 2;
                                         break;
                                     }
+                                    if (object.controlPlaneNodeStorageSchema != null)
+                                        message.controlPlaneNodeStorageSchema = String(object.controlPlaneNodeStorageSchema);
                                     return message;
                                 };
     
@@ -1706,6 +1778,7 @@
                                         object.nodeCount = 0;
                                         object.machineFilter = "";
                                         object.sharedDeploymentPolicy = options.enums === String ? "SHARED_DEPLOYMENT_POLICY_UNSPECIFIED" : 0;
+                                        object.controlPlaneNodeStorageSchema = "";
                                     }
                                     if (message.nodeLocation != null && message.hasOwnProperty("nodeLocation"))
                                         object.nodeLocation = message.nodeLocation;
@@ -1715,6 +1788,8 @@
                                         object.machineFilter = message.machineFilter;
                                     if (message.sharedDeploymentPolicy != null && message.hasOwnProperty("sharedDeploymentPolicy"))
                                         object.sharedDeploymentPolicy = options.enums === String ? $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane.SharedDeploymentPolicy[message.sharedDeploymentPolicy] === undefined ? message.sharedDeploymentPolicy : $root.google.cloud.edgecontainer.v1.Cluster.ControlPlane.SharedDeploymentPolicy[message.sharedDeploymentPolicy] : message.sharedDeploymentPolicy;
+                                    if (message.controlPlaneNodeStorageSchema != null && message.hasOwnProperty("controlPlaneNodeStorageSchema"))
+                                        object.controlPlaneNodeStorageSchema = message.controlPlaneNodeStorageSchema;
                                     return object;
                                 };
     
@@ -1773,6 +1848,7 @@
                              * @memberof google.cloud.edgecontainer.v1.Cluster
                              * @interface ISystemAddonsConfig
                              * @property {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IIngress|null} [ingress] SystemAddonsConfig ingress
+                             * @property {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig|null} [vmServiceConfig] SystemAddonsConfig vmServiceConfig
                              */
     
                             /**
@@ -1797,6 +1873,14 @@
                              * @instance
                              */
                             SystemAddonsConfig.prototype.ingress = null;
+    
+                            /**
+                             * SystemAddonsConfig vmServiceConfig.
+                             * @member {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig|null|undefined} vmServiceConfig
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig
+                             * @instance
+                             */
+                            SystemAddonsConfig.prototype.vmServiceConfig = null;
     
                             /**
                              * Creates a new SystemAddonsConfig instance using the specified properties.
@@ -1824,6 +1908,8 @@
                                     writer = $Writer.create();
                                 if (message.ingress != null && Object.hasOwnProperty.call(message, "ingress"))
                                     $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress.encode(message.ingress, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                if (message.vmServiceConfig != null && Object.hasOwnProperty.call(message, "vmServiceConfig"))
+                                    $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.encode(message.vmServiceConfig, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                                 return writer;
                             };
     
@@ -1851,15 +1937,21 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SystemAddonsConfig.decode = function decode(reader, length) {
+                            SystemAddonsConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.ingress = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.vmServiceConfig = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.decode(reader, reader.uint32());
                                             break;
                                         }
                                     default:
@@ -1902,6 +1994,11 @@
                                     if (error)
                                         return "ingress." + error;
                                 }
+                                if (message.vmServiceConfig != null && message.hasOwnProperty("vmServiceConfig")) {
+                                    var error = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.verify(message.vmServiceConfig);
+                                    if (error)
+                                        return "vmServiceConfig." + error;
+                                }
                                 return null;
                             };
     
@@ -1922,6 +2019,11 @@
                                         throw TypeError(".google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.ingress: object expected");
                                     message.ingress = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress.fromObject(object.ingress);
                                 }
+                                if (object.vmServiceConfig != null) {
+                                    if (typeof object.vmServiceConfig !== "object")
+                                        throw TypeError(".google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.vmServiceConfig: object expected");
+                                    message.vmServiceConfig = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.fromObject(object.vmServiceConfig);
+                                }
                                 return message;
                             };
     
@@ -1938,10 +2040,14 @@
                                 if (!options)
                                     options = {};
                                 var object = {};
-                                if (options.defaults)
+                                if (options.defaults) {
                                     object.ingress = null;
+                                    object.vmServiceConfig = null;
+                                }
                                 if (message.ingress != null && message.hasOwnProperty("ingress"))
                                     object.ingress = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress.toObject(message.ingress, options);
+                                if (message.vmServiceConfig != null && message.hasOwnProperty("vmServiceConfig"))
+                                    object.vmServiceConfig = $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.toObject(message.vmServiceConfig, options);
                                 return object;
                             };
     
@@ -2067,12 +2173,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                Ingress.decode = function decode(reader, length) {
+                                Ingress.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.disabled = reader.bool();
@@ -2198,6 +2306,211 @@
                                 return Ingress;
                             })();
     
+                            SystemAddonsConfig.VMServiceConfig = (function() {
+    
+                                /**
+                                 * Properties of a VMServiceConfig.
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig
+                                 * @interface IVMServiceConfig
+                                 * @property {boolean|null} [vmmEnabled] VMServiceConfig vmmEnabled
+                                 */
+    
+                                /**
+                                 * Constructs a new VMServiceConfig.
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig
+                                 * @classdesc Represents a VMServiceConfig.
+                                 * @implements IVMServiceConfig
+                                 * @constructor
+                                 * @param {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig=} [properties] Properties to set
+                                 */
+                                function VMServiceConfig(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * VMServiceConfig vmmEnabled.
+                                 * @member {boolean} vmmEnabled
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @instance
+                                 */
+                                VMServiceConfig.prototype.vmmEnabled = false;
+    
+                                /**
+                                 * Creates a new VMServiceConfig instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig=} [properties] Properties to set
+                                 * @returns {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig} VMServiceConfig instance
+                                 */
+                                VMServiceConfig.create = function create(properties) {
+                                    return new VMServiceConfig(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified VMServiceConfig message. Does not implicitly {@link google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig} message VMServiceConfig message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                VMServiceConfig.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.vmmEnabled != null && Object.hasOwnProperty.call(message, "vmmEnabled"))
+                                        writer.uint32(/* id 1, wireType 0 =*/8).bool(message.vmmEnabled);
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified VMServiceConfig message, length delimited. Does not implicitly {@link google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.IVMServiceConfig} message VMServiceConfig message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                VMServiceConfig.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a VMServiceConfig message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig} VMServiceConfig
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                VMServiceConfig.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.vmmEnabled = reader.bool();
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a VMServiceConfig message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig} VMServiceConfig
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                VMServiceConfig.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a VMServiceConfig message.
+                                 * @function verify
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                VMServiceConfig.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    if (message.vmmEnabled != null && message.hasOwnProperty("vmmEnabled"))
+                                        if (typeof message.vmmEnabled !== "boolean")
+                                            return "vmmEnabled: boolean expected";
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a VMServiceConfig message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig} VMServiceConfig
+                                 */
+                                VMServiceConfig.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig)
+                                        return object;
+                                    var message = new $root.google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig();
+                                    if (object.vmmEnabled != null)
+                                        message.vmmEnabled = Boolean(object.vmmEnabled);
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a VMServiceConfig message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig} message VMServiceConfig
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                VMServiceConfig.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (options.defaults)
+                                        object.vmmEnabled = false;
+                                    if (message.vmmEnabled != null && message.hasOwnProperty("vmmEnabled"))
+                                        object.vmmEnabled = message.vmmEnabled;
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this VMServiceConfig to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                VMServiceConfig.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for VMServiceConfig
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                VMServiceConfig.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig";
+                                };
+    
+                                return VMServiceConfig;
+                            })();
+    
                             return SystemAddonsConfig;
                         })();
     
@@ -2211,6 +2524,7 @@
                              * @property {string|null} [kmsKeyActiveVersion] ControlPlaneEncryption kmsKeyActiveVersion
                              * @property {google.cloud.edgecontainer.v1.KmsKeyState|null} [kmsKeyState] ControlPlaneEncryption kmsKeyState
                              * @property {google.rpc.IStatus|null} [kmsStatus] ControlPlaneEncryption kmsStatus
+                             * @property {google.cloud.edgecontainer.v1.ResourceState|null} [resourceState] ControlPlaneEncryption resourceState
                              */
     
                             /**
@@ -2261,6 +2575,14 @@
                             ControlPlaneEncryption.prototype.kmsStatus = null;
     
                             /**
+                             * ControlPlaneEncryption resourceState.
+                             * @member {google.cloud.edgecontainer.v1.ResourceState} resourceState
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ControlPlaneEncryption
+                             * @instance
+                             */
+                            ControlPlaneEncryption.prototype.resourceState = 0;
+    
+                            /**
                              * Creates a new ControlPlaneEncryption instance using the specified properties.
                              * @function create
                              * @memberof google.cloud.edgecontainer.v1.Cluster.ControlPlaneEncryption
@@ -2292,6 +2614,8 @@
                                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.kmsKeyState);
                                 if (message.kmsStatus != null && Object.hasOwnProperty.call(message, "kmsStatus"))
                                     $root.google.rpc.Status.encode(message.kmsStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                if (message.resourceState != null && Object.hasOwnProperty.call(message, "resourceState"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.resourceState);
                                 return writer;
                             };
     
@@ -2319,12 +2643,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            ControlPlaneEncryption.decode = function decode(reader, length) {
+                            ControlPlaneEncryption.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.ControlPlaneEncryption();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.kmsKey = reader.string();
@@ -2340,6 +2666,10 @@
                                         }
                                     case 4: {
                                             message.kmsStatus = $root.google.rpc.Status.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.resourceState = reader.int32();
                                             break;
                                         }
                                     default:
@@ -2397,6 +2727,15 @@
                                     if (error)
                                         return "kmsStatus." + error;
                                 }
+                                if (message.resourceState != null && message.hasOwnProperty("resourceState"))
+                                    switch (message.resourceState) {
+                                    default:
+                                        return "resourceState: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
                                 return null;
                             };
     
@@ -2441,6 +2780,26 @@
                                         throw TypeError(".google.cloud.edgecontainer.v1.Cluster.ControlPlaneEncryption.kmsStatus: object expected");
                                     message.kmsStatus = $root.google.rpc.Status.fromObject(object.kmsStatus);
                                 }
+                                switch (object.resourceState) {
+                                default:
+                                    if (typeof object.resourceState === "number") {
+                                        message.resourceState = object.resourceState;
+                                        break;
+                                    }
+                                    break;
+                                case "RESOURCE_STATE_UNSPECIFIED":
+                                case 0:
+                                    message.resourceState = 0;
+                                    break;
+                                case "RESOURCE_STATE_LOCK_DOWN":
+                                case 1:
+                                    message.resourceState = 1;
+                                    break;
+                                case "RESOURCE_STATE_LOCK_DOWN_PENDING":
+                                case 2:
+                                    message.resourceState = 2;
+                                    break;
+                                }
                                 return message;
                             };
     
@@ -2462,6 +2821,7 @@
                                     object.kmsKeyActiveVersion = "";
                                     object.kmsKeyState = options.enums === String ? "KMS_KEY_STATE_UNSPECIFIED" : 0;
                                     object.kmsStatus = null;
+                                    object.resourceState = options.enums === String ? "RESOURCE_STATE_UNSPECIFIED" : 0;
                                 }
                                 if (message.kmsKey != null && message.hasOwnProperty("kmsKey"))
                                     object.kmsKey = message.kmsKey;
@@ -2471,6 +2831,8 @@
                                     object.kmsKeyState = options.enums === String ? $root.google.cloud.edgecontainer.v1.KmsKeyState[message.kmsKeyState] === undefined ? message.kmsKeyState : $root.google.cloud.edgecontainer.v1.KmsKeyState[message.kmsKeyState] : message.kmsKeyState;
                                 if (message.kmsStatus != null && message.hasOwnProperty("kmsStatus"))
                                     object.kmsStatus = $root.google.rpc.Status.toObject(message.kmsStatus, options);
+                                if (message.resourceState != null && message.hasOwnProperty("resourceState"))
+                                    object.resourceState = options.enums === String ? $root.google.cloud.edgecontainer.v1.ResourceState[message.resourceState] === undefined ? message.resourceState : $root.google.cloud.edgecontainer.v1.ResourceState[message.resourceState] : message.resourceState;
                                 return object;
                             };
     
@@ -2687,12 +3049,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            MaintenanceEvent.decode = function decode(reader, length) {
+                            MaintenanceEvent.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.MaintenanceEvent();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.uuid = reader.string();
@@ -3139,12 +3503,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            SurvivabilityConfig.decode = function decode(reader, length) {
+                            SurvivabilityConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.SurvivabilityConfig();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.offlineRebootTtl = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -3260,6 +3626,287 @@
                             };
     
                             return SurvivabilityConfig;
+                        })();
+    
+                        Cluster.ConnectionState = (function() {
+    
+                            /**
+                             * Properties of a ConnectionState.
+                             * @memberof google.cloud.edgecontainer.v1.Cluster
+                             * @interface IConnectionState
+                             * @property {google.cloud.edgecontainer.v1.Cluster.ConnectionState.State|null} [state] ConnectionState state
+                             * @property {google.protobuf.ITimestamp|null} [updateTime] ConnectionState updateTime
+                             */
+    
+                            /**
+                             * Constructs a new ConnectionState.
+                             * @memberof google.cloud.edgecontainer.v1.Cluster
+                             * @classdesc Represents a ConnectionState.
+                             * @implements IConnectionState
+                             * @constructor
+                             * @param {google.cloud.edgecontainer.v1.Cluster.IConnectionState=} [properties] Properties to set
+                             */
+                            function ConnectionState(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * ConnectionState state.
+                             * @member {google.cloud.edgecontainer.v1.Cluster.ConnectionState.State} state
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @instance
+                             */
+                            ConnectionState.prototype.state = 0;
+    
+                            /**
+                             * ConnectionState updateTime.
+                             * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @instance
+                             */
+                            ConnectionState.prototype.updateTime = null;
+    
+                            /**
+                             * Creates a new ConnectionState instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {google.cloud.edgecontainer.v1.Cluster.IConnectionState=} [properties] Properties to set
+                             * @returns {google.cloud.edgecontainer.v1.Cluster.ConnectionState} ConnectionState instance
+                             */
+                            ConnectionState.create = function create(properties) {
+                                return new ConnectionState(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified ConnectionState message. Does not implicitly {@link google.cloud.edgecontainer.v1.Cluster.ConnectionState.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {google.cloud.edgecontainer.v1.Cluster.IConnectionState} message ConnectionState message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ConnectionState.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.state);
+                                if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                                    $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified ConnectionState message, length delimited. Does not implicitly {@link google.cloud.edgecontainer.v1.Cluster.ConnectionState.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {google.cloud.edgecontainer.v1.Cluster.IConnectionState} message ConnectionState message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ConnectionState.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a ConnectionState message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.edgecontainer.v1.Cluster.ConnectionState} ConnectionState
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ConnectionState.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.state = reader.int32();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a ConnectionState message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.edgecontainer.v1.Cluster.ConnectionState} ConnectionState
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ConnectionState.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a ConnectionState message.
+                             * @function verify
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            ConnectionState.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    switch (message.state) {
+                                    default:
+                                        return "state: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                        break;
+                                    }
+                                if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                    var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                    if (error)
+                                        return "updateTime." + error;
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a ConnectionState message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.edgecontainer.v1.Cluster.ConnectionState} ConnectionState
+                             */
+                            ConnectionState.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState)
+                                    return object;
+                                var message = new $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState();
+                                switch (object.state) {
+                                default:
+                                    if (typeof object.state === "number") {
+                                        message.state = object.state;
+                                        break;
+                                    }
+                                    break;
+                                case "STATE_UNSPECIFIED":
+                                case 0:
+                                    message.state = 0;
+                                    break;
+                                case "DISCONNECTED":
+                                case 1:
+                                    message.state = 1;
+                                    break;
+                                case "CONNECTED":
+                                case 2:
+                                    message.state = 2;
+                                    break;
+                                case "CONNECTED_AND_SYNCING":
+                                case 3:
+                                    message.state = 3;
+                                    break;
+                                }
+                                if (object.updateTime != null) {
+                                    if (typeof object.updateTime !== "object")
+                                        throw TypeError(".google.cloud.edgecontainer.v1.Cluster.ConnectionState.updateTime: object expected");
+                                    message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a ConnectionState message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {google.cloud.edgecontainer.v1.Cluster.ConnectionState} message ConnectionState
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            ConnectionState.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                    object.updateTime = null;
+                                }
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    object.state = options.enums === String ? $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.State[message.state] === undefined ? message.state : $root.google.cloud.edgecontainer.v1.Cluster.ConnectionState.State[message.state] : message.state;
+                                if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                    object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this ConnectionState to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            ConnectionState.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for ConnectionState
+                             * @function getTypeUrl
+                             * @memberof google.cloud.edgecontainer.v1.Cluster.ConnectionState
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            ConnectionState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.edgecontainer.v1.Cluster.ConnectionState";
+                            };
+    
+                            /**
+                             * State enum.
+                             * @name google.cloud.edgecontainer.v1.Cluster.ConnectionState.State
+                             * @enum {number}
+                             * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                             * @property {number} DISCONNECTED=1 DISCONNECTED value
+                             * @property {number} CONNECTED=2 CONNECTED value
+                             * @property {number} CONNECTED_AND_SYNCING=3 CONNECTED_AND_SYNCING value
+                             */
+                            ConnectionState.State = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "DISCONNECTED"] = 1;
+                                values[valuesById[2] = "CONNECTED"] = 2;
+                                values[valuesById[3] = "CONNECTED_AND_SYNCING"] = 3;
+                                return values;
+                            })();
+    
+                            return ConnectionState;
                         })();
     
                         /**
@@ -3403,12 +4050,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ClusterNetworking.decode = function decode(reader, length) {
+                        ClusterNetworking.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ClusterNetworking();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.clusterIpv4CidrBlocks && message.clusterIpv4CidrBlocks.length))
@@ -3658,12 +4307,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Fleet.decode = function decode(reader, length) {
+                        Fleet.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Fleet();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.project = reader.string();
@@ -3874,12 +4525,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ClusterUser.decode = function decode(reader, length) {
+                        ClusterUser.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ClusterUser();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.username = reader.string();
@@ -4077,12 +4730,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Authorization.decode = function decode(reader, length) {
+                        Authorization.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Authorization();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.adminUsers = $root.google.cloud.edgecontainer.v1.ClusterUser.decode(reader, reader.uint32());
@@ -4386,12 +5041,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        NodePool.decode = function decode(reader, length) {
+                        NodePool.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.NodePool(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -4674,6 +5331,7 @@
                              * @property {string|null} [kmsKeyActiveVersion] LocalDiskEncryption kmsKeyActiveVersion
                              * @property {google.cloud.edgecontainer.v1.KmsKeyState|null} [kmsKeyState] LocalDiskEncryption kmsKeyState
                              * @property {google.rpc.IStatus|null} [kmsStatus] LocalDiskEncryption kmsStatus
+                             * @property {google.cloud.edgecontainer.v1.ResourceState|null} [resourceState] LocalDiskEncryption resourceState
                              */
     
                             /**
@@ -4724,6 +5382,14 @@
                             LocalDiskEncryption.prototype.kmsStatus = null;
     
                             /**
+                             * LocalDiskEncryption resourceState.
+                             * @member {google.cloud.edgecontainer.v1.ResourceState} resourceState
+                             * @memberof google.cloud.edgecontainer.v1.NodePool.LocalDiskEncryption
+                             * @instance
+                             */
+                            LocalDiskEncryption.prototype.resourceState = 0;
+    
+                            /**
                              * Creates a new LocalDiskEncryption instance using the specified properties.
                              * @function create
                              * @memberof google.cloud.edgecontainer.v1.NodePool.LocalDiskEncryption
@@ -4755,6 +5421,8 @@
                                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.kmsKeyState);
                                 if (message.kmsStatus != null && Object.hasOwnProperty.call(message, "kmsStatus"))
                                     $root.google.rpc.Status.encode(message.kmsStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                                if (message.resourceState != null && Object.hasOwnProperty.call(message, "resourceState"))
+                                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.resourceState);
                                 return writer;
                             };
     
@@ -4782,12 +5450,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            LocalDiskEncryption.decode = function decode(reader, length) {
+                            LocalDiskEncryption.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.NodePool.LocalDiskEncryption();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.kmsKey = reader.string();
@@ -4803,6 +5473,10 @@
                                         }
                                     case 4: {
                                             message.kmsStatus = $root.google.rpc.Status.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 5: {
+                                            message.resourceState = reader.int32();
                                             break;
                                         }
                                     default:
@@ -4860,6 +5534,15 @@
                                     if (error)
                                         return "kmsStatus." + error;
                                 }
+                                if (message.resourceState != null && message.hasOwnProperty("resourceState"))
+                                    switch (message.resourceState) {
+                                    default:
+                                        return "resourceState: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        break;
+                                    }
                                 return null;
                             };
     
@@ -4904,6 +5587,26 @@
                                         throw TypeError(".google.cloud.edgecontainer.v1.NodePool.LocalDiskEncryption.kmsStatus: object expected");
                                     message.kmsStatus = $root.google.rpc.Status.fromObject(object.kmsStatus);
                                 }
+                                switch (object.resourceState) {
+                                default:
+                                    if (typeof object.resourceState === "number") {
+                                        message.resourceState = object.resourceState;
+                                        break;
+                                    }
+                                    break;
+                                case "RESOURCE_STATE_UNSPECIFIED":
+                                case 0:
+                                    message.resourceState = 0;
+                                    break;
+                                case "RESOURCE_STATE_LOCK_DOWN":
+                                case 1:
+                                    message.resourceState = 1;
+                                    break;
+                                case "RESOURCE_STATE_LOCK_DOWN_PENDING":
+                                case 2:
+                                    message.resourceState = 2;
+                                    break;
+                                }
                                 return message;
                             };
     
@@ -4925,6 +5628,7 @@
                                     object.kmsKeyActiveVersion = "";
                                     object.kmsKeyState = options.enums === String ? "KMS_KEY_STATE_UNSPECIFIED" : 0;
                                     object.kmsStatus = null;
+                                    object.resourceState = options.enums === String ? "RESOURCE_STATE_UNSPECIFIED" : 0;
                                 }
                                 if (message.kmsKey != null && message.hasOwnProperty("kmsKey"))
                                     object.kmsKey = message.kmsKey;
@@ -4934,6 +5638,8 @@
                                     object.kmsKeyState = options.enums === String ? $root.google.cloud.edgecontainer.v1.KmsKeyState[message.kmsKeyState] === undefined ? message.kmsKeyState : $root.google.cloud.edgecontainer.v1.KmsKeyState[message.kmsKeyState] : message.kmsKeyState;
                                 if (message.kmsStatus != null && message.hasOwnProperty("kmsStatus"))
                                     object.kmsStatus = $root.google.rpc.Status.toObject(message.kmsStatus, options);
+                                if (message.resourceState != null && message.hasOwnProperty("resourceState"))
+                                    object.resourceState = options.enums === String ? $root.google.cloud.edgecontainer.v1.ResourceState[message.resourceState] === undefined ? message.resourceState : $root.google.cloud.edgecontainer.v1.ResourceState[message.resourceState] : message.resourceState;
                                 return object;
                             };
     
@@ -4973,6 +5679,7 @@
                              * @memberof google.cloud.edgecontainer.v1.NodePool
                              * @interface INodeConfig
                              * @property {Object.<string,string>|null} [labels] NodeConfig labels
+                             * @property {string|null} [nodeStorageSchema] NodeConfig nodeStorageSchema
                              */
     
                             /**
@@ -4998,6 +5705,14 @@
                              * @instance
                              */
                             NodeConfig.prototype.labels = $util.emptyObject;
+    
+                            /**
+                             * NodeConfig nodeStorageSchema.
+                             * @member {string} nodeStorageSchema
+                             * @memberof google.cloud.edgecontainer.v1.NodePool.NodeConfig
+                             * @instance
+                             */
+                            NodeConfig.prototype.nodeStorageSchema = "";
     
                             /**
                              * Creates a new NodeConfig instance using the specified properties.
@@ -5026,6 +5741,8 @@
                                 if (message.labels != null && Object.hasOwnProperty.call(message, "labels"))
                                     for (var keys = Object.keys(message.labels), i = 0; i < keys.length; ++i)
                                         writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.labels[keys[i]]).ldelim();
+                                if (message.nodeStorageSchema != null && Object.hasOwnProperty.call(message, "nodeStorageSchema"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.nodeStorageSchema);
                                 return writer;
                             };
     
@@ -5053,12 +5770,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            NodeConfig.decode = function decode(reader, length) {
+                            NodeConfig.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.NodePool.NodeConfig(), key, value;
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             if (message.labels === $util.emptyObject)
@@ -5081,6 +5800,10 @@
                                                 }
                                             }
                                             message.labels[key] = value;
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.nodeStorageSchema = reader.string();
                                             break;
                                         }
                                     default:
@@ -5126,6 +5849,9 @@
                                         if (!$util.isString(message.labels[key[i]]))
                                             return "labels: string{k:string} expected";
                                 }
+                                if (message.nodeStorageSchema != null && message.hasOwnProperty("nodeStorageSchema"))
+                                    if (!$util.isString(message.nodeStorageSchema))
+                                        return "nodeStorageSchema: string expected";
                                 return null;
                             };
     
@@ -5148,6 +5874,8 @@
                                     for (var keys = Object.keys(object.labels), i = 0; i < keys.length; ++i)
                                         message.labels[keys[i]] = String(object.labels[keys[i]]);
                                 }
+                                if (object.nodeStorageSchema != null)
+                                    message.nodeStorageSchema = String(object.nodeStorageSchema);
                                 return message;
                             };
     
@@ -5166,12 +5894,16 @@
                                 var object = {};
                                 if (options.objects || options.defaults)
                                     object.labels = {};
+                                if (options.defaults)
+                                    object.nodeStorageSchema = "";
                                 var keys2;
                                 if (message.labels && (keys2 = Object.keys(message.labels)).length) {
                                     object.labels = {};
                                     for (var j = 0; j < keys2.length; ++j)
                                         object.labels[keys2[j]] = message.labels[keys2[j]];
                                 }
+                                if (message.nodeStorageSchema != null && message.hasOwnProperty("nodeStorageSchema"))
+                                    object.nodeStorageSchema = message.nodeStorageSchema;
                                 return object;
                             };
     
@@ -5371,12 +6103,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Machine.decode = function decode(reader, length) {
+                        Machine.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Machine(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -5826,12 +6560,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        VpnConnection.decode = function decode(reader, length) {
+                        VpnConnection.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.VpnConnection(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -6248,12 +6984,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            VpcProject.decode = function decode(reader, length) {
+                            VpcProject.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.VpnConnection.VpcProject();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.projectId = reader.string();
@@ -6499,12 +7237,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            Details.decode = function decode(reader, length) {
+                            Details.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.VpnConnection.Details();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.state = reader.int32();
@@ -6790,12 +7530,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                CloudRouter.decode = function decode(reader, length) {
+                                CloudRouter.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.name = reader.string();
@@ -6993,12 +7735,14 @@
                                  * @throws {Error} If the payload is not a reader or valid buffer
                                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                                  */
-                                CloudVpn.decode = function decode(reader, length) {
+                                CloudVpn.decode = function decode(reader, length, error) {
                                     if (!(reader instanceof $Reader))
                                         reader = $Reader.create(reader);
                                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn();
                                     while (reader.pos < end) {
                                         var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
                                         switch (tag >>> 3) {
                                         case 1: {
                                                 message.gateway = reader.string();
@@ -7240,12 +7984,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LocationMetadata.decode = function decode(reader, length) {
+                        LocationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.LocationMetadata(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (message.availableZones === $util.emptyObject)
@@ -7404,6 +8150,7 @@
                          * @interface IZoneMetadata
                          * @property {Array.<google.cloud.edgecontainer.v1.IQuota>|null} [quota] ZoneMetadata quota
                          * @property {Object.<string,google.cloud.edgecontainer.v1.ZoneMetadata.RackType>|null} [rackTypes] ZoneMetadata rackTypes
+                         * @property {google.cloud.edgecontainer.v1.IConfigData|null} [configData] ZoneMetadata configData
                          */
     
                         /**
@@ -7440,6 +8187,14 @@
                         ZoneMetadata.prototype.rackTypes = $util.emptyObject;
     
                         /**
+                         * ZoneMetadata configData.
+                         * @member {google.cloud.edgecontainer.v1.IConfigData|null|undefined} configData
+                         * @memberof google.cloud.edgecontainer.v1.ZoneMetadata
+                         * @instance
+                         */
+                        ZoneMetadata.prototype.configData = null;
+    
+                        /**
                          * Creates a new ZoneMetadata instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.edgecontainer.v1.ZoneMetadata
@@ -7469,6 +8224,8 @@
                             if (message.rackTypes != null && Object.hasOwnProperty.call(message, "rackTypes"))
                                 for (var keys = Object.keys(message.rackTypes), i = 0; i < keys.length; ++i)
                                     writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.rackTypes[keys[i]]).ldelim();
+                            if (message.configData != null && Object.hasOwnProperty.call(message, "configData"))
+                                $root.google.cloud.edgecontainer.v1.ConfigData.encode(message.configData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                             return writer;
                         };
     
@@ -7496,12 +8253,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ZoneMetadata.decode = function decode(reader, length) {
+                        ZoneMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ZoneMetadata(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.quota && message.quota.length))
@@ -7530,6 +8289,10 @@
                                             }
                                         }
                                         message.rackTypes[key] = value;
+                                        break;
+                                    }
+                                case 3: {
+                                        message.configData = $root.google.cloud.edgecontainer.v1.ConfigData.decode(reader, reader.uint32());
                                         break;
                                     }
                                 default:
@@ -7590,6 +8353,11 @@
                                         break;
                                     }
                             }
+                            if (message.configData != null && message.hasOwnProperty("configData")) {
+                                var error = $root.google.cloud.edgecontainer.v1.ConfigData.verify(message.configData);
+                                if (error)
+                                    return "configData." + error;
+                            }
                             return null;
                         };
     
@@ -7641,6 +8409,11 @@
                                         break;
                                     }
                             }
+                            if (object.configData != null) {
+                                if (typeof object.configData !== "object")
+                                    throw TypeError(".google.cloud.edgecontainer.v1.ZoneMetadata.configData: object expected");
+                                message.configData = $root.google.cloud.edgecontainer.v1.ConfigData.fromObject(object.configData);
+                            }
                             return message;
                         };
     
@@ -7661,6 +8434,8 @@
                                 object.quota = [];
                             if (options.objects || options.defaults)
                                 object.rackTypes = {};
+                            if (options.defaults)
+                                object.configData = null;
                             if (message.quota && message.quota.length) {
                                 object.quota = [];
                                 for (var j = 0; j < message.quota.length; ++j)
@@ -7672,6 +8447,8 @@
                                 for (var j = 0; j < keys2.length; ++j)
                                     object.rackTypes[keys2[j]] = options.enums === String ? $root.google.cloud.edgecontainer.v1.ZoneMetadata.RackType[message.rackTypes[keys2[j]]] === undefined ? message.rackTypes[keys2[j]] : $root.google.cloud.edgecontainer.v1.ZoneMetadata.RackType[message.rackTypes[keys2[j]]] : message.rackTypes[keys2[j]];
                             }
+                            if (message.configData != null && message.hasOwnProperty("configData"))
+                                object.configData = $root.google.cloud.edgecontainer.v1.ConfigData.toObject(message.configData, options);
                             return object;
                         };
     
@@ -7718,6 +8495,267 @@
                         })();
     
                         return ZoneMetadata;
+                    })();
+    
+                    v1.ConfigData = (function() {
+    
+                        /**
+                         * Properties of a ConfigData.
+                         * @memberof google.cloud.edgecontainer.v1
+                         * @interface IConfigData
+                         * @property {Array.<string>|null} [availableExternalLbPoolsIpv4] ConfigData availableExternalLbPoolsIpv4
+                         * @property {Array.<string>|null} [availableExternalLbPoolsIpv6] ConfigData availableExternalLbPoolsIpv6
+                         */
+    
+                        /**
+                         * Constructs a new ConfigData.
+                         * @memberof google.cloud.edgecontainer.v1
+                         * @classdesc Represents a ConfigData.
+                         * @implements IConfigData
+                         * @constructor
+                         * @param {google.cloud.edgecontainer.v1.IConfigData=} [properties] Properties to set
+                         */
+                        function ConfigData(properties) {
+                            this.availableExternalLbPoolsIpv4 = [];
+                            this.availableExternalLbPoolsIpv6 = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ConfigData availableExternalLbPoolsIpv4.
+                         * @member {Array.<string>} availableExternalLbPoolsIpv4
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @instance
+                         */
+                        ConfigData.prototype.availableExternalLbPoolsIpv4 = $util.emptyArray;
+    
+                        /**
+                         * ConfigData availableExternalLbPoolsIpv6.
+                         * @member {Array.<string>} availableExternalLbPoolsIpv6
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @instance
+                         */
+                        ConfigData.prototype.availableExternalLbPoolsIpv6 = $util.emptyArray;
+    
+                        /**
+                         * Creates a new ConfigData instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IConfigData=} [properties] Properties to set
+                         * @returns {google.cloud.edgecontainer.v1.ConfigData} ConfigData instance
+                         */
+                        ConfigData.create = function create(properties) {
+                            return new ConfigData(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ConfigData message. Does not implicitly {@link google.cloud.edgecontainer.v1.ConfigData.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IConfigData} message ConfigData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ConfigData.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.availableExternalLbPoolsIpv4 != null && message.availableExternalLbPoolsIpv4.length)
+                                for (var i = 0; i < message.availableExternalLbPoolsIpv4.length; ++i)
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.availableExternalLbPoolsIpv4[i]);
+                            if (message.availableExternalLbPoolsIpv6 != null && message.availableExternalLbPoolsIpv6.length)
+                                for (var i = 0; i < message.availableExternalLbPoolsIpv6.length; ++i)
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.availableExternalLbPoolsIpv6[i]);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ConfigData message, length delimited. Does not implicitly {@link google.cloud.edgecontainer.v1.ConfigData.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IConfigData} message ConfigData message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ConfigData.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ConfigData message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.edgecontainer.v1.ConfigData} ConfigData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ConfigData.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ConfigData();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        if (!(message.availableExternalLbPoolsIpv4 && message.availableExternalLbPoolsIpv4.length))
+                                            message.availableExternalLbPoolsIpv4 = [];
+                                        message.availableExternalLbPoolsIpv4.push(reader.string());
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.availableExternalLbPoolsIpv6 && message.availableExternalLbPoolsIpv6.length))
+                                            message.availableExternalLbPoolsIpv6 = [];
+                                        message.availableExternalLbPoolsIpv6.push(reader.string());
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ConfigData message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.edgecontainer.v1.ConfigData} ConfigData
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ConfigData.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ConfigData message.
+                         * @function verify
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ConfigData.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.availableExternalLbPoolsIpv4 != null && message.hasOwnProperty("availableExternalLbPoolsIpv4")) {
+                                if (!Array.isArray(message.availableExternalLbPoolsIpv4))
+                                    return "availableExternalLbPoolsIpv4: array expected";
+                                for (var i = 0; i < message.availableExternalLbPoolsIpv4.length; ++i)
+                                    if (!$util.isString(message.availableExternalLbPoolsIpv4[i]))
+                                        return "availableExternalLbPoolsIpv4: string[] expected";
+                            }
+                            if (message.availableExternalLbPoolsIpv6 != null && message.hasOwnProperty("availableExternalLbPoolsIpv6")) {
+                                if (!Array.isArray(message.availableExternalLbPoolsIpv6))
+                                    return "availableExternalLbPoolsIpv6: array expected";
+                                for (var i = 0; i < message.availableExternalLbPoolsIpv6.length; ++i)
+                                    if (!$util.isString(message.availableExternalLbPoolsIpv6[i]))
+                                        return "availableExternalLbPoolsIpv6: string[] expected";
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ConfigData message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.edgecontainer.v1.ConfigData} ConfigData
+                         */
+                        ConfigData.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.edgecontainer.v1.ConfigData)
+                                return object;
+                            var message = new $root.google.cloud.edgecontainer.v1.ConfigData();
+                            if (object.availableExternalLbPoolsIpv4) {
+                                if (!Array.isArray(object.availableExternalLbPoolsIpv4))
+                                    throw TypeError(".google.cloud.edgecontainer.v1.ConfigData.availableExternalLbPoolsIpv4: array expected");
+                                message.availableExternalLbPoolsIpv4 = [];
+                                for (var i = 0; i < object.availableExternalLbPoolsIpv4.length; ++i)
+                                    message.availableExternalLbPoolsIpv4[i] = String(object.availableExternalLbPoolsIpv4[i]);
+                            }
+                            if (object.availableExternalLbPoolsIpv6) {
+                                if (!Array.isArray(object.availableExternalLbPoolsIpv6))
+                                    throw TypeError(".google.cloud.edgecontainer.v1.ConfigData.availableExternalLbPoolsIpv6: array expected");
+                                message.availableExternalLbPoolsIpv6 = [];
+                                for (var i = 0; i < object.availableExternalLbPoolsIpv6.length; ++i)
+                                    message.availableExternalLbPoolsIpv6[i] = String(object.availableExternalLbPoolsIpv6[i]);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ConfigData message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.ConfigData} message ConfigData
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ConfigData.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults) {
+                                object.availableExternalLbPoolsIpv4 = [];
+                                object.availableExternalLbPoolsIpv6 = [];
+                            }
+                            if (message.availableExternalLbPoolsIpv4 && message.availableExternalLbPoolsIpv4.length) {
+                                object.availableExternalLbPoolsIpv4 = [];
+                                for (var j = 0; j < message.availableExternalLbPoolsIpv4.length; ++j)
+                                    object.availableExternalLbPoolsIpv4[j] = message.availableExternalLbPoolsIpv4[j];
+                            }
+                            if (message.availableExternalLbPoolsIpv6 && message.availableExternalLbPoolsIpv6.length) {
+                                object.availableExternalLbPoolsIpv6 = [];
+                                for (var j = 0; j < message.availableExternalLbPoolsIpv6.length; ++j)
+                                    object.availableExternalLbPoolsIpv6[j] = message.availableExternalLbPoolsIpv6[j];
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ConfigData to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ConfigData.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for ConfigData
+                         * @function getTypeUrl
+                         * @memberof google.cloud.edgecontainer.v1.ConfigData
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        ConfigData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.edgecontainer.v1.ConfigData";
+                        };
+    
+                        return ConfigData;
                     })();
     
                     v1.Quota = (function() {
@@ -7827,12 +8865,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Quota.decode = function decode(reader, length) {
+                        Quota.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Quota();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.metric = reader.string();
@@ -7977,6 +9017,7 @@
                          * @memberof google.cloud.edgecontainer.v1
                          * @interface IMaintenancePolicy
                          * @property {google.cloud.edgecontainer.v1.IMaintenanceWindow|null} [window] MaintenancePolicy window
+                         * @property {Array.<google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow>|null} [maintenanceExclusions] MaintenancePolicy maintenanceExclusions
                          */
     
                         /**
@@ -7988,6 +9029,7 @@
                          * @param {google.cloud.edgecontainer.v1.IMaintenancePolicy=} [properties] Properties to set
                          */
                         function MaintenancePolicy(properties) {
+                            this.maintenanceExclusions = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -8001,6 +9043,14 @@
                          * @instance
                          */
                         MaintenancePolicy.prototype.window = null;
+    
+                        /**
+                         * MaintenancePolicy maintenanceExclusions.
+                         * @member {Array.<google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow>} maintenanceExclusions
+                         * @memberof google.cloud.edgecontainer.v1.MaintenancePolicy
+                         * @instance
+                         */
+                        MaintenancePolicy.prototype.maintenanceExclusions = $util.emptyArray;
     
                         /**
                          * Creates a new MaintenancePolicy instance using the specified properties.
@@ -8028,6 +9078,9 @@
                                 writer = $Writer.create();
                             if (message.window != null && Object.hasOwnProperty.call(message, "window"))
                                 $root.google.cloud.edgecontainer.v1.MaintenanceWindow.encode(message.window, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.maintenanceExclusions != null && message.maintenanceExclusions.length)
+                                for (var i = 0; i < message.maintenanceExclusions.length; ++i)
+                                    $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.encode(message.maintenanceExclusions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                             return writer;
                         };
     
@@ -8055,15 +9108,23 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MaintenancePolicy.decode = function decode(reader, length) {
+                        MaintenancePolicy.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.MaintenancePolicy();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.window = $root.google.cloud.edgecontainer.v1.MaintenanceWindow.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        if (!(message.maintenanceExclusions && message.maintenanceExclusions.length))
+                                            message.maintenanceExclusions = [];
+                                        message.maintenanceExclusions.push($root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.decode(reader, reader.uint32()));
                                         break;
                                     }
                                 default:
@@ -8106,6 +9167,15 @@
                                 if (error)
                                     return "window." + error;
                             }
+                            if (message.maintenanceExclusions != null && message.hasOwnProperty("maintenanceExclusions")) {
+                                if (!Array.isArray(message.maintenanceExclusions))
+                                    return "maintenanceExclusions: array expected";
+                                for (var i = 0; i < message.maintenanceExclusions.length; ++i) {
+                                    var error = $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.verify(message.maintenanceExclusions[i]);
+                                    if (error)
+                                        return "maintenanceExclusions." + error;
+                                }
+                            }
                             return null;
                         };
     
@@ -8126,6 +9196,16 @@
                                     throw TypeError(".google.cloud.edgecontainer.v1.MaintenancePolicy.window: object expected");
                                 message.window = $root.google.cloud.edgecontainer.v1.MaintenanceWindow.fromObject(object.window);
                             }
+                            if (object.maintenanceExclusions) {
+                                if (!Array.isArray(object.maintenanceExclusions))
+                                    throw TypeError(".google.cloud.edgecontainer.v1.MaintenancePolicy.maintenanceExclusions: array expected");
+                                message.maintenanceExclusions = [];
+                                for (var i = 0; i < object.maintenanceExclusions.length; ++i) {
+                                    if (typeof object.maintenanceExclusions[i] !== "object")
+                                        throw TypeError(".google.cloud.edgecontainer.v1.MaintenancePolicy.maintenanceExclusions: object expected");
+                                    message.maintenanceExclusions[i] = $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.fromObject(object.maintenanceExclusions[i]);
+                                }
+                            }
                             return message;
                         };
     
@@ -8142,10 +9222,17 @@
                             if (!options)
                                 options = {};
                             var object = {};
+                            if (options.arrays || options.defaults)
+                                object.maintenanceExclusions = [];
                             if (options.defaults)
                                 object.window = null;
                             if (message.window != null && message.hasOwnProperty("window"))
                                 object.window = $root.google.cloud.edgecontainer.v1.MaintenanceWindow.toObject(message.window, options);
+                            if (message.maintenanceExclusions && message.maintenanceExclusions.length) {
+                                object.maintenanceExclusions = [];
+                                for (var j = 0; j < message.maintenanceExclusions.length; ++j)
+                                    object.maintenanceExclusions[j] = $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.toObject(message.maintenanceExclusions[j], options);
+                            }
                             return object;
                         };
     
@@ -8263,12 +9350,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MaintenanceWindow.decode = function decode(reader, length) {
+                        MaintenanceWindow.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.MaintenanceWindow();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.recurringWindow = $root.google.cloud.edgecontainer.v1.RecurringTimeWindow.decode(reader, reader.uint32());
@@ -8482,12 +9571,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        RecurringTimeWindow.decode = function decode(reader, length) {
+                        RecurringTimeWindow.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.RecurringTimeWindow();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.window = $root.google.cloud.edgecontainer.v1.TimeWindow.decode(reader, reader.uint32());
@@ -8618,6 +9709,240 @@
                         return RecurringTimeWindow;
                     })();
     
+                    v1.MaintenanceExclusionWindow = (function() {
+    
+                        /**
+                         * Properties of a MaintenanceExclusionWindow.
+                         * @memberof google.cloud.edgecontainer.v1
+                         * @interface IMaintenanceExclusionWindow
+                         * @property {google.cloud.edgecontainer.v1.ITimeWindow|null} [window] MaintenanceExclusionWindow window
+                         * @property {string|null} [id] MaintenanceExclusionWindow id
+                         */
+    
+                        /**
+                         * Constructs a new MaintenanceExclusionWindow.
+                         * @memberof google.cloud.edgecontainer.v1
+                         * @classdesc Represents a MaintenanceExclusionWindow.
+                         * @implements IMaintenanceExclusionWindow
+                         * @constructor
+                         * @param {google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow=} [properties] Properties to set
+                         */
+                        function MaintenanceExclusionWindow(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * MaintenanceExclusionWindow window.
+                         * @member {google.cloud.edgecontainer.v1.ITimeWindow|null|undefined} window
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @instance
+                         */
+                        MaintenanceExclusionWindow.prototype.window = null;
+    
+                        /**
+                         * MaintenanceExclusionWindow id.
+                         * @member {string} id
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @instance
+                         */
+                        MaintenanceExclusionWindow.prototype.id = "";
+    
+                        /**
+                         * Creates a new MaintenanceExclusionWindow instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow=} [properties] Properties to set
+                         * @returns {google.cloud.edgecontainer.v1.MaintenanceExclusionWindow} MaintenanceExclusionWindow instance
+                         */
+                        MaintenanceExclusionWindow.create = function create(properties) {
+                            return new MaintenanceExclusionWindow(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified MaintenanceExclusionWindow message. Does not implicitly {@link google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow} message MaintenanceExclusionWindow message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        MaintenanceExclusionWindow.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.window != null && Object.hasOwnProperty.call(message, "window"))
+                                $root.google.cloud.edgecontainer.v1.TimeWindow.encode(message.window, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.id);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified MaintenanceExclusionWindow message, length delimited. Does not implicitly {@link google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.IMaintenanceExclusionWindow} message MaintenanceExclusionWindow message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        MaintenanceExclusionWindow.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a MaintenanceExclusionWindow message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.edgecontainer.v1.MaintenanceExclusionWindow} MaintenanceExclusionWindow
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        MaintenanceExclusionWindow.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.window = $root.google.cloud.edgecontainer.v1.TimeWindow.decode(reader, reader.uint32());
+                                        break;
+                                    }
+                                case 2: {
+                                        message.id = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a MaintenanceExclusionWindow message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.edgecontainer.v1.MaintenanceExclusionWindow} MaintenanceExclusionWindow
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        MaintenanceExclusionWindow.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a MaintenanceExclusionWindow message.
+                         * @function verify
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        MaintenanceExclusionWindow.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.window != null && message.hasOwnProperty("window")) {
+                                var error = $root.google.cloud.edgecontainer.v1.TimeWindow.verify(message.window);
+                                if (error)
+                                    return "window." + error;
+                            }
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                if (!$util.isString(message.id))
+                                    return "id: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a MaintenanceExclusionWindow message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.edgecontainer.v1.MaintenanceExclusionWindow} MaintenanceExclusionWindow
+                         */
+                        MaintenanceExclusionWindow.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow)
+                                return object;
+                            var message = new $root.google.cloud.edgecontainer.v1.MaintenanceExclusionWindow();
+                            if (object.window != null) {
+                                if (typeof object.window !== "object")
+                                    throw TypeError(".google.cloud.edgecontainer.v1.MaintenanceExclusionWindow.window: object expected");
+                                message.window = $root.google.cloud.edgecontainer.v1.TimeWindow.fromObject(object.window);
+                            }
+                            if (object.id != null)
+                                message.id = String(object.id);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a MaintenanceExclusionWindow message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {google.cloud.edgecontainer.v1.MaintenanceExclusionWindow} message MaintenanceExclusionWindow
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        MaintenanceExclusionWindow.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.window = null;
+                                object.id = "";
+                            }
+                            if (message.window != null && message.hasOwnProperty("window"))
+                                object.window = $root.google.cloud.edgecontainer.v1.TimeWindow.toObject(message.window, options);
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                object.id = message.id;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this MaintenanceExclusionWindow to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        MaintenanceExclusionWindow.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Gets the default type url for MaintenanceExclusionWindow
+                         * @function getTypeUrl
+                         * @memberof google.cloud.edgecontainer.v1.MaintenanceExclusionWindow
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        MaintenanceExclusionWindow.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/google.cloud.edgecontainer.v1.MaintenanceExclusionWindow";
+                        };
+    
+                        return MaintenanceExclusionWindow;
+                    })();
+    
                     v1.TimeWindow = (function() {
     
                         /**
@@ -8714,12 +10039,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        TimeWindow.decode = function decode(reader, length) {
+                        TimeWindow.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.TimeWindow();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -8968,12 +10295,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ServerConfig.decode = function decode(reader, length) {
+                        ServerConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ServerConfig(), key, value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (message.channels === $util.emptyObject)
@@ -9254,12 +10583,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ChannelConfig.decode = function decode(reader, length) {
+                        ChannelConfig.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ChannelConfig();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.defaultVersion = reader.string();
@@ -9457,12 +10788,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Version.decode = function decode(reader, length) {
+                        Version.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.Version();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -10284,6 +11617,7 @@
                          * @property {boolean|null} [requestedCancellation] OperationMetadata requestedCancellation
                          * @property {string|null} [apiVersion] OperationMetadata apiVersion
                          * @property {Array.<string>|null} [warnings] OperationMetadata warnings
+                         * @property {google.cloud.edgecontainer.v1.OperationMetadata.StatusReason|null} [statusReason] OperationMetadata statusReason
                          */
     
                         /**
@@ -10367,6 +11701,14 @@
                         OperationMetadata.prototype.warnings = $util.emptyArray;
     
                         /**
+                         * OperationMetadata statusReason.
+                         * @member {google.cloud.edgecontainer.v1.OperationMetadata.StatusReason} statusReason
+                         * @memberof google.cloud.edgecontainer.v1.OperationMetadata
+                         * @instance
+                         */
+                        OperationMetadata.prototype.statusReason = 0;
+    
+                        /**
                          * Creates a new OperationMetadata instance using the specified properties.
                          * @function create
                          * @memberof google.cloud.edgecontainer.v1.OperationMetadata
@@ -10407,6 +11749,8 @@
                             if (message.warnings != null && message.warnings.length)
                                 for (var i = 0; i < message.warnings.length; ++i)
                                     writer.uint32(/* id 8, wireType 2 =*/66).string(message.warnings[i]);
+                            if (message.statusReason != null && Object.hasOwnProperty.call(message, "statusReason"))
+                                writer.uint32(/* id 9, wireType 0 =*/72).int32(message.statusReason);
                             return writer;
                         };
     
@@ -10434,12 +11778,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OperationMetadata.decode = function decode(reader, length) {
+                        OperationMetadata.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.OperationMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
@@ -10473,6 +11819,10 @@
                                         if (!(message.warnings && message.warnings.length))
                                             message.warnings = [];
                                         message.warnings.push(reader.string());
+                                        break;
+                                    }
+                                case 9: {
+                                        message.statusReason = reader.int32();
                                         break;
                                     }
                                 default:
@@ -10542,6 +11892,14 @@
                                     if (!$util.isString(message.warnings[i]))
                                         return "warnings: string[] expected";
                             }
+                            if (message.statusReason != null && message.hasOwnProperty("statusReason"))
+                                switch (message.statusReason) {
+                                default:
+                                    return "statusReason: enum value expected";
+                                case 0:
+                                case 1:
+                                    break;
+                                }
                             return null;
                         };
     
@@ -10584,6 +11942,22 @@
                                 for (var i = 0; i < object.warnings.length; ++i)
                                     message.warnings[i] = String(object.warnings[i]);
                             }
+                            switch (object.statusReason) {
+                            default:
+                                if (typeof object.statusReason === "number") {
+                                    message.statusReason = object.statusReason;
+                                    break;
+                                }
+                                break;
+                            case "STATUS_REASON_UNSPECIFIED":
+                            case 0:
+                                message.statusReason = 0;
+                                break;
+                            case "UPGRADE_PAUSED":
+                            case 1:
+                                message.statusReason = 1;
+                                break;
+                            }
                             return message;
                         };
     
@@ -10610,6 +11984,7 @@
                                 object.statusMessage = "";
                                 object.requestedCancellation = false;
                                 object.apiVersion = "";
+                                object.statusReason = options.enums === String ? "STATUS_REASON_UNSPECIFIED" : 0;
                             }
                             if (message.createTime != null && message.hasOwnProperty("createTime"))
                                 object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
@@ -10630,6 +12005,8 @@
                                 for (var j = 0; j < message.warnings.length; ++j)
                                     object.warnings[j] = message.warnings[j];
                             }
+                            if (message.statusReason != null && message.hasOwnProperty("statusReason"))
+                                object.statusReason = options.enums === String ? $root.google.cloud.edgecontainer.v1.OperationMetadata.StatusReason[message.statusReason] === undefined ? message.statusReason : $root.google.cloud.edgecontainer.v1.OperationMetadata.StatusReason[message.statusReason] : message.statusReason;
                             return object;
                         };
     
@@ -10658,6 +12035,20 @@
                             }
                             return typeUrlPrefix + "/google.cloud.edgecontainer.v1.OperationMetadata";
                         };
+    
+                        /**
+                         * StatusReason enum.
+                         * @name google.cloud.edgecontainer.v1.OperationMetadata.StatusReason
+                         * @enum {number}
+                         * @property {number} STATUS_REASON_UNSPECIFIED=0 STATUS_REASON_UNSPECIFIED value
+                         * @property {number} UPGRADE_PAUSED=1 UPGRADE_PAUSED value
+                         */
+                        OperationMetadata.StatusReason = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATUS_REASON_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "UPGRADE_PAUSED"] = 1;
+                            return values;
+                        })();
     
                         return OperationMetadata;
                     })();
@@ -10791,12 +12182,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListClustersRequest.decode = function decode(reader, length) {
+                        ListClustersRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListClustersRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11069,12 +12462,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListClustersResponse.decode = function decode(reader, length) {
+                        ListClustersResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListClustersResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.clusters && message.clusters.length))
@@ -11331,12 +12726,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetClusterRequest.decode = function decode(reader, length) {
+                        GetClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GetClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -11567,12 +12964,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateClusterRequest.decode = function decode(reader, length) {
+                        CreateClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.CreateClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -11834,12 +13233,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateClusterRequest.decode = function decode(reader, length) {
+                        UpdateClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.UpdateClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -12105,12 +13506,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpgradeClusterRequest.decode = function decode(reader, length) {
+                        UpgradeClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.UpgradeClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12389,12 +13792,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteClusterRequest.decode = function decode(reader, length) {
+                        DeleteClusterRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.DeleteClusterRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -12605,12 +14010,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateAccessTokenRequest.decode = function decode(reader, length) {
+                        GenerateAccessTokenRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GenerateAccessTokenRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.cluster = reader.string();
@@ -12819,12 +14226,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateAccessTokenResponse.decode = function decode(reader, length) {
+                        GenerateAccessTokenResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GenerateAccessTokenResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.accessToken = reader.string();
@@ -13040,12 +14449,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateOfflineCredentialRequest.decode = function decode(reader, length) {
+                        GenerateOfflineCredentialRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GenerateOfflineCredentialRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.cluster = reader.string();
@@ -13276,12 +14687,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GenerateOfflineCredentialResponse.decode = function decode(reader, length) {
+                        GenerateOfflineCredentialResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GenerateOfflineCredentialResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.clientCertificate = reader.string();
@@ -13565,12 +14978,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodePoolsRequest.decode = function decode(reader, length) {
+                        ListNodePoolsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListNodePoolsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -13843,12 +15258,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListNodePoolsResponse.decode = function decode(reader, length) {
+                        ListNodePoolsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListNodePoolsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.nodePools && message.nodePools.length))
@@ -14105,12 +15522,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetNodePoolRequest.decode = function decode(reader, length) {
+                        GetNodePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GetNodePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -14341,12 +15760,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateNodePoolRequest.decode = function decode(reader, length) {
+                        CreateNodePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.CreateNodePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -14608,12 +16029,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        UpdateNodePoolRequest.decode = function decode(reader, length) {
+                        UpdateNodePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.UpdateNodePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.updateMask = $root.google.protobuf.FieldMask.decode(reader, reader.uint32());
@@ -14857,12 +16280,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteNodePoolRequest.decode = function decode(reader, length) {
+                        DeleteNodePoolRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.DeleteNodePoolRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15117,12 +16542,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListMachinesRequest.decode = function decode(reader, length) {
+                        ListMachinesRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListMachinesRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -15395,12 +16822,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListMachinesResponse.decode = function decode(reader, length) {
+                        ListMachinesResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListMachinesResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.machines && message.machines.length))
@@ -15657,12 +17086,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetMachineRequest.decode = function decode(reader, length) {
+                        GetMachineRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GetMachineRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -15904,12 +17335,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVpnConnectionsRequest.decode = function decode(reader, length) {
+                        ListVpnConnectionsRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListVpnConnectionsRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16182,12 +17615,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ListVpnConnectionsResponse.decode = function decode(reader, length) {
+                        ListVpnConnectionsResponse.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.ListVpnConnectionsResponse();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         if (!(message.vpnConnections && message.vpnConnections.length))
@@ -16444,12 +17879,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetVpnConnectionRequest.decode = function decode(reader, length) {
+                        GetVpnConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GetVpnConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -16680,12 +18117,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        CreateVpnConnectionRequest.decode = function decode(reader, length) {
+                        CreateVpnConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.CreateVpnConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.parent = reader.string();
@@ -16936,12 +18375,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        DeleteVpnConnectionRequest.decode = function decode(reader, length) {
+                        DeleteVpnConnectionRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.DeleteVpnConnectionRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17152,12 +18593,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetServerConfigRequest.decode = function decode(reader, length) {
+                        GetServerConfigRequest.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.edgecontainer.v1.GetServerConfigRequest();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -17474,12 +18917,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -17869,12 +19314,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -18098,12 +19545,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -18448,12 +19897,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -18832,12 +20283,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -19064,12 +20517,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -19433,12 +20888,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -19777,6 +21234,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -19878,6 +21336,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -19924,6 +21390,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -19951,12 +21419,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -20002,6 +21472,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -20096,6 +21570,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -20190,6 +21667,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -20219,6 +21698,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -20249,6 +21729,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -20390,12 +21872,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -20657,12 +22141,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -20865,12 +22351,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21073,12 +22561,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21281,12 +22771,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21554,12 +23046,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -21933,12 +23427,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -22141,12 +23637,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -22373,12 +23871,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -22651,12 +24151,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -22991,12 +24493,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -23391,12 +24895,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24058,12 +25564,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24543,12 +26051,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -24787,12 +26297,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -25043,12 +26555,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -25388,12 +26902,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -25767,12 +27283,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26292,12 +27810,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26563,12 +28083,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26882,12 +28404,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -27123,12 +28647,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27380,12 +28906,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -27688,12 +29216,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -28192,12 +29722,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -28812,12 +30344,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -29260,12 +30794,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -29295,12 +30826,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -30026,12 +31559,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -30322,12 +31857,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -30608,12 +32145,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -30920,12 +32459,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -31111,6 +32652,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -31170,6 +32712,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -31204,6 +32754,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -31231,12 +32783,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -31258,6 +32812,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -31318,6 +32876,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -31354,6 +32915,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -31377,6 +32940,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -31391,6 +32955,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -31578,12 +33144,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -32012,12 +33580,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -32351,12 +33921,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -32627,12 +34199,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -33162,12 +34736,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -33546,12 +35122,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -33836,12 +35414,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -34111,12 +35691,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -34422,12 +36004,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -34690,12 +36274,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -35016,12 +36602,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -35257,12 +36845,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -35498,12 +37088,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -35712,12 +37304,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -35900,12 +37494,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -36153,12 +37749,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();
@@ -36671,12 +38269,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Operation.decode = function decode(reader, length) {
+                Operation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.Operation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -36951,12 +38551,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOperationRequest.decode = function decode(reader, length) {
+                GetOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.GetOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37187,12 +38789,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsRequest.decode = function decode(reader, length) {
+                ListOperationsRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 4: {
                                 message.name = reader.string();
@@ -37440,12 +39044,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOperationsResponse.decode = function decode(reader, length) {
+                ListOperationsResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.ListOperationsResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.operations && message.operations.length))
@@ -37675,12 +39281,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CancelOperationRequest.decode = function decode(reader, length) {
+                CancelOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.CancelOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -37878,12 +39486,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOperationRequest.decode = function decode(reader, length) {
+                DeleteOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.DeleteOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -38092,12 +39702,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WaitOperationRequest.decode = function decode(reader, length) {
+                WaitOperationRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.WaitOperationRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -38324,12 +39936,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OperationInfo.decode = function decode(reader, length) {
+                OperationInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.longrunning.OperationInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.responseType = reader.string();

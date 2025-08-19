@@ -1,5 +1,85 @@
 # Changelog
 
+## [0.13.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.12.0...netapp-v0.13.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6421](https://github.com/googleapis/google-cloud-node/issues/6421)) ([0cba45c](https://github.com/googleapis/google-cloud-node/commit/0cba45c3abc98d4f1ffdf75da3610e6e52267737))
+* [netapp] A new message 'google.cloud.netapp.v1.BackupRetentionPolicy' is added in 'google.cloud.netapp.v1.BackupVault' ([#6315](https://github.com/googleapis/google-cloud-node/issues/6315)) ([943ef98](https://github.com/googleapis/google-cloud-node/commit/943ef98c4d2fc7663f7b74ec0ebde2878aae52fe))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [0.12.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.11.0...netapp-v0.12.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6301](https://github.com/googleapis/google-cloud-node/issues/6301)) ([42754a7](https://github.com/googleapis/google-cloud-node/commit/42754a72b34a01d201341428b4a358ff781b0612))
+
+## [0.11.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.10.1...netapp-v0.11.0) (2025-05-09)
+
+
+### Features
+
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [0.10.1](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.10.0...netapp-v0.10.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6186](https://github.com/googleapis/google-cloud-node/issues/6186)) ([dcfc7b4](https://github.com/googleapis/google-cloud-node/commit/dcfc7b492a2ac3fb86b93ae1375bac1c5153d049))
+
+## [0.10.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.9.0...netapp-v0.10.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([#6140](https://github.com/googleapis/google-cloud-node/issues/6140)) ([2f96b1f](https://github.com/googleapis/google-cloud-node/commit/2f96b1f95dd6b7cb89871b56e5ea5aadf5454292))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [0.9.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.8.0...netapp-v0.9.0) (2025-02-12)
+
+
+### Features
+
+* Add ipAddress field to MountOption ([5629df2](https://github.com/googleapis/google-cloud-node/commit/5629df231ec948804c4a9c80f43ad4f146e6dcdf))
+
+
+### Bug Fixes
+
+* [netapp] finalize fixing typings for headers in generator ([#6004](https://github.com/googleapis/google-cloud-node/issues/6004)) ([5629df2](https://github.com/googleapis/google-cloud-node/commit/5629df231ec948804c4a9c80f43ad4f146e6dcdf))
+
+## [0.8.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.7.0...netapp-v0.8.0) (2025-01-11)
+
+
+### Features
+
+* [netapp] Add ValidateDirectoryService API for testing AD connection of a storage pool ([#5931](https://github.com/googleapis/google-cloud-node/issues/5931)) ([f058d7a](https://github.com/googleapis/google-cloud-node/commit/f058d7a475402e52f8e8d5d4f838d9423f33ffb4))
+
+## [0.7.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.6.0...netapp-v0.7.0) (2024-12-18)
+
+
+### Features
+
+* [netapp] Enable creation of Onprem Migration in CreateVolume ([#5837](https://github.com/googleapis/google-cloud-node/issues/5837)) ([068e928](https://github.com/googleapis/google-cloud-node/commit/068e9283c3d6066575a59a0a78c9eee96a67a5c0))
+
+## [0.6.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.5.0...netapp-v0.6.0) (2024-09-24)
+
+
+### Features
+
+* **api:** [netapp] A new rpc 'SwitchActiveReplicaZone' is added to service 'google.cloud.netapp.v1.NetApp' ([#5681](https://github.com/googleapis/google-cloud-node/issues/5681)) ([40d5e35](https://github.com/googleapis/google-cloud-node/commit/40d5e35165672a557513e66505fa2c6c521b45e9))
+
 ## [0.5.0](https://github.com/googleapis/google-cloud-node/compare/netapp-v0.4.0...netapp-v0.5.0) (2024-05-21)
 
 

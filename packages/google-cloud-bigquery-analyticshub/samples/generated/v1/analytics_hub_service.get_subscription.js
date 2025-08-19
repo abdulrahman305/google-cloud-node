@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ function main(name) {
    */
   /**
    *  Required. Resource name of the subscription.
-   *  e.g. projects/123/locations/US/subscriptions/456
+   *  e.g. projects/123/locations/us/subscriptions/456
    */
   // const name = 'abc123'
 

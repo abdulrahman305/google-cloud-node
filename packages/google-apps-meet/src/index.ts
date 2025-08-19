@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,11 +25,6 @@ const SpacesServiceClient = v2.SpacesServiceClient;
 type SpacesServiceClient = v2.SpacesServiceClient;
 
 export {v2, v2beta, ConferenceRecordsServiceClient, SpacesServiceClient};
-export default {
-  v2,
-  v2beta,
-  ConferenceRecordsServiceClient,
-  SpacesServiceClient,
-};
+export default {v2, v2beta, ConferenceRecordsServiceClient, SpacesServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

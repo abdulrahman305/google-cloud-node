@@ -1,5 +1,73 @@
 # Changelog
 
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v5.2.0...dialogflow-cx-v5.3.0) (2025-07-17)
+
+
+### Features
+
+* [dialogflow-cx] Add support for generator settings on fulfillment ([#6466](https://github.com/googleapis/google-cloud-node/issues/6466)) ([02a74ee](https://github.com/googleapis/google-cloud-node/commit/02a74ee2eaa244dbb70b33b94e7884878a1457e2))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v5.1.0...dialogflow-cx-v5.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6420](https://github.com/googleapis/google-cloud-node/issues/6420)) ([fe8d6cc](https://github.com/googleapis/google-cloud-node/commit/fe8d6cc157bea696790f2844fa7d410a481c79ed))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v5.0.1...dialogflow-cx-v5.1.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([b3bd921](https://github.com/googleapis/google-cloud-node/commit/b3bd921a30b15a632d8e8495b91723d314c23c71))
+
+## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v5.0.0...dialogflow-cx-v5.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6185](https://github.com/googleapis/google-cloud-node/issues/6185)) ([ab30412](https://github.com/googleapis/google-cloud-node/commit/ab304122e3e825c9a76af7d6b0ef4ddc9aa6e906))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v4.10.0...dialogflow-cx-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [dialogflow-cx] Change client_secret in OAuthConfig from required to optional ([#6119](https://github.com/googleapis/google-cloud-node/issues/6119)) ([3f75a90](https://github.com/googleapis/google-cloud-node/commit/3f75a90d8f57ea6d896936fb2605db3268069fb9))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.10.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v4.9.0...dialogflow-cx-v4.10.0) (2025-02-28)
+
+
+### Features
+
+* [dialogflow-cx] added support for handlers ([#6055](https://github.com/googleapis/google-cloud-node/issues/6055)) ([3773a8c](https://github.com/googleapis/google-cloud-node/commit/3773a8c5ba59f9899c43e74ebcf8e5c31402b284))
+* [dialogflow-cx] exposed Zone Separation & Zone Isolation status of an agent ([#6062](https://github.com/googleapis/google-cloud-node/issues/6062)) ([9b7a778](https://github.com/googleapis/google-cloud-node/commit/9b7a778e7c9019e58818e20faf5f0cfcb9b3c10d))
+
+## [4.9.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v4.8.0...dialogflow-cx-v4.9.0) (2024-11-14)
+
+
+### Features
+
+* [dialogflow-cx] add options of client_certificate_settings, bigquery_export_settings, bearer_token_config and boost_control_spec; add support of ALAW encoding ([#5787](https://github.com/googleapis/google-cloud-node/issues/5787)) ([49e8cd1](https://github.com/googleapis/google-cloud-node/commit/49e8cd12925813a6f45d75f3a3e422dad061ef6d))
+
+## [4.8.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v4.7.0...dialogflow-cx-v4.8.0) (2024-08-09)
+
+
+### Features
+
+* [dialogflow-cx] exposed DataStoreConnectionSignals ([#5567](https://github.com/googleapis/google-cloud-node/issues/5567)) ([b961ff9](https://github.com/googleapis/google-cloud-node/commit/b961ff9b113f1e6650d3650287d3ec2b0bca0874))
+
 ## [4.7.0](https://github.com/googleapis/google-cloud-node/compare/dialogflow-cx-v4.6.0...dialogflow-cx-v4.7.0) (2024-05-21)
 
 

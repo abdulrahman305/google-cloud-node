@@ -77,6 +77,20 @@ const NotebookServiceClient = v1.NotebookServiceClient;
 type NotebookServiceClient = v1.NotebookServiceClient;
 const PersistentResourceServiceClient = v1.PersistentResourceServiceClient;
 type PersistentResourceServiceClient = v1.PersistentResourceServiceClient;
+const EvaluationServiceClient = v1.EvaluationServiceClient;
+type EvaluationServiceClient = v1.EvaluationServiceClient;
+const GenAiCacheServiceClient = v1.GenAiCacheServiceClient;
+type GenAiCacheServiceClient = v1.GenAiCacheServiceClient;
+const ReasoningEngineExecutionServiceClient =
+  v1.ReasoningEngineExecutionServiceClient;
+type ReasoningEngineExecutionServiceClient =
+  v1.ReasoningEngineExecutionServiceClient;
+const ReasoningEngineServiceClient = v1.ReasoningEngineServiceClient;
+type ReasoningEngineServiceClient = v1.ReasoningEngineServiceClient;
+const VertexRagServiceClient = v1.VertexRagServiceClient;
+type VertexRagServiceClient = v1.VertexRagServiceClient;
+const VertexRagDataServiceClient = v1.VertexRagDataServiceClient;
+type VertexRagDataServiceClient = v1.VertexRagDataServiceClient;
 export {
   v1beta1,
   v1,
@@ -106,6 +120,12 @@ export {
   GenAiTuningServiceClient,
   NotebookServiceClient,
   PersistentResourceServiceClient,
+  EvaluationServiceClient,
+  VertexRagServiceClient,
+  GenAiCacheServiceClient,
+  ReasoningEngineExecutionServiceClient,
+  ReasoningEngineServiceClient,
+  VertexRagDataServiceClient,
 };
 export default {
   v1beta1,
@@ -136,6 +156,12 @@ export default {
   GenAiTuningServiceClient,
   NotebookServiceClient,
   PersistentResourceServiceClient,
+  EvaluationServiceClient,
+  GenAiCacheServiceClient,
+  ReasoningEngineExecutionServiceClient,
+  VertexRagServiceClient,
+  ReasoningEngineServiceClient,
+  VertexRagDataServiceClient,
 };
 import * as protos from '../protos/protos';
 export {protos};

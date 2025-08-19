@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -93,12 +93,6 @@ function main(parent, groupBy) {
    *  Required. Expression that defines what assets fields to use for grouping.
    *  The string value should follow SQL syntax: comma separated list of fields.
    *  For example: "parent,resource_name".
-   *  The following fields are supported:
-   *  * resource_name
-   *  * category
-   *  * state
-   *  * parent
-   *  * severity
    */
   // const groupBy = 'abc123'
   /**

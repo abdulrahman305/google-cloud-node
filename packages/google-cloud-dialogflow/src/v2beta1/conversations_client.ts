@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,19 +18,11 @@
 
 /* global window */
 import type * as gax from 'google-gax';
-import type {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  PaginationCallback,
-  GaxCall,
-  LocationsClient,
-  LocationProtos,
-} from 'google-gax';
+import type {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallback, GaxCall, LocationsClient, LocationProtos} from 'google-gax';
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -56,6 +48,8 @@ export class ConversationsClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('dialogflow');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -91,7 +85,7 @@ export class ConversationsClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -108,41 +102,20 @@ export class ConversationsClient {
    *     const client = new ConversationsClient({fallback: true}, gax);
    *     ```
    */
-  constructor(
-    opts?: ClientOptions,
-    gaxInstance?: typeof gax | typeof gax.fallback
-  ) {
+  constructor(opts?: ClientOptions, gaxInstance?: typeof gax | typeof gax.fallback) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof ConversationsClient;
-    if (
-      opts?.universe_domain &&
-      opts?.universeDomain &&
-      opts?.universe_domain !== opts?.universeDomain
-    ) {
-      throw new Error(
-        'Please set either universe_domain or universeDomain, but not both.'
-      );
+    if (opts?.universe_domain && opts?.universeDomain && opts?.universe_domain !== opts?.universeDomain) {
+      throw new Error('Please set either universe_domain or universeDomain, but not both.');
     }
-    const universeDomainEnvVar =
-      typeof process === 'object' && typeof process.env === 'object'
-        ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN']
-        : undefined;
-    this._universeDomain =
-      opts?.universeDomain ??
-      opts?.universe_domain ??
-      universeDomainEnvVar ??
-      'googleapis.com';
+    const universeDomainEnvVar = (typeof process === 'object' && typeof process.env === 'object') ? process.env['GOOGLE_CLOUD_UNIVERSE_DOMAIN'] : undefined;
+    this._universeDomain = opts?.universeDomain ?? opts?.universe_domain ?? universeDomainEnvVar ?? 'googleapis.com';
     this._servicePath = 'dialogflow.' + this._universeDomain;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || this._servicePath;
-    this._providedCustomServicePath = !!(
-      opts?.servicePath || opts?.apiEndpoint
-    );
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || this._servicePath;
+    this._providedCustomServicePath = !!(opts?.servicePath || opts?.apiEndpoint);
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window?.fetch === 'function');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // Request numeric enum values if REST transport is used.
@@ -168,7 +141,7 @@ export class ConversationsClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set useJWTAccessWithScope on the auth object.
     this.auth.useJWTAccessWithScope = true;
@@ -184,9 +157,13 @@ export class ConversationsClient {
       this._gaxGrpc,
       opts
     );
+  
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process === 'object' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -207,6 +184,15 @@ export class ConversationsClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this.pathTemplates = {
+      encryptionSpecPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/encryptionSpec'
+      ),
+      generatorPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/generators/{generator}'
+      ),
+      locationPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}'
+      ),
       projectPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}'
       ),
@@ -219,14 +205,12 @@ export class ConversationsClient {
       projectAgentEnvironmentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/agent/environments/{environment}'
       ),
-      projectAgentEnvironmentUserSessionContextPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}'
-        ),
-      projectAgentEnvironmentUserSessionEntityTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}'
-        ),
+      projectAgentEnvironmentUserSessionContextPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}'
+      ),
+      projectAgentEnvironmentUserSessionEntityTypePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}'
+      ),
       projectAgentFulfillmentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/agent/fulfillment'
       ),
@@ -236,124 +220,109 @@ export class ConversationsClient {
       projectAgentSessionContextPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/agent/sessions/{session}/contexts/{context}'
       ),
-      projectAgentSessionEntityTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}'
-        ),
+      projectAgentSessionEntityTypePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}'
+      ),
       projectAgentVersionPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/agent/versions/{version}'
       ),
       projectAnswerRecordPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/answerRecords/{answer_record}'
       ),
-      projectConversationPathTemplate: new this._gaxModule.PathTemplate(
-        'projects/{project}/conversations/{conversation}'
-      ),
       projectConversationMessagePathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/conversations/{conversation}/messages/{message}'
       ),
-      projectConversationParticipantPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/conversations/{conversation}/participants/{participant}'
-        ),
+      projectConversationParticipantPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/conversations/{conversation}/participants/{participant}'
+      ),
       projectConversationProfilePathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/conversationProfiles/{conversation_profile}'
+      ),
+      projectConversationsPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/conversations/{conversation}'
       ),
       projectKnowledgeBasePathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/knowledgeBases/{knowledge_base}'
       ),
-      projectKnowledgeBaseDocumentPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}'
-        ),
+      projectKnowledgeBaseDocumentPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}'
+      ),
       projectLocationAgentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/agent'
       ),
-      projectLocationAgentEntityTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/entityTypes/{entity_type}'
-        ),
-      projectLocationAgentEnvironmentPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/environments/{environment}'
-        ),
-      projectLocationAgentEnvironmentUserSessionContextPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}'
-        ),
-      projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}'
-        ),
-      projectLocationAgentFulfillmentPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/fulfillment'
-        ),
+      projectLocationAgentEntityTypePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/entityTypes/{entity_type}'
+      ),
+      projectLocationAgentEnvironmentPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/environments/{environment}'
+      ),
+      projectLocationAgentEnvironmentUserSessionContextPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}'
+      ),
+      projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}'
+      ),
+      projectLocationAgentFulfillmentPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/fulfillment'
+      ),
       projectLocationAgentIntentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/agent/intents/{intent}'
       ),
-      projectLocationAgentSessionContextPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}'
-        ),
-      projectLocationAgentSessionEntityTypePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}'
-        ),
+      projectLocationAgentSessionContextPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}'
+      ),
+      projectLocationAgentSessionEntityTypePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}'
+      ),
       projectLocationAgentVersionPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/agent/versions/{version}'
       ),
       projectLocationAnswerRecordPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/answerRecords/{answer_record}'
       ),
-      projectLocationConversationPathTemplate: new this._gaxModule.PathTemplate(
+      projectLocationConversationMessagePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}'
+      ),
+      projectLocationConversationParticipantPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}'
+      ),
+      projectLocationConversationProfilePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}'
+      ),
+      projectLocationConversationsPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/conversations/{conversation}'
       ),
-      projectLocationConversationMessagePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}'
-        ),
-      projectLocationConversationParticipantPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}'
-        ),
-      projectLocationConversationProfilePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}'
-        ),
-      projectLocationKnowledgeBasePathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}'
-        ),
-      projectLocationKnowledgeBaseDocumentPathTemplate:
-        new this._gaxModule.PathTemplate(
-          'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}'
-        ),
+      projectLocationKnowledgeBasePathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}'
+      ),
+      projectLocationKnowledgeBaseDocumentPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}'
+      ),
+      projectLocationPhoneNumberPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/phoneNumbers/{phone_number}'
+      ),
+      projectPhoneNumberPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/phoneNumbers/{phone_number}'
+      ),
+      sipTrunkPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/sipTrunks/{siptrunk}'
+      ),
     };
 
     // Some of the methods on this service return "paged" results,
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this.descriptors.page = {
-      listConversations: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'conversations'
-      ),
-      listMessages: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'messages'
-      ),
+      listConversations:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'conversations'),
+      listMessages:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'messages')
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.dialogflow.v2beta1.Conversations',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.dialogflow.v2beta1.Conversations', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -384,45 +353,32 @@ export class ConversationsClient {
     // Put together the "service stub" for
     // google.cloud.dialogflow.v2beta1.Conversations.
     this.conversationsStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.dialogflow.v2beta1.Conversations'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.dialogflow.v2beta1.Conversations') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.dialogflow.v2beta1.Conversations,
-      this._opts,
-      this._providedCustomServicePath
-    ) as Promise<{[method: string]: Function}>;
+        this._opts, this._providedCustomServicePath) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const conversationsStubMethods = [
-      'createConversation',
-      'listConversations',
-      'getConversation',
-      'completeConversation',
-      'batchCreateMessages',
-      'listMessages',
-      'suggestConversationSummary',
-      'generateStatelessSummary',
-      'searchKnowledge',
-    ];
+    const conversationsStubMethods =
+        ['createConversation', 'listConversations', 'getConversation', 'completeConversation', 'ingestContextReferences', 'batchCreateMessages', 'listMessages', 'suggestConversationSummary', 'generateStatelessSummary', 'generateStatelessSuggestion', 'searchKnowledge', 'generateSuggestions'];
     for (const methodName of conversationsStubMethods) {
       const callPromise = this.conversationsStub.then(
-        stub =>
-          (...args: Array<{}>) => {
-            if (this._terminated) {
-              return Promise.reject('The client has already been closed.');
-            }
-            const func = stub[methodName];
-            return func.apply(stub, args);
-          },
-        (err: Error | null | undefined) => () => {
+        stub => (...args: Array<{}>) => {
+          if (this._terminated) {
+            return Promise.reject('The client has already been closed.');
+          }
+          const func = stub[methodName];
+          return func.apply(stub, args);
+        },
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.page[methodName] || undefined;
+      const descriptor =
+        this.descriptors.page[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -442,14 +398,8 @@ export class ConversationsClient {
    * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static servicePath is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static servicePath is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'dialogflow.googleapis.com';
   }
@@ -460,14 +410,8 @@ export class ConversationsClient {
    * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
-    if (
-      typeof process === 'object' &&
-      typeof process.emitWarning === 'function'
-    ) {
-      process.emitWarning(
-        'Static apiEndpoint is deprecated, please use the instance method instead.',
-        'DeprecationWarning'
-      );
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
+      process.emitWarning('Static apiEndpoint is deprecated, please use the instance method instead.', 'DeprecationWarning');
     }
     return 'dialogflow.googleapis.com';
   }
@@ -500,7 +444,7 @@ export class ConversationsClient {
   static get scopes() {
     return [
       'https://www.googleapis.com/auth/cloud-platform',
-      'https://www.googleapis.com/auth/dialogflow',
+      'https://www.googleapis.com/auth/dialogflow'
     ];
   }
 
@@ -510,9 +454,8 @@ export class ConversationsClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -523,967 +466,1276 @@ export class ConversationsClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  /**
-   * Creates a new conversation. Conversations are auto-completed after 24
-   * hours.
-   *
-   * Conversation Lifecycle:
-   * There are two stages during a conversation: Automated Agent Stage and
-   * Assist Stage.
-   *
-   * For Automated Agent Stage, there will be a dialogflow agent responding to
-   * user queries.
-   *
-   * For Assist Stage, there's no dialogflow agent responding to user queries.
-   * But we will provide suggestions which are generated from conversation.
-   *
-   * If
-   * {@link protos.google.cloud.dialogflow.v2beta1.Conversation.conversation_profile|Conversation.conversation_profile}
-   * is configured for a dialogflow agent, conversation will start from
-   * `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And
-   * during `Automated Agent Stage`, once an
-   * {@link protos.google.cloud.dialogflow.v2beta1.Intent|Intent} with
-   * {@link protos.google.cloud.dialogflow.v2beta1.Intent.live_agent_handoff|Intent.live_agent_handoff}
-   * is triggered, conversation will transfer to Assist Stage.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource identifier of the project creating the conversation.
-   *   Format: `projects/<Project ID>/locations/<Location ID>`.
-   * @param {google.cloud.dialogflow.v2beta1.Conversation} request.conversation
-   *   Required. The conversation to create.
-   * @param {string} [request.conversationId]
-   *   Optional. Identifier of the conversation. Generally it's auto generated by
-   *   Google. Only set it if you cannot wait for the response to return a
-   *   auto-generated one to you.
-   *
-   *   The conversation ID must be compliant with the regression fomula
-   *   `{@link protos.a-zA-Z0-9_-|a-zA-Z}*` with the characters length in range of [3,64].
-   *   If the field is provided, the caller is resposible for
-   *   1. the uniqueness of the ID, otherwise the request will be rejected.
-   *   2. the consistency for whether to use custom ID or not under a project to
-   *   better ensure uniqueness.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.create_conversation.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_CreateConversation_async
-   */
+/**
+ * Creates a new conversation. Conversations are auto-completed after 24
+ * hours.
+ *
+ * Conversation Lifecycle:
+ * There are two stages during a conversation: Automated Agent Stage and
+ * Assist Stage.
+ *
+ * For Automated Agent Stage, there will be a dialogflow agent responding to
+ * user queries.
+ *
+ * For Assist Stage, there's no dialogflow agent responding to user queries.
+ * But we will provide suggestions which are generated from conversation.
+ *
+ * If
+ * {@link protos.google.cloud.dialogflow.v2beta1.Conversation.conversation_profile|Conversation.conversation_profile}
+ * is configured for a dialogflow agent, conversation will start from
+ * `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And
+ * during `Automated Agent Stage`, once an
+ * {@link protos.google.cloud.dialogflow.v2beta1.Intent|Intent} with
+ * {@link protos.google.cloud.dialogflow.v2beta1.Intent.live_agent_handoff|Intent.live_agent_handoff}
+ * is triggered, conversation will transfer to Assist Stage.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource identifier of the project creating the conversation.
+ *   Format: `projects/<Project ID>/locations/<Location ID>`.
+ * @param {google.cloud.dialogflow.v2beta1.Conversation} request.conversation
+ *   Required. The conversation to create.
+ * @param {string} [request.conversationId]
+ *   Optional. Identifier of the conversation. Generally it's auto generated by
+ *   Google. Only set it if you cannot wait for the response to return a
+ *   auto-generated one to you.
+ *
+ *   The conversation ID must be compliant with the regression formula
+ *   `{@link protos.a-zA-Z0-9_-|a-zA-Z}*` with the characters length in range of [3,64].
+ *   If the field is provided, the caller is responsible for
+ *   1. the uniqueness of the ID, otherwise the request will be rejected.
+ *   2. the consistency for whether to use custom ID or not under a project to
+ *   better ensure uniqueness.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.create_conversation.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_CreateConversation_async
+ */
   createConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|undefined, {}|undefined
+      ]>;
   createConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  createConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  createConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.IConversation,
-          | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  createConversation(
+      request: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  createConversation(
+      request?: protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('createConversation request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createConversation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.createConversation(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICreateConversationRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('createConversation response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.createConversation(request, options, callback);
   }
-  /**
-   * Retrieves the specific conversation.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The name of the conversation. Format:
-   *   `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
-   *   ID>`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.get_conversation.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_GetConversation_async
-   */
+/**
+ * Retrieves the specific conversation.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the conversation. Format:
+ *   `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+ *   ID>`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.get_conversation.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_GetConversation_async
+ */
   getConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|undefined, {}|undefined
+      ]>;
   getConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.IConversation,
-          | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  getConversation(
+      request: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  getConversation(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('getConversation request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getConversation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getConversation(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.IGetConversationRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getConversation response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.getConversation(request, options, callback);
   }
-  /**
-   * Completes the specified conversation. Finished conversations are purged
-   * from the database after 30 days.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource identifier of the conversation to close.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.complete_conversation.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_CompleteConversation_async
-   */
+/**
+ * Completes the specified conversation. Finished conversations are purged
+ * from the database after 30 days.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource identifier of the conversation to close.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.complete_conversation.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_CompleteConversation_async
+ */
   completeConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|undefined, {}|undefined
+      ]>;
   completeConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  completeConversation(
-    request: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  completeConversation(
-    request?: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.IConversation,
-          | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  completeConversation(
+      request: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|null|undefined,
+          {}|null|undefined>): void;
+  completeConversation(
+      request?: protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IConversation,
+          protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        name: request.name ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'name': request.name ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('completeConversation request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('completeConversation response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.completeConversation(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IConversation,
+        protos.google.cloud.dialogflow.v2beta1.ICompleteConversationRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('completeConversation response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.completeConversation(request, options, callback);
   }
-  /**
-   * Batch ingests messages to conversation. Customers can use this RPC to
-   * ingest historical messages to conversation.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource identifier of the conversation to create message.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`.
-   * @param {number[]} request.requests
-   *   Required. A maximum of 300 messages can be created in a batch.
-   *   {@link protos.|CreateMessageRequest.message.send_time} is required. All created
-   *   messages will have identical
-   *   {@link protos.google.cloud.dialogflow.v2beta1.Message.create_time|Message.create_time}.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.BatchCreateMessagesResponse|BatchCreateMessagesResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.batch_create_messages.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_BatchCreateMessages_async
-   */
+/**
+ * Data ingestion API.
+ * Ingests context references for an existing conversation.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.conversation
+ *   Required. Resource identifier of the conversation to ingest context
+ *   information for. Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`.
+ * @param {number[]} request.contextReferences
+ *   Required. The context references to ingest. The key is the name of the
+ *   context reference and the value contains the contents of the context
+ *   reference. The key is used to incorporate ingested context references to
+ *   enhance the generator.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.IngestContextReferencesResponse|IngestContextReferencesResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.ingest_context_references.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_IngestContextReferences_async
+ */
+  ingestContextReferences(
+      request?: protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|undefined, {}|undefined
+      ]>;
+  ingestContextReferences(
+      request: protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|null|undefined,
+          {}|null|undefined>): void;
+  ingestContextReferences(
+      request: protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|null|undefined,
+          {}|null|undefined>): void;
+  ingestContextReferences(
+      request?: protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'conversation': request.conversation ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('ingestContextReferences request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('ingestContextReferences response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.ingestContextReferences(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IIngestContextReferencesRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('ingestContextReferences response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Batch ingests messages to conversation. Customers can use this RPC to
+ * ingest historical messages to conversation.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource identifier of the conversation to create message.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`.
+ * @param {number[]} request.requests
+ *   Required. A maximum of 300 messages can be created in a batch.
+ *   {@link protos.|CreateMessageRequest.message.send_time} is required. All created
+ *   messages will have identical
+ *   {@link protos.google.cloud.dialogflow.v2beta1.Message.create_time|Message.create_time}.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.BatchCreateMessagesResponse|BatchCreateMessagesResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.batch_create_messages.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_BatchCreateMessages_async
+ */
   batchCreateMessages(
-    request?: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|undefined, {}|undefined
+      ]>;
   batchCreateMessages(
-    request: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  batchCreateMessages(
-    request: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  batchCreateMessages(
-    request?: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-          | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|null|undefined,
+          {}|null|undefined>): void;
+  batchCreateMessages(
+      request: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|null|undefined,
+          {}|null|undefined>): void;
+  batchCreateMessages(
+      request?: protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+          protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('batchCreateMessages request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('batchCreateMessages response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.batchCreateMessages(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesResponse,
+        protos.google.cloud.dialogflow.v2beta1.IBatchCreateMessagesRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('batchCreateMessages response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.batchCreateMessages(request, options, callback);
   }
-  /**
-   * Suggest summary for a conversation based on specific historical messages.
-   * The range of the messages to be used for summary can be specified in the
-   * request.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.conversation
-   *   Required. The conversation to fetch suggestion for.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`.
-   * @param {string} request.latestMessage
-   *   The name of the latest conversation message used as context for
-   *   compiling suggestion. If empty, the latest message of the conversation will
-   *   be used.
-   *
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>/messages/<Message ID>`.
-   * @param {number} request.contextSize
-   *   Max number of messages prior to and including
-   *   [latest_message] to use as context when compiling the
-   *   suggestion. By default 500 and at most 1000.
-   * @param {google.cloud.dialogflow.v2beta1.AssistQueryParameters} request.assistQueryParams
-   *   Parameters for a human assist query. Only used for POC/demo purpose.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.SuggestConversationSummaryResponse|SuggestConversationSummaryResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.suggest_conversation_summary.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_SuggestConversationSummary_async
-   */
+/**
+ * Suggest summary for a conversation based on specific historical messages.
+ * The range of the messages to be used for summary can be specified in the
+ * request.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.conversation
+ *   Required. The conversation to fetch suggestion for.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`.
+ * @param {string} [request.latestMessage]
+ *   Optional. The name of the latest conversation message used as context for
+ *   compiling suggestion. If empty, the latest message of the conversation will
+ *   be used.
+ *
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+ * @param {number} [request.contextSize]
+ *   Optional. Max number of messages prior to and including
+ *   [latest_message] to use as context when compiling the
+ *   suggestion. By default 500 and at most 1000.
+ * @param {google.cloud.dialogflow.v2beta1.AssistQueryParameters} [request.assistQueryParams]
+ *   Optional. Parameters for a human assist query. Only used for POC/demo
+ *   purpose.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.SuggestConversationSummaryResponse|SuggestConversationSummaryResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.suggest_conversation_summary.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_SuggestConversationSummary_async
+ */
   suggestConversationSummary(
-    request?: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|undefined, {}|undefined
+      ]>;
   suggestConversationSummary(
-    request: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  suggestConversationSummary(
-    request: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  suggestConversationSummary(
-    request?: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-          | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|null|undefined,
+          {}|null|undefined>): void;
+  suggestConversationSummary(
+      request: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|null|undefined,
+          {}|null|undefined>): void;
+  suggestConversationSummary(
+      request?: protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        conversation: request.conversation ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'conversation': request.conversation ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('suggestConversationSummary request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('suggestConversationSummary response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.suggestConversationSummary(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISuggestConversationSummaryRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('suggestConversationSummary response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.suggestConversationSummary(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Generates and returns a summary for a conversation that does not have a
-   * resource created for it.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.dialogflow.v2beta1.GenerateStatelessSummaryRequest.MinimalConversation} request.statelessConversation
-   *   Required. The conversation to suggest a summary for.
-   * @param {google.cloud.dialogflow.v2beta1.ConversationProfile} request.conversationProfile
-   *   Required. A ConversationProfile containing information required for Summary
-   *   generation.
-   *   Required fields: {language_code, security_settings}
-   *   Optional fields: {agent_assistant_config}
-   * @param {string} request.latestMessage
-   *   The name of the latest conversation message used as context for
-   *   generating a Summary. If empty, the latest message of the conversation will
-   *   be used. The format is specific to the user and the names of the messages
-   *   provided.
-   * @param {number} request.maxContextSize
-   *   Max number of messages prior to and including
-   *   [latest_message] to use as context when compiling the
-   *   suggestion. By default 500 and at most 1000.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.GenerateStatelessSummaryResponse|GenerateStatelessSummaryResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.generate_stateless_summary.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_GenerateStatelessSummary_async
-   */
+/**
+ * Generates and returns a summary for a conversation that does not have a
+ * resource created for it.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.dialogflow.v2beta1.GenerateStatelessSummaryRequest.MinimalConversation} request.statelessConversation
+ *   Required. The conversation to suggest a summary for.
+ * @param {google.cloud.dialogflow.v2beta1.ConversationProfile} request.conversationProfile
+ *   Required. A ConversationProfile containing information required for Summary
+ *   generation.
+ *   Required fields: {language_code, security_settings}
+ *   Optional fields: {agent_assistant_config}
+ * @param {string} [request.latestMessage]
+ *   Optional. The name of the latest conversation message used as context for
+ *   generating a Summary. If empty, the latest message of the conversation will
+ *   be used. The format is specific to the user and the names of the messages
+ *   provided.
+ * @param {number} [request.maxContextSize]
+ *   Optional. Max number of messages prior to and including
+ *   [latest_message] to use as context when compiling the
+ *   suggestion. By default 500 and at most 1000.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.GenerateStatelessSummaryResponse|GenerateStatelessSummaryResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.generate_stateless_summary.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_GenerateStatelessSummary_async
+ */
   generateStatelessSummary(
-    request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|undefined, {}|undefined
+      ]>;
   generateStatelessSummary(
-    request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  generateStatelessSummary(
-    request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  generateStatelessSummary(
-    request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-          | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-      | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateStatelessSummary(
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateStatelessSummary(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        'stateless_conversation.parent':
-          request.statelessConversation!.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'stateless_conversation.parent': request.statelessConversation!.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('generateStatelessSummary request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('generateStatelessSummary response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.generateStatelessSummary(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSummaryRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('generateStatelessSummary response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.generateStatelessSummary(
-      request,
-      options,
-      callback
-    );
   }
-  /**
-   * Get answers for the given query based on knowledge documents.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   The parent resource contains the conversation profile
-   *   Format: 'projects/<Project ID>' or `projects/<Project
-   *   ID>/locations/<Location ID>`.
-   * @param {google.cloud.dialogflow.v2beta1.TextInput} request.query
-   *   Required. The natural language text query for knowledge search.
-   * @param {string} request.conversationProfile
-   *   Required. The conversation profile used to configure the search.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversationProfiles/<Conversation Profile ID>`.
-   * @param {string} request.sessionId
-   *   The ID of the search session.
-   *   The session_id can be combined with Dialogflow V3 Agent ID retrieved from
-   *   conversation profile or on its own to identify a search session. The search
-   *   history of the same session will impact the search result. It's up to the
-   *   API caller to choose an appropriate `Session ID`. It can be a random number
-   *   or some type of session identifiers (preferably hashed). The length must
-   *   not exceed 36 characters.
-   * @param {string} request.conversation
-   *   The conversation (between human agent and end user) where the search
-   *   request is triggered. Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`.
-   * @param {string} request.latestMessage
-   *   The name of the latest conversation message when the request is
-   *   triggered.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>/messages/<Message ID>`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.SearchKnowledgeResponse|SearchKnowledgeResponse}.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.search_knowledge.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_SearchKnowledge_async
-   */
+/**
+ * Generates and returns a suggestion for a conversation that does not have a
+ * resource created for it.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The parent resource to charge for the Suggestion's generation.
+ *   Format: `projects/<Project ID>/locations/<Location ID>`.
+ * @param {google.cloud.dialogflow.v2beta1.Generator} request.generator
+ *   Uncreated generator. It should be a complete generator that includes all
+ *   information about the generator.
+ * @param {string} request.generatorName
+ *   The resource name of the existing created generator. Format:
+ *   `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
+ * @param {number[]} [request.contextReferences]
+ *   Optional. A section of ingested context information. The key is the name of
+ *   the context reference and the value contains the contents of the context
+ *   reference. The key is used to incorporate ingested context references to
+ *   enhance the generator.
+ * @param {google.cloud.dialogflow.v2beta1.ConversationContext} [request.conversationContext]
+ *   Optional. Context of the conversation, including transcripts.
+ * @param {number[]} [request.triggerEvents]
+ *   Optional. A list of trigger events. Generator will be triggered only if
+ *   it's trigger event is included here.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.GenerateStatelessSuggestionResponse|GenerateStatelessSuggestionResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.generate_stateless_suggestion.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_GenerateStatelessSuggestion_async
+ */
+  generateStatelessSuggestion(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|undefined, {}|undefined
+      ]>;
+  generateStatelessSuggestion(
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateStatelessSuggestion(
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateStatelessSuggestion(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('generateStatelessSuggestion request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('generateStatelessSuggestion response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.generateStatelessSuggestion(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateStatelessSuggestionRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('generateStatelessSuggestion response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Get answers for the given query based on knowledge documents.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The parent resource contains the conversation profile
+ *   Format: 'projects/<Project ID>' or `projects/<Project
+ *   ID>/locations/<Location ID>`.
+ * @param {google.cloud.dialogflow.v2beta1.TextInput} request.query
+ *   Required. The natural language text query for knowledge search.
+ * @param {string} request.conversationProfile
+ *   Required. The conversation profile used to configure the search.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversationProfiles/<Conversation Profile ID>`.
+ * @param {string} request.sessionId
+ *   Required. The ID of the search session.
+ *   The session_id can be combined with Dialogflow V3 Agent ID retrieved from
+ *   conversation profile or on its own to identify a search session. The search
+ *   history of the same session will impact the search result. It's up to the
+ *   API caller to choose an appropriate `Session ID`. It can be a random number
+ *   or some type of session identifiers (preferably hashed). The length must
+ *   not exceed 36 characters.
+ * @param {string} [request.conversation]
+ *   Optional. The conversation (between human agent and end user) where the
+ *   search request is triggered. Format: `projects/<Project
+ *   ID>/locations/<Location ID>/conversations/<Conversation ID>`.
+ * @param {string} [request.latestMessage]
+ *   Optional. The name of the latest conversation message when the request is
+ *   triggered.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+ * @param {google.cloud.dialogflow.v2beta1.SearchKnowledgeRequest.QuerySource} [request.querySource]
+ *   Optional. The source of the query in the request.
+ * @param {google.protobuf.Struct} [request.endUserMetadata]
+ *   Optional. Information about the end-user to improve the relevance and
+ *   accuracy of generative answers.
+ *
+ *   This will be interpreted and used by a language model, so, for good
+ *   results, the data should be self-descriptive, and in a simple structure.
+ *
+ *   Example:
+ *
+ *   ```json
+ *   {
+ *     "subscription plan": "Business Premium Plus",
+ *     "devices owned": [
+ *       {"model": "Google Pixel 7"},
+ *       {"model": "Google Pixel Tablet"}
+ *     ]
+ *   }
+ *   ```
+ * @param {google.cloud.dialogflow.v2beta1.SearchKnowledgeRequest.SearchConfig} [request.searchConfig]
+ *   Optional. Configuration specific to search queries with data stores.
+ * @param {boolean} [request.exactSearch]
+ *   Optional. Whether to search the query exactly without query rewrite.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.SearchKnowledgeResponse|SearchKnowledgeResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.search_knowledge.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_SearchKnowledge_async
+ */
   searchKnowledge(
-    request?: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|undefined, {}|undefined
+      ]>;
   searchKnowledge(
-    request: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
-    options: CallOptions,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  searchKnowledge(
-    request: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
-    callback: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  searchKnowledge(
-    request?: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | Callback<
+      request: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-          | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-      | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
-      (
-        | protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest
-        | undefined
-      ),
-      {} | undefined,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|null|undefined,
+          {}|null|undefined>): void;
+  searchKnowledge(
+      request: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|null|undefined,
+          {}|null|undefined>): void;
+  searchKnowledge(
+      request?: protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+          protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-        conversation: request.conversation ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+      'conversation': request.conversation ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('searchKnowledge request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('searchKnowledge response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.searchKnowledge(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeResponse,
+        protos.google.cloud.dialogflow.v2beta1.ISearchKnowledgeRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('searchKnowledge response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
       });
-    this.initialize();
-    return this.innerApiCalls.searchKnowledge(request, options, callback);
+  }
+/**
+ * Generates all the suggestions using generators configured in the
+ * conversation profile. A generator is used only if its trigger event is
+ * matched.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.conversation
+ *   Required. The conversation for which the suggestions are generated. Format:
+ *   `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`.
+ *
+ *   The conversation must be created with a conversation profile which has
+ *   generators configured in it to be able to get suggestions.
+ * @param {string} [request.latestMessage]
+ *   Optional. The name of the latest conversation message for which the request
+ *   is triggered. Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+ * @param {number[]} [request.triggerEvents]
+ *   Optional. A list of trigger events. Only generators configured in the
+ *   conversation_profile whose trigger_event is listed here will be triggered.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.cloud.dialogflow.v2beta1.GenerateSuggestionsResponse|GenerateSuggestionsResponse}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.generate_suggestions.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_GenerateSuggestions_async
+ */
+  generateSuggestions(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|undefined, {}|undefined
+      ]>;
+  generateSuggestions(
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateSuggestions(
+      request: protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest,
+      callback: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|null|undefined,
+          {}|null|undefined>): void;
+  generateSuggestions(
+      request?: protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+          protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'conversation': request.conversation ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    this._log.info('generateSuggestions request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('generateSuggestions response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.generateSuggestions(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsResponse,
+        protos.google.cloud.dialogflow.v2beta1.IGenerateSuggestionsRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('generateSuggestions response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 
-  /**
-   * Returns the list of all conversations in the specified project.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The project from which to list all conversation.
-   *   Format: `projects/<Project ID>/locations/<Location ID>`.
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {string} request.filter
-   *   A filter expression that filters conversations listed in the response. In
-   *   general, the expression must specify the field name, a comparison operator,
-   *   and the value to use for filtering:
-   *   <ul>
-   *     <li>The value must be a string, a number, or a boolean.</li>
-   *     <li>The comparison operator must be either `=`,`!=`, `>`, or `<`.</li>
-   *     <li>To filter on multiple expressions, separate the
-   *         expressions with `AND` or `OR` (omitting both implies `AND`).</li>
-   *     <li>For clarity, expressions can be enclosed in parentheses.</li>
-   *   </ul>
-   *   Only `lifecycle_state` can be filtered on in this way. For example,
-   *   the following expression only returns `COMPLETED` conversations:
-   *
-   *   `lifecycle_state = "COMPLETED"`
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `listConversationsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+ /**
+ * Returns the list of all conversations in the specified project.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The project from which to list all conversation.
+ *   Format: `projects/<Project ID>/locations/<Location ID>`.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {string} [request.filter]
+ *   Optional. A filter expression that filters conversations listed in the
+ *   response. Only `lifecycle_state` can be filtered on in this way. For
+ *   example, the following expression only returns `COMPLETED` conversations:
+ *
+ *   `lifecycle_state = "COMPLETED"`
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listConversationsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listConversations(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation[],
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest | null,
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation[],
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
+      ]>;
   listConversations(
-    request: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IConversation
-    >
-  ): void;
-  listConversations(
-    request: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    callback: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IConversation
-    >
-  ): void;
-  listConversations(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
+      request: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      options: CallOptions,
+      callback: PaginationCallback<
           protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-          | protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
-          | null
-          | undefined,
-          protos.google.cloud.dialogflow.v2beta1.IConversation
-        >,
-    callback?: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IConversation
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IConversation[],
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest | null,
-      protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IConversation>): void;
+  listConversations(
+      request: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      callback: PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IConversation>): void;
+  listConversations(
+      request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      optionsOrCallback?: CallOptions|PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IConversation>,
+      callback?: PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IConversation>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IConversation[],
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse|null|undefined,
+      protos.google.cloud.dialogflow.v2beta1.IConversation>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listConversations values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listConversations request %j', request);
+    return this.innerApiCalls
+      .listConversations(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.google.cloud.dialogflow.v2beta1.IConversation[],
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListConversationsResponse
+      ]) => {
+        this._log.info('listConversations values %j', response);
+        return [response, input, output];
       });
-    this.initialize();
-    return this.innerApiCalls.listConversations(request, options, callback);
   }
 
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The project from which to list all conversation.
-   *   Format: `projects/<Project ID>/locations/<Location ID>`.
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {string} request.filter
-   *   A filter expression that filters conversations listed in the response. In
-   *   general, the expression must specify the field name, a comparison operator,
-   *   and the value to use for filtering:
-   *   <ul>
-   *     <li>The value must be a string, a number, or a boolean.</li>
-   *     <li>The comparison operator must be either `=`,`!=`, `>`, or `<`.</li>
-   *     <li>To filter on multiple expressions, separate the
-   *         expressions with `AND` or `OR` (omitting both implies `AND`).</li>
-   *     <li>For clarity, expressions can be enclosed in parentheses.</li>
-   *   </ul>
-   *   Only `lifecycle_state` can be filtered on in this way. For example,
-   *   the following expression only returns `COMPLETED` conversations:
-   *
-   *   `lifecycle_state = "COMPLETED"`
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `listConversationsAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+/**
+ * Equivalent to `listConversations`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The project from which to list all conversation.
+ *   Format: `projects/<Project ID>/locations/<Location ID>`.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {string} [request.filter]
+ *   Optional. A filter expression that filters conversations listed in the
+ *   response. Only `lifecycle_state` can be filtered on in this way. For
+ *   example, the following expression only returns `COMPLETED` conversations:
+ *
+ *   `lifecycle_state = "COMPLETED"`
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listConversationsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listConversationsStream(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    options?: CallOptions
-  ): Transform {
+      request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      options?: CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listConversations'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listConversations stream %j', request);
     return this.descriptors.page.listConversations.createStream(
       this.innerApiCalls.listConversations as GaxCall,
       request,
@@ -1491,233 +1743,229 @@ export class ConversationsClient {
     );
   }
 
-  /**
-   * Equivalent to `listConversations`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The project from which to list all conversation.
-   *   Format: `projects/<Project ID>/locations/<Location ID>`.
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {string} request.filter
-   *   A filter expression that filters conversations listed in the response. In
-   *   general, the expression must specify the field name, a comparison operator,
-   *   and the value to use for filtering:
-   *   <ul>
-   *     <li>The value must be a string, a number, or a boolean.</li>
-   *     <li>The comparison operator must be either `=`,`!=`, `>`, or `<`.</li>
-   *     <li>To filter on multiple expressions, separate the
-   *         expressions with `AND` or `OR` (omitting both implies `AND`).</li>
-   *     <li>For clarity, expressions can be enclosed in parentheses.</li>
-   *   </ul>
-   *   Only `lifecycle_state` can be filtered on in this way. For example,
-   *   the following expression only returns `COMPLETED` conversations:
-   *
-   *   `lifecycle_state = "COMPLETED"`
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.list_conversations.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_ListConversations_async
-   */
+/**
+ * Equivalent to `listConversations`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The project from which to list all conversation.
+ *   Format: `projects/<Project ID>/locations/<Location ID>`.
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {string} [request.filter]
+ *   Optional. A filter expression that filters conversations listed in the
+ *   response. Only `lifecycle_state` can be filtered on in this way. For
+ *   example, the following expression only returns `COMPLETED` conversations:
+ *
+ *   `lifecycle_state = "COMPLETED"`
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   {@link protos.google.cloud.dialogflow.v2beta1.Conversation|Conversation}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.list_conversations.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_ListConversations_async
+ */
   listConversationsAsync(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IConversation> {
+      request?: protos.google.cloud.dialogflow.v2beta1.IListConversationsRequest,
+      options?: CallOptions):
+    AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IConversation>{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listConversations'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listConversations iterate %j', request);
     return this.descriptors.page.listConversations.asyncIterate(
       this.innerApiCalls['listConversations'] as GaxCall,
       request as {},
       callSettings
     ) as AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IConversation>;
   }
-  /**
-   * Lists messages that belong to a given conversation.
-   * `messages` are ordered by `create_time` in descending order. To fetch
-   * updates without duplication, send request with filter
-   * `create_time_epoch_microseconds >
-   * [first item's create_time of previous request]` and empty page_token.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The name of the conversation to list messages for.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`
-   * @param {string} request.filter
-   *   Optional. Filter on message fields. Currently predicates on `create_time`
-   *   and `create_time_epoch_microseconds` are supported. `create_time` only
-   *   support milliseconds accuracy. E.g.,
-   *   `create_time_epoch_microseconds > 1551790877964485` or
-   *   `create_time > "2017-01-15T01:30:15.01Z"`.
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of {@link protos.google.cloud.dialogflow.v2beta1.Message|Message}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `listMessagesAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+ /**
+ * Lists messages that belong to a given conversation.
+ * `messages` are ordered by `create_time` in descending order. To fetch
+ * updates without duplication, send request with filter
+ * `create_time_epoch_microseconds >
+ * [first item's create_time of previous request]` and empty page_token.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the conversation to list messages for.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`
+ * @param {string} [request.filter]
+ *   Optional. Filter on message fields. Currently predicates on `create_time`
+ *   and `create_time_epoch_microseconds` are supported. `create_time` only
+ *   support milliseconds accuracy. E.g.,
+ *   `create_time_epoch_microseconds > 1551790877964485` or
+ *   `create_time > "2017-01-15T01:30:15.01Z"`.
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of {@link protos.google.cloud.dialogflow.v2beta1.Message|Message}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listMessagesAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listMessages(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IMessage[],
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest | null,
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse,
-    ]
-  >;
+      request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IMessage[],
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
+      ]>;
   listMessages(
-    request: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IMessage
-    >
-  ): void;
-  listMessages(
-    request: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    callback: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IMessage
-    >
-  ): void;
-  listMessages(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
+      request: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      options: CallOptions,
+      callback: PaginationCallback<
           protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-          | protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
-          | null
-          | undefined,
-          protos.google.cloud.dialogflow.v2beta1.IMessage
-        >,
-    callback?: PaginationCallback<
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-      | protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
-      | null
-      | undefined,
-      protos.google.cloud.dialogflow.v2beta1.IMessage
-    >
-  ): Promise<
-    [
-      protos.google.cloud.dialogflow.v2beta1.IMessage[],
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest | null,
-      protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse,
-    ]
-  > | void {
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IMessage>): void;
+  listMessages(
+      request: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      callback: PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IMessage>): void;
+  listMessages(
+      request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      optionsOrCallback?: CallOptions|PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IMessage>,
+      callback?: PaginationCallback<
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+          protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse|null|undefined,
+          protos.google.cloud.dialogflow.v2beta1.IMessage>):
+      Promise<[
+        protos.google.cloud.dialogflow.v2beta1.IMessage[],
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
+      ]>|void {
     request = request || {};
     let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse|null|undefined,
+      protos.google.cloud.dialogflow.v2beta1.IMessage>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listMessages values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listMessages request %j', request);
+    return this.innerApiCalls
+      .listMessages(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.google.cloud.dialogflow.v2beta1.IMessage[],
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest|null,
+        protos.google.cloud.dialogflow.v2beta1.IListMessagesResponse
+      ]) => {
+        this._log.info('listMessages values %j', response);
+        return [response, input, output];
       });
-    this.initialize();
-    return this.innerApiCalls.listMessages(request, options, callback);
   }
 
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The name of the conversation to list messages for.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`
-   * @param {string} request.filter
-   *   Optional. Filter on message fields. Currently predicates on `create_time`
-   *   and `create_time_epoch_microseconds` are supported. `create_time` only
-   *   support milliseconds accuracy. E.g.,
-   *   `create_time_epoch_microseconds > 1551790877964485` or
-   *   `create_time > "2017-01-15T01:30:15.01Z"`.
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing {@link protos.google.cloud.dialogflow.v2beta1.Message|Message} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `listMessagesAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   */
+/**
+ * Equivalent to `listMessages`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the conversation to list messages for.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`
+ * @param {string} [request.filter]
+ *   Optional. Filter on message fields. Currently predicates on `create_time`
+ *   and `create_time_epoch_microseconds` are supported. `create_time` only
+ *   support milliseconds accuracy. E.g.,
+ *   `create_time_epoch_microseconds > 1551790877964485` or
+ *   `create_time > "2017-01-15T01:30:15.01Z"`.
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing {@link protos.google.cloud.dialogflow.v2beta1.Message|Message} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listMessagesAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ */
   listMessagesStream(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    options?: CallOptions
-  ): Transform {
+      request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      options?: CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listMessages'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listMessages stream %j', request);
     return this.descriptors.page.listMessages.createStream(
       this.innerApiCalls.listMessages as GaxCall,
       request,
@@ -1725,64 +1973,66 @@ export class ConversationsClient {
     );
   }
 
-  /**
-   * Equivalent to `listMessages`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The name of the conversation to list messages for.
-   *   Format: `projects/<Project ID>/locations/<Location
-   *   ID>/conversations/<Conversation ID>`
-   * @param {string} request.filter
-   *   Optional. Filter on message fields. Currently predicates on `create_time`
-   *   and `create_time_epoch_microseconds` are supported. `create_time` only
-   *   support milliseconds accuracy. E.g.,
-   *   `create_time_epoch_microseconds > 1551790877964485` or
-   *   `create_time > "2017-01-15T01:30:15.01Z"`.
-   *
-   *   For more information about filtering, see
-   *   [API Filtering](https://aip.dev/160).
-   * @param {number} request.pageSize
-   *   Optional. The maximum number of items to return in a single page. By
-   *   default 100 and at most 1000.
-   * @param {string} request.pageToken
-   *   Optional. The next_page_token value returned from a previous list request.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   {@link protos.google.cloud.dialogflow.v2beta1.Message|Message}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
-   *   for more details and examples.
-   * @example <caption>include:samples/generated/v2beta1/conversations.list_messages.js</caption>
-   * region_tag:dialogflow_v2beta1_generated_Conversations_ListMessages_async
-   */
+/**
+ * Equivalent to `listMessages`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the conversation to list messages for.
+ *   Format: `projects/<Project ID>/locations/<Location
+ *   ID>/conversations/<Conversation ID>`
+ * @param {string} [request.filter]
+ *   Optional. Filter on message fields. Currently predicates on `create_time`
+ *   and `create_time_epoch_microseconds` are supported. `create_time` only
+ *   support milliseconds accuracy. E.g.,
+ *   `create_time_epoch_microseconds > 1551790877964485` or
+ *   `create_time > "2017-01-15T01:30:15.01Z"`.
+ *
+ *   For more information about filtering, see
+ *   [API Filtering](https://aip.dev/160).
+ * @param {number} [request.pageSize]
+ *   Optional. The maximum number of items to return in a single page. By
+ *   default 100 and at most 1000.
+ * @param {string} [request.pageToken]
+ *   Optional. The next_page_token value returned from a previous list request.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | async iteration }.
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   {@link protos.google.cloud.dialogflow.v2beta1.Message|Message}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v2beta1/conversations.list_messages.js</caption>
+ * region_tag:dialogflow_v2beta1_generated_Conversations_ListMessages_async
+ */
   listMessagesAsync(
-    request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IMessage> {
+      request?: protos.google.cloud.dialogflow.v2beta1.IListMessagesRequest,
+      options?: CallOptions):
+    AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IMessage>{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers['x-goog-request-params'] =
-      this._gaxModule.routingHeader.fromParams({
-        parent: request.parent ?? '',
-      });
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams({
+      'parent': request.parent ?? '',
+    });
     const defaultCallSettings = this._defaults['listMessages'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listMessages iterate %j', request);
     return this.descriptors.page.listMessages.asyncIterate(
       this.innerApiCalls['listMessages'] as GaxCall,
       request as {},
       callSettings
     ) as AsyncIterable<protos.google.cloud.dialogflow.v2beta1.IMessage>;
   }
-  /**
+/**
    * Gets information about a location.
    *
    * @param {Object} request
@@ -1822,7 +2072,7 @@ export class ConversationsClient {
     return this.locationsClient.getLocation(request, options, callback);
   }
 
-  /**
+/**
    * Lists information about the supported locations for this service. Returns an iterable object.
    *
    * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
@@ -1865,12 +2115,133 @@ export class ConversationsClient {
   // --------------------
 
   /**
+   * Return a fully-qualified encryptionSpec resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @returns {string} Resource name string.
+   */
+  encryptionSpecPath(project:string,location:string) {
+    return this.pathTemplates.encryptionSpecPathTemplate.render({
+      project: project,
+      location: location,
+    });
+  }
+
+  /**
+   * Parse the project from EncryptionSpec resource.
+   *
+   * @param {string} encryptionSpecName
+   *   A fully-qualified path representing EncryptionSpec resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromEncryptionSpecName(encryptionSpecName: string) {
+    return this.pathTemplates.encryptionSpecPathTemplate.match(encryptionSpecName).project;
+  }
+
+  /**
+   * Parse the location from EncryptionSpec resource.
+   *
+   * @param {string} encryptionSpecName
+   *   A fully-qualified path representing EncryptionSpec resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromEncryptionSpecName(encryptionSpecName: string) {
+    return this.pathTemplates.encryptionSpecPathTemplate.match(encryptionSpecName).location;
+  }
+
+  /**
+   * Return a fully-qualified generator resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} generator
+   * @returns {string} Resource name string.
+   */
+  generatorPath(project:string,location:string,generator:string) {
+    return this.pathTemplates.generatorPathTemplate.render({
+      project: project,
+      location: location,
+      generator: generator,
+    });
+  }
+
+  /**
+   * Parse the project from Generator resource.
+   *
+   * @param {string} generatorName
+   *   A fully-qualified path representing Generator resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromGeneratorName(generatorName: string) {
+    return this.pathTemplates.generatorPathTemplate.match(generatorName).project;
+  }
+
+  /**
+   * Parse the location from Generator resource.
+   *
+   * @param {string} generatorName
+   *   A fully-qualified path representing Generator resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromGeneratorName(generatorName: string) {
+    return this.pathTemplates.generatorPathTemplate.match(generatorName).location;
+  }
+
+  /**
+   * Parse the generator from Generator resource.
+   *
+   * @param {string} generatorName
+   *   A fully-qualified path representing Generator resource.
+   * @returns {string} A string representing the generator.
+   */
+  matchGeneratorFromGeneratorName(generatorName: string) {
+    return this.pathTemplates.generatorPathTemplate.match(generatorName).generator;
+  }
+
+  /**
+   * Return a fully-qualified location resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @returns {string} Resource name string.
+   */
+  locationPath(project:string,location:string) {
+    return this.pathTemplates.locationPathTemplate.render({
+      project: project,
+      location: location,
+    });
+  }
+
+  /**
+   * Parse the project from Location resource.
+   *
+   * @param {string} locationName
+   *   A fully-qualified path representing Location resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromLocationName(locationName: string) {
+    return this.pathTemplates.locationPathTemplate.match(locationName).project;
+  }
+
+  /**
+   * Parse the location from Location resource.
+   *
+   * @param {string} locationName
+   *   A fully-qualified path representing Location resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromLocationName(locationName: string) {
+    return this.pathTemplates.locationPathTemplate.match(locationName).location;
+  }
+
+  /**
    * Return a fully-qualified project resource name string.
    *
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
+  projectPath(project:string) {
     return this.pathTemplates.projectPathTemplate.render({
       project: project,
     });
@@ -1893,7 +2264,7 @@ export class ConversationsClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectAgentPath(project: string) {
+  projectAgentPath(project:string) {
     return this.pathTemplates.projectAgentPathTemplate.render({
       project: project,
     });
@@ -1907,8 +2278,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectAgentName(projectAgentName: string) {
-    return this.pathTemplates.projectAgentPathTemplate.match(projectAgentName)
-      .project;
+    return this.pathTemplates.projectAgentPathTemplate.match(projectAgentName).project;
   }
 
   /**
@@ -1918,7 +2288,7 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectAgentEntityTypePath(project: string, entityType: string) {
+  projectAgentEntityTypePath(project:string,entityType:string) {
     return this.pathTemplates.projectAgentEntityTypePathTemplate.render({
       project: project,
       entity_type: entityType,
@@ -1932,12 +2302,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentEntityTypeName(
-    projectAgentEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEntityTypePathTemplate.match(
-      projectAgentEntityTypeName
-    ).project;
+  matchProjectFromProjectAgentEntityTypeName(projectAgentEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEntityTypePathTemplate.match(projectAgentEntityTypeName).project;
   }
 
   /**
@@ -1947,12 +2313,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectAgentEntityTypeName(
-    projectAgentEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEntityTypePathTemplate.match(
-      projectAgentEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectAgentEntityTypeName(projectAgentEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEntityTypePathTemplate.match(projectAgentEntityTypeName).entity_type;
   }
 
   /**
@@ -1962,7 +2324,7 @@ export class ConversationsClient {
    * @param {string} environment
    * @returns {string} Resource name string.
    */
-  projectAgentEnvironmentPath(project: string, environment: string) {
+  projectAgentEnvironmentPath(project:string,environment:string) {
     return this.pathTemplates.projectAgentEnvironmentPathTemplate.render({
       project: project,
       environment: environment,
@@ -1976,12 +2338,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentEnvironmentName(
-    projectAgentEnvironmentName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentPathTemplate.match(
-      projectAgentEnvironmentName
-    ).project;
+  matchProjectFromProjectAgentEnvironmentName(projectAgentEnvironmentName: string) {
+    return this.pathTemplates.projectAgentEnvironmentPathTemplate.match(projectAgentEnvironmentName).project;
   }
 
   /**
@@ -1991,12 +2349,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectAgentEnvironmentName(
-    projectAgentEnvironmentName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentPathTemplate.match(
-      projectAgentEnvironmentName
-    ).environment;
+  matchEnvironmentFromProjectAgentEnvironmentName(projectAgentEnvironmentName: string) {
+    return this.pathTemplates.projectAgentEnvironmentPathTemplate.match(projectAgentEnvironmentName).environment;
   }
 
   /**
@@ -2009,22 +2363,14 @@ export class ConversationsClient {
    * @param {string} context
    * @returns {string} Resource name string.
    */
-  projectAgentEnvironmentUserSessionContextPath(
-    project: string,
-    environment: string,
-    user: string,
-    session: string,
-    context: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.render(
-      {
-        project: project,
-        environment: environment,
-        user: user,
-        session: session,
-        context: context,
-      }
-    );
+  projectAgentEnvironmentUserSessionContextPath(project:string,environment:string,user:string,session:string,context:string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.render({
+      project: project,
+      environment: environment,
+      user: user,
+      session: session,
+      context: context,
+    });
   }
 
   /**
@@ -2034,12 +2380,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_context resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentEnvironmentUserSessionContextName(
-    projectAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectAgentEnvironmentUserSessionContextName
-    ).project;
+  matchProjectFromProjectAgentEnvironmentUserSessionContextName(projectAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(projectAgentEnvironmentUserSessionContextName).project;
   }
 
   /**
@@ -2049,12 +2391,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_context resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectAgentEnvironmentUserSessionContextName(
-    projectAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectAgentEnvironmentUserSessionContextName
-    ).environment;
+  matchEnvironmentFromProjectAgentEnvironmentUserSessionContextName(projectAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(projectAgentEnvironmentUserSessionContextName).environment;
   }
 
   /**
@@ -2064,12 +2402,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_context resource.
    * @returns {string} A string representing the user.
    */
-  matchUserFromProjectAgentEnvironmentUserSessionContextName(
-    projectAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectAgentEnvironmentUserSessionContextName
-    ).user;
+  matchUserFromProjectAgentEnvironmentUserSessionContextName(projectAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(projectAgentEnvironmentUserSessionContextName).user;
   }
 
   /**
@@ -2079,12 +2413,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_context resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectAgentEnvironmentUserSessionContextName(
-    projectAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectAgentEnvironmentUserSessionContextName
-    ).session;
+  matchSessionFromProjectAgentEnvironmentUserSessionContextName(projectAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(projectAgentEnvironmentUserSessionContextName).session;
   }
 
   /**
@@ -2094,12 +2424,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_context resource.
    * @returns {string} A string representing the context.
    */
-  matchContextFromProjectAgentEnvironmentUserSessionContextName(
-    projectAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectAgentEnvironmentUserSessionContextName
-    ).context;
+  matchContextFromProjectAgentEnvironmentUserSessionContextName(projectAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionContextPathTemplate.match(projectAgentEnvironmentUserSessionContextName).context;
   }
 
   /**
@@ -2112,22 +2438,14 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectAgentEnvironmentUserSessionEntityTypePath(
-    project: string,
-    environment: string,
-    user: string,
-    session: string,
-    entityType: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.render(
-      {
-        project: project,
-        environment: environment,
-        user: user,
-        session: session,
-        entity_type: entityType,
-      }
-    );
+  projectAgentEnvironmentUserSessionEntityTypePath(project:string,environment:string,user:string,session:string,entityType:string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.render({
+      project: project,
+      environment: environment,
+      user: user,
+      session: session,
+      entity_type: entityType,
+    });
   }
 
   /**
@@ -2137,12 +2455,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentEnvironmentUserSessionEntityTypeName(
-    projectAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectAgentEnvironmentUserSessionEntityTypeName
-    ).project;
+  matchProjectFromProjectAgentEnvironmentUserSessionEntityTypeName(projectAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectAgentEnvironmentUserSessionEntityTypeName).project;
   }
 
   /**
@@ -2152,12 +2466,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectAgentEnvironmentUserSessionEntityTypeName(
-    projectAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectAgentEnvironmentUserSessionEntityTypeName
-    ).environment;
+  matchEnvironmentFromProjectAgentEnvironmentUserSessionEntityTypeName(projectAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectAgentEnvironmentUserSessionEntityTypeName).environment;
   }
 
   /**
@@ -2167,12 +2477,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the user.
    */
-  matchUserFromProjectAgentEnvironmentUserSessionEntityTypeName(
-    projectAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectAgentEnvironmentUserSessionEntityTypeName
-    ).user;
+  matchUserFromProjectAgentEnvironmentUserSessionEntityTypeName(projectAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectAgentEnvironmentUserSessionEntityTypeName).user;
   }
 
   /**
@@ -2182,12 +2488,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectAgentEnvironmentUserSessionEntityTypeName(
-    projectAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectAgentEnvironmentUserSessionEntityTypeName
-    ).session;
+  matchSessionFromProjectAgentEnvironmentUserSessionEntityTypeName(projectAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectAgentEnvironmentUserSessionEntityTypeName).session;
   }
 
   /**
@@ -2197,12 +2499,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectAgentEnvironmentUserSessionEntityTypeName(
-    projectAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectAgentEnvironmentUserSessionEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectAgentEnvironmentUserSessionEntityTypeName(projectAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectAgentEnvironmentUserSessionEntityTypeName).entity_type;
   }
 
   /**
@@ -2211,7 +2509,7 @@ export class ConversationsClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectAgentFulfillmentPath(project: string) {
+  projectAgentFulfillmentPath(project:string) {
     return this.pathTemplates.projectAgentFulfillmentPathTemplate.render({
       project: project,
     });
@@ -2224,12 +2522,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_fulfillment resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentFulfillmentName(
-    projectAgentFulfillmentName: string
-  ) {
-    return this.pathTemplates.projectAgentFulfillmentPathTemplate.match(
-      projectAgentFulfillmentName
-    ).project;
+  matchProjectFromProjectAgentFulfillmentName(projectAgentFulfillmentName: string) {
+    return this.pathTemplates.projectAgentFulfillmentPathTemplate.match(projectAgentFulfillmentName).project;
   }
 
   /**
@@ -2239,7 +2533,7 @@ export class ConversationsClient {
    * @param {string} intent
    * @returns {string} Resource name string.
    */
-  projectAgentIntentPath(project: string, intent: string) {
+  projectAgentIntentPath(project:string,intent:string) {
     return this.pathTemplates.projectAgentIntentPathTemplate.render({
       project: project,
       intent: intent,
@@ -2254,9 +2548,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectAgentIntentName(projectAgentIntentName: string) {
-    return this.pathTemplates.projectAgentIntentPathTemplate.match(
-      projectAgentIntentName
-    ).project;
+    return this.pathTemplates.projectAgentIntentPathTemplate.match(projectAgentIntentName).project;
   }
 
   /**
@@ -2267,9 +2559,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the intent.
    */
   matchIntentFromProjectAgentIntentName(projectAgentIntentName: string) {
-    return this.pathTemplates.projectAgentIntentPathTemplate.match(
-      projectAgentIntentName
-    ).intent;
+    return this.pathTemplates.projectAgentIntentPathTemplate.match(projectAgentIntentName).intent;
   }
 
   /**
@@ -2280,11 +2570,7 @@ export class ConversationsClient {
    * @param {string} context
    * @returns {string} Resource name string.
    */
-  projectAgentSessionContextPath(
-    project: string,
-    session: string,
-    context: string
-  ) {
+  projectAgentSessionContextPath(project:string,session:string,context:string) {
     return this.pathTemplates.projectAgentSessionContextPathTemplate.render({
       project: project,
       session: session,
@@ -2299,12 +2585,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_context resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentSessionContextName(
-    projectAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(
-      projectAgentSessionContextName
-    ).project;
+  matchProjectFromProjectAgentSessionContextName(projectAgentSessionContextName: string) {
+    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(projectAgentSessionContextName).project;
   }
 
   /**
@@ -2314,12 +2596,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_context resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectAgentSessionContextName(
-    projectAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(
-      projectAgentSessionContextName
-    ).session;
+  matchSessionFromProjectAgentSessionContextName(projectAgentSessionContextName: string) {
+    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(projectAgentSessionContextName).session;
   }
 
   /**
@@ -2329,12 +2607,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_context resource.
    * @returns {string} A string representing the context.
    */
-  matchContextFromProjectAgentSessionContextName(
-    projectAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(
-      projectAgentSessionContextName
-    ).context;
+  matchContextFromProjectAgentSessionContextName(projectAgentSessionContextName: string) {
+    return this.pathTemplates.projectAgentSessionContextPathTemplate.match(projectAgentSessionContextName).context;
   }
 
   /**
@@ -2345,11 +2619,7 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectAgentSessionEntityTypePath(
-    project: string,
-    session: string,
-    entityType: string
-  ) {
+  projectAgentSessionEntityTypePath(project:string,session:string,entityType:string) {
     return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.render({
       project: project,
       session: session,
@@ -2364,12 +2634,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectAgentSessionEntityTypeName(
-    projectAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(
-      projectAgentSessionEntityTypeName
-    ).project;
+  matchProjectFromProjectAgentSessionEntityTypeName(projectAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(projectAgentSessionEntityTypeName).project;
   }
 
   /**
@@ -2379,12 +2645,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_entity_type resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectAgentSessionEntityTypeName(
-    projectAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(
-      projectAgentSessionEntityTypeName
-    ).session;
+  matchSessionFromProjectAgentSessionEntityTypeName(projectAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(projectAgentSessionEntityTypeName).session;
   }
 
   /**
@@ -2394,12 +2656,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_agent_session_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectAgentSessionEntityTypeName(
-    projectAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(
-      projectAgentSessionEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectAgentSessionEntityTypeName(projectAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectAgentSessionEntityTypePathTemplate.match(projectAgentSessionEntityTypeName).entity_type;
   }
 
   /**
@@ -2409,7 +2667,7 @@ export class ConversationsClient {
    * @param {string} version
    * @returns {string} Resource name string.
    */
-  projectAgentVersionPath(project: string, version: string) {
+  projectAgentVersionPath(project:string,version:string) {
     return this.pathTemplates.projectAgentVersionPathTemplate.render({
       project: project,
       version: version,
@@ -2424,9 +2682,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectAgentVersionName(projectAgentVersionName: string) {
-    return this.pathTemplates.projectAgentVersionPathTemplate.match(
-      projectAgentVersionName
-    ).project;
+    return this.pathTemplates.projectAgentVersionPathTemplate.match(projectAgentVersionName).project;
   }
 
   /**
@@ -2437,9 +2693,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the version.
    */
   matchVersionFromProjectAgentVersionName(projectAgentVersionName: string) {
-    return this.pathTemplates.projectAgentVersionPathTemplate.match(
-      projectAgentVersionName
-    ).version;
+    return this.pathTemplates.projectAgentVersionPathTemplate.match(projectAgentVersionName).version;
   }
 
   /**
@@ -2449,7 +2703,7 @@ export class ConversationsClient {
    * @param {string} answer_record
    * @returns {string} Resource name string.
    */
-  projectAnswerRecordPath(project: string, answerRecord: string) {
+  projectAnswerRecordPath(project:string,answerRecord:string) {
     return this.pathTemplates.projectAnswerRecordPathTemplate.render({
       project: project,
       answer_record: answerRecord,
@@ -2464,9 +2718,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectAnswerRecordName(projectAnswerRecordName: string) {
-    return this.pathTemplates.projectAnswerRecordPathTemplate.match(
-      projectAnswerRecordName
-    ).project;
+    return this.pathTemplates.projectAnswerRecordPathTemplate.match(projectAnswerRecordName).project;
   }
 
   /**
@@ -2476,54 +2728,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_answer_record resource.
    * @returns {string} A string representing the answer_record.
    */
-  matchAnswerRecordFromProjectAnswerRecordName(
-    projectAnswerRecordName: string
-  ) {
-    return this.pathTemplates.projectAnswerRecordPathTemplate.match(
-      projectAnswerRecordName
-    ).answer_record;
-  }
-
-  /**
-   * Return a fully-qualified projectConversation resource name string.
-   *
-   * @param {string} project
-   * @param {string} conversation
-   * @returns {string} Resource name string.
-   */
-  projectConversationPath(project: string, conversation: string) {
-    return this.pathTemplates.projectConversationPathTemplate.render({
-      project: project,
-      conversation: conversation,
-    });
-  }
-
-  /**
-   * Parse the project from ProjectConversation resource.
-   *
-   * @param {string} projectConversationName
-   *   A fully-qualified path representing project_conversation resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectConversationName(projectConversationName: string) {
-    return this.pathTemplates.projectConversationPathTemplate.match(
-      projectConversationName
-    ).project;
-  }
-
-  /**
-   * Parse the conversation from ProjectConversation resource.
-   *
-   * @param {string} projectConversationName
-   *   A fully-qualified path representing project_conversation resource.
-   * @returns {string} A string representing the conversation.
-   */
-  matchConversationFromProjectConversationName(
-    projectConversationName: string
-  ) {
-    return this.pathTemplates.projectConversationPathTemplate.match(
-      projectConversationName
-    ).conversation;
+  matchAnswerRecordFromProjectAnswerRecordName(projectAnswerRecordName: string) {
+    return this.pathTemplates.projectAnswerRecordPathTemplate.match(projectAnswerRecordName).answer_record;
   }
 
   /**
@@ -2534,11 +2740,7 @@ export class ConversationsClient {
    * @param {string} message
    * @returns {string} Resource name string.
    */
-  projectConversationMessagePath(
-    project: string,
-    conversation: string,
-    message: string
-  ) {
+  projectConversationMessagePath(project:string,conversation:string,message:string) {
     return this.pathTemplates.projectConversationMessagePathTemplate.render({
       project: project,
       conversation: conversation,
@@ -2553,12 +2755,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_message resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectConversationMessageName(
-    projectConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectConversationMessagePathTemplate.match(
-      projectConversationMessageName
-    ).project;
+  matchProjectFromProjectConversationMessageName(projectConversationMessageName: string) {
+    return this.pathTemplates.projectConversationMessagePathTemplate.match(projectConversationMessageName).project;
   }
 
   /**
@@ -2568,12 +2766,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_message resource.
    * @returns {string} A string representing the conversation.
    */
-  matchConversationFromProjectConversationMessageName(
-    projectConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectConversationMessagePathTemplate.match(
-      projectConversationMessageName
-    ).conversation;
+  matchConversationFromProjectConversationMessageName(projectConversationMessageName: string) {
+    return this.pathTemplates.projectConversationMessagePathTemplate.match(projectConversationMessageName).conversation;
   }
 
   /**
@@ -2583,12 +2777,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_message resource.
    * @returns {string} A string representing the message.
    */
-  matchMessageFromProjectConversationMessageName(
-    projectConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectConversationMessagePathTemplate.match(
-      projectConversationMessageName
-    ).message;
+  matchMessageFromProjectConversationMessageName(projectConversationMessageName: string) {
+    return this.pathTemplates.projectConversationMessagePathTemplate.match(projectConversationMessageName).message;
   }
 
   /**
@@ -2599,18 +2789,12 @@ export class ConversationsClient {
    * @param {string} participant
    * @returns {string} Resource name string.
    */
-  projectConversationParticipantPath(
-    project: string,
-    conversation: string,
-    participant: string
-  ) {
-    return this.pathTemplates.projectConversationParticipantPathTemplate.render(
-      {
-        project: project,
-        conversation: conversation,
-        participant: participant,
-      }
-    );
+  projectConversationParticipantPath(project:string,conversation:string,participant:string) {
+    return this.pathTemplates.projectConversationParticipantPathTemplate.render({
+      project: project,
+      conversation: conversation,
+      participant: participant,
+    });
   }
 
   /**
@@ -2620,12 +2804,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_participant resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectConversationParticipantName(
-    projectConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectConversationParticipantPathTemplate.match(
-      projectConversationParticipantName
-    ).project;
+  matchProjectFromProjectConversationParticipantName(projectConversationParticipantName: string) {
+    return this.pathTemplates.projectConversationParticipantPathTemplate.match(projectConversationParticipantName).project;
   }
 
   /**
@@ -2635,12 +2815,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_participant resource.
    * @returns {string} A string representing the conversation.
    */
-  matchConversationFromProjectConversationParticipantName(
-    projectConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectConversationParticipantPathTemplate.match(
-      projectConversationParticipantName
-    ).conversation;
+  matchConversationFromProjectConversationParticipantName(projectConversationParticipantName: string) {
+    return this.pathTemplates.projectConversationParticipantPathTemplate.match(projectConversationParticipantName).conversation;
   }
 
   /**
@@ -2650,12 +2826,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_participant resource.
    * @returns {string} A string representing the participant.
    */
-  matchParticipantFromProjectConversationParticipantName(
-    projectConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectConversationParticipantPathTemplate.match(
-      projectConversationParticipantName
-    ).participant;
+  matchParticipantFromProjectConversationParticipantName(projectConversationParticipantName: string) {
+    return this.pathTemplates.projectConversationParticipantPathTemplate.match(projectConversationParticipantName).participant;
   }
 
   /**
@@ -2665,7 +2837,7 @@ export class ConversationsClient {
    * @param {string} conversation_profile
    * @returns {string} Resource name string.
    */
-  projectConversationProfilePath(project: string, conversationProfile: string) {
+  projectConversationProfilePath(project:string,conversationProfile:string) {
     return this.pathTemplates.projectConversationProfilePathTemplate.render({
       project: project,
       conversation_profile: conversationProfile,
@@ -2679,12 +2851,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_profile resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectConversationProfileName(
-    projectConversationProfileName: string
-  ) {
-    return this.pathTemplates.projectConversationProfilePathTemplate.match(
-      projectConversationProfileName
-    ).project;
+  matchProjectFromProjectConversationProfileName(projectConversationProfileName: string) {
+    return this.pathTemplates.projectConversationProfilePathTemplate.match(projectConversationProfileName).project;
   }
 
   /**
@@ -2694,12 +2862,44 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_conversation_profile resource.
    * @returns {string} A string representing the conversation_profile.
    */
-  matchConversationProfileFromProjectConversationProfileName(
-    projectConversationProfileName: string
-  ) {
-    return this.pathTemplates.projectConversationProfilePathTemplate.match(
-      projectConversationProfileName
-    ).conversation_profile;
+  matchConversationProfileFromProjectConversationProfileName(projectConversationProfileName: string) {
+    return this.pathTemplates.projectConversationProfilePathTemplate.match(projectConversationProfileName).conversation_profile;
+  }
+
+  /**
+   * Return a fully-qualified projectConversations resource name string.
+   *
+   * @param {string} project
+   * @param {string} conversation
+   * @returns {string} Resource name string.
+   */
+  projectConversationsPath(project:string,conversation:string) {
+    return this.pathTemplates.projectConversationsPathTemplate.render({
+      project: project,
+      conversation: conversation,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectConversations resource.
+   *
+   * @param {string} projectConversationsName
+   *   A fully-qualified path representing project_conversations resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectConversationsName(projectConversationsName: string) {
+    return this.pathTemplates.projectConversationsPathTemplate.match(projectConversationsName).project;
+  }
+
+  /**
+   * Parse the conversation from ProjectConversations resource.
+   *
+   * @param {string} projectConversationsName
+   *   A fully-qualified path representing project_conversations resource.
+   * @returns {string} A string representing the conversation.
+   */
+  matchConversationFromProjectConversationsName(projectConversationsName: string) {
+    return this.pathTemplates.projectConversationsPathTemplate.match(projectConversationsName).conversation;
   }
 
   /**
@@ -2709,7 +2909,7 @@ export class ConversationsClient {
    * @param {string} knowledge_base
    * @returns {string} Resource name string.
    */
-  projectKnowledgeBasePath(project: string, knowledgeBase: string) {
+  projectKnowledgeBasePath(project:string,knowledgeBase:string) {
     return this.pathTemplates.projectKnowledgeBasePathTemplate.render({
       project: project,
       knowledge_base: knowledgeBase,
@@ -2724,9 +2924,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectKnowledgeBaseName(projectKnowledgeBaseName: string) {
-    return this.pathTemplates.projectKnowledgeBasePathTemplate.match(
-      projectKnowledgeBaseName
-    ).project;
+    return this.pathTemplates.projectKnowledgeBasePathTemplate.match(projectKnowledgeBaseName).project;
   }
 
   /**
@@ -2736,12 +2934,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_knowledge_base resource.
    * @returns {string} A string representing the knowledge_base.
    */
-  matchKnowledgeBaseFromProjectKnowledgeBaseName(
-    projectKnowledgeBaseName: string
-  ) {
-    return this.pathTemplates.projectKnowledgeBasePathTemplate.match(
-      projectKnowledgeBaseName
-    ).knowledge_base;
+  matchKnowledgeBaseFromProjectKnowledgeBaseName(projectKnowledgeBaseName: string) {
+    return this.pathTemplates.projectKnowledgeBasePathTemplate.match(projectKnowledgeBaseName).knowledge_base;
   }
 
   /**
@@ -2752,11 +2946,7 @@ export class ConversationsClient {
    * @param {string} document
    * @returns {string} Resource name string.
    */
-  projectKnowledgeBaseDocumentPath(
-    project: string,
-    knowledgeBase: string,
-    document: string
-  ) {
+  projectKnowledgeBaseDocumentPath(project:string,knowledgeBase:string,document:string) {
     return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.render({
       project: project,
       knowledge_base: knowledgeBase,
@@ -2771,12 +2961,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_knowledge_base_document resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectKnowledgeBaseDocumentName(
-    projectKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(
-      projectKnowledgeBaseDocumentName
-    ).project;
+  matchProjectFromProjectKnowledgeBaseDocumentName(projectKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(projectKnowledgeBaseDocumentName).project;
   }
 
   /**
@@ -2786,12 +2972,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_knowledge_base_document resource.
    * @returns {string} A string representing the knowledge_base.
    */
-  matchKnowledgeBaseFromProjectKnowledgeBaseDocumentName(
-    projectKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(
-      projectKnowledgeBaseDocumentName
-    ).knowledge_base;
+  matchKnowledgeBaseFromProjectKnowledgeBaseDocumentName(projectKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(projectKnowledgeBaseDocumentName).knowledge_base;
   }
 
   /**
@@ -2801,12 +2983,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_knowledge_base_document resource.
    * @returns {string} A string representing the document.
    */
-  matchDocumentFromProjectKnowledgeBaseDocumentName(
-    projectKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(
-      projectKnowledgeBaseDocumentName
-    ).document;
+  matchDocumentFromProjectKnowledgeBaseDocumentName(projectKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectKnowledgeBaseDocumentPathTemplate.match(projectKnowledgeBaseDocumentName).document;
   }
 
   /**
@@ -2816,7 +2994,7 @@ export class ConversationsClient {
    * @param {string} location
    * @returns {string} Resource name string.
    */
-  projectLocationAgentPath(project: string, location: string) {
+  projectLocationAgentPath(project:string,location:string) {
     return this.pathTemplates.projectLocationAgentPathTemplate.render({
       project: project,
       location: location,
@@ -2831,9 +3009,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectLocationAgentName(projectLocationAgentName: string) {
-    return this.pathTemplates.projectLocationAgentPathTemplate.match(
-      projectLocationAgentName
-    ).project;
+    return this.pathTemplates.projectLocationAgentPathTemplate.match(projectLocationAgentName).project;
   }
 
   /**
@@ -2844,9 +3020,7 @@ export class ConversationsClient {
    * @returns {string} A string representing the location.
    */
   matchLocationFromProjectLocationAgentName(projectLocationAgentName: string) {
-    return this.pathTemplates.projectLocationAgentPathTemplate.match(
-      projectLocationAgentName
-    ).location;
+    return this.pathTemplates.projectLocationAgentPathTemplate.match(projectLocationAgentName).location;
   }
 
   /**
@@ -2857,18 +3031,12 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectLocationAgentEntityTypePath(
-    project: string,
-    location: string,
-    entityType: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.render(
-      {
-        project: project,
-        location: location,
-        entity_type: entityType,
-      }
-    );
+  projectLocationAgentEntityTypePath(project:string,location:string,entityType:string) {
+    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.render({
+      project: project,
+      location: location,
+      entity_type: entityType,
+    });
   }
 
   /**
@@ -2878,12 +3046,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentEntityTypeName(
-    projectLocationAgentEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(
-      projectLocationAgentEntityTypeName
-    ).project;
+  matchProjectFromProjectLocationAgentEntityTypeName(projectLocationAgentEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(projectLocationAgentEntityTypeName).project;
   }
 
   /**
@@ -2893,12 +3057,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_entity_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentEntityTypeName(
-    projectLocationAgentEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(
-      projectLocationAgentEntityTypeName
-    ).location;
+  matchLocationFromProjectLocationAgentEntityTypeName(projectLocationAgentEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(projectLocationAgentEntityTypeName).location;
   }
 
   /**
@@ -2908,12 +3068,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectLocationAgentEntityTypeName(
-    projectLocationAgentEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(
-      projectLocationAgentEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectLocationAgentEntityTypeName(projectLocationAgentEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEntityTypePathTemplate.match(projectLocationAgentEntityTypeName).entity_type;
   }
 
   /**
@@ -2924,18 +3080,12 @@ export class ConversationsClient {
    * @param {string} environment
    * @returns {string} Resource name string.
    */
-  projectLocationAgentEnvironmentPath(
-    project: string,
-    location: string,
-    environment: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        environment: environment,
-      }
-    );
+  projectLocationAgentEnvironmentPath(project:string,location:string,environment:string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.render({
+      project: project,
+      location: location,
+      environment: environment,
+    });
   }
 
   /**
@@ -2945,12 +3095,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentEnvironmentName(
-    projectLocationAgentEnvironmentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(
-      projectLocationAgentEnvironmentName
-    ).project;
+  matchProjectFromProjectLocationAgentEnvironmentName(projectLocationAgentEnvironmentName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(projectLocationAgentEnvironmentName).project;
   }
 
   /**
@@ -2960,12 +3106,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentEnvironmentName(
-    projectLocationAgentEnvironmentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(
-      projectLocationAgentEnvironmentName
-    ).location;
+  matchLocationFromProjectLocationAgentEnvironmentName(projectLocationAgentEnvironmentName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(projectLocationAgentEnvironmentName).location;
   }
 
   /**
@@ -2975,12 +3117,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectLocationAgentEnvironmentName(
-    projectLocationAgentEnvironmentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(
-      projectLocationAgentEnvironmentName
-    ).environment;
+  matchEnvironmentFromProjectLocationAgentEnvironmentName(projectLocationAgentEnvironmentName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentPathTemplate.match(projectLocationAgentEnvironmentName).environment;
   }
 
   /**
@@ -2994,24 +3132,15 @@ export class ConversationsClient {
    * @param {string} context
    * @returns {string} Resource name string.
    */
-  projectLocationAgentEnvironmentUserSessionContextPath(
-    project: string,
-    location: string,
-    environment: string,
-    user: string,
-    session: string,
-    context: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        environment: environment,
-        user: user,
-        session: session,
-        context: context,
-      }
-    );
+  projectLocationAgentEnvironmentUserSessionContextPath(project:string,location:string,environment:string,user:string,session:string,context:string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.render({
+      project: project,
+      location: location,
+      environment: environment,
+      user: user,
+      session: session,
+      context: context,
+    });
   }
 
   /**
@@ -3021,12 +3150,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).project;
+  matchProjectFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).project;
   }
 
   /**
@@ -3036,12 +3161,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).location;
+  matchLocationFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).location;
   }
 
   /**
@@ -3051,12 +3172,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).environment;
+  matchEnvironmentFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).environment;
   }
 
   /**
@@ -3066,12 +3183,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the user.
    */
-  matchUserFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).user;
+  matchUserFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).user;
   }
 
   /**
@@ -3081,12 +3194,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).session;
+  matchSessionFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).session;
   }
 
   /**
@@ -3096,12 +3205,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_context resource.
    * @returns {string} A string representing the context.
    */
-  matchContextFromProjectLocationAgentEnvironmentUserSessionContextName(
-    projectLocationAgentEnvironmentUserSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionContextName
-    ).context;
+  matchContextFromProjectLocationAgentEnvironmentUserSessionContextName(projectLocationAgentEnvironmentUserSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionContextPathTemplate.match(projectLocationAgentEnvironmentUserSessionContextName).context;
   }
 
   /**
@@ -3115,24 +3220,15 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectLocationAgentEnvironmentUserSessionEntityTypePath(
-    project: string,
-    location: string,
-    environment: string,
-    user: string,
-    session: string,
-    entityType: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.render(
-      {
-        project: project,
-        location: location,
-        environment: environment,
-        user: user,
-        session: session,
-        entity_type: entityType,
-      }
-    );
+  projectLocationAgentEnvironmentUserSessionEntityTypePath(project:string,location:string,environment:string,user:string,session:string,entityType:string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.render({
+      project: project,
+      location: location,
+      environment: environment,
+      user: user,
+      session: session,
+      entity_type: entityType,
+    });
   }
 
   /**
@@ -3142,12 +3238,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).project;
+  matchProjectFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).project;
   }
 
   /**
@@ -3157,12 +3249,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).location;
+  matchLocationFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).location;
   }
 
   /**
@@ -3172,12 +3260,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the environment.
    */
-  matchEnvironmentFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).environment;
+  matchEnvironmentFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).environment;
   }
 
   /**
@@ -3187,12 +3271,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the user.
    */
-  matchUserFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).user;
+  matchUserFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).user;
   }
 
   /**
@@ -3202,12 +3282,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).session;
+  matchSessionFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).session;
   }
 
   /**
@@ -3217,12 +3293,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_environment_user_session_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(
-    projectLocationAgentEnvironmentUserSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(
-      projectLocationAgentEnvironmentUserSessionEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectLocationAgentEnvironmentUserSessionEntityTypeName(projectLocationAgentEnvironmentUserSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentEnvironmentUserSessionEntityTypePathTemplate.match(projectLocationAgentEnvironmentUserSessionEntityTypeName).entity_type;
   }
 
   /**
@@ -3232,13 +3304,11 @@ export class ConversationsClient {
    * @param {string} location
    * @returns {string} Resource name string.
    */
-  projectLocationAgentFulfillmentPath(project: string, location: string) {
-    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.render(
-      {
-        project: project,
-        location: location,
-      }
-    );
+  projectLocationAgentFulfillmentPath(project:string,location:string) {
+    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.render({
+      project: project,
+      location: location,
+    });
   }
 
   /**
@@ -3248,12 +3318,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_fulfillment resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentFulfillmentName(
-    projectLocationAgentFulfillmentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.match(
-      projectLocationAgentFulfillmentName
-    ).project;
+  matchProjectFromProjectLocationAgentFulfillmentName(projectLocationAgentFulfillmentName: string) {
+    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.match(projectLocationAgentFulfillmentName).project;
   }
 
   /**
@@ -3263,12 +3329,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_fulfillment resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentFulfillmentName(
-    projectLocationAgentFulfillmentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.match(
-      projectLocationAgentFulfillmentName
-    ).location;
+  matchLocationFromProjectLocationAgentFulfillmentName(projectLocationAgentFulfillmentName: string) {
+    return this.pathTemplates.projectLocationAgentFulfillmentPathTemplate.match(projectLocationAgentFulfillmentName).location;
   }
 
   /**
@@ -3279,11 +3341,7 @@ export class ConversationsClient {
    * @param {string} intent
    * @returns {string} Resource name string.
    */
-  projectLocationAgentIntentPath(
-    project: string,
-    location: string,
-    intent: string
-  ) {
+  projectLocationAgentIntentPath(project:string,location:string,intent:string) {
     return this.pathTemplates.projectLocationAgentIntentPathTemplate.render({
       project: project,
       location: location,
@@ -3298,12 +3356,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_intent resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentIntentName(
-    projectLocationAgentIntentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(
-      projectLocationAgentIntentName
-    ).project;
+  matchProjectFromProjectLocationAgentIntentName(projectLocationAgentIntentName: string) {
+    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(projectLocationAgentIntentName).project;
   }
 
   /**
@@ -3313,12 +3367,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_intent resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentIntentName(
-    projectLocationAgentIntentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(
-      projectLocationAgentIntentName
-    ).location;
+  matchLocationFromProjectLocationAgentIntentName(projectLocationAgentIntentName: string) {
+    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(projectLocationAgentIntentName).location;
   }
 
   /**
@@ -3328,12 +3378,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_intent resource.
    * @returns {string} A string representing the intent.
    */
-  matchIntentFromProjectLocationAgentIntentName(
-    projectLocationAgentIntentName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(
-      projectLocationAgentIntentName
-    ).intent;
+  matchIntentFromProjectLocationAgentIntentName(projectLocationAgentIntentName: string) {
+    return this.pathTemplates.projectLocationAgentIntentPathTemplate.match(projectLocationAgentIntentName).intent;
   }
 
   /**
@@ -3345,20 +3391,13 @@ export class ConversationsClient {
    * @param {string} context
    * @returns {string} Resource name string.
    */
-  projectLocationAgentSessionContextPath(
-    project: string,
-    location: string,
-    session: string,
-    context: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        session: session,
-        context: context,
-      }
-    );
+  projectLocationAgentSessionContextPath(project:string,location:string,session:string,context:string) {
+    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.render({
+      project: project,
+      location: location,
+      session: session,
+      context: context,
+    });
   }
 
   /**
@@ -3368,12 +3407,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_context resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentSessionContextName(
-    projectLocationAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(
-      projectLocationAgentSessionContextName
-    ).project;
+  matchProjectFromProjectLocationAgentSessionContextName(projectLocationAgentSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(projectLocationAgentSessionContextName).project;
   }
 
   /**
@@ -3383,12 +3418,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_context resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentSessionContextName(
-    projectLocationAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(
-      projectLocationAgentSessionContextName
-    ).location;
+  matchLocationFromProjectLocationAgentSessionContextName(projectLocationAgentSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(projectLocationAgentSessionContextName).location;
   }
 
   /**
@@ -3398,12 +3429,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_context resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectLocationAgentSessionContextName(
-    projectLocationAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(
-      projectLocationAgentSessionContextName
-    ).session;
+  matchSessionFromProjectLocationAgentSessionContextName(projectLocationAgentSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(projectLocationAgentSessionContextName).session;
   }
 
   /**
@@ -3413,12 +3440,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_context resource.
    * @returns {string} A string representing the context.
    */
-  matchContextFromProjectLocationAgentSessionContextName(
-    projectLocationAgentSessionContextName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(
-      projectLocationAgentSessionContextName
-    ).context;
+  matchContextFromProjectLocationAgentSessionContextName(projectLocationAgentSessionContextName: string) {
+    return this.pathTemplates.projectLocationAgentSessionContextPathTemplate.match(projectLocationAgentSessionContextName).context;
   }
 
   /**
@@ -3430,20 +3453,13 @@ export class ConversationsClient {
    * @param {string} entity_type
    * @returns {string} Resource name string.
    */
-  projectLocationAgentSessionEntityTypePath(
-    project: string,
-    location: string,
-    session: string,
-    entityType: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.render(
-      {
-        project: project,
-        location: location,
-        session: session,
-        entity_type: entityType,
-      }
-    );
+  projectLocationAgentSessionEntityTypePath(project:string,location:string,session:string,entityType:string) {
+    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.render({
+      project: project,
+      location: location,
+      session: session,
+      entity_type: entityType,
+    });
   }
 
   /**
@@ -3453,12 +3469,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_entity_type resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentSessionEntityTypeName(
-    projectLocationAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(
-      projectLocationAgentSessionEntityTypeName
-    ).project;
+  matchProjectFromProjectLocationAgentSessionEntityTypeName(projectLocationAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(projectLocationAgentSessionEntityTypeName).project;
   }
 
   /**
@@ -3468,12 +3480,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_entity_type resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentSessionEntityTypeName(
-    projectLocationAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(
-      projectLocationAgentSessionEntityTypeName
-    ).location;
+  matchLocationFromProjectLocationAgentSessionEntityTypeName(projectLocationAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(projectLocationAgentSessionEntityTypeName).location;
   }
 
   /**
@@ -3483,12 +3491,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_entity_type resource.
    * @returns {string} A string representing the session.
    */
-  matchSessionFromProjectLocationAgentSessionEntityTypeName(
-    projectLocationAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(
-      projectLocationAgentSessionEntityTypeName
-    ).session;
+  matchSessionFromProjectLocationAgentSessionEntityTypeName(projectLocationAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(projectLocationAgentSessionEntityTypeName).session;
   }
 
   /**
@@ -3498,12 +3502,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_session_entity_type resource.
    * @returns {string} A string representing the entity_type.
    */
-  matchEntityTypeFromProjectLocationAgentSessionEntityTypeName(
-    projectLocationAgentSessionEntityTypeName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(
-      projectLocationAgentSessionEntityTypeName
-    ).entity_type;
+  matchEntityTypeFromProjectLocationAgentSessionEntityTypeName(projectLocationAgentSessionEntityTypeName: string) {
+    return this.pathTemplates.projectLocationAgentSessionEntityTypePathTemplate.match(projectLocationAgentSessionEntityTypeName).entity_type;
   }
 
   /**
@@ -3514,11 +3514,7 @@ export class ConversationsClient {
    * @param {string} version
    * @returns {string} Resource name string.
    */
-  projectLocationAgentVersionPath(
-    project: string,
-    location: string,
-    version: string
-  ) {
+  projectLocationAgentVersionPath(project:string,location:string,version:string) {
     return this.pathTemplates.projectLocationAgentVersionPathTemplate.render({
       project: project,
       location: location,
@@ -3533,12 +3529,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_version resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAgentVersionName(
-    projectLocationAgentVersionName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(
-      projectLocationAgentVersionName
-    ).project;
+  matchProjectFromProjectLocationAgentVersionName(projectLocationAgentVersionName: string) {
+    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(projectLocationAgentVersionName).project;
   }
 
   /**
@@ -3548,12 +3540,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_version resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAgentVersionName(
-    projectLocationAgentVersionName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(
-      projectLocationAgentVersionName
-    ).location;
+  matchLocationFromProjectLocationAgentVersionName(projectLocationAgentVersionName: string) {
+    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(projectLocationAgentVersionName).location;
   }
 
   /**
@@ -3563,12 +3551,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_agent_version resource.
    * @returns {string} A string representing the version.
    */
-  matchVersionFromProjectLocationAgentVersionName(
-    projectLocationAgentVersionName: string
-  ) {
-    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(
-      projectLocationAgentVersionName
-    ).version;
+  matchVersionFromProjectLocationAgentVersionName(projectLocationAgentVersionName: string) {
+    return this.pathTemplates.projectLocationAgentVersionPathTemplate.match(projectLocationAgentVersionName).version;
   }
 
   /**
@@ -3579,11 +3563,7 @@ export class ConversationsClient {
    * @param {string} answer_record
    * @returns {string} Resource name string.
    */
-  projectLocationAnswerRecordPath(
-    project: string,
-    location: string,
-    answerRecord: string
-  ) {
+  projectLocationAnswerRecordPath(project:string,location:string,answerRecord:string) {
     return this.pathTemplates.projectLocationAnswerRecordPathTemplate.render({
       project: project,
       location: location,
@@ -3598,12 +3578,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_answer_record resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationAnswerRecordName(
-    projectLocationAnswerRecordName: string
-  ) {
-    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(
-      projectLocationAnswerRecordName
-    ).project;
+  matchProjectFromProjectLocationAnswerRecordName(projectLocationAnswerRecordName: string) {
+    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(projectLocationAnswerRecordName).project;
   }
 
   /**
@@ -3613,12 +3589,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_answer_record resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationAnswerRecordName(
-    projectLocationAnswerRecordName: string
-  ) {
-    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(
-      projectLocationAnswerRecordName
-    ).location;
+  matchLocationFromProjectLocationAnswerRecordName(projectLocationAnswerRecordName: string) {
+    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(projectLocationAnswerRecordName).location;
   }
 
   /**
@@ -3628,77 +3600,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_answer_record resource.
    * @returns {string} A string representing the answer_record.
    */
-  matchAnswerRecordFromProjectLocationAnswerRecordName(
-    projectLocationAnswerRecordName: string
-  ) {
-    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(
-      projectLocationAnswerRecordName
-    ).answer_record;
-  }
-
-  /**
-   * Return a fully-qualified projectLocationConversation resource name string.
-   *
-   * @param {string} project
-   * @param {string} location
-   * @param {string} conversation
-   * @returns {string} Resource name string.
-   */
-  projectLocationConversationPath(
-    project: string,
-    location: string,
-    conversation: string
-  ) {
-    return this.pathTemplates.projectLocationConversationPathTemplate.render({
-      project: project,
-      location: location,
-      conversation: conversation,
-    });
-  }
-
-  /**
-   * Parse the project from ProjectLocationConversation resource.
-   *
-   * @param {string} projectLocationConversationName
-   *   A fully-qualified path representing project_location_conversation resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectLocationConversationName(
-    projectLocationConversationName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationPathTemplate.match(
-      projectLocationConversationName
-    ).project;
-  }
-
-  /**
-   * Parse the location from ProjectLocationConversation resource.
-   *
-   * @param {string} projectLocationConversationName
-   *   A fully-qualified path representing project_location_conversation resource.
-   * @returns {string} A string representing the location.
-   */
-  matchLocationFromProjectLocationConversationName(
-    projectLocationConversationName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationPathTemplate.match(
-      projectLocationConversationName
-    ).location;
-  }
-
-  /**
-   * Parse the conversation from ProjectLocationConversation resource.
-   *
-   * @param {string} projectLocationConversationName
-   *   A fully-qualified path representing project_location_conversation resource.
-   * @returns {string} A string representing the conversation.
-   */
-  matchConversationFromProjectLocationConversationName(
-    projectLocationConversationName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationPathTemplate.match(
-      projectLocationConversationName
-    ).conversation;
+  matchAnswerRecordFromProjectLocationAnswerRecordName(projectLocationAnswerRecordName: string) {
+    return this.pathTemplates.projectLocationAnswerRecordPathTemplate.match(projectLocationAnswerRecordName).answer_record;
   }
 
   /**
@@ -3710,20 +3613,13 @@ export class ConversationsClient {
    * @param {string} message
    * @returns {string} Resource name string.
    */
-  projectLocationConversationMessagePath(
-    project: string,
-    location: string,
-    conversation: string,
-    message: string
-  ) {
-    return this.pathTemplates.projectLocationConversationMessagePathTemplate.render(
-      {
-        project: project,
-        location: location,
-        conversation: conversation,
-        message: message,
-      }
-    );
+  projectLocationConversationMessagePath(project:string,location:string,conversation:string,message:string) {
+    return this.pathTemplates.projectLocationConversationMessagePathTemplate.render({
+      project: project,
+      location: location,
+      conversation: conversation,
+      message: message,
+    });
   }
 
   /**
@@ -3733,12 +3629,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_message resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationConversationMessageName(
-    projectLocationConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(
-      projectLocationConversationMessageName
-    ).project;
+  matchProjectFromProjectLocationConversationMessageName(projectLocationConversationMessageName: string) {
+    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(projectLocationConversationMessageName).project;
   }
 
   /**
@@ -3748,12 +3640,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_message resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationConversationMessageName(
-    projectLocationConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(
-      projectLocationConversationMessageName
-    ).location;
+  matchLocationFromProjectLocationConversationMessageName(projectLocationConversationMessageName: string) {
+    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(projectLocationConversationMessageName).location;
   }
 
   /**
@@ -3763,12 +3651,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_message resource.
    * @returns {string} A string representing the conversation.
    */
-  matchConversationFromProjectLocationConversationMessageName(
-    projectLocationConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(
-      projectLocationConversationMessageName
-    ).conversation;
+  matchConversationFromProjectLocationConversationMessageName(projectLocationConversationMessageName: string) {
+    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(projectLocationConversationMessageName).conversation;
   }
 
   /**
@@ -3778,12 +3662,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_message resource.
    * @returns {string} A string representing the message.
    */
-  matchMessageFromProjectLocationConversationMessageName(
-    projectLocationConversationMessageName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(
-      projectLocationConversationMessageName
-    ).message;
+  matchMessageFromProjectLocationConversationMessageName(projectLocationConversationMessageName: string) {
+    return this.pathTemplates.projectLocationConversationMessagePathTemplate.match(projectLocationConversationMessageName).message;
   }
 
   /**
@@ -3795,20 +3675,13 @@ export class ConversationsClient {
    * @param {string} participant
    * @returns {string} Resource name string.
    */
-  projectLocationConversationParticipantPath(
-    project: string,
-    location: string,
-    conversation: string,
-    participant: string
-  ) {
-    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        conversation: conversation,
-        participant: participant,
-      }
-    );
+  projectLocationConversationParticipantPath(project:string,location:string,conversation:string,participant:string) {
+    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.render({
+      project: project,
+      location: location,
+      conversation: conversation,
+      participant: participant,
+    });
   }
 
   /**
@@ -3818,12 +3691,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_participant resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationConversationParticipantName(
-    projectLocationConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(
-      projectLocationConversationParticipantName
-    ).project;
+  matchProjectFromProjectLocationConversationParticipantName(projectLocationConversationParticipantName: string) {
+    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(projectLocationConversationParticipantName).project;
   }
 
   /**
@@ -3833,12 +3702,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_participant resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationConversationParticipantName(
-    projectLocationConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(
-      projectLocationConversationParticipantName
-    ).location;
+  matchLocationFromProjectLocationConversationParticipantName(projectLocationConversationParticipantName: string) {
+    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(projectLocationConversationParticipantName).location;
   }
 
   /**
@@ -3848,12 +3713,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_participant resource.
    * @returns {string} A string representing the conversation.
    */
-  matchConversationFromProjectLocationConversationParticipantName(
-    projectLocationConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(
-      projectLocationConversationParticipantName
-    ).conversation;
+  matchConversationFromProjectLocationConversationParticipantName(projectLocationConversationParticipantName: string) {
+    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(projectLocationConversationParticipantName).conversation;
   }
 
   /**
@@ -3863,12 +3724,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_participant resource.
    * @returns {string} A string representing the participant.
    */
-  matchParticipantFromProjectLocationConversationParticipantName(
-    projectLocationConversationParticipantName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(
-      projectLocationConversationParticipantName
-    ).participant;
+  matchParticipantFromProjectLocationConversationParticipantName(projectLocationConversationParticipantName: string) {
+    return this.pathTemplates.projectLocationConversationParticipantPathTemplate.match(projectLocationConversationParticipantName).participant;
   }
 
   /**
@@ -3879,18 +3736,12 @@ export class ConversationsClient {
    * @param {string} conversation_profile
    * @returns {string} Resource name string.
    */
-  projectLocationConversationProfilePath(
-    project: string,
-    location: string,
-    conversationProfile: string
-  ) {
-    return this.pathTemplates.projectLocationConversationProfilePathTemplate.render(
-      {
-        project: project,
-        location: location,
-        conversation_profile: conversationProfile,
-      }
-    );
+  projectLocationConversationProfilePath(project:string,location:string,conversationProfile:string) {
+    return this.pathTemplates.projectLocationConversationProfilePathTemplate.render({
+      project: project,
+      location: location,
+      conversation_profile: conversationProfile,
+    });
   }
 
   /**
@@ -3900,12 +3751,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_profile resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationConversationProfileName(
-    projectLocationConversationProfileName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(
-      projectLocationConversationProfileName
-    ).project;
+  matchProjectFromProjectLocationConversationProfileName(projectLocationConversationProfileName: string) {
+    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(projectLocationConversationProfileName).project;
   }
 
   /**
@@ -3915,12 +3762,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_profile resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationConversationProfileName(
-    projectLocationConversationProfileName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(
-      projectLocationConversationProfileName
-    ).location;
+  matchLocationFromProjectLocationConversationProfileName(projectLocationConversationProfileName: string) {
+    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(projectLocationConversationProfileName).location;
   }
 
   /**
@@ -3930,12 +3773,57 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_conversation_profile resource.
    * @returns {string} A string representing the conversation_profile.
    */
-  matchConversationProfileFromProjectLocationConversationProfileName(
-    projectLocationConversationProfileName: string
-  ) {
-    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(
-      projectLocationConversationProfileName
-    ).conversation_profile;
+  matchConversationProfileFromProjectLocationConversationProfileName(projectLocationConversationProfileName: string) {
+    return this.pathTemplates.projectLocationConversationProfilePathTemplate.match(projectLocationConversationProfileName).conversation_profile;
+  }
+
+  /**
+   * Return a fully-qualified projectLocationConversations resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} conversation
+   * @returns {string} Resource name string.
+   */
+  projectLocationConversationsPath(project:string,location:string,conversation:string) {
+    return this.pathTemplates.projectLocationConversationsPathTemplate.render({
+      project: project,
+      location: location,
+      conversation: conversation,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectLocationConversations resource.
+   *
+   * @param {string} projectLocationConversationsName
+   *   A fully-qualified path representing project_location_conversations resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectLocationConversationsName(projectLocationConversationsName: string) {
+    return this.pathTemplates.projectLocationConversationsPathTemplate.match(projectLocationConversationsName).project;
+  }
+
+  /**
+   * Parse the location from ProjectLocationConversations resource.
+   *
+   * @param {string} projectLocationConversationsName
+   *   A fully-qualified path representing project_location_conversations resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromProjectLocationConversationsName(projectLocationConversationsName: string) {
+    return this.pathTemplates.projectLocationConversationsPathTemplate.match(projectLocationConversationsName).location;
+  }
+
+  /**
+   * Parse the conversation from ProjectLocationConversations resource.
+   *
+   * @param {string} projectLocationConversationsName
+   *   A fully-qualified path representing project_location_conversations resource.
+   * @returns {string} A string representing the conversation.
+   */
+  matchConversationFromProjectLocationConversationsName(projectLocationConversationsName: string) {
+    return this.pathTemplates.projectLocationConversationsPathTemplate.match(projectLocationConversationsName).conversation;
   }
 
   /**
@@ -3946,11 +3834,7 @@ export class ConversationsClient {
    * @param {string} knowledge_base
    * @returns {string} Resource name string.
    */
-  projectLocationKnowledgeBasePath(
-    project: string,
-    location: string,
-    knowledgeBase: string
-  ) {
+  projectLocationKnowledgeBasePath(project:string,location:string,knowledgeBase:string) {
     return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.render({
       project: project,
       location: location,
@@ -3965,12 +3849,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationKnowledgeBaseName(
-    projectLocationKnowledgeBaseName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(
-      projectLocationKnowledgeBaseName
-    ).project;
+  matchProjectFromProjectLocationKnowledgeBaseName(projectLocationKnowledgeBaseName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(projectLocationKnowledgeBaseName).project;
   }
 
   /**
@@ -3980,12 +3860,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationKnowledgeBaseName(
-    projectLocationKnowledgeBaseName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(
-      projectLocationKnowledgeBaseName
-    ).location;
+  matchLocationFromProjectLocationKnowledgeBaseName(projectLocationKnowledgeBaseName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(projectLocationKnowledgeBaseName).location;
   }
 
   /**
@@ -3995,12 +3871,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base resource.
    * @returns {string} A string representing the knowledge_base.
    */
-  matchKnowledgeBaseFromProjectLocationKnowledgeBaseName(
-    projectLocationKnowledgeBaseName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(
-      projectLocationKnowledgeBaseName
-    ).knowledge_base;
+  matchKnowledgeBaseFromProjectLocationKnowledgeBaseName(projectLocationKnowledgeBaseName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBasePathTemplate.match(projectLocationKnowledgeBaseName).knowledge_base;
   }
 
   /**
@@ -4012,20 +3884,13 @@ export class ConversationsClient {
    * @param {string} document
    * @returns {string} Resource name string.
    */
-  projectLocationKnowledgeBaseDocumentPath(
-    project: string,
-    location: string,
-    knowledgeBase: string,
-    document: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.render(
-      {
-        project: project,
-        location: location,
-        knowledge_base: knowledgeBase,
-        document: document,
-      }
-    );
+  projectLocationKnowledgeBaseDocumentPath(project:string,location:string,knowledgeBase:string,document:string) {
+    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.render({
+      project: project,
+      location: location,
+      knowledge_base: knowledgeBase,
+      document: document,
+    });
   }
 
   /**
@@ -4035,12 +3900,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base_document resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectLocationKnowledgeBaseDocumentName(
-    projectLocationKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(
-      projectLocationKnowledgeBaseDocumentName
-    ).project;
+  matchProjectFromProjectLocationKnowledgeBaseDocumentName(projectLocationKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(projectLocationKnowledgeBaseDocumentName).project;
   }
 
   /**
@@ -4050,12 +3911,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base_document resource.
    * @returns {string} A string representing the location.
    */
-  matchLocationFromProjectLocationKnowledgeBaseDocumentName(
-    projectLocationKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(
-      projectLocationKnowledgeBaseDocumentName
-    ).location;
+  matchLocationFromProjectLocationKnowledgeBaseDocumentName(projectLocationKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(projectLocationKnowledgeBaseDocumentName).location;
   }
 
   /**
@@ -4065,12 +3922,8 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base_document resource.
    * @returns {string} A string representing the knowledge_base.
    */
-  matchKnowledgeBaseFromProjectLocationKnowledgeBaseDocumentName(
-    projectLocationKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(
-      projectLocationKnowledgeBaseDocumentName
-    ).knowledge_base;
+  matchKnowledgeBaseFromProjectLocationKnowledgeBaseDocumentName(projectLocationKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(projectLocationKnowledgeBaseDocumentName).knowledge_base;
   }
 
   /**
@@ -4080,12 +3933,142 @@ export class ConversationsClient {
    *   A fully-qualified path representing project_location_knowledge_base_document resource.
    * @returns {string} A string representing the document.
    */
-  matchDocumentFromProjectLocationKnowledgeBaseDocumentName(
-    projectLocationKnowledgeBaseDocumentName: string
-  ) {
-    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(
-      projectLocationKnowledgeBaseDocumentName
-    ).document;
+  matchDocumentFromProjectLocationKnowledgeBaseDocumentName(projectLocationKnowledgeBaseDocumentName: string) {
+    return this.pathTemplates.projectLocationKnowledgeBaseDocumentPathTemplate.match(projectLocationKnowledgeBaseDocumentName).document;
+  }
+
+  /**
+   * Return a fully-qualified projectLocationPhoneNumber resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} phone_number
+   * @returns {string} Resource name string.
+   */
+  projectLocationPhoneNumberPath(project:string,location:string,phoneNumber:string) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.render({
+      project: project,
+      location: location,
+      phone_number: phoneNumber,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectLocationPhoneNumberName(projectLocationPhoneNumberName: string) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(projectLocationPhoneNumberName).project;
+  }
+
+  /**
+   * Parse the location from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromProjectLocationPhoneNumberName(projectLocationPhoneNumberName: string) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(projectLocationPhoneNumberName).location;
+  }
+
+  /**
+   * Parse the phone_number from ProjectLocationPhoneNumber resource.
+   *
+   * @param {string} projectLocationPhoneNumberName
+   *   A fully-qualified path representing project_location_phone_number resource.
+   * @returns {string} A string representing the phone_number.
+   */
+  matchPhoneNumberFromProjectLocationPhoneNumberName(projectLocationPhoneNumberName: string) {
+    return this.pathTemplates.projectLocationPhoneNumberPathTemplate.match(projectLocationPhoneNumberName).phone_number;
+  }
+
+  /**
+   * Return a fully-qualified projectPhoneNumber resource name string.
+   *
+   * @param {string} project
+   * @param {string} phone_number
+   * @returns {string} Resource name string.
+   */
+  projectPhoneNumberPath(project:string,phoneNumber:string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.render({
+      project: project,
+      phone_number: phoneNumber,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectPhoneNumber resource.
+   *
+   * @param {string} projectPhoneNumberName
+   *   A fully-qualified path representing project_phone_number resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectPhoneNumberName(projectPhoneNumberName: string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.match(projectPhoneNumberName).project;
+  }
+
+  /**
+   * Parse the phone_number from ProjectPhoneNumber resource.
+   *
+   * @param {string} projectPhoneNumberName
+   *   A fully-qualified path representing project_phone_number resource.
+   * @returns {string} A string representing the phone_number.
+   */
+  matchPhoneNumberFromProjectPhoneNumberName(projectPhoneNumberName: string) {
+    return this.pathTemplates.projectPhoneNumberPathTemplate.match(projectPhoneNumberName).phone_number;
+  }
+
+  /**
+   * Return a fully-qualified sipTrunk resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} siptrunk
+   * @returns {string} Resource name string.
+   */
+  sipTrunkPath(project:string,location:string,siptrunk:string) {
+    return this.pathTemplates.sipTrunkPathTemplate.render({
+      project: project,
+      location: location,
+      siptrunk: siptrunk,
+    });
+  }
+
+  /**
+   * Parse the project from SipTrunk resource.
+   *
+   * @param {string} sipTrunkName
+   *   A fully-qualified path representing SipTrunk resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromSipTrunkName(sipTrunkName: string) {
+    return this.pathTemplates.sipTrunkPathTemplate.match(sipTrunkName).project;
+  }
+
+  /**
+   * Parse the location from SipTrunk resource.
+   *
+   * @param {string} sipTrunkName
+   *   A fully-qualified path representing SipTrunk resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromSipTrunkName(sipTrunkName: string) {
+    return this.pathTemplates.sipTrunkPathTemplate.match(sipTrunkName).location;
+  }
+
+  /**
+   * Parse the siptrunk from SipTrunk resource.
+   *
+   * @param {string} sipTrunkName
+   *   A fully-qualified path representing SipTrunk resource.
+   * @returns {string} A string representing the siptrunk.
+   */
+  matchSiptrunkFromSipTrunkName(sipTrunkName: string) {
+    return this.pathTemplates.sipTrunkPathTemplate.match(sipTrunkName).siptrunk;
   }
 
   /**
@@ -4097,9 +4080,10 @@ export class ConversationsClient {
   close(): Promise<void> {
     if (this.conversationsStub && !this._terminated) {
       return this.conversationsStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
-        this.locationsClient.close();
+        this.locationsClient.close().catch(err => {throw err});
       });
     }
     return Promise.resolve();

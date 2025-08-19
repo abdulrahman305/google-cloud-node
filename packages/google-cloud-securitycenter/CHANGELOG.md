@@ -4,6 +4,87 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/security-center?activeTab=versions
 
+## [9.1.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v9.0.1...security-center-v9.1.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6423](https://github.com/googleapis/google-cloud-node/issues/6423)) ([df9184f](https://github.com/googleapis/google-cloud-node/commit/df9184fe9fb00013ef519f093c4de5fd54ec2ce9))
+* [securitycenter] Add AffectedResources proto ([#6456](https://github.com/googleapis/google-cloud-node/issues/6456)) ([ed5e825](https://github.com/googleapis/google-cloud-node/commit/ed5e825efe5be0728a1394f8b9f1a760ca1e7fa2))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @google-cloud/pubsub to v5 ([#6311](https://github.com/googleapis/google-cloud-node/issues/6311)) ([1f69d9a](https://github.com/googleapis/google-cloud-node/commit/1f69d9a5e789b4c76c1fbd7700a5da12ce0b956e))
+
+## [9.0.1](https://github.com/googleapis/google-cloud-node/compare/security-center-v9.0.0...security-center-v9.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6188](https://github.com/googleapis/google-cloud-node/issues/6188)) ([a73cdbf](https://github.com/googleapis/google-cloud-node/commit/a73cdbfe33d5ba9952f0c87cb9d5d12ee8753dd2))
+
+## [9.0.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.12.1...security-center-v9.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([eed00f4](https://github.com/googleapis/google-cloud-node/commit/eed00f4e4de22392db3a440a20486c3eeb9d33a6))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [8.12.1](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.12.0...security-center-v8.12.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6018](https://github.com/googleapis/google-cloud-node/issues/6018)) ([9dc5856](https://github.com/googleapis/google-cloud-node/commit/9dc585661489f51bb7a85b39519fd8b11dfffc5b))
+
+## [8.12.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.11.0...security-center-v8.12.0) (2024-08-09)
+
+
+### Features
+
+* [securitycenter] enable Dynamic Mute ([#5599](https://github.com/googleapis/google-cloud-node/issues/5599)) ([749e7e4](https://github.com/googleapis/google-cloud-node/commit/749e7e4db0ab80265c6d7446890b2522916609aa))
+* [securitycenter] enable Dynamic Mute ([#5602](https://github.com/googleapis/google-cloud-node/issues/5602)) ([8e6307c](https://github.com/googleapis/google-cloud-node/commit/8e6307ced48b9bb569c45702c52de91959338eb5))
+
+## [8.11.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.10.0...security-center-v8.11.0) (2024-07-10)
+
+
+### Features
+
+* [securitycenter] added cloud provider field to list findings response ([#5529](https://github.com/googleapis/google-cloud-node/issues/5529)) ([63f8e88](https://github.com/googleapis/google-cloud-node/commit/63f8e88a7cd2f64bfc39aa26a1bfe24963285e1b))
+
+## [8.10.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.9.0...security-center-v8.10.0) (2024-06-27)
+
+
+### Features
+
+* [securitycenter] added cloud provider field to list findings response ([#5507](https://github.com/googleapis/google-cloud-node/issues/5507)) ([9e8416f](https://github.com/googleapis/google-cloud-node/commit/9e8416fe9c4c401119910fb5867b5b445e8224e7))
+* Added http configuration rule to ResourceValueConfig and ValuedResource API methods ([9e8416f](https://github.com/googleapis/google-cloud-node/commit/9e8416fe9c4c401119910fb5867b5b445e8224e7))
+* Added toxic combination field to finding ([9e8416f](https://github.com/googleapis/google-cloud-node/commit/9e8416fe9c4c401119910fb5867b5b445e8224e7))
+
+## [8.9.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.8.0...security-center-v8.9.0) (2024-06-26)
+
+
+### Features
+
+* [securitycenter] Add toxic_combination and group_memberships fields to finding ([#5495](https://github.com/googleapis/google-cloud-node/issues/5495)) ([41a96b4](https://github.com/googleapis/google-cloud-node/commit/41a96b4231d6b98fac2c06ea8686597789ef6b1c))
+
 ## [8.8.0](https://github.com/googleapis/google-cloud-node/compare/security-center-v8.7.0...security-center-v8.8.0) (2024-05-21)
 
 

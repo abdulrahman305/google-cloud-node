@@ -5,6 +5,74 @@
   "protoPackage": "google.cloud.networkmanagement.v1beta1",
   "libraryPackage": "@google-cloud/network-management",
   "services": {
+    "OrganizationVpcFlowLogsService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "OrganizationVpcFlowLogsServiceClient",
+          "rpcs": {
+            "GetVpcFlowLogsConfig": {
+              "methods": [
+                "getVpcFlowLogsConfig"
+              ]
+            },
+            "CreateVpcFlowLogsConfig": {
+              "methods": [
+                "createVpcFlowLogsConfig"
+              ]
+            },
+            "UpdateVpcFlowLogsConfig": {
+              "methods": [
+                "updateVpcFlowLogsConfig"
+              ]
+            },
+            "DeleteVpcFlowLogsConfig": {
+              "methods": [
+                "deleteVpcFlowLogsConfig"
+              ]
+            },
+            "ListVpcFlowLogsConfigs": {
+              "methods": [
+                "listVpcFlowLogsConfigs",
+                "listVpcFlowLogsConfigsStream",
+                "listVpcFlowLogsConfigsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "OrganizationVpcFlowLogsServiceClient",
+          "rpcs": {
+            "GetVpcFlowLogsConfig": {
+              "methods": [
+                "getVpcFlowLogsConfig"
+              ]
+            },
+            "CreateVpcFlowLogsConfig": {
+              "methods": [
+                "createVpcFlowLogsConfig"
+              ]
+            },
+            "UpdateVpcFlowLogsConfig": {
+              "methods": [
+                "updateVpcFlowLogsConfig"
+              ]
+            },
+            "DeleteVpcFlowLogsConfig": {
+              "methods": [
+                "deleteVpcFlowLogsConfig"
+              ]
+            },
+            "ListVpcFlowLogsConfigs": {
+              "methods": [
+                "listVpcFlowLogsConfigs",
+                "listVpcFlowLogsConfigsStream",
+                "listVpcFlowLogsConfigsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "ReachabilityService": {
       "clients": {
         "grpc": {
@@ -77,6 +145,88 @@
                 "listConnectivityTests",
                 "listConnectivityTestsStream",
                 "listConnectivityTestsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "VpcFlowLogsService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "VpcFlowLogsServiceClient",
+          "rpcs": {
+            "GetVpcFlowLogsConfig": {
+              "methods": [
+                "getVpcFlowLogsConfig"
+              ]
+            },
+            "CreateVpcFlowLogsConfig": {
+              "methods": [
+                "createVpcFlowLogsConfig"
+              ]
+            },
+            "UpdateVpcFlowLogsConfig": {
+              "methods": [
+                "updateVpcFlowLogsConfig"
+              ]
+            },
+            "DeleteVpcFlowLogsConfig": {
+              "methods": [
+                "deleteVpcFlowLogsConfig"
+              ]
+            },
+            "ListVpcFlowLogsConfigs": {
+              "methods": [
+                "listVpcFlowLogsConfigs",
+                "listVpcFlowLogsConfigsStream",
+                "listVpcFlowLogsConfigsAsync"
+              ]
+            },
+            "QueryOrgVpcFlowLogsConfigs": {
+              "methods": [
+                "queryOrgVpcFlowLogsConfigs",
+                "queryOrgVpcFlowLogsConfigsStream",
+                "queryOrgVpcFlowLogsConfigsAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "VpcFlowLogsServiceClient",
+          "rpcs": {
+            "GetVpcFlowLogsConfig": {
+              "methods": [
+                "getVpcFlowLogsConfig"
+              ]
+            },
+            "CreateVpcFlowLogsConfig": {
+              "methods": [
+                "createVpcFlowLogsConfig"
+              ]
+            },
+            "UpdateVpcFlowLogsConfig": {
+              "methods": [
+                "updateVpcFlowLogsConfig"
+              ]
+            },
+            "DeleteVpcFlowLogsConfig": {
+              "methods": [
+                "deleteVpcFlowLogsConfig"
+              ]
+            },
+            "ListVpcFlowLogsConfigs": {
+              "methods": [
+                "listVpcFlowLogsConfigs",
+                "listVpcFlowLogsConfigsStream",
+                "listVpcFlowLogsConfigsAsync"
+              ]
+            },
+            "QueryOrgVpcFlowLogsConfigs": {
+              "methods": [
+                "queryOrgVpcFlowLogsConfigs",
+                "queryOrgVpcFlowLogsConfigsStream",
+                "queryOrgVpcFlowLogsConfigsAsync"
               ]
             }
           }

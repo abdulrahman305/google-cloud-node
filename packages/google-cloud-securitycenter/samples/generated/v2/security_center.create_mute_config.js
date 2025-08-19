@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ function main(parent, muteConfig, muteConfigId) {
    */
   /**
    *  Required. Resource name of the new mute configs's parent. Its format is
-   *  "organizations/[organization_id]/locations/[location_id]",
-   *  "folders/[folder_id]/locations/[location_id]", or
-   *  "projects/[project_id]/locations/[location_id]".
+   *  `organizations/[organization_id]/locations/[location_id]`,
+   *  `folders/[folder_id]/locations/[location_id]`, or
+   *  `projects/[project_id]/locations/[location_id]`.
    */
   // const parent = 'abc123'
   /**

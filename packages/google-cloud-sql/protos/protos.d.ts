@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -650,6 +650,9 @@ export namespace google {
 
                     /** BackupRun timeZone */
                     timeZone?: (string|null);
+
+                    /** BackupRun maxChargeableBytes */
+                    maxChargeableBytes?: (number|Long|string|null);
                 }
 
                 /** Represents a BackupRun. */
@@ -711,6 +714,9 @@ export namespace google {
 
                     /** BackupRun timeZone. */
                     public timeZone: string;
+
+                    /** BackupRun maxChargeableBytes. */
+                    public maxChargeableBytes?: (number|Long|string|null);
 
                     /**
                      * Creates a new BackupRun instance using the specified properties.
@@ -1347,9 +1353,6 @@ export namespace google {
 
                     /** BackupConfiguration transactionalLogStorageState. */
                     public transactionalLogStorageState?: (google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState|keyof typeof google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState|null);
-
-                    /** BackupConfiguration _transactionalLogStorageState. */
-                    public _transactionalLogStorageState?: "transactionalLogStorageState";
 
                     /**
                      * Creates a new BackupConfiguration instance using the specified properties.
@@ -2821,6 +2824,9 @@ export namespace google {
 
                         /** SqlExportOptions parallel */
                         parallel?: (google.protobuf.IBoolValue|null);
+
+                        /** SqlExportOptions postgresExportOptions */
+                        postgresExportOptions?: (google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions|null);
                     }
 
                     /** Represents a SqlExportOptions. */
@@ -2846,6 +2852,9 @@ export namespace google {
 
                         /** SqlExportOptions parallel. */
                         public parallel?: (google.protobuf.IBoolValue|null);
+
+                        /** SqlExportOptions postgresExportOptions. */
+                        public postgresExportOptions?: (google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions|null);
 
                         /**
                          * Creates a new SqlExportOptions instance using the specified properties.
@@ -3018,6 +3027,109 @@ export namespace google {
 
                             /**
                              * Gets the default type url for MysqlExportOptions
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
+
+                        /** Properties of a PostgresExportOptions. */
+                        interface IPostgresExportOptions {
+
+                            /** PostgresExportOptions clean */
+                            clean?: (google.protobuf.IBoolValue|null);
+
+                            /** PostgresExportOptions ifExists */
+                            ifExists?: (google.protobuf.IBoolValue|null);
+                        }
+
+                        /** Represents a PostgresExportOptions. */
+                        class PostgresExportOptions implements IPostgresExportOptions {
+
+                            /**
+                             * Constructs a new PostgresExportOptions.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions);
+
+                            /** PostgresExportOptions clean. */
+                            public clean?: (google.protobuf.IBoolValue|null);
+
+                            /** PostgresExportOptions ifExists. */
+                            public ifExists?: (google.protobuf.IBoolValue|null);
+
+                            /**
+                             * Creates a new PostgresExportOptions instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns PostgresExportOptions instance
+                             */
+                            public static create(properties?: google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions): google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions;
+
+                            /**
+                             * Encodes the specified PostgresExportOptions message. Does not implicitly {@link google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions.verify|verify} messages.
+                             * @param message PostgresExportOptions message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified PostgresExportOptions message, length delimited. Does not implicitly {@link google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions.verify|verify} messages.
+                             * @param message PostgresExportOptions message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.sql.v1.ExportContext.SqlExportOptions.IPostgresExportOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a PostgresExportOptions message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns PostgresExportOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions;
+
+                            /**
+                             * Decodes a PostgresExportOptions message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns PostgresExportOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions;
+
+                            /**
+                             * Verifies a PostgresExportOptions message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a PostgresExportOptions message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns PostgresExportOptions
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions;
+
+                            /**
+                             * Creates a plain object from a PostgresExportOptions message. Also converts values to other types if specified.
+                             * @param message PostgresExportOptions
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this PostgresExportOptions to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for PostgresExportOptions
                              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                              * @returns The default type url
                              */
@@ -3296,6 +3408,9 @@ export namespace google {
 
                         /** SqlImportOptions parallel */
                         parallel?: (google.protobuf.IBoolValue|null);
+
+                        /** SqlImportOptions postgresImportOptions */
+                        postgresImportOptions?: (google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions|null);
                     }
 
                     /** Represents a SqlImportOptions. */
@@ -3312,6 +3427,9 @@ export namespace google {
 
                         /** SqlImportOptions parallel. */
                         public parallel?: (google.protobuf.IBoolValue|null);
+
+                        /** SqlImportOptions postgresImportOptions. */
+                        public postgresImportOptions?: (google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions|null);
 
                         /**
                          * Creates a new SqlImportOptions instance using the specified properties.
@@ -3389,6 +3507,112 @@ export namespace google {
                          * @returns The default type url
                          */
                         public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    namespace SqlImportOptions {
+
+                        /** Properties of a PostgresImportOptions. */
+                        interface IPostgresImportOptions {
+
+                            /** PostgresImportOptions clean */
+                            clean?: (google.protobuf.IBoolValue|null);
+
+                            /** PostgresImportOptions ifExists */
+                            ifExists?: (google.protobuf.IBoolValue|null);
+                        }
+
+                        /** Represents a PostgresImportOptions. */
+                        class PostgresImportOptions implements IPostgresImportOptions {
+
+                            /**
+                             * Constructs a new PostgresImportOptions.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions);
+
+                            /** PostgresImportOptions clean. */
+                            public clean?: (google.protobuf.IBoolValue|null);
+
+                            /** PostgresImportOptions ifExists. */
+                            public ifExists?: (google.protobuf.IBoolValue|null);
+
+                            /**
+                             * Creates a new PostgresImportOptions instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns PostgresImportOptions instance
+                             */
+                            public static create(properties?: google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions): google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions;
+
+                            /**
+                             * Encodes the specified PostgresImportOptions message. Does not implicitly {@link google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions.verify|verify} messages.
+                             * @param message PostgresImportOptions message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified PostgresImportOptions message, length delimited. Does not implicitly {@link google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions.verify|verify} messages.
+                             * @param message PostgresImportOptions message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.sql.v1.ImportContext.SqlImportOptions.IPostgresImportOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a PostgresImportOptions message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns PostgresImportOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions;
+
+                            /**
+                             * Decodes a PostgresImportOptions message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns PostgresImportOptions
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions;
+
+                            /**
+                             * Verifies a PostgresImportOptions message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a PostgresImportOptions message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns PostgresImportOptions
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions;
+
+                            /**
+                             * Creates a plain object from a PostgresImportOptions message. Also converts values to other types if specified.
+                             * @param message PostgresImportOptions
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this PostgresImportOptions to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+
+                            /**
+                             * Gets the default type url for PostgresImportOptions
+                             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns The default type url
+                             */
+                            public static getTypeUrl(typeUrlPrefix?: string): string;
+                        }
                     }
 
                     /** Properties of a SqlCsvImportOptions. */
@@ -3798,6 +4022,9 @@ export namespace google {
 
                     /** IpConfiguration pscConfig */
                     pscConfig?: (google.cloud.sql.v1.IPscConfig|null);
+
+                    /** IpConfiguration serverCaMode */
+                    serverCaMode?: (google.cloud.sql.v1.IpConfiguration.CaMode|keyof typeof google.cloud.sql.v1.IpConfiguration.CaMode|null);
                 }
 
                 /** Represents an IpConfiguration. */
@@ -3833,8 +4060,8 @@ export namespace google {
                     /** IpConfiguration pscConfig. */
                     public pscConfig?: (google.cloud.sql.v1.IPscConfig|null);
 
-                    /** IpConfiguration _pscConfig. */
-                    public _pscConfig?: "pscConfig";
+                    /** IpConfiguration serverCaMode. */
+                    public serverCaMode?: (google.cloud.sql.v1.IpConfiguration.CaMode|keyof typeof google.cloud.sql.v1.IpConfiguration.CaMode|null);
 
                     /**
                      * Creates a new IpConfiguration instance using the specified properties.
@@ -3923,6 +4150,13 @@ export namespace google {
                         ENCRYPTED_ONLY = 2,
                         TRUSTED_CLIENT_CERTIFICATE_REQUIRED = 3
                     }
+
+                    /** CaMode enum. */
+                    enum CaMode {
+                        CA_MODE_UNSPECIFIED = 0,
+                        GOOGLE_MANAGED_INTERNAL_CA = 1,
+                        GOOGLE_MANAGED_CAS_CA = 2
+                    }
                 }
 
                 /** Properties of a PscConfig. */
@@ -3949,9 +4183,6 @@ export namespace google {
 
                     /** PscConfig allowedConsumerProjects. */
                     public allowedConsumerProjects: string[];
-
-                    /** PscConfig _pscEnabled. */
-                    public _pscEnabled?: "pscEnabled";
 
                     /**
                      * Creates a new PscConfig instance using the specified properties.
@@ -5209,7 +5440,9 @@ export namespace google {
                         RELEASE_SSRS_LEASE = 43,
                         RECONFIGURE_OLD_PRIMARY = 44,
                         CLUSTER_MAINTENANCE = 45,
-                        SELF_SERVICE_MAINTENANCE = 46
+                        SELF_SERVICE_MAINTENANCE = 46,
+                        SWITCHOVER_TO_REPLICA = 47,
+                        MAJOR_VERSION_UPGRADE = 48
                     }
 
                     /** SqlOperationStatus enum. */
@@ -5773,6 +6006,9 @@ export namespace google {
 
                     /** Settings enableGoogleMlIntegration */
                     enableGoogleMlIntegration?: (google.protobuf.IBoolValue|null);
+
+                    /** Settings enableDataplexIntegration */
+                    enableDataplexIntegration?: (google.protobuf.IBoolValue|null);
                 }
 
                 /** Represents a Settings. */
@@ -5882,6 +6118,9 @@ export namespace google {
 
                     /** Settings enableGoogleMlIntegration. */
                     public enableGoogleMlIntegration?: (google.protobuf.IBoolValue|null);
+
+                    /** Settings enableDataplexIntegration. */
+                    public enableDataplexIntegration?: (google.protobuf.IBoolValue|null);
 
                     /**
                      * Creates a new Settings instance using the specified properties.
@@ -6584,6 +6823,7 @@ export namespace google {
                     POSTGRES_13 = 23,
                     POSTGRES_14 = 110,
                     POSTGRES_15 = 172,
+                    POSTGRES_16 = 272,
                     MYSQL_8_0 = 20,
                     MYSQL_8_0_18 = 41,
                     MYSQL_8_0_26 = 85,
@@ -6602,6 +6842,7 @@ export namespace google {
                     MYSQL_8_0_39 = 357,
                     MYSQL_8_0_40 = 358,
                     MYSQL_8_4 = 398,
+                    MYSQL_8_4_0 = 399,
                     SQLSERVER_2019_STANDARD = 26,
                     SQLSERVER_2019_ENTERPRISE = 27,
                     SQLSERVER_2019_EXPRESS = 28,
@@ -6685,18 +6926,6 @@ export namespace google {
 
                     /** AcquireSsrsLeaseContext duration. */
                     public duration?: (google.protobuf.IDuration|null);
-
-                    /** AcquireSsrsLeaseContext _setupLogin. */
-                    public _setupLogin?: "setupLogin";
-
-                    /** AcquireSsrsLeaseContext _serviceLogin. */
-                    public _serviceLogin?: "serviceLogin";
-
-                    /** AcquireSsrsLeaseContext _reportDatabase. */
-                    public _reportDatabase?: "reportDatabase";
-
-                    /** AcquireSsrsLeaseContext _duration. */
-                    public _duration?: "duration";
 
                     /**
                      * Creates a new AcquireSsrsLeaseContext instance using the specified properties.
@@ -6977,6 +7206,9 @@ export namespace google {
 
                     /** ConnectSettings dnsName */
                     dnsName?: (string|null);
+
+                    /** ConnectSettings serverCaMode */
+                    serverCaMode?: (google.cloud.sql.v1.ConnectSettings.CaMode|keyof typeof google.cloud.sql.v1.ConnectSettings.CaMode|null);
                 }
 
                 /** Represents a ConnectSettings. */
@@ -7011,6 +7243,9 @@ export namespace google {
 
                     /** ConnectSettings dnsName. */
                     public dnsName: string;
+
+                    /** ConnectSettings serverCaMode. */
+                    public serverCaMode: (google.cloud.sql.v1.ConnectSettings.CaMode|keyof typeof google.cloud.sql.v1.ConnectSettings.CaMode);
 
                     /**
                      * Creates a new ConnectSettings instance using the specified properties.
@@ -7088,6 +7323,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace ConnectSettings {
+
+                    /** CaMode enum. */
+                    enum CaMode {
+                        CA_MODE_UNSPECIFIED = 0,
+                        GOOGLE_MANAGED_INTERNAL_CA = 1,
+                        GOOGLE_MANAGED_CAS_CA = 2
+                    }
                 }
 
                 /** Properties of a GenerateEphemeralCertRequest. */
@@ -12126,9 +12371,6 @@ export namespace google {
                     /** InstancesReencryptRequest backupReencryptionConfig. */
                     public backupReencryptionConfig?: (google.cloud.sql.v1.IBackupReencryptionConfig|null);
 
-                    /** InstancesReencryptRequest _backupReencryptionConfig. */
-                    public _backupReencryptionConfig?: "backupReencryptionConfig";
-
                     /**
                      * Creates a new InstancesReencryptRequest instance using the specified properties.
                      * @param [properties] Properties to set
@@ -12231,12 +12473,6 @@ export namespace google {
 
                     /** BackupReencryptionConfig backupType. */
                     public backupType?: (google.cloud.sql.v1.BackupReencryptionConfig.BackupType|keyof typeof google.cloud.sql.v1.BackupReencryptionConfig.BackupType|null);
-
-                    /** BackupReencryptionConfig _backupLimit. */
-                    public _backupLimit?: "backupLimit";
-
-                    /** BackupReencryptionConfig _backupType. */
-                    public _backupType?: "backupType";
 
                     /**
                      * Creates a new BackupReencryptionConfig instance using the specified properties.
@@ -14726,9 +14962,6 @@ export namespace google {
                     /** CloneContext preferredZone. */
                     public preferredZone?: (string|null);
 
-                    /** CloneContext _preferredZone. */
-                    public _preferredZone?: "preferredZone";
-
                     /**
                      * Creates a new CloneContext instance using the specified properties.
                      * @param [properties] Properties to set
@@ -15027,6 +15260,9 @@ export namespace google {
                     /** DatabaseInstance maintenanceVersion */
                     maintenanceVersion?: (string|null);
 
+                    /** DatabaseInstance upgradableDatabaseVersions */
+                    upgradableDatabaseVersions?: (google.cloud.sql.v1.IAvailableDatabaseVersion[]|null);
+
                     /** DatabaseInstance sqlNetworkArchitecture */
                     sqlNetworkArchitecture?: (google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture|keyof typeof google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture|null);
 
@@ -15047,6 +15283,12 @@ export namespace google {
 
                     /** DatabaseInstance geminiConfig */
                     geminiConfig?: (google.cloud.sql.v1.IGeminiInstanceConfig|null);
+
+                    /** DatabaseInstance satisfiesPzi */
+                    satisfiesPzi?: (google.protobuf.IBoolValue|null);
+
+                    /** DatabaseInstance switchTransactionLogsToCloudStorageEnabled */
+                    switchTransactionLogsToCloudStorageEnabled?: (google.protobuf.IBoolValue|null);
                 }
 
                 /** Represents a DatabaseInstance. */
@@ -15166,6 +15408,9 @@ export namespace google {
                     /** DatabaseInstance maintenanceVersion. */
                     public maintenanceVersion: string;
 
+                    /** DatabaseInstance upgradableDatabaseVersions. */
+                    public upgradableDatabaseVersions: google.cloud.sql.v1.IAvailableDatabaseVersion[];
+
                     /** DatabaseInstance sqlNetworkArchitecture. */
                     public sqlNetworkArchitecture?: (google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture|keyof typeof google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture|null);
 
@@ -15187,26 +15432,11 @@ export namespace google {
                     /** DatabaseInstance geminiConfig. */
                     public geminiConfig?: (google.cloud.sql.v1.IGeminiInstanceConfig|null);
 
-                    /** DatabaseInstance _outOfDiskReport. */
-                    public _outOfDiskReport?: "outOfDiskReport";
+                    /** DatabaseInstance satisfiesPzi. */
+                    public satisfiesPzi?: (google.protobuf.IBoolValue|null);
 
-                    /** DatabaseInstance _sqlNetworkArchitecture. */
-                    public _sqlNetworkArchitecture?: "sqlNetworkArchitecture";
-
-                    /** DatabaseInstance _pscServiceAttachmentLink. */
-                    public _pscServiceAttachmentLink?: "pscServiceAttachmentLink";
-
-                    /** DatabaseInstance _dnsName. */
-                    public _dnsName?: "dnsName";
-
-                    /** DatabaseInstance _primaryDnsName. */
-                    public _primaryDnsName?: "primaryDnsName";
-
-                    /** DatabaseInstance _writeEndpoint. */
-                    public _writeEndpoint?: "writeEndpoint";
-
-                    /** DatabaseInstance _geminiConfig. */
-                    public _geminiConfig?: "geminiConfig";
+                    /** DatabaseInstance switchTransactionLogsToCloudStorageEnabled. */
+                    public switchTransactionLogsToCloudStorageEnabled?: (google.protobuf.IBoolValue|null);
 
                     /**
                      * Creates a new DatabaseInstance instance using the specified properties.
@@ -15440,9 +15670,6 @@ export namespace google {
                         /** SqlScheduledMaintenance scheduleDeadlineTime. */
                         public scheduleDeadlineTime?: (google.protobuf.ITimestamp|null);
 
-                        /** SqlScheduledMaintenance _scheduleDeadlineTime. */
-                        public _scheduleDeadlineTime?: "scheduleDeadlineTime";
-
                         /**
                          * Creates a new SqlScheduledMaintenance instance using the specified properties.
                          * @param [properties] Properties to set
@@ -15545,12 +15772,6 @@ export namespace google {
 
                         /** SqlOutOfDiskReport sqlMinRecommendedIncreaseSizeGb. */
                         public sqlMinRecommendedIncreaseSizeGb?: (number|null);
-
-                        /** SqlOutOfDiskReport _sqlOutOfDiskState. */
-                        public _sqlOutOfDiskState?: "sqlOutOfDiskState";
-
-                        /** SqlOutOfDiskReport _sqlMinRecommendedIncreaseSizeGb. */
-                        public _sqlMinRecommendedIncreaseSizeGb?: "sqlMinRecommendedIncreaseSizeGb";
 
                         /**
                          * Creates a new SqlOutOfDiskReport instance using the specified properties.
@@ -15697,24 +15918,6 @@ export namespace google {
                     /** GeminiInstanceConfig flagRecommenderEnabled. */
                     public flagRecommenderEnabled?: (boolean|null);
 
-                    /** GeminiInstanceConfig _entitled. */
-                    public _entitled?: "entitled";
-
-                    /** GeminiInstanceConfig _googleVacuumMgmtEnabled. */
-                    public _googleVacuumMgmtEnabled?: "googleVacuumMgmtEnabled";
-
-                    /** GeminiInstanceConfig _oomSessionCancelEnabled. */
-                    public _oomSessionCancelEnabled?: "oomSessionCancelEnabled";
-
-                    /** GeminiInstanceConfig _activeQueryEnabled. */
-                    public _activeQueryEnabled?: "activeQueryEnabled";
-
-                    /** GeminiInstanceConfig _indexAdvisorEnabled. */
-                    public _indexAdvisorEnabled?: "indexAdvisorEnabled";
-
-                    /** GeminiInstanceConfig _flagRecommenderEnabled. */
-                    public _flagRecommenderEnabled?: "flagRecommenderEnabled";
-
                     /**
                      * Creates a new GeminiInstanceConfig instance using the specified properties.
                      * @param [properties] Properties to set
@@ -15796,6 +15999,9 @@ export namespace google {
                 /** Properties of a ReplicationCluster. */
                 interface IReplicationCluster {
 
+                    /** ReplicationCluster psaWriteEndpoint */
+                    psaWriteEndpoint?: (string|null);
+
                     /** ReplicationCluster failoverDrReplicaName */
                     failoverDrReplicaName?: (string|null);
 
@@ -15811,6 +16017,9 @@ export namespace google {
                      * @param [properties] Properties to set
                      */
                     constructor(properties?: google.cloud.sql.v1.IReplicationCluster);
+
+                    /** ReplicationCluster psaWriteEndpoint. */
+                    public psaWriteEndpoint: string;
 
                     /** ReplicationCluster failoverDrReplicaName. */
                     public failoverDrReplicaName: string;
@@ -15890,6 +16099,115 @@ export namespace google {
 
                     /**
                      * Gets the default type url for ReplicationCluster
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AvailableDatabaseVersion. */
+                interface IAvailableDatabaseVersion {
+
+                    /** AvailableDatabaseVersion majorVersion */
+                    majorVersion?: (string|null);
+
+                    /** AvailableDatabaseVersion name */
+                    name?: (string|null);
+
+                    /** AvailableDatabaseVersion displayName */
+                    displayName?: (string|null);
+                }
+
+                /** Represents an AvailableDatabaseVersion. */
+                class AvailableDatabaseVersion implements IAvailableDatabaseVersion {
+
+                    /**
+                     * Constructs a new AvailableDatabaseVersion.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.sql.v1.IAvailableDatabaseVersion);
+
+                    /** AvailableDatabaseVersion majorVersion. */
+                    public majorVersion?: (string|null);
+
+                    /** AvailableDatabaseVersion name. */
+                    public name?: (string|null);
+
+                    /** AvailableDatabaseVersion displayName. */
+                    public displayName?: (string|null);
+
+                    /**
+                     * Creates a new AvailableDatabaseVersion instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AvailableDatabaseVersion instance
+                     */
+                    public static create(properties?: google.cloud.sql.v1.IAvailableDatabaseVersion): google.cloud.sql.v1.AvailableDatabaseVersion;
+
+                    /**
+                     * Encodes the specified AvailableDatabaseVersion message. Does not implicitly {@link google.cloud.sql.v1.AvailableDatabaseVersion.verify|verify} messages.
+                     * @param message AvailableDatabaseVersion message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.sql.v1.IAvailableDatabaseVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AvailableDatabaseVersion message, length delimited. Does not implicitly {@link google.cloud.sql.v1.AvailableDatabaseVersion.verify|verify} messages.
+                     * @param message AvailableDatabaseVersion message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.sql.v1.IAvailableDatabaseVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AvailableDatabaseVersion message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AvailableDatabaseVersion
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.sql.v1.AvailableDatabaseVersion;
+
+                    /**
+                     * Decodes an AvailableDatabaseVersion message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AvailableDatabaseVersion
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.sql.v1.AvailableDatabaseVersion;
+
+                    /**
+                     * Verifies an AvailableDatabaseVersion message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AvailableDatabaseVersion message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AvailableDatabaseVersion
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.sql.v1.AvailableDatabaseVersion;
+
+                    /**
+                     * Creates a plain object from an AvailableDatabaseVersion message. Also converts values to other types if specified.
+                     * @param message AvailableDatabaseVersion
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.sql.v1.AvailableDatabaseVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AvailableDatabaseVersion to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AvailableDatabaseVersion
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -16912,7 +17230,12 @@ export namespace google {
                         PG_SUBSCRIPTION_COUNT = 41,
                         PG_SYNC_PARALLEL_LEVEL = 42,
                         INSUFFICIENT_DISK_SIZE = 43,
-                        INSUFFICIENT_MACHINE_TIER = 44
+                        INSUFFICIENT_MACHINE_TIER = 44,
+                        UNSUPPORTED_EXTENSIONS_NOT_MIGRATED = 45,
+                        EXTENSIONS_NOT_MIGRATED = 46,
+                        PG_CRON_FLAG_ENABLED_IN_REPLICA = 47,
+                        EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48,
+                        UNSUPPORTED_COLUMNS = 49
                     }
                 }
 
@@ -20353,9 +20676,6 @@ export namespace google {
 
                     /** User userDetails. */
                     public userDetails?: "sqlserverUserDetails";
-
-                    /** User _dualPasswordType. */
-                    public _dualPasswordType?: "dualPasswordType";
 
                     /**
                      * Creates a new User instance using the specified properties.
@@ -25579,9 +25899,6 @@ export namespace google {
                     /** InstancesReencryptRequest backupReencryptionConfig. */
                     public backupReencryptionConfig?: (google.cloud.sql.v1beta4.IBackupReencryptionConfig|null);
 
-                    /** InstancesReencryptRequest _backupReencryptionConfig. */
-                    public _backupReencryptionConfig?: "backupReencryptionConfig";
-
                     /**
                      * Creates a new InstancesReencryptRequest instance using the specified properties.
                      * @param [properties] Properties to set
@@ -25684,12 +26001,6 @@ export namespace google {
 
                     /** BackupReencryptionConfig backupType. */
                     public backupType?: (google.cloud.sql.v1beta4.BackupReencryptionConfig.BackupType|keyof typeof google.cloud.sql.v1beta4.BackupReencryptionConfig.BackupType|null);
-
-                    /** BackupReencryptionConfig _backupLimit. */
-                    public _backupLimit?: "backupLimit";
-
-                    /** BackupReencryptionConfig _backupType. */
-                    public _backupType?: "backupType";
 
                     /**
                      * Creates a new BackupReencryptionConfig instance using the specified properties.
@@ -27900,9 +28211,6 @@ export namespace google {
                     /** SqlInstancesAcquireSsrsLeaseResponse operationId. */
                     public operationId?: (string|null);
 
-                    /** SqlInstancesAcquireSsrsLeaseResponse _operationId. */
-                    public _operationId?: "operationId";
-
                     /**
                      * Creates a new SqlInstancesAcquireSsrsLeaseResponse instance using the specified properties.
                      * @param [properties] Properties to set
@@ -28401,9 +28709,6 @@ export namespace google {
 
                     /** BackupConfiguration transactionalLogStorageState. */
                     public transactionalLogStorageState?: (google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState|keyof typeof google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState|null);
-
-                    /** BackupConfiguration _transactionalLogStorageState. */
-                    public _transactionalLogStorageState?: "transactionalLogStorageState";
 
                     /**
                      * Creates a new BackupConfiguration instance using the specified properties.
@@ -29035,6 +29340,9 @@ export namespace google {
 
                     /** CloneContext preferredZone */
                     preferredZone?: (string|null);
+
+                    /** CloneContext preferredSecondaryZone */
+                    preferredSecondaryZone?: (string|null);
                 }
 
                 /** Represents a CloneContext. */
@@ -29070,8 +29378,8 @@ export namespace google {
                     /** CloneContext preferredZone. */
                     public preferredZone?: (string|null);
 
-                    /** CloneContext _preferredZone. */
-                    public _preferredZone?: "preferredZone";
+                    /** CloneContext preferredSecondaryZone. */
+                    public preferredSecondaryZone?: (string|null);
 
                     /**
                      * Creates a new CloneContext instance using the specified properties.
@@ -29828,6 +30136,9 @@ export namespace google {
                     /** DatabaseInstance maintenanceVersion */
                     maintenanceVersion?: (string|null);
 
+                    /** DatabaseInstance upgradableDatabaseVersions */
+                    upgradableDatabaseVersions?: (google.cloud.sql.v1beta4.IAvailableDatabaseVersion[]|null);
+
                     /** DatabaseInstance sqlNetworkArchitecture */
                     sqlNetworkArchitecture?: (google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture|keyof typeof google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture|null);
 
@@ -29967,6 +30278,9 @@ export namespace google {
                     /** DatabaseInstance maintenanceVersion. */
                     public maintenanceVersion: string;
 
+                    /** DatabaseInstance upgradableDatabaseVersions. */
+                    public upgradableDatabaseVersions: google.cloud.sql.v1beta4.IAvailableDatabaseVersion[];
+
                     /** DatabaseInstance sqlNetworkArchitecture. */
                     public sqlNetworkArchitecture?: (google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture|keyof typeof google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture|null);
 
@@ -29987,30 +30301,6 @@ export namespace google {
 
                     /** DatabaseInstance geminiConfig. */
                     public geminiConfig?: (google.cloud.sql.v1beta4.IGeminiInstanceConfig|null);
-
-                    /** DatabaseInstance _outOfDiskReport. */
-                    public _outOfDiskReport?: "outOfDiskReport";
-
-                    /** DatabaseInstance _sqlNetworkArchitecture. */
-                    public _sqlNetworkArchitecture?: "sqlNetworkArchitecture";
-
-                    /** DatabaseInstance _pscServiceAttachmentLink. */
-                    public _pscServiceAttachmentLink?: "pscServiceAttachmentLink";
-
-                    /** DatabaseInstance _dnsName. */
-                    public _dnsName?: "dnsName";
-
-                    /** DatabaseInstance _primaryDnsName. */
-                    public _primaryDnsName?: "primaryDnsName";
-
-                    /** DatabaseInstance _writeEndpoint. */
-                    public _writeEndpoint?: "writeEndpoint";
-
-                    /** DatabaseInstance _replicationCluster. */
-                    public _replicationCluster?: "replicationCluster";
-
-                    /** DatabaseInstance _geminiConfig. */
-                    public _geminiConfig?: "geminiConfig";
 
                     /**
                      * Creates a new DatabaseInstance instance using the specified properties.
@@ -30244,9 +30534,6 @@ export namespace google {
                         /** SqlScheduledMaintenance scheduleDeadlineTime. */
                         public scheduleDeadlineTime?: (google.protobuf.ITimestamp|null);
 
-                        /** SqlScheduledMaintenance _scheduleDeadlineTime. */
-                        public _scheduleDeadlineTime?: "scheduleDeadlineTime";
-
                         /**
                          * Creates a new SqlScheduledMaintenance instance using the specified properties.
                          * @param [properties] Properties to set
@@ -30349,12 +30636,6 @@ export namespace google {
 
                         /** SqlOutOfDiskReport sqlMinRecommendedIncreaseSizeGb. */
                         public sqlMinRecommendedIncreaseSizeGb?: (number|null);
-
-                        /** SqlOutOfDiskReport _sqlOutOfDiskState. */
-                        public _sqlOutOfDiskState?: "sqlOutOfDiskState";
-
-                        /** SqlOutOfDiskReport _sqlMinRecommendedIncreaseSizeGb. */
-                        public _sqlMinRecommendedIncreaseSizeGb?: "sqlMinRecommendedIncreaseSizeGb";
 
                         /**
                          * Creates a new SqlOutOfDiskReport instance using the specified properties.
@@ -30501,24 +30782,6 @@ export namespace google {
                     /** GeminiInstanceConfig flagRecommenderEnabled. */
                     public flagRecommenderEnabled?: (boolean|null);
 
-                    /** GeminiInstanceConfig _entitled. */
-                    public _entitled?: "entitled";
-
-                    /** GeminiInstanceConfig _googleVacuumMgmtEnabled. */
-                    public _googleVacuumMgmtEnabled?: "googleVacuumMgmtEnabled";
-
-                    /** GeminiInstanceConfig _oomSessionCancelEnabled. */
-                    public _oomSessionCancelEnabled?: "oomSessionCancelEnabled";
-
-                    /** GeminiInstanceConfig _activeQueryEnabled. */
-                    public _activeQueryEnabled?: "activeQueryEnabled";
-
-                    /** GeminiInstanceConfig _indexAdvisorEnabled. */
-                    public _indexAdvisorEnabled?: "indexAdvisorEnabled";
-
-                    /** GeminiInstanceConfig _flagRecommenderEnabled. */
-                    public _flagRecommenderEnabled?: "flagRecommenderEnabled";
-
                     /**
                      * Creates a new GeminiInstanceConfig instance using the specified properties.
                      * @param [properties] Properties to set
@@ -30600,6 +30863,9 @@ export namespace google {
                 /** Properties of a ReplicationCluster. */
                 interface IReplicationCluster {
 
+                    /** ReplicationCluster psaWriteEndpoint */
+                    psaWriteEndpoint?: (string|null);
+
                     /** ReplicationCluster failoverDrReplicaName */
                     failoverDrReplicaName?: (string|null);
 
@@ -30616,17 +30882,14 @@ export namespace google {
                      */
                     constructor(properties?: google.cloud.sql.v1beta4.IReplicationCluster);
 
+                    /** ReplicationCluster psaWriteEndpoint. */
+                    public psaWriteEndpoint?: (string|null);
+
                     /** ReplicationCluster failoverDrReplicaName. */
                     public failoverDrReplicaName?: (string|null);
 
                     /** ReplicationCluster drReplica. */
                     public drReplica?: (boolean|null);
-
-                    /** ReplicationCluster _failoverDrReplicaName. */
-                    public _failoverDrReplicaName?: "failoverDrReplicaName";
-
-                    /** ReplicationCluster _drReplica. */
-                    public _drReplica?: "drReplica";
 
                     /**
                      * Creates a new ReplicationCluster instance using the specified properties.
@@ -30700,6 +30963,115 @@ export namespace google {
 
                     /**
                      * Gets the default type url for ReplicationCluster
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AvailableDatabaseVersion. */
+                interface IAvailableDatabaseVersion {
+
+                    /** AvailableDatabaseVersion majorVersion */
+                    majorVersion?: (string|null);
+
+                    /** AvailableDatabaseVersion name */
+                    name?: (string|null);
+
+                    /** AvailableDatabaseVersion displayName */
+                    displayName?: (string|null);
+                }
+
+                /** Represents an AvailableDatabaseVersion. */
+                class AvailableDatabaseVersion implements IAvailableDatabaseVersion {
+
+                    /**
+                     * Constructs a new AvailableDatabaseVersion.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.sql.v1beta4.IAvailableDatabaseVersion);
+
+                    /** AvailableDatabaseVersion majorVersion. */
+                    public majorVersion?: (string|null);
+
+                    /** AvailableDatabaseVersion name. */
+                    public name?: (string|null);
+
+                    /** AvailableDatabaseVersion displayName. */
+                    public displayName?: (string|null);
+
+                    /**
+                     * Creates a new AvailableDatabaseVersion instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AvailableDatabaseVersion instance
+                     */
+                    public static create(properties?: google.cloud.sql.v1beta4.IAvailableDatabaseVersion): google.cloud.sql.v1beta4.AvailableDatabaseVersion;
+
+                    /**
+                     * Encodes the specified AvailableDatabaseVersion message. Does not implicitly {@link google.cloud.sql.v1beta4.AvailableDatabaseVersion.verify|verify} messages.
+                     * @param message AvailableDatabaseVersion message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.sql.v1beta4.IAvailableDatabaseVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AvailableDatabaseVersion message, length delimited. Does not implicitly {@link google.cloud.sql.v1beta4.AvailableDatabaseVersion.verify|verify} messages.
+                     * @param message AvailableDatabaseVersion message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.sql.v1beta4.IAvailableDatabaseVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AvailableDatabaseVersion message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AvailableDatabaseVersion
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.sql.v1beta4.AvailableDatabaseVersion;
+
+                    /**
+                     * Decodes an AvailableDatabaseVersion message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AvailableDatabaseVersion
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.sql.v1beta4.AvailableDatabaseVersion;
+
+                    /**
+                     * Verifies an AvailableDatabaseVersion message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AvailableDatabaseVersion message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AvailableDatabaseVersion
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.sql.v1beta4.AvailableDatabaseVersion;
+
+                    /**
+                     * Creates a plain object from an AvailableDatabaseVersion message. Also converts values to other types if specified.
+                     * @param message AvailableDatabaseVersion
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.sql.v1beta4.AvailableDatabaseVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AvailableDatabaseVersion to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AvailableDatabaseVersion
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -34621,7 +34993,11 @@ export namespace google {
                         PG_SUBSCRIPTION_COUNT = 41,
                         PG_SYNC_PARALLEL_LEVEL = 42,
                         INSUFFICIENT_DISK_SIZE = 43,
-                        INSUFFICIENT_MACHINE_TIER = 44
+                        INSUFFICIENT_MACHINE_TIER = 44,
+                        UNSUPPORTED_EXTENSIONS_NOT_MIGRATED = 45,
+                        EXTENSIONS_NOT_MIGRATED = 46,
+                        PG_CRON_FLAG_ENABLED_IN_REPLICA = 47,
+                        EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48
                     }
                 }
 
@@ -34685,9 +35061,6 @@ export namespace google {
 
                     /** IpConfiguration pscConfig. */
                     public pscConfig?: (google.cloud.sql.v1beta4.IPscConfig|null);
-
-                    /** IpConfiguration _pscConfig. */
-                    public _pscConfig?: "pscConfig";
 
                     /**
                      * Creates a new IpConfiguration instance using the specified properties.
@@ -34802,9 +35175,6 @@ export namespace google {
 
                     /** PscConfig allowedConsumerProjects. */
                     public allowedConsumerProjects: string[];
-
-                    /** PscConfig _pscEnabled. */
-                    public _pscEnabled?: "pscEnabled";
 
                     /**
                      * Creates a new PscConfig instance using the specified properties.
@@ -36207,7 +36577,8 @@ export namespace google {
                         RELEASE_SSRS_LEASE = 43,
                         RECONFIGURE_OLD_PRIMARY = 44,
                         CLUSTER_MAINTENANCE = 45,
-                        SELF_SERVICE_MAINTENANCE = 46
+                        SELF_SERVICE_MAINTENANCE = 46,
+                        SWITCHOVER_TO_REPLICA = 47
                     }
 
                     /** SqlOperationStatus enum. */
@@ -37213,6 +37584,9 @@ export namespace google {
 
                     /** Settings enableGoogleMlIntegration */
                     enableGoogleMlIntegration?: (google.protobuf.IBoolValue|null);
+
+                    /** Settings enableDataplexIntegration */
+                    enableDataplexIntegration?: (google.protobuf.IBoolValue|null);
                 }
 
                 /** Represents a Settings. */
@@ -37322,6 +37696,9 @@ export namespace google {
 
                     /** Settings enableGoogleMlIntegration. */
                     public enableGoogleMlIntegration?: (google.protobuf.IBoolValue|null);
+
+                    /** Settings enableDataplexIntegration. */
+                    public enableDataplexIntegration?: (google.protobuf.IBoolValue|null);
 
                     /**
                      * Creates a new Settings instance using the specified properties.
@@ -38792,6 +39169,7 @@ export namespace google {
                     POSTGRES_13 = 23,
                     POSTGRES_14 = 110,
                     POSTGRES_15 = 172,
+                    POSTGRES_16 = 272,
                     MYSQL_8_0 = 20,
                     MYSQL_8_0_18 = 41,
                     MYSQL_8_0_26 = 85,
@@ -38810,6 +39188,7 @@ export namespace google {
                     MYSQL_8_0_39 = 357,
                     MYSQL_8_0_40 = 358,
                     MYSQL_8_4 = 398,
+                    MYSQL_8_4_0 = 399,
                     SQLSERVER_2019_STANDARD = 26,
                     SQLSERVER_2019_ENTERPRISE = 27,
                     SQLSERVER_2019_EXPRESS = 28,
@@ -38902,18 +39281,6 @@ export namespace google {
 
                     /** AcquireSsrsLeaseContext duration. */
                     public duration?: (google.protobuf.IDuration|null);
-
-                    /** AcquireSsrsLeaseContext _setupLogin. */
-                    public _setupLogin?: "setupLogin";
-
-                    /** AcquireSsrsLeaseContext _serviceLogin. */
-                    public _serviceLogin?: "serviceLogin";
-
-                    /** AcquireSsrsLeaseContext _reportDatabase. */
-                    public _reportDatabase?: "reportDatabase";
-
-                    /** AcquireSsrsLeaseContext _duration. */
-                    public _duration?: "duration";
 
                     /**
                      * Creates a new AcquireSsrsLeaseContext instance using the specified properties.
@@ -40928,9 +41295,6 @@ export namespace google {
                     /** User userDetails. */
                     public userDetails?: "sqlserverUserDetails";
 
-                    /** User _dualPasswordType. */
-                    public _dualPasswordType?: "dualPasswordType";
-
                     /**
                      * Creates a new User instance using the specified properties.
                      * @param [properties] Properties to set
@@ -41900,6 +42264,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -41940,6 +42307,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -45897,6 +46267,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -46145,7 +46518,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -46176,7 +46549,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -48191,7 +48564,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -48204,7 +48577,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.

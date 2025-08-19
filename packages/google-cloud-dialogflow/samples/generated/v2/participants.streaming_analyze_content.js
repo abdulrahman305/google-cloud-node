@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,7 +96,8 @@ function main(participant) {
    *  and
    *  AudioEncoding.AUDIO_ENCODING_MULAW google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW 
    *  - Lifecycle: conversation should be in `Assist Stage`, go to
-   *    Conversation.CreateConversation   for more information.
+   *    Conversations.CreateConversation google.cloud.dialogflow.v2.Conversations.CreateConversation 
+   *    for more information.
    *  InvalidArgument Error will be returned if the one of restriction checks
    *  failed.
    *  You can find more details in
@@ -104,10 +105,10 @@ function main(participant) {
    */
   // const enableExtendedStreaming = true
   /**
-   *  Enable partial virtual agent responses. If this flag is not enabled,
-   *  response stream still contains only one final response even if some
-   *  `Fulfillment`s in Dialogflow virtual agent have been configured to return
-   *  partial responses.
+   *  Optional. Enable partial responses from Dialogflow CX agent. If this flag
+   *  is not enabled, response stream still contains only one final response even
+   *  if some `Fulfillment`s in Dialogflow CX agent have been configured to
+   *  return partial responses.
    */
   // const enablePartialAutomatedAgentReply = true
   /**

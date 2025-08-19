@@ -258,10 +258,14 @@
                           "requestType": "ListAccessApprovalRequestsRequest",
                           "responseType": "ListAccessApprovalRequestsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests"
@@ -283,6 +287,64 @@
                             {
                               "(google.api.http)": {
                                 "get": "/v1/{name=organizations/*/locations/*/partner}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "CreateCustomer": {
+                          "requestType": "CreateCustomerRequest",
+                          "responseType": "Customer",
+                          "options": {
+                            "(google.api.http).post": "/v1/{parent=organizations/*/locations/*}/customers",
+                            "(google.api.http).body": "customer",
+                            "(google.api.method_signature)": "parent,customer,customer_id"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1/{parent=organizations/*/locations/*}/customers",
+                                "body": "customer"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,customer,customer_id"
+                            }
+                          ]
+                        },
+                        "UpdateCustomer": {
+                          "requestType": "UpdateCustomerRequest",
+                          "responseType": "Customer",
+                          "options": {
+                            "(google.api.http).patch": "/v1/{customer.name=organizations/*/locations/*/customers/*}",
+                            "(google.api.http).body": "customer",
+                            "(google.api.method_signature)": "customer,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1/{customer.name=organizations/*/locations/*/customers/*}",
+                                "body": "customer"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "customer,update_mask"
+                            }
+                          ]
+                        },
+                        "DeleteCustomer": {
+                          "requestType": "DeleteCustomerRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1/{name=organizations/*/locations/*/customers/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1/{name=organizations/*/locations/*/customers/*}"
                               }
                             },
                             {
@@ -538,15 +600,31 @@
                         },
                         "displayName": {
                           "type": "string",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "customerOnboardingState": {
                           "type": "CustomerOnboardingState",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "isOnboarded": {
                           "type": "bool",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "organizationDomain": {
+                          "type": "string",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -602,6 +680,32 @@
                         }
                       }
                     },
+                    "CreateCustomerRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "cloudcontrolspartner.googleapis.com/Customer"
+                          }
+                        },
+                        "customer": {
+                          "type": "Customer",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "customerId": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "GetCustomerRequest": {
                       "fields": {
                         "name": {
@@ -651,6 +755,36 @@
                             "STEP_UNSPECIFIED": 0,
                             "KAJ_ENROLLMENT": 1,
                             "CUSTOMER_ENVIRONMENT": 2
+                          }
+                        }
+                      }
+                    },
+                    "UpdateCustomerRequest": {
+                      "fields": {
+                        "customer": {
+                          "type": "Customer",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteCustomerRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudcontrolspartner.googleapis.com/Customer"
                           }
                         }
                       }
@@ -755,7 +889,8 @@
                             "ACCESS_TRANSPARENCY_AND_EMERGENCY_ACCESS_LOGS": 1,
                             "ASSURED_WORKLOADS_MONITORING": 2,
                             "ACCESS_APPROVAL_REQUESTS": 3,
-                            "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS": 4
+                            "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS": 4,
+                            "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER": 5
                           }
                         }
                       }
@@ -858,6 +993,11 @@
                       },
                       "nested": {
                         "EkmSolution": {
+                          "valuesOptions": {
+                            "VIRTRU": {
+                              "deprecated": true
+                            }
+                          },
                           "values": {
                             "EKM_SOLUTION_UNSPECIFIED": 0,
                             "FORTANIX": 1,
@@ -1417,10 +1557,14 @@
                           "requestType": "ListAccessApprovalRequestsRequest",
                           "responseType": "ListAccessApprovalRequestsResponse",
                           "options": {
+                            "deprecated": true,
                             "(google.api.http).get": "/v1beta/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests",
                             "(google.api.method_signature)": "parent"
                           },
                           "parsedOptions": [
+                            {
+                              "deprecated": true
+                            },
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests"
@@ -1442,6 +1586,64 @@
                             {
                               "(google.api.http)": {
                                 "get": "/v1beta/{name=organizations/*/locations/*/partner}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "CreateCustomer": {
+                          "requestType": "CreateCustomerRequest",
+                          "responseType": "Customer",
+                          "options": {
+                            "(google.api.http).post": "/v1beta/{parent=organizations/*/locations/*}/customers",
+                            "(google.api.http).body": "customer",
+                            "(google.api.method_signature)": "parent,customer,customer_id"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1beta/{parent=organizations/*/locations/*}/customers",
+                                "body": "customer"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent,customer,customer_id"
+                            }
+                          ]
+                        },
+                        "UpdateCustomer": {
+                          "requestType": "UpdateCustomerRequest",
+                          "responseType": "Customer",
+                          "options": {
+                            "(google.api.http).patch": "/v1beta/{customer.name=organizations/*/locations/*/customers/*}",
+                            "(google.api.http).body": "customer",
+                            "(google.api.method_signature)": "customer,update_mask"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "patch": "/v1beta/{customer.name=organizations/*/locations/*/customers/*}",
+                                "body": "customer"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "customer,update_mask"
+                            }
+                          ]
+                        },
+                        "DeleteCustomer": {
+                          "requestType": "DeleteCustomerRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1beta/{name=organizations/*/locations/*/customers/*}",
+                            "(google.api.method_signature)": "name"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "delete": "/v1beta/{name=organizations/*/locations/*/customers/*}"
                               }
                             },
                             {
@@ -1697,15 +1899,31 @@
                         },
                         "displayName": {
                           "type": "string",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "customerOnboardingState": {
                           "type": "CustomerOnboardingState",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "isOnboarded": {
                           "type": "bool",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "organizationDomain": {
+                          "type": "string",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -1761,6 +1979,32 @@
                         }
                       }
                     },
+                    "CreateCustomerRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "cloudcontrolspartner.googleapis.com/Customer"
+                          }
+                        },
+                        "customer": {
+                          "type": "Customer",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "customerId": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
                     "GetCustomerRequest": {
                       "fields": {
                         "name": {
@@ -1810,6 +2054,36 @@
                             "STEP_UNSPECIFIED": 0,
                             "KAJ_ENROLLMENT": 1,
                             "CUSTOMER_ENVIRONMENT": 2
+                          }
+                        }
+                      }
+                    },
+                    "UpdateCustomerRequest": {
+                      "fields": {
+                        "customer": {
+                          "type": "Customer",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteCustomerRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudcontrolspartner.googleapis.com/Customer"
                           }
                         }
                       }
@@ -1914,7 +2188,8 @@
                             "ACCESS_TRANSPARENCY_AND_EMERGENCY_ACCESS_LOGS": 1,
                             "ASSURED_WORKLOADS_MONITORING": 2,
                             "ACCESS_APPROVAL_REQUESTS": 3,
-                            "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS": 4
+                            "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS": 4,
+                            "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER": 5
                           }
                         }
                       }
@@ -2017,6 +2292,11 @@
                       },
                       "nested": {
                         "EkmSolution": {
+                          "valuesOptions": {
+                            "VIRTRU": {
+                              "deprecated": true
+                            }
+                          },
                           "values": {
                             "EKM_SOLUTION_UNSPECIFIED": 0,
                             "FORTANIX": 1,
@@ -2342,7 +2622,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -2537,6 +2820,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -2645,6 +2933,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -2830,6 +3122,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -2839,6 +3132,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -2854,6 +3148,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -2871,18 +3166,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -2923,6 +3212,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3005,6 +3295,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3078,6 +3369,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3157,6 +3449,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3169,6 +3462,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3210,6 +3504,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3226,6 +3521,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3243,6 +3539,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3277,6 +3574,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -3418,6 +3716,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -3491,6 +3790,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -3552,10 +3852,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -3639,6 +3936,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -3658,6 +3956,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -3701,6 +4000,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3734,6 +4034,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -3760,6 +4061,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -3802,6 +4104,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -3851,6 +4154,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -3923,8 +4227,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -3980,6 +4296,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -4011,6 +4328,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -4024,12 +4342,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -4049,6 +4373,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -4062,7 +4387,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",
@@ -4116,6 +4444,18 @@
                   "id": 2
                 }
               }
+            },
+            "FieldMask": {
+              "fields": {
+                "paths": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 1
+                }
+              }
+            },
+            "Empty": {
+              "fields": {}
             }
           }
         },

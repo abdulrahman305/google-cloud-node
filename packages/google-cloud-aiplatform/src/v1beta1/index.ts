@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ export {DatasetServiceClient} from './dataset_service_client';
 export {DeploymentResourcePoolServiceClient} from './deployment_resource_pool_service_client';
 export {EndpointServiceClient} from './endpoint_service_client';
 export {EvaluationServiceClient} from './evaluation_service_client';
+export {ExampleStoreServiceClient} from './example_store_service_client';
 export {ExtensionExecutionServiceClient} from './extension_execution_service_client';
 export {ExtensionRegistryServiceClient} from './extension_registry_service_client';
 export {FeatureOnlineStoreAdminServiceClient} from './feature_online_store_admin_service_client';
@@ -34,6 +35,7 @@ export {IndexServiceClient} from './index_service_client';
 export {JobServiceClient} from './job_service_client';
 export {LlmUtilityServiceClient} from './llm_utility_service_client';
 export {MatchServiceClient} from './match_service_client';
+export {MemoryBankServiceClient} from './memory_bank_service_client';
 export {MetadataServiceClient} from './metadata_service_client';
 export {MigrationServiceClient} from './migration_service_client';
 export {ModelGardenServiceClient} from './model_garden_service_client';
@@ -46,6 +48,7 @@ export {PredictionServiceClient} from './prediction_service_client';
 export {ReasoningEngineExecutionServiceClient} from './reasoning_engine_execution_service_client';
 export {ReasoningEngineServiceClient} from './reasoning_engine_service_client';
 export {ScheduleServiceClient} from './schedule_service_client';
+export {SessionServiceClient} from './session_service_client';
 export {SpecialistPoolServiceClient} from './specialist_pool_service_client';
 export {TensorboardServiceClient} from './tensorboard_service_client';
 export {VertexRagDataServiceClient} from './vertex_rag_data_service_client';

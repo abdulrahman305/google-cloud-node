@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,6 +74,862 @@
                          * @namespace
                          */
                         var v1 = {};
+    
+                        v1.CloudEvent = (function() {
+    
+                            /**
+                             * Properties of a CloudEvent.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @interface ICloudEvent
+                             * @property {string|null} [id] CloudEvent id
+                             * @property {string|null} [source] CloudEvent source
+                             * @property {string|null} [specVersion] CloudEvent specVersion
+                             * @property {string|null} [type] CloudEvent type
+                             * @property {Object.<string,google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue>|null} [attributes] CloudEvent attributes
+                             * @property {Uint8Array|null} [binaryData] CloudEvent binaryData
+                             * @property {string|null} [textData] CloudEvent textData
+                             * @property {google.protobuf.IAny|null} [protoData] CloudEvent protoData
+                             */
+    
+                            /**
+                             * Constructs a new CloudEvent.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @classdesc Represents a CloudEvent.
+                             * @implements ICloudEvent
+                             * @constructor
+                             * @param {google.cloud.eventarc.publishing.v1.ICloudEvent=} [properties] Properties to set
+                             */
+                            function CloudEvent(properties) {
+                                this.attributes = {};
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * CloudEvent id.
+                             * @member {string} id
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.id = "";
+    
+                            /**
+                             * CloudEvent source.
+                             * @member {string} source
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.source = "";
+    
+                            /**
+                             * CloudEvent specVersion.
+                             * @member {string} specVersion
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.specVersion = "";
+    
+                            /**
+                             * CloudEvent type.
+                             * @member {string} type
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.type = "";
+    
+                            /**
+                             * CloudEvent attributes.
+                             * @member {Object.<string,google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue>} attributes
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.attributes = $util.emptyObject;
+    
+                            /**
+                             * CloudEvent binaryData.
+                             * @member {Uint8Array|null|undefined} binaryData
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.binaryData = null;
+    
+                            /**
+                             * CloudEvent textData.
+                             * @member {string|null|undefined} textData
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.textData = null;
+    
+                            /**
+                             * CloudEvent protoData.
+                             * @member {google.protobuf.IAny|null|undefined} protoData
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            CloudEvent.prototype.protoData = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            /**
+                             * CloudEvent data.
+                             * @member {"binaryData"|"textData"|"protoData"|undefined} data
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             */
+                            Object.defineProperty(CloudEvent.prototype, "data", {
+                                get: $util.oneOfGetter($oneOfFields = ["binaryData", "textData", "protoData"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new CloudEvent instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.ICloudEvent=} [properties] Properties to set
+                             * @returns {google.cloud.eventarc.publishing.v1.CloudEvent} CloudEvent instance
+                             */
+                            CloudEvent.create = function create(properties) {
+                                return new CloudEvent(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified CloudEvent message. Does not implicitly {@link google.cloud.eventarc.publishing.v1.CloudEvent.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.ICloudEvent} message CloudEvent message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CloudEvent.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.source);
+                                if (message.specVersion != null && Object.hasOwnProperty.call(message, "specVersion"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.specVersion);
+                                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.type);
+                                if (message.attributes != null && Object.hasOwnProperty.call(message, "attributes"))
+                                    for (var keys = Object.keys(message.attributes), i = 0; i < keys.length; ++i) {
+                                        writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                                        $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.encode(message.attributes[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                                    }
+                                if (message.binaryData != null && Object.hasOwnProperty.call(message, "binaryData"))
+                                    writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.binaryData);
+                                if (message.textData != null && Object.hasOwnProperty.call(message, "textData"))
+                                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.textData);
+                                if (message.protoData != null && Object.hasOwnProperty.call(message, "protoData"))
+                                    $root.google.protobuf.Any.encode(message.protoData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified CloudEvent message, length delimited. Does not implicitly {@link google.cloud.eventarc.publishing.v1.CloudEvent.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.ICloudEvent} message CloudEvent message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CloudEvent.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a CloudEvent message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.eventarc.publishing.v1.CloudEvent} CloudEvent
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CloudEvent.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.CloudEvent(), key, value;
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.id = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.source = reader.string();
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.specVersion = reader.string();
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.type = reader.string();
+                                            break;
+                                        }
+                                    case 5: {
+                                            if (message.attributes === $util.emptyObject)
+                                                message.attributes = {};
+                                            var end2 = reader.uint32() + reader.pos;
+                                            key = "";
+                                            value = null;
+                                            while (reader.pos < end2) {
+                                                var tag2 = reader.uint32();
+                                                switch (tag2 >>> 3) {
+                                                case 1:
+                                                    key = reader.string();
+                                                    break;
+                                                case 2:
+                                                    value = $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.decode(reader, reader.uint32());
+                                                    break;
+                                                default:
+                                                    reader.skipType(tag2 & 7);
+                                                    break;
+                                                }
+                                            }
+                                            message.attributes[key] = value;
+                                            break;
+                                        }
+                                    case 6: {
+                                            message.binaryData = reader.bytes();
+                                            break;
+                                        }
+                                    case 7: {
+                                            message.textData = reader.string();
+                                            break;
+                                        }
+                                    case 8: {
+                                            message.protoData = $root.google.protobuf.Any.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a CloudEvent message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.eventarc.publishing.v1.CloudEvent} CloudEvent
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CloudEvent.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a CloudEvent message.
+                             * @function verify
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            CloudEvent.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.id != null && message.hasOwnProperty("id"))
+                                    if (!$util.isString(message.id))
+                                        return "id: string expected";
+                                if (message.source != null && message.hasOwnProperty("source"))
+                                    if (!$util.isString(message.source))
+                                        return "source: string expected";
+                                if (message.specVersion != null && message.hasOwnProperty("specVersion"))
+                                    if (!$util.isString(message.specVersion))
+                                        return "specVersion: string expected";
+                                if (message.type != null && message.hasOwnProperty("type"))
+                                    if (!$util.isString(message.type))
+                                        return "type: string expected";
+                                if (message.attributes != null && message.hasOwnProperty("attributes")) {
+                                    if (!$util.isObject(message.attributes))
+                                        return "attributes: object expected";
+                                    var key = Object.keys(message.attributes);
+                                    for (var i = 0; i < key.length; ++i) {
+                                        var error = $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.verify(message.attributes[key[i]]);
+                                        if (error)
+                                            return "attributes." + error;
+                                    }
+                                }
+                                if (message.binaryData != null && message.hasOwnProperty("binaryData")) {
+                                    properties.data = 1;
+                                    if (!(message.binaryData && typeof message.binaryData.length === "number" || $util.isString(message.binaryData)))
+                                        return "binaryData: buffer expected";
+                                }
+                                if (message.textData != null && message.hasOwnProperty("textData")) {
+                                    if (properties.data === 1)
+                                        return "data: multiple values";
+                                    properties.data = 1;
+                                    if (!$util.isString(message.textData))
+                                        return "textData: string expected";
+                                }
+                                if (message.protoData != null && message.hasOwnProperty("protoData")) {
+                                    if (properties.data === 1)
+                                        return "data: multiple values";
+                                    properties.data = 1;
+                                    {
+                                        var error = $root.google.protobuf.Any.verify(message.protoData);
+                                        if (error)
+                                            return "protoData." + error;
+                                    }
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a CloudEvent message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.eventarc.publishing.v1.CloudEvent} CloudEvent
+                             */
+                            CloudEvent.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.eventarc.publishing.v1.CloudEvent)
+                                    return object;
+                                var message = new $root.google.cloud.eventarc.publishing.v1.CloudEvent();
+                                if (object.id != null)
+                                    message.id = String(object.id);
+                                if (object.source != null)
+                                    message.source = String(object.source);
+                                if (object.specVersion != null)
+                                    message.specVersion = String(object.specVersion);
+                                if (object.type != null)
+                                    message.type = String(object.type);
+                                if (object.attributes) {
+                                    if (typeof object.attributes !== "object")
+                                        throw TypeError(".google.cloud.eventarc.publishing.v1.CloudEvent.attributes: object expected");
+                                    message.attributes = {};
+                                    for (var keys = Object.keys(object.attributes), i = 0; i < keys.length; ++i) {
+                                        if (typeof object.attributes[keys[i]] !== "object")
+                                            throw TypeError(".google.cloud.eventarc.publishing.v1.CloudEvent.attributes: object expected");
+                                        message.attributes[keys[i]] = $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.fromObject(object.attributes[keys[i]]);
+                                    }
+                                }
+                                if (object.binaryData != null)
+                                    if (typeof object.binaryData === "string")
+                                        $util.base64.decode(object.binaryData, message.binaryData = $util.newBuffer($util.base64.length(object.binaryData)), 0);
+                                    else if (object.binaryData.length >= 0)
+                                        message.binaryData = object.binaryData;
+                                if (object.textData != null)
+                                    message.textData = String(object.textData);
+                                if (object.protoData != null) {
+                                    if (typeof object.protoData !== "object")
+                                        throw TypeError(".google.cloud.eventarc.publishing.v1.CloudEvent.protoData: object expected");
+                                    message.protoData = $root.google.protobuf.Any.fromObject(object.protoData);
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a CloudEvent message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.CloudEvent} message CloudEvent
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            CloudEvent.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.objects || options.defaults)
+                                    object.attributes = {};
+                                if (options.defaults) {
+                                    object.id = "";
+                                    object.source = "";
+                                    object.specVersion = "";
+                                    object.type = "";
+                                }
+                                if (message.id != null && message.hasOwnProperty("id"))
+                                    object.id = message.id;
+                                if (message.source != null && message.hasOwnProperty("source"))
+                                    object.source = message.source;
+                                if (message.specVersion != null && message.hasOwnProperty("specVersion"))
+                                    object.specVersion = message.specVersion;
+                                if (message.type != null && message.hasOwnProperty("type"))
+                                    object.type = message.type;
+                                var keys2;
+                                if (message.attributes && (keys2 = Object.keys(message.attributes)).length) {
+                                    object.attributes = {};
+                                    for (var j = 0; j < keys2.length; ++j)
+                                        object.attributes[keys2[j]] = $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.toObject(message.attributes[keys2[j]], options);
+                                }
+                                if (message.binaryData != null && message.hasOwnProperty("binaryData")) {
+                                    object.binaryData = options.bytes === String ? $util.base64.encode(message.binaryData, 0, message.binaryData.length) : options.bytes === Array ? Array.prototype.slice.call(message.binaryData) : message.binaryData;
+                                    if (options.oneofs)
+                                        object.data = "binaryData";
+                                }
+                                if (message.textData != null && message.hasOwnProperty("textData")) {
+                                    object.textData = message.textData;
+                                    if (options.oneofs)
+                                        object.data = "textData";
+                                }
+                                if (message.protoData != null && message.hasOwnProperty("protoData")) {
+                                    object.protoData = $root.google.protobuf.Any.toObject(message.protoData, options);
+                                    if (options.oneofs)
+                                        object.data = "protoData";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this CloudEvent to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            CloudEvent.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for CloudEvent
+                             * @function getTypeUrl
+                             * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            CloudEvent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.eventarc.publishing.v1.CloudEvent";
+                            };
+    
+                            CloudEvent.CloudEventAttributeValue = (function() {
+    
+                                /**
+                                 * Properties of a CloudEventAttributeValue.
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                                 * @interface ICloudEventAttributeValue
+                                 * @property {boolean|null} [ceBoolean] CloudEventAttributeValue ceBoolean
+                                 * @property {number|null} [ceInteger] CloudEventAttributeValue ceInteger
+                                 * @property {string|null} [ceString] CloudEventAttributeValue ceString
+                                 * @property {Uint8Array|null} [ceBytes] CloudEventAttributeValue ceBytes
+                                 * @property {string|null} [ceUri] CloudEventAttributeValue ceUri
+                                 * @property {string|null} [ceUriRef] CloudEventAttributeValue ceUriRef
+                                 * @property {google.protobuf.ITimestamp|null} [ceTimestamp] CloudEventAttributeValue ceTimestamp
+                                 */
+    
+                                /**
+                                 * Constructs a new CloudEventAttributeValue.
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent
+                                 * @classdesc Represents a CloudEventAttributeValue.
+                                 * @implements ICloudEventAttributeValue
+                                 * @constructor
+                                 * @param {google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue=} [properties] Properties to set
+                                 */
+                                function CloudEventAttributeValue(properties) {
+                                    if (properties)
+                                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                            if (properties[keys[i]] != null)
+                                                this[keys[i]] = properties[keys[i]];
+                                }
+    
+                                /**
+                                 * CloudEventAttributeValue ceBoolean.
+                                 * @member {boolean|null|undefined} ceBoolean
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceBoolean = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceInteger.
+                                 * @member {number|null|undefined} ceInteger
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceInteger = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceString.
+                                 * @member {string|null|undefined} ceString
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceString = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceBytes.
+                                 * @member {Uint8Array|null|undefined} ceBytes
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceBytes = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceUri.
+                                 * @member {string|null|undefined} ceUri
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceUri = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceUriRef.
+                                 * @member {string|null|undefined} ceUriRef
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceUriRef = null;
+    
+                                /**
+                                 * CloudEventAttributeValue ceTimestamp.
+                                 * @member {google.protobuf.ITimestamp|null|undefined} ceTimestamp
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                CloudEventAttributeValue.prototype.ceTimestamp = null;
+    
+                                // OneOf field names bound to virtual getters and setters
+                                var $oneOfFields;
+    
+                                /**
+                                 * CloudEventAttributeValue attr.
+                                 * @member {"ceBoolean"|"ceInteger"|"ceString"|"ceBytes"|"ceUri"|"ceUriRef"|"ceTimestamp"|undefined} attr
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 */
+                                Object.defineProperty(CloudEventAttributeValue.prototype, "attr", {
+                                    get: $util.oneOfGetter($oneOfFields = ["ceBoolean", "ceInteger", "ceString", "ceBytes", "ceUri", "ceUriRef", "ceTimestamp"]),
+                                    set: $util.oneOfSetter($oneOfFields)
+                                });
+    
+                                /**
+                                 * Creates a new CloudEventAttributeValue instance using the specified properties.
+                                 * @function create
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue=} [properties] Properties to set
+                                 * @returns {google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue} CloudEventAttributeValue instance
+                                 */
+                                CloudEventAttributeValue.create = function create(properties) {
+                                    return new CloudEventAttributeValue(properties);
+                                };
+    
+                                /**
+                                 * Encodes the specified CloudEventAttributeValue message. Does not implicitly {@link google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.verify|verify} messages.
+                                 * @function encode
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue} message CloudEventAttributeValue message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CloudEventAttributeValue.encode = function encode(message, writer) {
+                                    if (!writer)
+                                        writer = $Writer.create();
+                                    if (message.ceBoolean != null && Object.hasOwnProperty.call(message, "ceBoolean"))
+                                        writer.uint32(/* id 1, wireType 0 =*/8).bool(message.ceBoolean);
+                                    if (message.ceInteger != null && Object.hasOwnProperty.call(message, "ceInteger"))
+                                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.ceInteger);
+                                    if (message.ceString != null && Object.hasOwnProperty.call(message, "ceString"))
+                                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.ceString);
+                                    if (message.ceBytes != null && Object.hasOwnProperty.call(message, "ceBytes"))
+                                        writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.ceBytes);
+                                    if (message.ceUri != null && Object.hasOwnProperty.call(message, "ceUri"))
+                                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.ceUri);
+                                    if (message.ceUriRef != null && Object.hasOwnProperty.call(message, "ceUriRef"))
+                                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.ceUriRef);
+                                    if (message.ceTimestamp != null && Object.hasOwnProperty.call(message, "ceTimestamp"))
+                                        $root.google.protobuf.Timestamp.encode(message.ceTimestamp, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                                    return writer;
+                                };
+    
+                                /**
+                                 * Encodes the specified CloudEventAttributeValue message, length delimited. Does not implicitly {@link google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.verify|verify} messages.
+                                 * @function encodeDelimited
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {google.cloud.eventarc.publishing.v1.CloudEvent.ICloudEventAttributeValue} message CloudEventAttributeValue message or plain object to encode
+                                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                                 * @returns {$protobuf.Writer} Writer
+                                 */
+                                CloudEventAttributeValue.encodeDelimited = function encodeDelimited(message, writer) {
+                                    return this.encode(message, writer).ldelim();
+                                };
+    
+                                /**
+                                 * Decodes a CloudEventAttributeValue message from the specified reader or buffer.
+                                 * @function decode
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @param {number} [length] Message length if known beforehand
+                                 * @returns {google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue} CloudEventAttributeValue
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CloudEventAttributeValue.decode = function decode(reader, length, error) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = $Reader.create(reader);
+                                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue();
+                                    while (reader.pos < end) {
+                                        var tag = reader.uint32();
+                                        if (tag === error)
+                                            break;
+                                        switch (tag >>> 3) {
+                                        case 1: {
+                                                message.ceBoolean = reader.bool();
+                                                break;
+                                            }
+                                        case 2: {
+                                                message.ceInteger = reader.int32();
+                                                break;
+                                            }
+                                        case 3: {
+                                                message.ceString = reader.string();
+                                                break;
+                                            }
+                                        case 4: {
+                                                message.ceBytes = reader.bytes();
+                                                break;
+                                            }
+                                        case 5: {
+                                                message.ceUri = reader.string();
+                                                break;
+                                            }
+                                        case 6: {
+                                                message.ceUriRef = reader.string();
+                                                break;
+                                            }
+                                        case 7: {
+                                                message.ceTimestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                                break;
+                                            }
+                                        default:
+                                            reader.skipType(tag & 7);
+                                            break;
+                                        }
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Decodes a CloudEventAttributeValue message from the specified reader or buffer, length delimited.
+                                 * @function decodeDelimited
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                                 * @returns {google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue} CloudEventAttributeValue
+                                 * @throws {Error} If the payload is not a reader or valid buffer
+                                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                                 */
+                                CloudEventAttributeValue.decodeDelimited = function decodeDelimited(reader) {
+                                    if (!(reader instanceof $Reader))
+                                        reader = new $Reader(reader);
+                                    return this.decode(reader, reader.uint32());
+                                };
+    
+                                /**
+                                 * Verifies a CloudEventAttributeValue message.
+                                 * @function verify
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {Object.<string,*>} message Plain object to verify
+                                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                                 */
+                                CloudEventAttributeValue.verify = function verify(message) {
+                                    if (typeof message !== "object" || message === null)
+                                        return "object expected";
+                                    var properties = {};
+                                    if (message.ceBoolean != null && message.hasOwnProperty("ceBoolean")) {
+                                        properties.attr = 1;
+                                        if (typeof message.ceBoolean !== "boolean")
+                                            return "ceBoolean: boolean expected";
+                                    }
+                                    if (message.ceInteger != null && message.hasOwnProperty("ceInteger")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        if (!$util.isInteger(message.ceInteger))
+                                            return "ceInteger: integer expected";
+                                    }
+                                    if (message.ceString != null && message.hasOwnProperty("ceString")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        if (!$util.isString(message.ceString))
+                                            return "ceString: string expected";
+                                    }
+                                    if (message.ceBytes != null && message.hasOwnProperty("ceBytes")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        if (!(message.ceBytes && typeof message.ceBytes.length === "number" || $util.isString(message.ceBytes)))
+                                            return "ceBytes: buffer expected";
+                                    }
+                                    if (message.ceUri != null && message.hasOwnProperty("ceUri")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        if (!$util.isString(message.ceUri))
+                                            return "ceUri: string expected";
+                                    }
+                                    if (message.ceUriRef != null && message.hasOwnProperty("ceUriRef")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        if (!$util.isString(message.ceUriRef))
+                                            return "ceUriRef: string expected";
+                                    }
+                                    if (message.ceTimestamp != null && message.hasOwnProperty("ceTimestamp")) {
+                                        if (properties.attr === 1)
+                                            return "attr: multiple values";
+                                        properties.attr = 1;
+                                        {
+                                            var error = $root.google.protobuf.Timestamp.verify(message.ceTimestamp);
+                                            if (error)
+                                                return "ceTimestamp." + error;
+                                        }
+                                    }
+                                    return null;
+                                };
+    
+                                /**
+                                 * Creates a CloudEventAttributeValue message from a plain object. Also converts values to their respective internal types.
+                                 * @function fromObject
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {Object.<string,*>} object Plain object
+                                 * @returns {google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue} CloudEventAttributeValue
+                                 */
+                                CloudEventAttributeValue.fromObject = function fromObject(object) {
+                                    if (object instanceof $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue)
+                                        return object;
+                                    var message = new $root.google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue();
+                                    if (object.ceBoolean != null)
+                                        message.ceBoolean = Boolean(object.ceBoolean);
+                                    if (object.ceInteger != null)
+                                        message.ceInteger = object.ceInteger | 0;
+                                    if (object.ceString != null)
+                                        message.ceString = String(object.ceString);
+                                    if (object.ceBytes != null)
+                                        if (typeof object.ceBytes === "string")
+                                            $util.base64.decode(object.ceBytes, message.ceBytes = $util.newBuffer($util.base64.length(object.ceBytes)), 0);
+                                        else if (object.ceBytes.length >= 0)
+                                            message.ceBytes = object.ceBytes;
+                                    if (object.ceUri != null)
+                                        message.ceUri = String(object.ceUri);
+                                    if (object.ceUriRef != null)
+                                        message.ceUriRef = String(object.ceUriRef);
+                                    if (object.ceTimestamp != null) {
+                                        if (typeof object.ceTimestamp !== "object")
+                                            throw TypeError(".google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue.ceTimestamp: object expected");
+                                        message.ceTimestamp = $root.google.protobuf.Timestamp.fromObject(object.ceTimestamp);
+                                    }
+                                    return message;
+                                };
+    
+                                /**
+                                 * Creates a plain object from a CloudEventAttributeValue message. Also converts values to other types if specified.
+                                 * @function toObject
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue} message CloudEventAttributeValue
+                                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                                 * @returns {Object.<string,*>} Plain object
+                                 */
+                                CloudEventAttributeValue.toObject = function toObject(message, options) {
+                                    if (!options)
+                                        options = {};
+                                    var object = {};
+                                    if (message.ceBoolean != null && message.hasOwnProperty("ceBoolean")) {
+                                        object.ceBoolean = message.ceBoolean;
+                                        if (options.oneofs)
+                                            object.attr = "ceBoolean";
+                                    }
+                                    if (message.ceInteger != null && message.hasOwnProperty("ceInteger")) {
+                                        object.ceInteger = message.ceInteger;
+                                        if (options.oneofs)
+                                            object.attr = "ceInteger";
+                                    }
+                                    if (message.ceString != null && message.hasOwnProperty("ceString")) {
+                                        object.ceString = message.ceString;
+                                        if (options.oneofs)
+                                            object.attr = "ceString";
+                                    }
+                                    if (message.ceBytes != null && message.hasOwnProperty("ceBytes")) {
+                                        object.ceBytes = options.bytes === String ? $util.base64.encode(message.ceBytes, 0, message.ceBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.ceBytes) : message.ceBytes;
+                                        if (options.oneofs)
+                                            object.attr = "ceBytes";
+                                    }
+                                    if (message.ceUri != null && message.hasOwnProperty("ceUri")) {
+                                        object.ceUri = message.ceUri;
+                                        if (options.oneofs)
+                                            object.attr = "ceUri";
+                                    }
+                                    if (message.ceUriRef != null && message.hasOwnProperty("ceUriRef")) {
+                                        object.ceUriRef = message.ceUriRef;
+                                        if (options.oneofs)
+                                            object.attr = "ceUriRef";
+                                    }
+                                    if (message.ceTimestamp != null && message.hasOwnProperty("ceTimestamp")) {
+                                        object.ceTimestamp = $root.google.protobuf.Timestamp.toObject(message.ceTimestamp, options);
+                                        if (options.oneofs)
+                                            object.attr = "ceTimestamp";
+                                    }
+                                    return object;
+                                };
+    
+                                /**
+                                 * Converts this CloudEventAttributeValue to JSON.
+                                 * @function toJSON
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @instance
+                                 * @returns {Object.<string,*>} JSON object
+                                 */
+                                CloudEventAttributeValue.prototype.toJSON = function toJSON() {
+                                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                                };
+    
+                                /**
+                                 * Gets the default type url for CloudEventAttributeValue
+                                 * @function getTypeUrl
+                                 * @memberof google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue
+                                 * @static
+                                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                                 * @returns {string} The default type url
+                                 */
+                                CloudEventAttributeValue.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                    if (typeUrlPrefix === undefined) {
+                                        typeUrlPrefix = "type.googleapis.com";
+                                    }
+                                    return typeUrlPrefix + "/google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue";
+                                };
+    
+                                return CloudEventAttributeValue;
+                            })();
+    
+                            return CloudEvent;
+                        })();
     
                         v1.Publisher = (function() {
     
@@ -170,6 +1026,39 @@
                              * @instance
                              * @param {google.cloud.eventarc.publishing.v1.IPublishEventsRequest} request PublishEventsRequest message or plain object
                              * @returns {Promise<google.cloud.eventarc.publishing.v1.PublishEventsResponse>} Promise
+                             * @variation 2
+                             */
+    
+                            /**
+                             * Callback as used by {@link google.cloud.eventarc.publishing.v1.Publisher|publish}.
+                             * @memberof google.cloud.eventarc.publishing.v1.Publisher
+                             * @typedef PublishCallback
+                             * @type {function}
+                             * @param {Error|null} error Error, if any
+                             * @param {google.cloud.eventarc.publishing.v1.PublishResponse} [response] PublishResponse
+                             */
+    
+                            /**
+                             * Calls Publish.
+                             * @function publish
+                             * @memberof google.cloud.eventarc.publishing.v1.Publisher
+                             * @instance
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest} request PublishRequest message or plain object
+                             * @param {google.cloud.eventarc.publishing.v1.Publisher.PublishCallback} callback Node-style callback called with the error, if any, and PublishResponse
+                             * @returns {undefined}
+                             * @variation 1
+                             */
+                            Object.defineProperty(Publisher.prototype.publish = function publish(request, callback) {
+                                return this.rpcCall(publish, $root.google.cloud.eventarc.publishing.v1.PublishRequest, $root.google.cloud.eventarc.publishing.v1.PublishResponse, request, callback);
+                            }, "name", { value: "Publish" });
+    
+                            /**
+                             * Calls Publish.
+                             * @function publish
+                             * @memberof google.cloud.eventarc.publishing.v1.Publisher
+                             * @instance
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest} request PublishRequest message or plain object
+                             * @returns {Promise<google.cloud.eventarc.publishing.v1.PublishResponse>} Promise
                              * @variation 2
                              */
     
@@ -287,12 +1176,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PublishChannelConnectionEventsRequest.decode = function decode(reader, length) {
+                            PublishChannelConnectionEventsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.channelConnection = reader.string();
@@ -538,12 +1429,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PublishChannelConnectionEventsResponse.decode = function decode(reader, length) {
+                            PublishChannelConnectionEventsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -750,12 +1643,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PublishEventsRequest.decode = function decode(reader, length) {
+                            PublishEventsRequest.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishEventsRequest();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     case 1: {
                                             message.channel = reader.string();
@@ -1001,12 +1896,14 @@
                              * @throws {Error} If the payload is not a reader or valid buffer
                              * @throws {$protobuf.util.ProtocolError} If required fields are missing
                              */
-                            PublishEventsResponse.decode = function decode(reader, length) {
+                            PublishEventsResponse.decode = function decode(reader, length, error) {
                                 if (!(reader instanceof $Reader))
                                     reader = $Reader.create(reader);
                                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishEventsResponse();
                                 while (reader.pos < end) {
                                     var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
                                     switch (tag >>> 3) {
                                     default:
                                         reader.skipType(tag & 7);
@@ -1102,6 +1999,497 @@
                             return PublishEventsResponse;
                         })();
     
+                        v1.PublishRequest = (function() {
+    
+                            /**
+                             * Properties of a PublishRequest.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @interface IPublishRequest
+                             * @property {string|null} [messageBus] PublishRequest messageBus
+                             * @property {google.cloud.eventarc.publishing.v1.ICloudEvent|null} [protoMessage] PublishRequest protoMessage
+                             * @property {string|null} [jsonMessage] PublishRequest jsonMessage
+                             * @property {Uint8Array|null} [avroMessage] PublishRequest avroMessage
+                             */
+    
+                            /**
+                             * Constructs a new PublishRequest.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @classdesc Represents a PublishRequest.
+                             * @implements IPublishRequest
+                             * @constructor
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest=} [properties] Properties to set
+                             */
+                            function PublishRequest(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * PublishRequest messageBus.
+                             * @member {string} messageBus
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             */
+                            PublishRequest.prototype.messageBus = "";
+    
+                            /**
+                             * PublishRequest protoMessage.
+                             * @member {google.cloud.eventarc.publishing.v1.ICloudEvent|null|undefined} protoMessage
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             */
+                            PublishRequest.prototype.protoMessage = null;
+    
+                            /**
+                             * PublishRequest jsonMessage.
+                             * @member {string|null|undefined} jsonMessage
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             */
+                            PublishRequest.prototype.jsonMessage = null;
+    
+                            /**
+                             * PublishRequest avroMessage.
+                             * @member {Uint8Array|null|undefined} avroMessage
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             */
+                            PublishRequest.prototype.avroMessage = null;
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            /**
+                             * PublishRequest format.
+                             * @member {"protoMessage"|"jsonMessage"|"avroMessage"|undefined} format
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             */
+                            Object.defineProperty(PublishRequest.prototype, "format", {
+                                get: $util.oneOfGetter($oneOfFields = ["protoMessage", "jsonMessage", "avroMessage"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new PublishRequest instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest=} [properties] Properties to set
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishRequest} PublishRequest instance
+                             */
+                            PublishRequest.create = function create(properties) {
+                                return new PublishRequest(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PublishRequest message. Does not implicitly {@link google.cloud.eventarc.publishing.v1.PublishRequest.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest} message PublishRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PublishRequest.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.messageBus != null && Object.hasOwnProperty.call(message, "messageBus"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.messageBus);
+                                if (message.protoMessage != null && Object.hasOwnProperty.call(message, "protoMessage"))
+                                    $root.google.cloud.eventarc.publishing.v1.CloudEvent.encode(message.protoMessage, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                if (message.jsonMessage != null && Object.hasOwnProperty.call(message, "jsonMessage"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.jsonMessage);
+                                if (message.avroMessage != null && Object.hasOwnProperty.call(message, "avroMessage"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.avroMessage);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PublishRequest message, length delimited. Does not implicitly {@link google.cloud.eventarc.publishing.v1.PublishRequest.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishRequest} message PublishRequest message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PublishRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PublishRequest message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishRequest} PublishRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PublishRequest.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishRequest();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    case 1: {
+                                            message.messageBus = reader.string();
+                                            break;
+                                        }
+                                    case 2: {
+                                            message.protoMessage = $root.google.cloud.eventarc.publishing.v1.CloudEvent.decode(reader, reader.uint32());
+                                            break;
+                                        }
+                                    case 3: {
+                                            message.jsonMessage = reader.string();
+                                            break;
+                                        }
+                                    case 4: {
+                                            message.avroMessage = reader.bytes();
+                                            break;
+                                        }
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PublishRequest message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishRequest} PublishRequest
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PublishRequest.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PublishRequest message.
+                             * @function verify
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PublishRequest.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.messageBus != null && message.hasOwnProperty("messageBus"))
+                                    if (!$util.isString(message.messageBus))
+                                        return "messageBus: string expected";
+                                if (message.protoMessage != null && message.hasOwnProperty("protoMessage")) {
+                                    properties.format = 1;
+                                    {
+                                        var error = $root.google.cloud.eventarc.publishing.v1.CloudEvent.verify(message.protoMessage);
+                                        if (error)
+                                            return "protoMessage." + error;
+                                    }
+                                }
+                                if (message.jsonMessage != null && message.hasOwnProperty("jsonMessage")) {
+                                    if (properties.format === 1)
+                                        return "format: multiple values";
+                                    properties.format = 1;
+                                    if (!$util.isString(message.jsonMessage))
+                                        return "jsonMessage: string expected";
+                                }
+                                if (message.avroMessage != null && message.hasOwnProperty("avroMessage")) {
+                                    if (properties.format === 1)
+                                        return "format: multiple values";
+                                    properties.format = 1;
+                                    if (!(message.avroMessage && typeof message.avroMessage.length === "number" || $util.isString(message.avroMessage)))
+                                        return "avroMessage: buffer expected";
+                                }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PublishRequest message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishRequest} PublishRequest
+                             */
+                            PublishRequest.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.eventarc.publishing.v1.PublishRequest)
+                                    return object;
+                                var message = new $root.google.cloud.eventarc.publishing.v1.PublishRequest();
+                                if (object.messageBus != null)
+                                    message.messageBus = String(object.messageBus);
+                                if (object.protoMessage != null) {
+                                    if (typeof object.protoMessage !== "object")
+                                        throw TypeError(".google.cloud.eventarc.publishing.v1.PublishRequest.protoMessage: object expected");
+                                    message.protoMessage = $root.google.cloud.eventarc.publishing.v1.CloudEvent.fromObject(object.protoMessage);
+                                }
+                                if (object.jsonMessage != null)
+                                    message.jsonMessage = String(object.jsonMessage);
+                                if (object.avroMessage != null)
+                                    if (typeof object.avroMessage === "string")
+                                        $util.base64.decode(object.avroMessage, message.avroMessage = $util.newBuffer($util.base64.length(object.avroMessage)), 0);
+                                    else if (object.avroMessage.length >= 0)
+                                        message.avroMessage = object.avroMessage;
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a PublishRequest message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.PublishRequest} message PublishRequest
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PublishRequest.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.messageBus = "";
+                                if (message.messageBus != null && message.hasOwnProperty("messageBus"))
+                                    object.messageBus = message.messageBus;
+                                if (message.protoMessage != null && message.hasOwnProperty("protoMessage")) {
+                                    object.protoMessage = $root.google.cloud.eventarc.publishing.v1.CloudEvent.toObject(message.protoMessage, options);
+                                    if (options.oneofs)
+                                        object.format = "protoMessage";
+                                }
+                                if (message.jsonMessage != null && message.hasOwnProperty("jsonMessage")) {
+                                    object.jsonMessage = message.jsonMessage;
+                                    if (options.oneofs)
+                                        object.format = "jsonMessage";
+                                }
+                                if (message.avroMessage != null && message.hasOwnProperty("avroMessage")) {
+                                    object.avroMessage = options.bytes === String ? $util.base64.encode(message.avroMessage, 0, message.avroMessage.length) : options.bytes === Array ? Array.prototype.slice.call(message.avroMessage) : message.avroMessage;
+                                    if (options.oneofs)
+                                        object.format = "avroMessage";
+                                }
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this PublishRequest to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PublishRequest.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PublishRequest
+                             * @function getTypeUrl
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishRequest
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PublishRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.eventarc.publishing.v1.PublishRequest";
+                            };
+    
+                            return PublishRequest;
+                        })();
+    
+                        v1.PublishResponse = (function() {
+    
+                            /**
+                             * Properties of a PublishResponse.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @interface IPublishResponse
+                             */
+    
+                            /**
+                             * Constructs a new PublishResponse.
+                             * @memberof google.cloud.eventarc.publishing.v1
+                             * @classdesc Represents a PublishResponse.
+                             * @implements IPublishResponse
+                             * @constructor
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishResponse=} [properties] Properties to set
+                             */
+                            function PublishResponse(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * Creates a new PublishResponse instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishResponse=} [properties] Properties to set
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishResponse} PublishResponse instance
+                             */
+                            PublishResponse.create = function create(properties) {
+                                return new PublishResponse(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified PublishResponse message. Does not implicitly {@link google.cloud.eventarc.publishing.v1.PublishResponse.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishResponse} message PublishResponse message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PublishResponse.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified PublishResponse message, length delimited. Does not implicitly {@link google.cloud.eventarc.publishing.v1.PublishResponse.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.IPublishResponse} message PublishResponse message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            PublishResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a PublishResponse message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishResponse} PublishResponse
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PublishResponse.decode = function decode(reader, length, error) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.eventarc.publishing.v1.PublishResponse();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    if (tag === error)
+                                        break;
+                                    switch (tag >>> 3) {
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a PublishResponse message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishResponse} PublishResponse
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            PublishResponse.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a PublishResponse message.
+                             * @function verify
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            PublishResponse.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a PublishResponse message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.eventarc.publishing.v1.PublishResponse} PublishResponse
+                             */
+                            PublishResponse.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.eventarc.publishing.v1.PublishResponse)
+                                    return object;
+                                return new $root.google.cloud.eventarc.publishing.v1.PublishResponse();
+                            };
+    
+                            /**
+                             * Creates a plain object from a PublishResponse message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {google.cloud.eventarc.publishing.v1.PublishResponse} message PublishResponse
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            PublishResponse.toObject = function toObject() {
+                                return {};
+                            };
+    
+                            /**
+                             * Converts this PublishResponse to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            PublishResponse.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * Gets the default type url for PublishResponse
+                             * @function getTypeUrl
+                             * @memberof google.cloud.eventarc.publishing.v1.PublishResponse
+                             * @static
+                             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                             * @returns {string} The default type url
+                             */
+                            PublishResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                                if (typeUrlPrefix === undefined) {
+                                    typeUrlPrefix = "type.googleapis.com";
+                                }
+                                return typeUrlPrefix + "/google.cloud.eventarc.publishing.v1.PublishResponse";
+                            };
+    
+                            return PublishResponse;
+                        })();
+    
                         return v1;
                     })();
     
@@ -1122,6 +2510,34 @@
              * @namespace
              */
             var api = {};
+    
+            /**
+             * FieldBehavior enum.
+             * @name google.api.FieldBehavior
+             * @enum {number}
+             * @property {number} FIELD_BEHAVIOR_UNSPECIFIED=0 FIELD_BEHAVIOR_UNSPECIFIED value
+             * @property {number} OPTIONAL=1 OPTIONAL value
+             * @property {number} REQUIRED=2 REQUIRED value
+             * @property {number} OUTPUT_ONLY=3 OUTPUT_ONLY value
+             * @property {number} INPUT_ONLY=4 INPUT_ONLY value
+             * @property {number} IMMUTABLE=5 IMMUTABLE value
+             * @property {number} UNORDERED_LIST=6 UNORDERED_LIST value
+             * @property {number} NON_EMPTY_DEFAULT=7 NON_EMPTY_DEFAULT value
+             * @property {number} IDENTIFIER=8 IDENTIFIER value
+             */
+            api.FieldBehavior = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "FIELD_BEHAVIOR_UNSPECIFIED"] = 0;
+                values[valuesById[1] = "OPTIONAL"] = 1;
+                values[valuesById[2] = "REQUIRED"] = 2;
+                values[valuesById[3] = "OUTPUT_ONLY"] = 3;
+                values[valuesById[4] = "INPUT_ONLY"] = 4;
+                values[valuesById[5] = "IMMUTABLE"] = 5;
+                values[valuesById[6] = "UNORDERED_LIST"] = 6;
+                values[valuesById[7] = "NON_EMPTY_DEFAULT"] = 7;
+                values[valuesById[8] = "IDENTIFIER"] = 8;
+                return values;
+            })();
     
             api.Http = (function() {
     
@@ -1221,12 +2637,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -1571,12 +2989,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -1955,12 +3375,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -2187,12 +3609,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -2556,12 +3980,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -2900,6 +4326,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -3001,6 +4428,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -3047,6 +4482,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -3074,12 +4511,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -3125,6 +4564,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -3219,6 +4662,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -3313,6 +4759,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -3342,6 +4790,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -3372,6 +4821,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -3513,12 +4964,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -3780,12 +5233,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -3988,12 +5443,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -4196,12 +5653,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -4404,12 +5863,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -4677,12 +6138,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -5056,12 +6519,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -5264,12 +6729,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -5496,12 +6963,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -5774,12 +7243,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -6015,6 +7486,265 @@
                 return values;
             })();
     
+            api.FieldInfo = (function() {
+    
+                /**
+                 * Properties of a FieldInfo.
+                 * @memberof google.api
+                 * @interface IFieldInfo
+                 * @property {google.api.FieldInfo.Format|null} [format] FieldInfo format
+                 */
+    
+                /**
+                 * Constructs a new FieldInfo.
+                 * @memberof google.api
+                 * @classdesc Represents a FieldInfo.
+                 * @implements IFieldInfo
+                 * @constructor
+                 * @param {google.api.IFieldInfo=} [properties] Properties to set
+                 */
+                function FieldInfo(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * FieldInfo format.
+                 * @member {google.api.FieldInfo.Format} format
+                 * @memberof google.api.FieldInfo
+                 * @instance
+                 */
+                FieldInfo.prototype.format = 0;
+    
+                /**
+                 * Creates a new FieldInfo instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {google.api.IFieldInfo=} [properties] Properties to set
+                 * @returns {google.api.FieldInfo} FieldInfo instance
+                 */
+                FieldInfo.create = function create(properties) {
+                    return new FieldInfo(properties);
+                };
+    
+                /**
+                 * Encodes the specified FieldInfo message. Does not implicitly {@link google.api.FieldInfo.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {google.api.IFieldInfo} message FieldInfo message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                FieldInfo.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.format != null && Object.hasOwnProperty.call(message, "format"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.format);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified FieldInfo message, length delimited. Does not implicitly {@link google.api.FieldInfo.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {google.api.IFieldInfo} message FieldInfo message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                FieldInfo.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a FieldInfo message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.FieldInfo} FieldInfo
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                FieldInfo.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.FieldInfo();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.format = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a FieldInfo message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.FieldInfo} FieldInfo
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                FieldInfo.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a FieldInfo message.
+                 * @function verify
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                FieldInfo.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.format != null && message.hasOwnProperty("format"))
+                        switch (message.format) {
+                        default:
+                            return "format: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            break;
+                        }
+                    return null;
+                };
+    
+                /**
+                 * Creates a FieldInfo message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.FieldInfo} FieldInfo
+                 */
+                FieldInfo.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.FieldInfo)
+                        return object;
+                    var message = new $root.google.api.FieldInfo();
+                    switch (object.format) {
+                    default:
+                        if (typeof object.format === "number") {
+                            message.format = object.format;
+                            break;
+                        }
+                        break;
+                    case "FORMAT_UNSPECIFIED":
+                    case 0:
+                        message.format = 0;
+                        break;
+                    case "UUID4":
+                    case 1:
+                        message.format = 1;
+                        break;
+                    case "IPV4":
+                    case 2:
+                        message.format = 2;
+                        break;
+                    case "IPV6":
+                    case 3:
+                        message.format = 3;
+                        break;
+                    case "IPV4_OR_IPV6":
+                    case 4:
+                        message.format = 4;
+                        break;
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a FieldInfo message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {google.api.FieldInfo} message FieldInfo
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                FieldInfo.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.format = options.enums === String ? "FORMAT_UNSPECIFIED" : 0;
+                    if (message.format != null && message.hasOwnProperty("format"))
+                        object.format = options.enums === String ? $root.google.api.FieldInfo.Format[message.format] === undefined ? message.format : $root.google.api.FieldInfo.Format[message.format] : message.format;
+                    return object;
+                };
+    
+                /**
+                 * Converts this FieldInfo to JSON.
+                 * @function toJSON
+                 * @memberof google.api.FieldInfo
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                FieldInfo.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for FieldInfo
+                 * @function getTypeUrl
+                 * @memberof google.api.FieldInfo
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                FieldInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.api.FieldInfo";
+                };
+    
+                /**
+                 * Format enum.
+                 * @name google.api.FieldInfo.Format
+                 * @enum {number}
+                 * @property {number} FORMAT_UNSPECIFIED=0 FORMAT_UNSPECIFIED value
+                 * @property {number} UUID4=1 UUID4 value
+                 * @property {number} IPV4=2 IPV4 value
+                 * @property {number} IPV6=3 IPV6 value
+                 * @property {number} IPV4_OR_IPV6=4 IPV4_OR_IPV6 value
+                 */
+                FieldInfo.Format = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "FORMAT_UNSPECIFIED"] = 0;
+                    values[valuesById[1] = "UUID4"] = 1;
+                    values[valuesById[2] = "IPV4"] = 2;
+                    values[valuesById[3] = "IPV6"] = 3;
+                    values[valuesById[4] = "IPV4_OR_IPV6"] = 4;
+                    return values;
+                })();
+    
+                return FieldInfo;
+            })();
+    
             return api;
         })();
     
@@ -6114,12 +7844,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -6514,12 +8246,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -7181,12 +8915,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -7666,12 +9402,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -7910,12 +9648,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -8166,12 +9906,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -8511,12 +10253,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -8890,12 +10634,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -9415,12 +11161,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -9686,12 +11434,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -10005,12 +11755,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -10246,12 +11998,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -10503,12 +12257,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -10811,12 +12567,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -11302,12 +13060,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -11879,12 +13639,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -12114,6 +13876,8 @@
                  * @property {Array.<google.protobuf.FieldOptions.IEditionDefault>|null} [editionDefaults] FieldOptions editionDefaults
                  * @property {google.protobuf.IFeatureSet|null} [features] FieldOptions features
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FieldOptions uninterpretedOption
+                 * @property {Array.<google.api.FieldBehavior>|null} [".google.api.fieldBehavior"] FieldOptions .google.api.fieldBehavior
+                 * @property {google.api.IFieldInfo|null} [".google.api.fieldInfo"] FieldOptions .google.api.fieldInfo
                  */
     
                 /**
@@ -12128,6 +13892,7 @@
                     this.targets = [];
                     this.editionDefaults = [];
                     this.uninterpretedOption = [];
+                    this[".google.api.fieldBehavior"] = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -12239,6 +14004,22 @@
                 FieldOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
+                 * FieldOptions .google.api.fieldBehavior.
+                 * @member {Array.<google.api.FieldBehavior>} .google.api.fieldBehavior
+                 * @memberof google.protobuf.FieldOptions
+                 * @instance
+                 */
+                FieldOptions.prototype[".google.api.fieldBehavior"] = $util.emptyArray;
+    
+                /**
+                 * FieldOptions .google.api.fieldInfo.
+                 * @member {google.api.IFieldInfo|null|undefined} .google.api.fieldInfo
+                 * @memberof google.protobuf.FieldOptions
+                 * @instance
+                 */
+                FieldOptions.prototype[".google.api.fieldInfo"] = null;
+    
+                /**
                  * Creates a new FieldOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FieldOptions
@@ -12291,6 +14072,11 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
+                        for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
+                    if (message[".google.api.fieldInfo"] != null && Object.hasOwnProperty.call(message, ".google.api.fieldInfo"))
+                        $root.google.api.FieldInfo.encode(message[".google.api.fieldInfo"], writer.uint32(/* id 291403980, wireType 2 =*/2331231842).fork()).ldelim();
                     return writer;
                 };
     
@@ -12318,12 +14104,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -12386,6 +14174,21 @@
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                     message.uninterpretedOption = [];
                                 message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        case 1052: {
+                                if (!(message[".google.api.fieldBehavior"] && message[".google.api.fieldBehavior"].length))
+                                    message[".google.api.fieldBehavior"] = [];
+                                if ((tag & 7) === 2) {
+                                    var end2 = reader.uint32() + reader.pos;
+                                    while (reader.pos < end2)
+                                        message[".google.api.fieldBehavior"].push(reader.int32());
+                                } else
+                                    message[".google.api.fieldBehavior"].push(reader.int32());
+                                break;
+                            }
+                        case 291403980: {
+                                message[".google.api.fieldInfo"] = $root.google.api.FieldInfo.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -12510,6 +14313,30 @@
                             if (error)
                                 return "uninterpretedOption." + error;
                         }
+                    }
+                    if (message[".google.api.fieldBehavior"] != null && message.hasOwnProperty(".google.api.fieldBehavior")) {
+                        if (!Array.isArray(message[".google.api.fieldBehavior"]))
+                            return ".google.api.fieldBehavior: array expected";
+                        for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
+                            switch (message[".google.api.fieldBehavior"][i]) {
+                            default:
+                                return ".google.api.fieldBehavior: enum value[] expected";
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                            case 6:
+                            case 7:
+                            case 8:
+                                break;
+                            }
+                    }
+                    if (message[".google.api.fieldInfo"] != null && message.hasOwnProperty(".google.api.fieldInfo")) {
+                        var error = $root.google.api.FieldInfo.verify(message[".google.api.fieldInfo"]);
+                        if (error)
+                            return ".google.api.fieldInfo." + error;
                     }
                     return null;
                 };
@@ -12676,6 +14503,60 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
+                    if (object[".google.api.fieldBehavior"]) {
+                        if (!Array.isArray(object[".google.api.fieldBehavior"]))
+                            throw TypeError(".google.protobuf.FieldOptions..google.api.fieldBehavior: array expected");
+                        message[".google.api.fieldBehavior"] = [];
+                        for (var i = 0; i < object[".google.api.fieldBehavior"].length; ++i)
+                            switch (object[".google.api.fieldBehavior"][i]) {
+                            default:
+                                if (typeof object[".google.api.fieldBehavior"][i] === "number") {
+                                    message[".google.api.fieldBehavior"][i] = object[".google.api.fieldBehavior"][i];
+                                    break;
+                                }
+                            case "FIELD_BEHAVIOR_UNSPECIFIED":
+                            case 0:
+                                message[".google.api.fieldBehavior"][i] = 0;
+                                break;
+                            case "OPTIONAL":
+                            case 1:
+                                message[".google.api.fieldBehavior"][i] = 1;
+                                break;
+                            case "REQUIRED":
+                            case 2:
+                                message[".google.api.fieldBehavior"][i] = 2;
+                                break;
+                            case "OUTPUT_ONLY":
+                            case 3:
+                                message[".google.api.fieldBehavior"][i] = 3;
+                                break;
+                            case "INPUT_ONLY":
+                            case 4:
+                                message[".google.api.fieldBehavior"][i] = 4;
+                                break;
+                            case "IMMUTABLE":
+                            case 5:
+                                message[".google.api.fieldBehavior"][i] = 5;
+                                break;
+                            case "UNORDERED_LIST":
+                            case 6:
+                                message[".google.api.fieldBehavior"][i] = 6;
+                                break;
+                            case "NON_EMPTY_DEFAULT":
+                            case 7:
+                                message[".google.api.fieldBehavior"][i] = 7;
+                                break;
+                            case "IDENTIFIER":
+                            case 8:
+                                message[".google.api.fieldBehavior"][i] = 8;
+                                break;
+                            }
+                    }
+                    if (object[".google.api.fieldInfo"] != null) {
+                        if (typeof object[".google.api.fieldInfo"] !== "object")
+                            throw TypeError(".google.protobuf.FieldOptions..google.api.fieldInfo: object expected");
+                        message[".google.api.fieldInfo"] = $root.google.api.FieldInfo.fromObject(object[".google.api.fieldInfo"]);
+                    }
                     return message;
                 };
     
@@ -12696,6 +14577,7 @@
                         object.targets = [];
                         object.editionDefaults = [];
                         object.uninterpretedOption = [];
+                        object[".google.api.fieldBehavior"] = [];
                     }
                     if (options.defaults) {
                         object.ctype = options.enums === String ? "STRING" : 0;
@@ -12708,6 +14590,7 @@
                         object.debugRedact = false;
                         object.retention = options.enums === String ? "RETENTION_UNKNOWN" : 0;
                         object.features = null;
+                        object[".google.api.fieldInfo"] = null;
                     }
                     if (message.ctype != null && message.hasOwnProperty("ctype"))
                         object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] === undefined ? message.ctype : $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
@@ -12744,6 +14627,13 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
+                    if (message[".google.api.fieldBehavior"] && message[".google.api.fieldBehavior"].length) {
+                        object[".google.api.fieldBehavior"] = [];
+                        for (var j = 0; j < message[".google.api.fieldBehavior"].length; ++j)
+                            object[".google.api.fieldBehavior"][j] = options.enums === String ? $root.google.api.FieldBehavior[message[".google.api.fieldBehavior"][j]] === undefined ? message[".google.api.fieldBehavior"][j] : $root.google.api.FieldBehavior[message[".google.api.fieldBehavior"][j]] : message[".google.api.fieldBehavior"][j];
+                    }
+                    if (message[".google.api.fieldInfo"] != null && message.hasOwnProperty(".google.api.fieldInfo"))
+                        object[".google.api.fieldInfo"] = $root.google.api.FieldInfo.toObject(message[".google.api.fieldInfo"], options);
                     return object;
                 };
     
@@ -12947,12 +14837,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -13243,12 +15135,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -13529,12 +15423,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -13841,12 +15737,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -14032,6 +15930,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -14091,6 +15990,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -14125,6 +16032,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -14152,12 +16061,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -14179,6 +16090,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -14239,6 +16154,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -14275,6 +16193,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -14298,6 +16218,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -14312,6 +16233,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -14488,12 +16411,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -14905,12 +16830,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -15244,12 +17171,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -15520,12 +17449,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -16055,12 +17986,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -16439,12 +18372,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -16729,12 +18664,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -17004,12 +18941,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -17315,12 +19254,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -17583,12 +19524,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -17813,6 +19756,487 @@
                 return GeneratedCodeInfo;
             })();
     
+            protobuf.Any = (function() {
+    
+                /**
+                 * Properties of an Any.
+                 * @memberof google.protobuf
+                 * @interface IAny
+                 * @property {string|null} [type_url] Any type_url
+                 * @property {Uint8Array|null} [value] Any value
+                 */
+    
+                /**
+                 * Constructs a new Any.
+                 * @memberof google.protobuf
+                 * @classdesc Represents an Any.
+                 * @implements IAny
+                 * @constructor
+                 * @param {google.protobuf.IAny=} [properties] Properties to set
+                 */
+                function Any(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Any type_url.
+                 * @member {string} type_url
+                 * @memberof google.protobuf.Any
+                 * @instance
+                 */
+                Any.prototype.type_url = "";
+    
+                /**
+                 * Any value.
+                 * @member {Uint8Array} value
+                 * @memberof google.protobuf.Any
+                 * @instance
+                 */
+                Any.prototype.value = $util.newBuffer([]);
+    
+                /**
+                 * Creates a new Any instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {google.protobuf.IAny=} [properties] Properties to set
+                 * @returns {google.protobuf.Any} Any instance
+                 */
+                Any.create = function create(properties) {
+                    return new Any(properties);
+                };
+    
+                /**
+                 * Encodes the specified Any message. Does not implicitly {@link google.protobuf.Any.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {google.protobuf.IAny} message Any message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Any.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.type_url != null && Object.hasOwnProperty.call(message, "type_url"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type_url);
+                    if (message.value != null && Object.hasOwnProperty.call(message, "value"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.value);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Any message, length delimited. Does not implicitly {@link google.protobuf.Any.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {google.protobuf.IAny} message Any message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Any.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes an Any message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Any} Any
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Any.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.type_url = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.value = reader.bytes();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes an Any message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Any} Any
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Any.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies an Any message.
+                 * @function verify
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Any.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.type_url != null && message.hasOwnProperty("type_url"))
+                        if (!$util.isString(message.type_url))
+                            return "type_url: string expected";
+                    if (message.value != null && message.hasOwnProperty("value"))
+                        if (!(message.value && typeof message.value.length === "number" || $util.isString(message.value)))
+                            return "value: buffer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates an Any message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Any} Any
+                 */
+                Any.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Any)
+                        return object;
+                    var message = new $root.google.protobuf.Any();
+                    if (object.type_url != null)
+                        message.type_url = String(object.type_url);
+                    if (object.value != null)
+                        if (typeof object.value === "string")
+                            $util.base64.decode(object.value, message.value = $util.newBuffer($util.base64.length(object.value)), 0);
+                        else if (object.value.length >= 0)
+                            message.value = object.value;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from an Any message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {google.protobuf.Any} message Any
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Any.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.type_url = "";
+                        if (options.bytes === String)
+                            object.value = "";
+                        else {
+                            object.value = [];
+                            if (options.bytes !== Array)
+                                object.value = $util.newBuffer(object.value);
+                        }
+                    }
+                    if (message.type_url != null && message.hasOwnProperty("type_url"))
+                        object.type_url = message.type_url;
+                    if (message.value != null && message.hasOwnProperty("value"))
+                        object.value = options.bytes === String ? $util.base64.encode(message.value, 0, message.value.length) : options.bytes === Array ? Array.prototype.slice.call(message.value) : message.value;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Any to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Any
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Any.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Any
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Any
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Any.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Any";
+                };
+    
+                return Any;
+            })();
+    
+            protobuf.Timestamp = (function() {
+    
+                /**
+                 * Properties of a Timestamp.
+                 * @memberof google.protobuf
+                 * @interface ITimestamp
+                 * @property {number|Long|null} [seconds] Timestamp seconds
+                 * @property {number|null} [nanos] Timestamp nanos
+                 */
+    
+                /**
+                 * Constructs a new Timestamp.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Timestamp.
+                 * @implements ITimestamp
+                 * @constructor
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 */
+                function Timestamp(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Timestamp seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Timestamp nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Timestamp instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 * @returns {google.protobuf.Timestamp} Timestamp instance
+                 */
+                Timestamp.create = function create(properties) {
+                    return new Timestamp(properties);
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.seconds = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Timestamp message.
+                 * @function verify
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Timestamp.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 */
+                Timestamp.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Timestamp)
+                        return object;
+                    var message = new $root.google.protobuf.Timestamp();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.Timestamp} message Timestamp
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Timestamp.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Timestamp to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Timestamp.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Timestamp
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Timestamp";
+                };
+    
+                return Timestamp;
+            })();
+    
             protobuf.Duration = (function() {
     
                 /**
@@ -17909,12 +20333,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -18052,242 +20478,6 @@
                 };
     
                 return Duration;
-            })();
-    
-            protobuf.Any = (function() {
-    
-                /**
-                 * Properties of an Any.
-                 * @memberof google.protobuf
-                 * @interface IAny
-                 * @property {string|null} [type_url] Any type_url
-                 * @property {Uint8Array|null} [value] Any value
-                 */
-    
-                /**
-                 * Constructs a new Any.
-                 * @memberof google.protobuf
-                 * @classdesc Represents an Any.
-                 * @implements IAny
-                 * @constructor
-                 * @param {google.protobuf.IAny=} [properties] Properties to set
-                 */
-                function Any(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Any type_url.
-                 * @member {string} type_url
-                 * @memberof google.protobuf.Any
-                 * @instance
-                 */
-                Any.prototype.type_url = "";
-    
-                /**
-                 * Any value.
-                 * @member {Uint8Array} value
-                 * @memberof google.protobuf.Any
-                 * @instance
-                 */
-                Any.prototype.value = $util.newBuffer([]);
-    
-                /**
-                 * Creates a new Any instance using the specified properties.
-                 * @function create
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {google.protobuf.IAny=} [properties] Properties to set
-                 * @returns {google.protobuf.Any} Any instance
-                 */
-                Any.create = function create(properties) {
-                    return new Any(properties);
-                };
-    
-                /**
-                 * Encodes the specified Any message. Does not implicitly {@link google.protobuf.Any.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {google.protobuf.IAny} message Any message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Any.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.type_url != null && Object.hasOwnProperty.call(message, "type_url"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type_url);
-                    if (message.value != null && Object.hasOwnProperty.call(message, "value"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.value);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Any message, length delimited. Does not implicitly {@link google.protobuf.Any.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {google.protobuf.IAny} message Any message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Any.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes an Any message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.protobuf.Any} Any
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Any.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.type_url = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.value = reader.bytes();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes an Any message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.protobuf.Any} Any
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Any.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies an Any message.
-                 * @function verify
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Any.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.type_url != null && message.hasOwnProperty("type_url"))
-                        if (!$util.isString(message.type_url))
-                            return "type_url: string expected";
-                    if (message.value != null && message.hasOwnProperty("value"))
-                        if (!(message.value && typeof message.value.length === "number" || $util.isString(message.value)))
-                            return "value: buffer expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates an Any message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.protobuf.Any} Any
-                 */
-                Any.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.protobuf.Any)
-                        return object;
-                    var message = new $root.google.protobuf.Any();
-                    if (object.type_url != null)
-                        message.type_url = String(object.type_url);
-                    if (object.value != null)
-                        if (typeof object.value === "string")
-                            $util.base64.decode(object.value, message.value = $util.newBuffer($util.base64.length(object.value)), 0);
-                        else if (object.value.length >= 0)
-                            message.value = object.value;
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from an Any message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {google.protobuf.Any} message Any
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Any.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.type_url = "";
-                        if (options.bytes === String)
-                            object.value = "";
-                        else {
-                            object.value = [];
-                            if (options.bytes !== Array)
-                                object.value = $util.newBuffer(object.value);
-                        }
-                    }
-                    if (message.type_url != null && message.hasOwnProperty("type_url"))
-                        object.type_url = message.type_url;
-                    if (message.value != null && message.hasOwnProperty("value"))
-                        object.value = options.bytes === String ? $util.base64.encode(message.value, 0, message.value.length) : options.bytes === Array ? Array.prototype.slice.call(message.value) : message.value;
-                    return object;
-                };
-    
-                /**
-                 * Converts this Any to JSON.
-                 * @function toJSON
-                 * @memberof google.protobuf.Any
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Any.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * Gets the default type url for Any
-                 * @function getTypeUrl
-                 * @memberof google.protobuf.Any
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                Any.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/google.protobuf.Any";
-                };
-    
-                return Any;
             })();
     
             return protobuf;

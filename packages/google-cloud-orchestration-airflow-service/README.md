@@ -44,7 +44,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Cloud Composer API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
+1.  [Set up authentication][auth] so you can access the
     API from your local workstation.
 
 ### Installing the client library
@@ -88,6 +88,7 @@ Samples are in the [`samples/`](https://github.com/googleapis/google-cloud-node/
 
 | Sample                      | Source Code                       | Try it |
 | --------------------------- | --------------------------------- | ------ |
+| Environments.check_upgrade | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.check_upgrade.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.check_upgrade.js,packages/google-cloud-orchestration-airflow-service/samples/README.md) |
 | Environments.create_environment | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_environment.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_environment.js,packages/google-cloud-orchestration-airflow-service/samples/README.md) |
 | Environments.create_user_workloads_config_map | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_user_workloads_config_map.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_user_workloads_config_map.js,packages/google-cloud-orchestration-airflow-service/samples/README.md) |
 | Environments.create_user_workloads_secret | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_user_workloads_secret.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-orchestration-airflow-service/samples/generated/v1/environments.create_user_workloads_secret.js,packages/google-cloud-orchestration-airflow-service/samples/README.md) |
@@ -208,4 +209,4 @@ See [LICENSE](https://github.com/googleapis/google-cloud-node/blob/main/LICENSE)
 [projects]: https://console.cloud.google.com/project
 [billing]: https://support.google.com/cloud/answer/6293499#enable-billing
 [enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=composer.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[auth]: https://cloud.google.com/docs/authentication/external/set-up-adc-local

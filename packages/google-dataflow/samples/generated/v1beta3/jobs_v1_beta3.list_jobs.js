@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,6 +53,10 @@ function main() {
    *  contains this job.
    */
   // const location = 'abc123'
+  /**
+   *  Optional. The job name.
+   */
+  // const name = 'abc123'
 
   // Imports the Dataflow library
   const {JobsV1Beta3Client} = require('@google-cloud/dataflow').v1beta3;

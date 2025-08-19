@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,23 +30,7 @@ type JobServiceClient = v4.JobServiceClient;
 const TenantServiceClient = v4.TenantServiceClient;
 type TenantServiceClient = v4.TenantServiceClient;
 
-export {
-  v4,
-  v4beta1,
-  CompanyServiceClient,
-  CompletionClient,
-  EventServiceClient,
-  JobServiceClient,
-  TenantServiceClient,
-};
-export default {
-  v4,
-  v4beta1,
-  CompanyServiceClient,
-  CompletionClient,
-  EventServiceClient,
-  JobServiceClient,
-  TenantServiceClient,
-};
+export {v4, v4beta1, CompanyServiceClient, CompletionClient, EventServiceClient, JobServiceClient, TenantServiceClient};
+export default {v4, v4beta1, CompanyServiceClient, CompletionClient, EventServiceClient, JobServiceClient, TenantServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -133,12 +133,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AttestationNote.decode = function decode(reader, length) {
+                AttestationNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.AttestationNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.hint = $root.grafeas.v1.AttestationNote.Hint.decode(reader, reader.uint32());
@@ -338,12 +340,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Hint.decode = function decode(reader, length) {
+                    Hint.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.AttestationNote.Hint();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.humanReadableName = reader.string();
@@ -544,12 +548,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Jwt.decode = function decode(reader, length) {
+                Jwt.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Jwt();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.compactJwt = reader.string();
@@ -773,12 +779,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AttestationOccurrence.decode = function decode(reader, length) {
+                AttestationOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.AttestationOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.serializedPayload = reader.bytes();
@@ -981,6 +989,7 @@
              * @property {number} DSSE_ATTESTATION=10 DSSE_ATTESTATION value
              * @property {number} VULNERABILITY_ASSESSMENT=11 VULNERABILITY_ASSESSMENT value
              * @property {number} SBOM_REFERENCE=12 SBOM_REFERENCE value
+             * @property {number} SECRET=13 SECRET value
              */
             v1.NoteKind = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -997,6 +1006,7 @@
                 values[valuesById[10] = "DSSE_ATTESTATION"] = 10;
                 values[valuesById[11] = "VULNERABILITY_ASSESSMENT"] = 11;
                 values[valuesById[12] = "SBOM_REFERENCE"] = 12;
+                values[valuesById[13] = "SECRET"] = 13;
                 return values;
             })();
     
@@ -1096,12 +1106,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RelatedUrl.decode = function decode(reader, length) {
+                RelatedUrl.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.RelatedUrl();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.url = reader.string();
@@ -1323,12 +1335,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Signature.decode = function decode(reader, length) {
+                Signature.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Signature();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.signature = reader.bytes();
@@ -1572,12 +1586,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Envelope.decode = function decode(reader, length) {
+                Envelope.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Envelope();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.payload = reader.bytes();
@@ -1840,12 +1856,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnvelopeSignature.decode = function decode(reader, length) {
+                EnvelopeSignature.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.EnvelopeSignature();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.sig = reader.bytes();
@@ -1987,6 +2005,7 @@
                  * @memberof grafeas.v1
                  * @interface IFileLocation
                  * @property {string|null} [filePath] FileLocation filePath
+                 * @property {grafeas.v1.ILayerDetails|null} [layerDetails] FileLocation layerDetails
                  */
     
                 /**
@@ -2011,6 +2030,14 @@
                  * @instance
                  */
                 FileLocation.prototype.filePath = "";
+    
+                /**
+                 * FileLocation layerDetails.
+                 * @member {grafeas.v1.ILayerDetails|null|undefined} layerDetails
+                 * @memberof grafeas.v1.FileLocation
+                 * @instance
+                 */
+                FileLocation.prototype.layerDetails = null;
     
                 /**
                  * Creates a new FileLocation instance using the specified properties.
@@ -2038,6 +2065,8 @@
                         writer = $Writer.create();
                     if (message.filePath != null && Object.hasOwnProperty.call(message, "filePath"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.filePath);
+                    if (message.layerDetails != null && Object.hasOwnProperty.call(message, "layerDetails"))
+                        $root.grafeas.v1.LayerDetails.encode(message.layerDetails, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
     
@@ -2065,15 +2094,21 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileLocation.decode = function decode(reader, length) {
+                FileLocation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.FileLocation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.filePath = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.layerDetails = $root.grafeas.v1.LayerDetails.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -2114,6 +2149,11 @@
                     if (message.filePath != null && message.hasOwnProperty("filePath"))
                         if (!$util.isString(message.filePath))
                             return "filePath: string expected";
+                    if (message.layerDetails != null && message.hasOwnProperty("layerDetails")) {
+                        var error = $root.grafeas.v1.LayerDetails.verify(message.layerDetails);
+                        if (error)
+                            return "layerDetails." + error;
+                    }
                     return null;
                 };
     
@@ -2131,6 +2171,11 @@
                     var message = new $root.grafeas.v1.FileLocation();
                     if (object.filePath != null)
                         message.filePath = String(object.filePath);
+                    if (object.layerDetails != null) {
+                        if (typeof object.layerDetails !== "object")
+                            throw TypeError(".grafeas.v1.FileLocation.layerDetails: object expected");
+                        message.layerDetails = $root.grafeas.v1.LayerDetails.fromObject(object.layerDetails);
+                    }
                     return message;
                 };
     
@@ -2147,10 +2192,14 @@
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.filePath = "";
+                        object.layerDetails = null;
+                    }
                     if (message.filePath != null && message.hasOwnProperty("filePath"))
                         object.filePath = message.filePath;
+                    if (message.layerDetails != null && message.hasOwnProperty("layerDetails"))
+                        object.layerDetails = $root.grafeas.v1.LayerDetails.toObject(message.layerDetails, options);
                     return object;
                 };
     
@@ -2181,6 +2230,578 @@
                 };
     
                 return FileLocation;
+            })();
+    
+            v1.BaseImage = (function() {
+    
+                /**
+                 * Properties of a BaseImage.
+                 * @memberof grafeas.v1
+                 * @interface IBaseImage
+                 * @property {string|null} [name] BaseImage name
+                 * @property {string|null} [repository] BaseImage repository
+                 * @property {number|null} [layerCount] BaseImage layerCount
+                 */
+    
+                /**
+                 * Constructs a new BaseImage.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a BaseImage.
+                 * @implements IBaseImage
+                 * @constructor
+                 * @param {grafeas.v1.IBaseImage=} [properties] Properties to set
+                 */
+                function BaseImage(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * BaseImage name.
+                 * @member {string} name
+                 * @memberof grafeas.v1.BaseImage
+                 * @instance
+                 */
+                BaseImage.prototype.name = "";
+    
+                /**
+                 * BaseImage repository.
+                 * @member {string} repository
+                 * @memberof grafeas.v1.BaseImage
+                 * @instance
+                 */
+                BaseImage.prototype.repository = "";
+    
+                /**
+                 * BaseImage layerCount.
+                 * @member {number} layerCount
+                 * @memberof grafeas.v1.BaseImage
+                 * @instance
+                 */
+                BaseImage.prototype.layerCount = 0;
+    
+                /**
+                 * Creates a new BaseImage instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {grafeas.v1.IBaseImage=} [properties] Properties to set
+                 * @returns {grafeas.v1.BaseImage} BaseImage instance
+                 */
+                BaseImage.create = function create(properties) {
+                    return new BaseImage(properties);
+                };
+    
+                /**
+                 * Encodes the specified BaseImage message. Does not implicitly {@link grafeas.v1.BaseImage.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {grafeas.v1.IBaseImage} message BaseImage message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BaseImage.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                    if (message.repository != null && Object.hasOwnProperty.call(message, "repository"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.repository);
+                    if (message.layerCount != null && Object.hasOwnProperty.call(message, "layerCount"))
+                        writer.uint32(/* id 3, wireType 0 =*/24).int32(message.layerCount);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified BaseImage message, length delimited. Does not implicitly {@link grafeas.v1.BaseImage.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {grafeas.v1.IBaseImage} message BaseImage message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BaseImage.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a BaseImage message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.BaseImage} BaseImage
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BaseImage.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BaseImage();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.repository = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.layerCount = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a BaseImage message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.BaseImage} BaseImage
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BaseImage.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a BaseImage message.
+                 * @function verify
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BaseImage.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    if (message.repository != null && message.hasOwnProperty("repository"))
+                        if (!$util.isString(message.repository))
+                            return "repository: string expected";
+                    if (message.layerCount != null && message.hasOwnProperty("layerCount"))
+                        if (!$util.isInteger(message.layerCount))
+                            return "layerCount: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a BaseImage message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.BaseImage} BaseImage
+                 */
+                BaseImage.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.BaseImage)
+                        return object;
+                    var message = new $root.grafeas.v1.BaseImage();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    if (object.repository != null)
+                        message.repository = String(object.repository);
+                    if (object.layerCount != null)
+                        message.layerCount = object.layerCount | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a BaseImage message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {grafeas.v1.BaseImage} message BaseImage
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BaseImage.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.name = "";
+                        object.repository = "";
+                        object.layerCount = 0;
+                    }
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    if (message.repository != null && message.hasOwnProperty("repository"))
+                        object.repository = message.repository;
+                    if (message.layerCount != null && message.hasOwnProperty("layerCount"))
+                        object.layerCount = message.layerCount;
+                    return object;
+                };
+    
+                /**
+                 * Converts this BaseImage to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.BaseImage
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BaseImage.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for BaseImage
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.BaseImage
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BaseImage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.BaseImage";
+                };
+    
+                return BaseImage;
+            })();
+    
+            v1.LayerDetails = (function() {
+    
+                /**
+                 * Properties of a LayerDetails.
+                 * @memberof grafeas.v1
+                 * @interface ILayerDetails
+                 * @property {number|null} [index] LayerDetails index
+                 * @property {string|null} [diffId] LayerDetails diffId
+                 * @property {string|null} [chainId] LayerDetails chainId
+                 * @property {string|null} [command] LayerDetails command
+                 * @property {Array.<grafeas.v1.IBaseImage>|null} [baseImages] LayerDetails baseImages
+                 */
+    
+                /**
+                 * Constructs a new LayerDetails.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a LayerDetails.
+                 * @implements ILayerDetails
+                 * @constructor
+                 * @param {grafeas.v1.ILayerDetails=} [properties] Properties to set
+                 */
+                function LayerDetails(properties) {
+                    this.baseImages = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * LayerDetails index.
+                 * @member {number} index
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 */
+                LayerDetails.prototype.index = 0;
+    
+                /**
+                 * LayerDetails diffId.
+                 * @member {string} diffId
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 */
+                LayerDetails.prototype.diffId = "";
+    
+                /**
+                 * LayerDetails chainId.
+                 * @member {string} chainId
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 */
+                LayerDetails.prototype.chainId = "";
+    
+                /**
+                 * LayerDetails command.
+                 * @member {string} command
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 */
+                LayerDetails.prototype.command = "";
+    
+                /**
+                 * LayerDetails baseImages.
+                 * @member {Array.<grafeas.v1.IBaseImage>} baseImages
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 */
+                LayerDetails.prototype.baseImages = $util.emptyArray;
+    
+                /**
+                 * Creates a new LayerDetails instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {grafeas.v1.ILayerDetails=} [properties] Properties to set
+                 * @returns {grafeas.v1.LayerDetails} LayerDetails instance
+                 */
+                LayerDetails.create = function create(properties) {
+                    return new LayerDetails(properties);
+                };
+    
+                /**
+                 * Encodes the specified LayerDetails message. Does not implicitly {@link grafeas.v1.LayerDetails.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {grafeas.v1.ILayerDetails} message LayerDetails message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                LayerDetails.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.index);
+                    if (message.diffId != null && Object.hasOwnProperty.call(message, "diffId"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.diffId);
+                    if (message.command != null && Object.hasOwnProperty.call(message, "command"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.command);
+                    if (message.baseImages != null && message.baseImages.length)
+                        for (var i = 0; i < message.baseImages.length; ++i)
+                            $root.grafeas.v1.BaseImage.encode(message.baseImages[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    if (message.chainId != null && Object.hasOwnProperty.call(message, "chainId"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.chainId);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified LayerDetails message, length delimited. Does not implicitly {@link grafeas.v1.LayerDetails.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {grafeas.v1.ILayerDetails} message LayerDetails message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                LayerDetails.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a LayerDetails message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.LayerDetails} LayerDetails
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                LayerDetails.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.LayerDetails();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.index = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.diffId = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.chainId = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.command = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                if (!(message.baseImages && message.baseImages.length))
+                                    message.baseImages = [];
+                                message.baseImages.push($root.grafeas.v1.BaseImage.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a LayerDetails message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.LayerDetails} LayerDetails
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                LayerDetails.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a LayerDetails message.
+                 * @function verify
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                LayerDetails.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.index != null && message.hasOwnProperty("index"))
+                        if (!$util.isInteger(message.index))
+                            return "index: integer expected";
+                    if (message.diffId != null && message.hasOwnProperty("diffId"))
+                        if (!$util.isString(message.diffId))
+                            return "diffId: string expected";
+                    if (message.chainId != null && message.hasOwnProperty("chainId"))
+                        if (!$util.isString(message.chainId))
+                            return "chainId: string expected";
+                    if (message.command != null && message.hasOwnProperty("command"))
+                        if (!$util.isString(message.command))
+                            return "command: string expected";
+                    if (message.baseImages != null && message.hasOwnProperty("baseImages")) {
+                        if (!Array.isArray(message.baseImages))
+                            return "baseImages: array expected";
+                        for (var i = 0; i < message.baseImages.length; ++i) {
+                            var error = $root.grafeas.v1.BaseImage.verify(message.baseImages[i]);
+                            if (error)
+                                return "baseImages." + error;
+                        }
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates a LayerDetails message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.LayerDetails} LayerDetails
+                 */
+                LayerDetails.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.LayerDetails)
+                        return object;
+                    var message = new $root.grafeas.v1.LayerDetails();
+                    if (object.index != null)
+                        message.index = object.index | 0;
+                    if (object.diffId != null)
+                        message.diffId = String(object.diffId);
+                    if (object.chainId != null)
+                        message.chainId = String(object.chainId);
+                    if (object.command != null)
+                        message.command = String(object.command);
+                    if (object.baseImages) {
+                        if (!Array.isArray(object.baseImages))
+                            throw TypeError(".grafeas.v1.LayerDetails.baseImages: array expected");
+                        message.baseImages = [];
+                        for (var i = 0; i < object.baseImages.length; ++i) {
+                            if (typeof object.baseImages[i] !== "object")
+                                throw TypeError(".grafeas.v1.LayerDetails.baseImages: object expected");
+                            message.baseImages[i] = $root.grafeas.v1.BaseImage.fromObject(object.baseImages[i]);
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a LayerDetails message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {grafeas.v1.LayerDetails} message LayerDetails
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                LayerDetails.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.baseImages = [];
+                    if (options.defaults) {
+                        object.index = 0;
+                        object.diffId = "";
+                        object.command = "";
+                        object.chainId = "";
+                    }
+                    if (message.index != null && message.hasOwnProperty("index"))
+                        object.index = message.index;
+                    if (message.diffId != null && message.hasOwnProperty("diffId"))
+                        object.diffId = message.diffId;
+                    if (message.command != null && message.hasOwnProperty("command"))
+                        object.command = message.command;
+                    if (message.baseImages && message.baseImages.length) {
+                        object.baseImages = [];
+                        for (var j = 0; j < message.baseImages.length; ++j)
+                            object.baseImages[j] = $root.grafeas.v1.BaseImage.toObject(message.baseImages[j], options);
+                    }
+                    if (message.chainId != null && message.hasOwnProperty("chainId"))
+                        object.chainId = message.chainId;
+                    return object;
+                };
+    
+                /**
+                 * Converts this LayerDetails to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.LayerDetails
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                LayerDetails.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for LayerDetails
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.LayerDetails
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                LayerDetails.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.LayerDetails";
+                };
+    
+                return LayerDetails;
             })();
     
             v1.License = (function() {
@@ -2279,12 +2900,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                License.decode = function decode(reader, length) {
+                License.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.License();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.expression = reader.string();
@@ -2506,12 +3129,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Digest.decode = function decode(reader, length) {
+                Digest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Digest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.algo = reader.string();
@@ -2731,12 +3356,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BuildNote.decode = function decode(reader, length) {
+                BuildNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BuildNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.builderVersion = reader.string();
@@ -2978,12 +3605,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BuildOccurrence.decode = function decode(reader, length) {
+                BuildOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BuildOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.provenance = $root.grafeas.v1.BuildProvenance.decode(reader, reader.uint32());
@@ -3298,12 +3927,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Recipe.decode = function decode(reader, length) {
+                Recipe.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Recipe();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -3626,12 +4257,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Completeness.decode = function decode(reader, length) {
+                Completeness.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Completeness();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message["arguments"] = reader.bool();
@@ -3898,12 +4531,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Metadata.decode = function decode(reader, length) {
+                Metadata.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Metadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.buildInvocationId = reader.string();
@@ -4165,12 +4800,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BuilderConfig.decode = function decode(reader, length) {
+                BuilderConfig.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BuilderConfig();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -4403,12 +5040,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                InTotoProvenance.decode = function decode(reader, length) {
+                InTotoProvenance.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoProvenance();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.builderConfig = $root.grafeas.v1.BuilderConfig.decode(reader, reader.uint32());
@@ -4744,12 +5383,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                InTotoStatement.decode = function decode(reader, length) {
+                InTotoStatement.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoStatement();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -5076,12 +5717,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Subject.decode = function decode(reader, length) {
+                Subject.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Subject(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -5360,12 +6003,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                InTotoSlsaProvenanceV1.decode = function decode(reader, length) {
+                InTotoSlsaProvenanceV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -5633,12 +6278,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaProvenanceV1.decode = function decode(reader, length) {
+                    SlsaProvenanceV1.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.SlsaProvenanceV1();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.buildDefinition = $root.grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition.decode(reader, reader.uint32());
@@ -5894,12 +6541,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    BuildDefinition.decode = function decode(reader, length) {
+                    BuildDefinition.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.buildType = reader.string();
@@ -6236,12 +6885,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ResourceDescriptor.decode = function decode(reader, length) {
+                    ResourceDescriptor.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor(), key, value;
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -6617,12 +7268,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    RunDetails.decode = function decode(reader, length) {
+                    RunDetails.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.RunDetails();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.builder = $root.grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder.decode(reader, reader.uint32());
@@ -6901,12 +7554,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ProvenanceBuilder.decode = function decode(reader, length) {
+                    ProvenanceBuilder.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder(), key, value;
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.id = reader.string();
@@ -7204,12 +7859,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    BuildMetadata.decode = function decode(reader, length) {
+                    BuildMetadata.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.invocationId = reader.string();
@@ -7480,12 +8137,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SlsaProvenance.decode = function decode(reader, length) {
+                SlsaProvenance.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.builder = $root.grafeas.v1.SlsaProvenance.SlsaBuilder.decode(reader, reader.uint32());
@@ -7796,12 +8455,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaRecipe.decode = function decode(reader, length) {
+                    SlsaRecipe.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance.SlsaRecipe();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.type = reader.string();
@@ -8094,12 +8755,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaCompleteness.decode = function decode(reader, length) {
+                    SlsaCompleteness.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance.SlsaCompleteness();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message["arguments"] = reader.bool();
@@ -8366,12 +9029,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaMetadata.decode = function decode(reader, length) {
+                    SlsaMetadata.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance.SlsaMetadata();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.buildInvocationId = reader.string();
@@ -8633,12 +9298,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaBuilder.decode = function decode(reader, length) {
+                    SlsaBuilder.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance.SlsaBuilder();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.id = reader.string();
@@ -8849,12 +9516,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Material.decode = function decode(reader, length) {
+                    Material.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenance.Material(), key, value;
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.uri = reader.string();
@@ -9158,12 +9827,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SlsaProvenanceZeroTwo.decode = function decode(reader, length) {
+                SlsaProvenanceZeroTwo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.builder = $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaBuilder.decode(reader, reader.uint32());
@@ -9459,12 +10130,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaBuilder.decode = function decode(reader, length) {
+                    SlsaBuilder.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaBuilder();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.id = reader.string();
@@ -9675,12 +10348,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaMaterial.decode = function decode(reader, length) {
+                    SlsaMaterial.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial(), key, value;
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.uri = reader.string();
@@ -9946,12 +10621,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaInvocation.decode = function decode(reader, length) {
+                    SlsaInvocation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaInvocation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.configSource = $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaConfigSource.decode(reader, reader.uint32());
@@ -10213,12 +10890,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaConfigSource.decode = function decode(reader, length) {
+                    SlsaConfigSource.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaConfigSource(), key, value;
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.uri = reader.string();
@@ -10519,12 +11198,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaMetadata.decode = function decode(reader, length) {
+                    SlsaMetadata.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaMetadata();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.buildInvocationId = reader.string();
@@ -10808,12 +11489,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SlsaCompleteness.decode = function decode(reader, length) {
+                    SlsaCompleteness.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SlsaProvenanceZeroTwo.SlsaCompleteness();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.parameters = reader.bool();
@@ -11177,12 +11860,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BuildProvenance.decode = function decode(reader, length) {
+                BuildProvenance.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BuildProvenance(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -11658,12 +12343,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Source.decode = function decode(reader, length) {
+                Source.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Source(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.artifactStorageSourceUri = reader.string();
@@ -11964,12 +12651,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileHashes.decode = function decode(reader, length) {
+                FileHashes.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.FileHashes();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.fileHash && message.fileHash.length))
@@ -12197,12 +12886,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Hash.decode = function decode(reader, length) {
+                Hash.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Hash();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -12483,12 +13174,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Command.decode = function decode(reader, length) {
+                Command.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Command();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -12815,12 +13508,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Artifact.decode = function decode(reader, length) {
+                Artifact.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Artifact();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.checksum = reader.string();
@@ -13107,12 +13802,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceContext.decode = function decode(reader, length) {
+                SourceContext.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SourceContext(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cloudRepo = $root.grafeas.v1.CloudRepoSourceContext.decode(reader, reader.uint32());
@@ -13425,12 +14122,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AliasContext.decode = function decode(reader, length) {
+                AliasContext.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.AliasContext();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.int32();
@@ -13724,12 +14423,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CloudRepoSourceContext.decode = function decode(reader, length) {
+                CloudRepoSourceContext.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.CloudRepoSourceContext();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.repoId = $root.grafeas.v1.RepoId.decode(reader, reader.uint32());
@@ -14020,12 +14721,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GerritSourceContext.decode = function decode(reader, length) {
+                GerritSourceContext.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.GerritSourceContext();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.hostUri = reader.string();
@@ -14288,12 +14991,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GitSourceContext.decode = function decode(reader, length) {
+                GitSourceContext.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.GitSourceContext();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.url = reader.string();
@@ -14529,12 +15234,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RepoId.decode = function decode(reader, length) {
+                RepoId.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.RepoId();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.projectRepoId = $root.grafeas.v1.ProjectRepoId.decode(reader, reader.uint32());
@@ -14771,12 +15478,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProjectRepoId.decode = function decode(reader, length) {
+                ProjectRepoId.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ProjectRepoId();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.projectId = reader.string();
@@ -15091,12 +15800,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ComplianceNote.decode = function decode(reader, length) {
+                ComplianceNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ComplianceNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -15431,12 +16142,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    CisBenchmark.decode = function decode(reader, length) {
+                    CisBenchmark.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ComplianceNote.CisBenchmark();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.profileLevel = reader.int32();
@@ -15711,12 +16424,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ComplianceVersion.decode = function decode(reader, length) {
+                ComplianceVersion.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ComplianceVersion();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cpeUri = reader.string();
@@ -15862,6 +16577,7 @@
                  * @interface IComplianceOccurrence
                  * @property {Array.<grafeas.v1.INonCompliantFile>|null} [nonCompliantFiles] ComplianceOccurrence nonCompliantFiles
                  * @property {string|null} [nonComplianceReason] ComplianceOccurrence nonComplianceReason
+                 * @property {grafeas.v1.IComplianceVersion|null} [version] ComplianceOccurrence version
                  */
     
                 /**
@@ -15897,6 +16613,14 @@
                 ComplianceOccurrence.prototype.nonComplianceReason = "";
     
                 /**
+                 * ComplianceOccurrence version.
+                 * @member {grafeas.v1.IComplianceVersion|null|undefined} version
+                 * @memberof grafeas.v1.ComplianceOccurrence
+                 * @instance
+                 */
+                ComplianceOccurrence.prototype.version = null;
+    
+                /**
                  * Creates a new ComplianceOccurrence instance using the specified properties.
                  * @function create
                  * @memberof grafeas.v1.ComplianceOccurrence
@@ -15925,6 +16649,8 @@
                             $root.grafeas.v1.NonCompliantFile.encode(message.nonCompliantFiles[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.nonComplianceReason != null && Object.hasOwnProperty.call(message, "nonComplianceReason"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.nonComplianceReason);
+                    if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                        $root.grafeas.v1.ComplianceVersion.encode(message.version, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     return writer;
                 };
     
@@ -15952,12 +16678,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ComplianceOccurrence.decode = function decode(reader, length) {
+                ComplianceOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ComplianceOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.nonCompliantFiles && message.nonCompliantFiles.length))
@@ -15967,6 +16695,10 @@
                             }
                         case 3: {
                                 message.nonComplianceReason = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.version = $root.grafeas.v1.ComplianceVersion.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -16016,6 +16748,11 @@
                     if (message.nonComplianceReason != null && message.hasOwnProperty("nonComplianceReason"))
                         if (!$util.isString(message.nonComplianceReason))
                             return "nonComplianceReason: string expected";
+                    if (message.version != null && message.hasOwnProperty("version")) {
+                        var error = $root.grafeas.v1.ComplianceVersion.verify(message.version);
+                        if (error)
+                            return "version." + error;
+                    }
                     return null;
                 };
     
@@ -16043,6 +16780,11 @@
                     }
                     if (object.nonComplianceReason != null)
                         message.nonComplianceReason = String(object.nonComplianceReason);
+                    if (object.version != null) {
+                        if (typeof object.version !== "object")
+                            throw TypeError(".grafeas.v1.ComplianceOccurrence.version: object expected");
+                        message.version = $root.grafeas.v1.ComplianceVersion.fromObject(object.version);
+                    }
                     return message;
                 };
     
@@ -16061,8 +16803,10 @@
                     var object = {};
                     if (options.arrays || options.defaults)
                         object.nonCompliantFiles = [];
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.nonComplianceReason = "";
+                        object.version = null;
+                    }
                     if (message.nonCompliantFiles && message.nonCompliantFiles.length) {
                         object.nonCompliantFiles = [];
                         for (var j = 0; j < message.nonCompliantFiles.length; ++j)
@@ -16070,6 +16814,8 @@
                     }
                     if (message.nonComplianceReason != null && message.hasOwnProperty("nonComplianceReason"))
                         object.nonComplianceReason = message.nonComplianceReason;
+                    if (message.version != null && message.hasOwnProperty("version"))
+                        object.version = $root.grafeas.v1.ComplianceVersion.toObject(message.version, options);
                     return object;
                 };
     
@@ -16209,12 +16955,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NonCompliantFile.decode = function decode(reader, length) {
+                NonCompliantFile.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.NonCompliantFile();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.path = reader.string();
@@ -16569,12 +17317,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CVSSv3.decode = function decode(reader, length) {
+                CVSSv3.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.CVSSv3();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.baseScore = reader.float();
@@ -17340,12 +18090,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CVSS.decode = function decode(reader, length) {
+                CVSS.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.CVSS();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.baseScore = reader.float();
@@ -18108,12 +18860,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeploymentNote.decode = function decode(reader, length) {
+                DeploymentNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DeploymentNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.resourceUri && message.resourceUri.length))
@@ -18393,12 +19147,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeploymentOccurrence.decode = function decode(reader, length) {
+                DeploymentOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DeploymentOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.userEmail = reader.string();
@@ -18741,12 +19497,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DiscoveryNote.decode = function decode(reader, length) {
+                DiscoveryNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DiscoveryNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.analysisKind = reader.int32();
@@ -18804,6 +19562,7 @@
                         case 10:
                         case 11:
                         case 12:
+                        case 13:
                             break;
                         }
                     return null;
@@ -18880,6 +19639,10 @@
                     case 12:
                         message.analysisKind = 12;
                         break;
+                    case "SECRET":
+                    case 13:
+                        message.analysisKind = 13;
+                        break;
                     }
                     return message;
                 };
@@ -18948,6 +19711,7 @@
                  * @property {google.protobuf.ITimestamp|null} [lastScanTime] DiscoveryOccurrence lastScanTime
                  * @property {google.protobuf.ITimestamp|null} [archiveTime] DiscoveryOccurrence archiveTime
                  * @property {grafeas.v1.DiscoveryOccurrence.ISBOMStatus|null} [sbomStatus] DiscoveryOccurrence sbomStatus
+                 * @property {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation|null} [vulnerabilityAttestation] DiscoveryOccurrence vulnerabilityAttestation
                  */
     
                 /**
@@ -19039,6 +19803,14 @@
                 DiscoveryOccurrence.prototype.sbomStatus = null;
     
                 /**
+                 * DiscoveryOccurrence vulnerabilityAttestation.
+                 * @member {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation|null|undefined} vulnerabilityAttestation
+                 * @memberof grafeas.v1.DiscoveryOccurrence
+                 * @instance
+                 */
+                DiscoveryOccurrence.prototype.vulnerabilityAttestation = null;
+    
+                /**
                  * Creates a new DiscoveryOccurrence instance using the specified properties.
                  * @function create
                  * @memberof grafeas.v1.DiscoveryOccurrence
@@ -19081,6 +19853,8 @@
                             $root.google.rpc.Status.encode(message.analysisError[i], writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                     if (message.sbomStatus != null && Object.hasOwnProperty.call(message, "sbomStatus"))
                         $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus.encode(message.sbomStatus, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                    if (message.vulnerabilityAttestation != null && Object.hasOwnProperty.call(message, "vulnerabilityAttestation"))
+                        $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.encode(message.vulnerabilityAttestation, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                     return writer;
                 };
     
@@ -19108,12 +19882,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DiscoveryOccurrence.decode = function decode(reader, length) {
+                DiscoveryOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DiscoveryOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.continuousAnalysis = reader.int32();
@@ -19151,6 +19927,10 @@
                             }
                         case 9: {
                                 message.sbomStatus = $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 10: {
+                                message.vulnerabilityAttestation = $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -19246,6 +20026,11 @@
                         var error = $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus.verify(message.sbomStatus);
                         if (error)
                             return "sbomStatus." + error;
+                    }
+                    if (message.vulnerabilityAttestation != null && message.hasOwnProperty("vulnerabilityAttestation")) {
+                        var error = $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.verify(message.vulnerabilityAttestation);
+                        if (error)
+                            return "vulnerabilityAttestation." + error;
                     }
                     return null;
                 };
@@ -19355,6 +20140,11 @@
                             throw TypeError(".grafeas.v1.DiscoveryOccurrence.sbomStatus: object expected");
                         message.sbomStatus = $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus.fromObject(object.sbomStatus);
                     }
+                    if (object.vulnerabilityAttestation != null) {
+                        if (typeof object.vulnerabilityAttestation !== "object")
+                            throw TypeError(".grafeas.v1.DiscoveryOccurrence.vulnerabilityAttestation: object expected");
+                        message.vulnerabilityAttestation = $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.fromObject(object.vulnerabilityAttestation);
+                    }
                     return message;
                 };
     
@@ -19382,6 +20172,7 @@
                         object.archiveTime = null;
                         object.analysisCompleted = null;
                         object.sbomStatus = null;
+                        object.vulnerabilityAttestation = null;
                     }
                     if (message.continuousAnalysis != null && message.hasOwnProperty("continuousAnalysis"))
                         object.continuousAnalysis = options.enums === String ? $root.grafeas.v1.DiscoveryOccurrence.ContinuousAnalysis[message.continuousAnalysis] === undefined ? message.continuousAnalysis : $root.grafeas.v1.DiscoveryOccurrence.ContinuousAnalysis[message.continuousAnalysis] : message.continuousAnalysis;
@@ -19404,6 +20195,8 @@
                     }
                     if (message.sbomStatus != null && message.hasOwnProperty("sbomStatus"))
                         object.sbomStatus = $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus.toObject(message.sbomStatus, options);
+                    if (message.vulnerabilityAttestation != null && message.hasOwnProperty("vulnerabilityAttestation"))
+                        object.vulnerabilityAttestation = $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.toObject(message.vulnerabilityAttestation, options);
                     return object;
                 };
     
@@ -19560,12 +20353,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    AnalysisCompleted.decode = function decode(reader, length) {
+                    AnalysisCompleted.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.analysisType && message.analysisType.length))
@@ -19788,12 +20583,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SBOMStatus.decode = function decode(reader, length) {
+                    SBOMStatus.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DiscoveryOccurrence.SBOMStatus();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.sbomState = reader.int32();
@@ -19959,6 +20756,303 @@
                     return SBOMStatus;
                 })();
     
+                DiscoveryOccurrence.VulnerabilityAttestation = (function() {
+    
+                    /**
+                     * Properties of a VulnerabilityAttestation.
+                     * @memberof grafeas.v1.DiscoveryOccurrence
+                     * @interface IVulnerabilityAttestation
+                     * @property {google.protobuf.ITimestamp|null} [lastAttemptTime] VulnerabilityAttestation lastAttemptTime
+                     * @property {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState|null} [state] VulnerabilityAttestation state
+                     * @property {string|null} [error] VulnerabilityAttestation error
+                     */
+    
+                    /**
+                     * Constructs a new VulnerabilityAttestation.
+                     * @memberof grafeas.v1.DiscoveryOccurrence
+                     * @classdesc Represents a VulnerabilityAttestation.
+                     * @implements IVulnerabilityAttestation
+                     * @constructor
+                     * @param {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation=} [properties] Properties to set
+                     */
+                    function VulnerabilityAttestation(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+    
+                    /**
+                     * VulnerabilityAttestation lastAttemptTime.
+                     * @member {google.protobuf.ITimestamp|null|undefined} lastAttemptTime
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @instance
+                     */
+                    VulnerabilityAttestation.prototype.lastAttemptTime = null;
+    
+                    /**
+                     * VulnerabilityAttestation state.
+                     * @member {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState} state
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @instance
+                     */
+                    VulnerabilityAttestation.prototype.state = 0;
+    
+                    /**
+                     * VulnerabilityAttestation error.
+                     * @member {string} error
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @instance
+                     */
+                    VulnerabilityAttestation.prototype.error = "";
+    
+                    /**
+                     * Creates a new VulnerabilityAttestation instance using the specified properties.
+                     * @function create
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation=} [properties] Properties to set
+                     * @returns {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation} VulnerabilityAttestation instance
+                     */
+                    VulnerabilityAttestation.create = function create(properties) {
+                        return new VulnerabilityAttestation(properties);
+                    };
+    
+                    /**
+                     * Encodes the specified VulnerabilityAttestation message. Does not implicitly {@link grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.verify|verify} messages.
+                     * @function encode
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation} message VulnerabilityAttestation message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    VulnerabilityAttestation.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.lastAttemptTime != null && Object.hasOwnProperty.call(message, "lastAttemptTime"))
+                            $root.google.protobuf.Timestamp.encode(message.lastAttemptTime, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.state);
+                        if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+                            writer.uint32(/* id 3, wireType 2 =*/26).string(message.error);
+                        return writer;
+                    };
+    
+                    /**
+                     * Encodes the specified VulnerabilityAttestation message, length delimited. Does not implicitly {@link grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {grafeas.v1.DiscoveryOccurrence.IVulnerabilityAttestation} message VulnerabilityAttestation message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    VulnerabilityAttestation.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+    
+                    /**
+                     * Decodes a VulnerabilityAttestation message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation} VulnerabilityAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    VulnerabilityAttestation.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.lastAttemptTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                }
+                            case 2: {
+                                    message.state = reader.int32();
+                                    break;
+                                }
+                            case 3: {
+                                    message.error = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+    
+                    /**
+                     * Decodes a VulnerabilityAttestation message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation} VulnerabilityAttestation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    VulnerabilityAttestation.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+    
+                    /**
+                     * Verifies a VulnerabilityAttestation message.
+                     * @function verify
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    VulnerabilityAttestation.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.lastAttemptTime != null && message.hasOwnProperty("lastAttemptTime")) {
+                            var error = $root.google.protobuf.Timestamp.verify(message.lastAttemptTime);
+                            if (error)
+                                return "lastAttemptTime." + error;
+                        }
+                        if (message.state != null && message.hasOwnProperty("state"))
+                            switch (message.state) {
+                            default:
+                                return "state: enum value expected";
+                            case 0:
+                            case 1:
+                            case 2:
+                                break;
+                            }
+                        if (message.error != null && message.hasOwnProperty("error"))
+                            if (!$util.isString(message.error))
+                                return "error: string expected";
+                        return null;
+                    };
+    
+                    /**
+                     * Creates a VulnerabilityAttestation message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation} VulnerabilityAttestation
+                     */
+                    VulnerabilityAttestation.fromObject = function fromObject(object) {
+                        if (object instanceof $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation)
+                            return object;
+                        var message = new $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation();
+                        if (object.lastAttemptTime != null) {
+                            if (typeof object.lastAttemptTime !== "object")
+                                throw TypeError(".grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.lastAttemptTime: object expected");
+                            message.lastAttemptTime = $root.google.protobuf.Timestamp.fromObject(object.lastAttemptTime);
+                        }
+                        switch (object.state) {
+                        default:
+                            if (typeof object.state === "number") {
+                                message.state = object.state;
+                                break;
+                            }
+                            break;
+                        case "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED":
+                        case 0:
+                            message.state = 0;
+                            break;
+                        case "SUCCESS":
+                        case 1:
+                            message.state = 1;
+                            break;
+                        case "FAILURE":
+                        case 2:
+                            message.state = 2;
+                            break;
+                        }
+                        if (object.error != null)
+                            message.error = String(object.error);
+                        return message;
+                    };
+    
+                    /**
+                     * Creates a plain object from a VulnerabilityAttestation message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation} message VulnerabilityAttestation
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    VulnerabilityAttestation.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.lastAttemptTime = null;
+                            object.state = options.enums === String ? "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED" : 0;
+                            object.error = "";
+                        }
+                        if (message.lastAttemptTime != null && message.hasOwnProperty("lastAttemptTime"))
+                            object.lastAttemptTime = $root.google.protobuf.Timestamp.toObject(message.lastAttemptTime, options);
+                        if (message.state != null && message.hasOwnProperty("state"))
+                            object.state = options.enums === String ? $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState[message.state] === undefined ? message.state : $root.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState[message.state] : message.state;
+                        if (message.error != null && message.hasOwnProperty("error"))
+                            object.error = message.error;
+                        return object;
+                    };
+    
+                    /**
+                     * Converts this VulnerabilityAttestation to JSON.
+                     * @function toJSON
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    VulnerabilityAttestation.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+    
+                    /**
+                     * Gets the default type url for VulnerabilityAttestation
+                     * @function getTypeUrl
+                     * @memberof grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    VulnerabilityAttestation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation";
+                    };
+    
+                    /**
+                     * VulnerabilityAttestationState enum.
+                     * @name grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState
+                     * @enum {number}
+                     * @property {number} VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED=0 VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED value
+                     * @property {number} SUCCESS=1 SUCCESS value
+                     * @property {number} FAILURE=2 FAILURE value
+                     */
+                    VulnerabilityAttestation.VulnerabilityAttestationState = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "SUCCESS"] = 1;
+                        values[valuesById[2] = "FAILURE"] = 2;
+                        return values;
+                    })();
+    
+                    return VulnerabilityAttestation;
+                })();
+    
                 return DiscoveryOccurrence;
             })();
     
@@ -20047,12 +21141,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DSSEAttestationNote.decode = function decode(reader, length) {
+                DSSEAttestationNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DSSEAttestationNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.hint = $root.grafeas.v1.DSSEAttestationNote.DSSEHint.decode(reader, reader.uint32());
@@ -20252,12 +21348,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    DSSEHint.decode = function decode(reader, length) {
+                    DSSEHint.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DSSEAttestationNote.DSSEHint();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.humanReadableName = reader.string();
@@ -20483,12 +21581,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DSSEAttestationOccurrence.decode = function decode(reader, length) {
+                DSSEAttestationOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DSSEAttestationOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.envelope = $root.grafeas.v1.Envelope.decode(reader, reader.uint32());
@@ -21150,6 +22250,7 @@
                  * @property {grafeas.v1.IComplianceOccurrence|null} [compliance] Occurrence compliance
                  * @property {grafeas.v1.IDSSEAttestationOccurrence|null} [dsseAttestation] Occurrence dsseAttestation
                  * @property {grafeas.v1.ISBOMReferenceOccurrence|null} [sbomReference] Occurrence sbomReference
+                 * @property {grafeas.v1.ISecretOccurrence|null} [secret] Occurrence secret
                  * @property {grafeas.v1.IEnvelope|null} [envelope] Occurrence envelope
                  */
     
@@ -21313,6 +22414,14 @@
                 Occurrence.prototype.sbomReference = null;
     
                 /**
+                 * Occurrence secret.
+                 * @member {grafeas.v1.ISecretOccurrence|null|undefined} secret
+                 * @memberof grafeas.v1.Occurrence
+                 * @instance
+                 */
+                Occurrence.prototype.secret = null;
+    
+                /**
                  * Occurrence envelope.
                  * @member {grafeas.v1.IEnvelope|null|undefined} envelope
                  * @memberof grafeas.v1.Occurrence
@@ -21325,12 +22434,12 @@
     
                 /**
                  * Occurrence details.
-                 * @member {"vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"sbomReference"|undefined} details
+                 * @member {"vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"sbomReference"|"secret"|undefined} details
                  * @memberof grafeas.v1.Occurrence
                  * @instance
                  */
                 Object.defineProperty(Occurrence.prototype, "details", {
-                    get: $util.oneOfGetter($oneOfFields = ["vulnerability", "build", "image", "package", "deployment", "discovery", "attestation", "upgrade", "compliance", "dsseAttestation", "sbomReference"]),
+                    get: $util.oneOfGetter($oneOfFields = ["vulnerability", "build", "image", "package", "deployment", "discovery", "attestation", "upgrade", "compliance", "dsseAttestation", "sbomReference", "secret"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
     
@@ -21396,6 +22505,8 @@
                         $root.grafeas.v1.Envelope.encode(message.envelope, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
                     if (message.sbomReference != null && Object.hasOwnProperty.call(message, "sbomReference"))
                         $root.grafeas.v1.SBOMReferenceOccurrence.encode(message.sbomReference, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+                    if (message.secret != null && Object.hasOwnProperty.call(message, "secret"))
+                        $root.grafeas.v1.SecretOccurrence.encode(message.secret, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
                     return writer;
                 };
     
@@ -21423,12 +22534,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Occurrence.decode = function decode(reader, length) {
+                Occurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Occurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -21502,6 +22615,10 @@
                                 message.sbomReference = $root.grafeas.v1.SBOMReferenceOccurrence.decode(reader, reader.uint32());
                                 break;
                             }
+                        case 20: {
+                                message.secret = $root.grafeas.v1.SecretOccurrence.decode(reader, reader.uint32());
+                                break;
+                            }
                         case 18: {
                                 message.envelope = $root.grafeas.v1.Envelope.decode(reader, reader.uint32());
                                 break;
@@ -21568,6 +22685,7 @@
                         case 10:
                         case 11:
                         case 12:
+                        case 13:
                             break;
                         }
                     if (message.remediation != null && message.hasOwnProperty("remediation"))
@@ -21691,6 +22809,16 @@
                                 return "sbomReference." + error;
                         }
                     }
+                    if (message.secret != null && message.hasOwnProperty("secret")) {
+                        if (properties.details === 1)
+                            return "details: multiple values";
+                        properties.details = 1;
+                        {
+                            var error = $root.grafeas.v1.SecretOccurrence.verify(message.secret);
+                            if (error)
+                                return "secret." + error;
+                        }
+                    }
                     if (message.envelope != null && message.hasOwnProperty("envelope")) {
                         var error = $root.grafeas.v1.Envelope.verify(message.envelope);
                         if (error)
@@ -21776,6 +22904,10 @@
                     case 12:
                         message.kind = 12;
                         break;
+                    case "SECRET":
+                    case 13:
+                        message.kind = 13;
+                        break;
                     }
                     if (object.remediation != null)
                         message.remediation = String(object.remediation);
@@ -21843,6 +22975,11 @@
                         if (typeof object.sbomReference !== "object")
                             throw TypeError(".grafeas.v1.Occurrence.sbomReference: object expected");
                         message.sbomReference = $root.grafeas.v1.SBOMReferenceOccurrence.fromObject(object.sbomReference);
+                    }
+                    if (object.secret != null) {
+                        if (typeof object.secret !== "object")
+                            throw TypeError(".grafeas.v1.Occurrence.secret: object expected");
+                        message.secret = $root.grafeas.v1.SecretOccurrence.fromObject(object.secret);
                     }
                     if (object.envelope != null) {
                         if (typeof object.envelope !== "object")
@@ -21946,6 +23083,11 @@
                         if (options.oneofs)
                             object.details = "sbomReference";
                     }
+                    if (message.secret != null && message.hasOwnProperty("secret")) {
+                        object.secret = $root.grafeas.v1.SecretOccurrence.toObject(message.secret, options);
+                        if (options.oneofs)
+                            object.details = "secret";
+                    }
                     return object;
                 };
     
@@ -22005,6 +23147,7 @@
                  * @property {grafeas.v1.IDSSEAttestationNote|null} [dsseAttestation] Note dsseAttestation
                  * @property {grafeas.v1.IVulnerabilityAssessmentNote|null} [vulnerabilityAssessment] Note vulnerabilityAssessment
                  * @property {grafeas.v1.ISBOMReferenceNote|null} [sbomReference] Note sbomReference
+                 * @property {grafeas.v1.ISecretNote|null} [secret] Note secret
                  */
     
                 /**
@@ -22192,17 +23335,25 @@
                  */
                 Note.prototype.sbomReference = null;
     
+                /**
+                 * Note secret.
+                 * @member {grafeas.v1.ISecretNote|null|undefined} secret
+                 * @memberof grafeas.v1.Note
+                 * @instance
+                 */
+                Note.prototype.secret = null;
+    
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
     
                 /**
                  * Note type.
-                 * @member {"vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"vulnerabilityAssessment"|"sbomReference"|undefined} type
+                 * @member {"vulnerability"|"build"|"image"|"package"|"deployment"|"discovery"|"attestation"|"upgrade"|"compliance"|"dsseAttestation"|"vulnerabilityAssessment"|"sbomReference"|"secret"|undefined} type
                  * @memberof grafeas.v1.Note
                  * @instance
                  */
                 Object.defineProperty(Note.prototype, "type", {
-                    get: $util.oneOfGetter($oneOfFields = ["vulnerability", "build", "image", "package", "deployment", "discovery", "attestation", "upgrade", "compliance", "dsseAttestation", "vulnerabilityAssessment", "sbomReference"]),
+                    get: $util.oneOfGetter($oneOfFields = ["vulnerability", "build", "image", "package", "deployment", "discovery", "attestation", "upgrade", "compliance", "dsseAttestation", "vulnerabilityAssessment", "sbomReference", "secret"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
     
@@ -22274,6 +23425,8 @@
                         $root.grafeas.v1.VulnerabilityAssessmentNote.encode(message.vulnerabilityAssessment, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
                     if (message.sbomReference != null && Object.hasOwnProperty.call(message, "sbomReference"))
                         $root.grafeas.v1.SBOMReferenceNote.encode(message.sbomReference, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+                    if (message.secret != null && Object.hasOwnProperty.call(message, "secret"))
+                        $root.grafeas.v1.SecretNote.encode(message.secret, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
                     return writer;
                 };
     
@@ -22301,12 +23454,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Note.decode = function decode(reader, length) {
+                Note.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Note();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -22396,6 +23551,10 @@
                                 message.sbomReference = $root.grafeas.v1.SBOMReferenceNote.decode(reader, reader.uint32());
                                 break;
                             }
+                        case 22: {
+                                message.secret = $root.grafeas.v1.SecretNote.decode(reader, reader.uint32());
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -22458,6 +23617,7 @@
                         case 10:
                         case 11:
                         case 12:
+                        case 13:
                             break;
                         }
                     if (message.relatedUrl != null && message.hasOwnProperty("relatedUrl")) {
@@ -22609,6 +23769,16 @@
                                 return "sbomReference." + error;
                         }
                     }
+                    if (message.secret != null && message.hasOwnProperty("secret")) {
+                        if (properties.type === 1)
+                            return "type: multiple values";
+                        properties.type = 1;
+                        {
+                            var error = $root.grafeas.v1.SecretNote.verify(message.secret);
+                            if (error)
+                                return "secret." + error;
+                        }
+                    }
                     return null;
                 };
     
@@ -22688,6 +23858,10 @@
                     case "SBOM_REFERENCE":
                     case 12:
                         message.kind = 12;
+                        break;
+                    case "SECRET":
+                    case 13:
+                        message.kind = 13;
                         break;
                     }
                     if (object.relatedUrl) {
@@ -22781,6 +23955,11 @@
                         if (typeof object.sbomReference !== "object")
                             throw TypeError(".grafeas.v1.Note.sbomReference: object expected");
                         message.sbomReference = $root.grafeas.v1.SBOMReferenceNote.fromObject(object.sbomReference);
+                    }
+                    if (object.secret != null) {
+                        if (typeof object.secret !== "object")
+                            throw TypeError(".grafeas.v1.Note.secret: object expected");
+                        message.secret = $root.grafeas.v1.SecretNote.fromObject(object.secret);
                     }
                     return message;
                 };
@@ -22894,6 +24073,11 @@
                         object.sbomReference = $root.grafeas.v1.SBOMReferenceNote.toObject(message.sbomReference, options);
                         if (options.oneofs)
                             object.type = "sbomReference";
+                    }
+                    if (message.secret != null && message.hasOwnProperty("secret")) {
+                        object.secret = $root.grafeas.v1.SecretNote.toObject(message.secret, options);
+                        if (options.oneofs)
+                            object.type = "secret";
                     }
                     return object;
                 };
@@ -23012,12 +24196,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOccurrenceRequest.decode = function decode(reader, length) {
+                GetOccurrenceRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.GetOccurrenceRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -23248,12 +24434,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOccurrencesRequest.decode = function decode(reader, length) {
+                ListOccurrencesRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListOccurrencesRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -23501,12 +24689,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListOccurrencesResponse.decode = function decode(reader, length) {
+                ListOccurrencesResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListOccurrencesResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.occurrences && message.occurrences.length))
@@ -23736,12 +24926,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteOccurrenceRequest.decode = function decode(reader, length) {
+                DeleteOccurrenceRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DeleteOccurrenceRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -23950,12 +25142,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CreateOccurrenceRequest.decode = function decode(reader, length) {
+                CreateOccurrenceRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.CreateOccurrenceRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -24193,12 +25387,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UpdateOccurrenceRequest.decode = function decode(reader, length) {
+                UpdateOccurrenceRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.UpdateOccurrenceRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24431,12 +25627,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetNoteRequest.decode = function decode(reader, length) {
+                GetNoteRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.GetNoteRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24634,12 +25832,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GetOccurrenceNoteRequest.decode = function decode(reader, length) {
+                GetOccurrenceNoteRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.GetOccurrenceNoteRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -24870,12 +26070,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListNotesRequest.decode = function decode(reader, length) {
+                ListNotesRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListNotesRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -25123,12 +26325,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListNotesResponse.decode = function decode(reader, length) {
+                ListNotesResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListNotesResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.notes && message.notes.length))
@@ -25358,12 +26562,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DeleteNoteRequest.decode = function decode(reader, length) {
+                DeleteNoteRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.DeleteNoteRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -25583,12 +26789,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CreateNoteRequest.decode = function decode(reader, length) {
+                CreateNoteRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.CreateNoteRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -25838,12 +27046,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UpdateNoteRequest.decode = function decode(reader, length) {
+                UpdateNoteRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.UpdateNoteRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26109,12 +27319,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListNoteOccurrencesRequest.decode = function decode(reader, length) {
+                ListNoteOccurrencesRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListNoteOccurrencesRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -26362,12 +27574,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListNoteOccurrencesResponse.decode = function decode(reader, length) {
+                ListNoteOccurrencesResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ListNoteOccurrencesResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.occurrences && message.occurrences.length))
@@ -26612,12 +27826,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BatchCreateNotesRequest.decode = function decode(reader, length) {
+                BatchCreateNotesRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BatchCreateNotesRequest(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -26868,12 +28084,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BatchCreateNotesResponse.decode = function decode(reader, length) {
+                BatchCreateNotesResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BatchCreateNotesResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.notes && message.notes.length))
@@ -27103,12 +28321,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BatchCreateOccurrencesRequest.decode = function decode(reader, length) {
+                BatchCreateOccurrencesRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BatchCreateOccurrencesRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.parent = reader.string();
@@ -27340,12 +28560,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BatchCreateOccurrencesResponse.decode = function decode(reader, length) {
+                BatchCreateOccurrencesResponse.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.BatchCreateOccurrencesResponse();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.occurrences && message.occurrences.length))
@@ -27573,12 +28795,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Layer.decode = function decode(reader, length) {
+                Layer.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Layer();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.directive = reader.string();
@@ -27813,12 +29037,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Fingerprint.decode = function decode(reader, length) {
+                Fingerprint.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Fingerprint();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.v1Name = reader.string();
@@ -28067,12 +29293,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ImageNote.decode = function decode(reader, length) {
+                ImageNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ImageNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.resourceUrl = reader.string();
@@ -28323,12 +29551,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ImageOccurrence.decode = function decode(reader, length) {
+                ImageOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.ImageOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fingerprint = $root.grafeas.v1.Fingerprint.decode(reader, reader.uint32());
@@ -28659,12 +29889,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Distribution.decode = function decode(reader, length) {
+                Distribution.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Distribution();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cpeUri = reader.string();
@@ -28974,12 +30206,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Location.decode = function decode(reader, length) {
+                Location.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Location();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cpeUri = reader.string();
@@ -29321,12 +30555,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PackageNote.decode = function decode(reader, length) {
+                PackageNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.PackageNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -29787,12 +31023,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PackageOccurrence.decode = function decode(reader, length) {
+                PackageOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.PackageOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -30172,12 +31410,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Version.decode = function decode(reader, length) {
+                Version.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.Version();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.epoch = reader.int32();
@@ -30494,12 +31734,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SBOMReferenceNote.decode = function decode(reader, length) {
+                SBOMReferenceNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SBOMReferenceNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.format = reader.string();
@@ -30734,12 +31976,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SBOMReferenceOccurrence.decode = function decode(reader, length) {
+                SBOMReferenceOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SBOMReferenceOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.payload = $root.grafeas.v1.SbomReferenceIntotoPayload.decode(reader, reader.uint32());
@@ -31022,12 +32266,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SbomReferenceIntotoPayload.decode = function decode(reader, length) {
+                SbomReferenceIntotoPayload.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SbomReferenceIntotoPayload();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -31322,12 +32568,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SbomReferenceIntotoPredicate.decode = function decode(reader, length) {
+                SbomReferenceIntotoPredicate.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SbomReferenceIntotoPredicate(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referrerId = reader.string();
@@ -31511,6 +32759,1051 @@
                 return SbomReferenceIntotoPredicate;
             })();
     
+            v1.SecretNote = (function() {
+    
+                /**
+                 * Properties of a SecretNote.
+                 * @memberof grafeas.v1
+                 * @interface ISecretNote
+                 */
+    
+                /**
+                 * Constructs a new SecretNote.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a SecretNote.
+                 * @implements ISecretNote
+                 * @constructor
+                 * @param {grafeas.v1.ISecretNote=} [properties] Properties to set
+                 */
+                function SecretNote(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Creates a new SecretNote instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {grafeas.v1.ISecretNote=} [properties] Properties to set
+                 * @returns {grafeas.v1.SecretNote} SecretNote instance
+                 */
+                SecretNote.create = function create(properties) {
+                    return new SecretNote(properties);
+                };
+    
+                /**
+                 * Encodes the specified SecretNote message. Does not implicitly {@link grafeas.v1.SecretNote.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {grafeas.v1.ISecretNote} message SecretNote message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretNote.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified SecretNote message, length delimited. Does not implicitly {@link grafeas.v1.SecretNote.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {grafeas.v1.ISecretNote} message SecretNote message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretNote.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a SecretNote message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.SecretNote} SecretNote
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretNote.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SecretNote();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a SecretNote message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.SecretNote} SecretNote
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretNote.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a SecretNote message.
+                 * @function verify
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SecretNote.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a SecretNote message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.SecretNote} SecretNote
+                 */
+                SecretNote.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.SecretNote)
+                        return object;
+                    return new $root.grafeas.v1.SecretNote();
+                };
+    
+                /**
+                 * Creates a plain object from a SecretNote message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {grafeas.v1.SecretNote} message SecretNote
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SecretNote.toObject = function toObject() {
+                    return {};
+                };
+    
+                /**
+                 * Converts this SecretNote to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.SecretNote
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SecretNote.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for SecretNote
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.SecretNote
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SecretNote.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.SecretNote";
+                };
+    
+                return SecretNote;
+            })();
+    
+            v1.SecretOccurrence = (function() {
+    
+                /**
+                 * Properties of a SecretOccurrence.
+                 * @memberof grafeas.v1
+                 * @interface ISecretOccurrence
+                 * @property {grafeas.v1.SecretKind|null} [kind] SecretOccurrence kind
+                 * @property {Array.<grafeas.v1.ISecretLocation>|null} [locations] SecretOccurrence locations
+                 * @property {Array.<grafeas.v1.ISecretStatus>|null} [statuses] SecretOccurrence statuses
+                 */
+    
+                /**
+                 * Constructs a new SecretOccurrence.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a SecretOccurrence.
+                 * @implements ISecretOccurrence
+                 * @constructor
+                 * @param {grafeas.v1.ISecretOccurrence=} [properties] Properties to set
+                 */
+                function SecretOccurrence(properties) {
+                    this.locations = [];
+                    this.statuses = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * SecretOccurrence kind.
+                 * @member {grafeas.v1.SecretKind} kind
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @instance
+                 */
+                SecretOccurrence.prototype.kind = 0;
+    
+                /**
+                 * SecretOccurrence locations.
+                 * @member {Array.<grafeas.v1.ISecretLocation>} locations
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @instance
+                 */
+                SecretOccurrence.prototype.locations = $util.emptyArray;
+    
+                /**
+                 * SecretOccurrence statuses.
+                 * @member {Array.<grafeas.v1.ISecretStatus>} statuses
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @instance
+                 */
+                SecretOccurrence.prototype.statuses = $util.emptyArray;
+    
+                /**
+                 * Creates a new SecretOccurrence instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {grafeas.v1.ISecretOccurrence=} [properties] Properties to set
+                 * @returns {grafeas.v1.SecretOccurrence} SecretOccurrence instance
+                 */
+                SecretOccurrence.create = function create(properties) {
+                    return new SecretOccurrence(properties);
+                };
+    
+                /**
+                 * Encodes the specified SecretOccurrence message. Does not implicitly {@link grafeas.v1.SecretOccurrence.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {grafeas.v1.ISecretOccurrence} message SecretOccurrence message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretOccurrence.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.kind);
+                    if (message.locations != null && message.locations.length)
+                        for (var i = 0; i < message.locations.length; ++i)
+                            $root.grafeas.v1.SecretLocation.encode(message.locations[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    if (message.statuses != null && message.statuses.length)
+                        for (var i = 0; i < message.statuses.length; ++i)
+                            $root.grafeas.v1.SecretStatus.encode(message.statuses[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified SecretOccurrence message, length delimited. Does not implicitly {@link grafeas.v1.SecretOccurrence.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {grafeas.v1.ISecretOccurrence} message SecretOccurrence message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretOccurrence.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a SecretOccurrence message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.SecretOccurrence} SecretOccurrence
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretOccurrence.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SecretOccurrence();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.kind = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                if (!(message.locations && message.locations.length))
+                                    message.locations = [];
+                                message.locations.push($root.grafeas.v1.SecretLocation.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        case 3: {
+                                if (!(message.statuses && message.statuses.length))
+                                    message.statuses = [];
+                                message.statuses.push($root.grafeas.v1.SecretStatus.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a SecretOccurrence message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.SecretOccurrence} SecretOccurrence
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretOccurrence.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a SecretOccurrence message.
+                 * @function verify
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SecretOccurrence.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.kind != null && message.hasOwnProperty("kind"))
+                        switch (message.kind) {
+                        default:
+                            return "kind: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
+                    if (message.locations != null && message.hasOwnProperty("locations")) {
+                        if (!Array.isArray(message.locations))
+                            return "locations: array expected";
+                        for (var i = 0; i < message.locations.length; ++i) {
+                            var error = $root.grafeas.v1.SecretLocation.verify(message.locations[i]);
+                            if (error)
+                                return "locations." + error;
+                        }
+                    }
+                    if (message.statuses != null && message.hasOwnProperty("statuses")) {
+                        if (!Array.isArray(message.statuses))
+                            return "statuses: array expected";
+                        for (var i = 0; i < message.statuses.length; ++i) {
+                            var error = $root.grafeas.v1.SecretStatus.verify(message.statuses[i]);
+                            if (error)
+                                return "statuses." + error;
+                        }
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates a SecretOccurrence message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.SecretOccurrence} SecretOccurrence
+                 */
+                SecretOccurrence.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.SecretOccurrence)
+                        return object;
+                    var message = new $root.grafeas.v1.SecretOccurrence();
+                    switch (object.kind) {
+                    default:
+                        if (typeof object.kind === "number") {
+                            message.kind = object.kind;
+                            break;
+                        }
+                        break;
+                    case "SECRET_KIND_UNSPECIFIED":
+                    case 0:
+                        message.kind = 0;
+                        break;
+                    case "SECRET_KIND_UNKNOWN":
+                    case 1:
+                        message.kind = 1;
+                        break;
+                    case "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY":
+                    case 2:
+                        message.kind = 2;
+                        break;
+                    }
+                    if (object.locations) {
+                        if (!Array.isArray(object.locations))
+                            throw TypeError(".grafeas.v1.SecretOccurrence.locations: array expected");
+                        message.locations = [];
+                        for (var i = 0; i < object.locations.length; ++i) {
+                            if (typeof object.locations[i] !== "object")
+                                throw TypeError(".grafeas.v1.SecretOccurrence.locations: object expected");
+                            message.locations[i] = $root.grafeas.v1.SecretLocation.fromObject(object.locations[i]);
+                        }
+                    }
+                    if (object.statuses) {
+                        if (!Array.isArray(object.statuses))
+                            throw TypeError(".grafeas.v1.SecretOccurrence.statuses: array expected");
+                        message.statuses = [];
+                        for (var i = 0; i < object.statuses.length; ++i) {
+                            if (typeof object.statuses[i] !== "object")
+                                throw TypeError(".grafeas.v1.SecretOccurrence.statuses: object expected");
+                            message.statuses[i] = $root.grafeas.v1.SecretStatus.fromObject(object.statuses[i]);
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a SecretOccurrence message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {grafeas.v1.SecretOccurrence} message SecretOccurrence
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SecretOccurrence.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults) {
+                        object.locations = [];
+                        object.statuses = [];
+                    }
+                    if (options.defaults)
+                        object.kind = options.enums === String ? "SECRET_KIND_UNSPECIFIED" : 0;
+                    if (message.kind != null && message.hasOwnProperty("kind"))
+                        object.kind = options.enums === String ? $root.grafeas.v1.SecretKind[message.kind] === undefined ? message.kind : $root.grafeas.v1.SecretKind[message.kind] : message.kind;
+                    if (message.locations && message.locations.length) {
+                        object.locations = [];
+                        for (var j = 0; j < message.locations.length; ++j)
+                            object.locations[j] = $root.grafeas.v1.SecretLocation.toObject(message.locations[j], options);
+                    }
+                    if (message.statuses && message.statuses.length) {
+                        object.statuses = [];
+                        for (var j = 0; j < message.statuses.length; ++j)
+                            object.statuses[j] = $root.grafeas.v1.SecretStatus.toObject(message.statuses[j], options);
+                    }
+                    return object;
+                };
+    
+                /**
+                 * Converts this SecretOccurrence to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SecretOccurrence.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for SecretOccurrence
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.SecretOccurrence
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SecretOccurrence.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.SecretOccurrence";
+                };
+    
+                return SecretOccurrence;
+            })();
+    
+            v1.SecretLocation = (function() {
+    
+                /**
+                 * Properties of a SecretLocation.
+                 * @memberof grafeas.v1
+                 * @interface ISecretLocation
+                 * @property {grafeas.v1.IFileLocation|null} [fileLocation] SecretLocation fileLocation
+                 */
+    
+                /**
+                 * Constructs a new SecretLocation.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a SecretLocation.
+                 * @implements ISecretLocation
+                 * @constructor
+                 * @param {grafeas.v1.ISecretLocation=} [properties] Properties to set
+                 */
+                function SecretLocation(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * SecretLocation fileLocation.
+                 * @member {grafeas.v1.IFileLocation|null|undefined} fileLocation
+                 * @memberof grafeas.v1.SecretLocation
+                 * @instance
+                 */
+                SecretLocation.prototype.fileLocation = null;
+    
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+    
+                /**
+                 * SecretLocation location.
+                 * @member {"fileLocation"|undefined} location
+                 * @memberof grafeas.v1.SecretLocation
+                 * @instance
+                 */
+                Object.defineProperty(SecretLocation.prototype, "location", {
+                    get: $util.oneOfGetter($oneOfFields = ["fileLocation"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+    
+                /**
+                 * Creates a new SecretLocation instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {grafeas.v1.ISecretLocation=} [properties] Properties to set
+                 * @returns {grafeas.v1.SecretLocation} SecretLocation instance
+                 */
+                SecretLocation.create = function create(properties) {
+                    return new SecretLocation(properties);
+                };
+    
+                /**
+                 * Encodes the specified SecretLocation message. Does not implicitly {@link grafeas.v1.SecretLocation.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {grafeas.v1.ISecretLocation} message SecretLocation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretLocation.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.fileLocation != null && Object.hasOwnProperty.call(message, "fileLocation"))
+                        $root.grafeas.v1.FileLocation.encode(message.fileLocation, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified SecretLocation message, length delimited. Does not implicitly {@link grafeas.v1.SecretLocation.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {grafeas.v1.ISecretLocation} message SecretLocation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretLocation.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a SecretLocation message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.SecretLocation} SecretLocation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretLocation.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SecretLocation();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.fileLocation = $root.grafeas.v1.FileLocation.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a SecretLocation message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.SecretLocation} SecretLocation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretLocation.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a SecretLocation message.
+                 * @function verify
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SecretLocation.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.fileLocation != null && message.hasOwnProperty("fileLocation")) {
+                        properties.location = 1;
+                        {
+                            var error = $root.grafeas.v1.FileLocation.verify(message.fileLocation);
+                            if (error)
+                                return "fileLocation." + error;
+                        }
+                    }
+                    return null;
+                };
+    
+                /**
+                 * Creates a SecretLocation message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.SecretLocation} SecretLocation
+                 */
+                SecretLocation.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.SecretLocation)
+                        return object;
+                    var message = new $root.grafeas.v1.SecretLocation();
+                    if (object.fileLocation != null) {
+                        if (typeof object.fileLocation !== "object")
+                            throw TypeError(".grafeas.v1.SecretLocation.fileLocation: object expected");
+                        message.fileLocation = $root.grafeas.v1.FileLocation.fromObject(object.fileLocation);
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a SecretLocation message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {grafeas.v1.SecretLocation} message SecretLocation
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SecretLocation.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.fileLocation != null && message.hasOwnProperty("fileLocation")) {
+                        object.fileLocation = $root.grafeas.v1.FileLocation.toObject(message.fileLocation, options);
+                        if (options.oneofs)
+                            object.location = "fileLocation";
+                    }
+                    return object;
+                };
+    
+                /**
+                 * Converts this SecretLocation to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.SecretLocation
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SecretLocation.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for SecretLocation
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.SecretLocation
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SecretLocation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.SecretLocation";
+                };
+    
+                return SecretLocation;
+            })();
+    
+            v1.SecretStatus = (function() {
+    
+                /**
+                 * Properties of a SecretStatus.
+                 * @memberof grafeas.v1
+                 * @interface ISecretStatus
+                 * @property {grafeas.v1.SecretStatus.Status|null} [status] SecretStatus status
+                 * @property {google.protobuf.ITimestamp|null} [updateTime] SecretStatus updateTime
+                 * @property {string|null} [message] SecretStatus message
+                 */
+    
+                /**
+                 * Constructs a new SecretStatus.
+                 * @memberof grafeas.v1
+                 * @classdesc Represents a SecretStatus.
+                 * @implements ISecretStatus
+                 * @constructor
+                 * @param {grafeas.v1.ISecretStatus=} [properties] Properties to set
+                 */
+                function SecretStatus(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * SecretStatus status.
+                 * @member {grafeas.v1.SecretStatus.Status} status
+                 * @memberof grafeas.v1.SecretStatus
+                 * @instance
+                 */
+                SecretStatus.prototype.status = 0;
+    
+                /**
+                 * SecretStatus updateTime.
+                 * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                 * @memberof grafeas.v1.SecretStatus
+                 * @instance
+                 */
+                SecretStatus.prototype.updateTime = null;
+    
+                /**
+                 * SecretStatus message.
+                 * @member {string} message
+                 * @memberof grafeas.v1.SecretStatus
+                 * @instance
+                 */
+                SecretStatus.prototype.message = "";
+    
+                /**
+                 * Creates a new SecretStatus instance using the specified properties.
+                 * @function create
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {grafeas.v1.ISecretStatus=} [properties] Properties to set
+                 * @returns {grafeas.v1.SecretStatus} SecretStatus instance
+                 */
+                SecretStatus.create = function create(properties) {
+                    return new SecretStatus(properties);
+                };
+    
+                /**
+                 * Encodes the specified SecretStatus message. Does not implicitly {@link grafeas.v1.SecretStatus.verify|verify} messages.
+                 * @function encode
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {grafeas.v1.ISecretStatus} message SecretStatus message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretStatus.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                    if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                        $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified SecretStatus message, length delimited. Does not implicitly {@link grafeas.v1.SecretStatus.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {grafeas.v1.ISecretStatus} message SecretStatus message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SecretStatus.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a SecretStatus message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {grafeas.v1.SecretStatus} SecretStatus
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretStatus.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.SecretStatus();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.status = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 3: {
+                                message.message = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a SecretStatus message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {grafeas.v1.SecretStatus} SecretStatus
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SecretStatus.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a SecretStatus message.
+                 * @function verify
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SecretStatus.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.status != null && message.hasOwnProperty("status"))
+                        switch (message.status) {
+                        default:
+                            return "status: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            break;
+                        }
+                    if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                        var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                        if (error)
+                            return "updateTime." + error;
+                    }
+                    if (message.message != null && message.hasOwnProperty("message"))
+                        if (!$util.isString(message.message))
+                            return "message: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a SecretStatus message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {grafeas.v1.SecretStatus} SecretStatus
+                 */
+                SecretStatus.fromObject = function fromObject(object) {
+                    if (object instanceof $root.grafeas.v1.SecretStatus)
+                        return object;
+                    var message = new $root.grafeas.v1.SecretStatus();
+                    switch (object.status) {
+                    default:
+                        if (typeof object.status === "number") {
+                            message.status = object.status;
+                            break;
+                        }
+                        break;
+                    case "STATUS_UNSPECIFIED":
+                    case 0:
+                        message.status = 0;
+                        break;
+                    case "UNKNOWN":
+                    case 1:
+                        message.status = 1;
+                        break;
+                    case "VALID":
+                    case 2:
+                        message.status = 2;
+                        break;
+                    case "INVALID":
+                    case 3:
+                        message.status = 3;
+                        break;
+                    }
+                    if (object.updateTime != null) {
+                        if (typeof object.updateTime !== "object")
+                            throw TypeError(".grafeas.v1.SecretStatus.updateTime: object expected");
+                        message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                    }
+                    if (object.message != null)
+                        message.message = String(object.message);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a SecretStatus message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {grafeas.v1.SecretStatus} message SecretStatus
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SecretStatus.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.status = options.enums === String ? "STATUS_UNSPECIFIED" : 0;
+                        object.updateTime = null;
+                        object.message = "";
+                    }
+                    if (message.status != null && message.hasOwnProperty("status"))
+                        object.status = options.enums === String ? $root.grafeas.v1.SecretStatus.Status[message.status] === undefined ? message.status : $root.grafeas.v1.SecretStatus.Status[message.status] : message.status;
+                    if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                        object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                    if (message.message != null && message.hasOwnProperty("message"))
+                        object.message = message.message;
+                    return object;
+                };
+    
+                /**
+                 * Converts this SecretStatus to JSON.
+                 * @function toJSON
+                 * @memberof grafeas.v1.SecretStatus
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SecretStatus.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for SecretStatus
+                 * @function getTypeUrl
+                 * @memberof grafeas.v1.SecretStatus
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SecretStatus.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/grafeas.v1.SecretStatus";
+                };
+    
+                /**
+                 * Status enum.
+                 * @name grafeas.v1.SecretStatus.Status
+                 * @enum {number}
+                 * @property {number} STATUS_UNSPECIFIED=0 STATUS_UNSPECIFIED value
+                 * @property {number} UNKNOWN=1 UNKNOWN value
+                 * @property {number} VALID=2 VALID value
+                 * @property {number} INVALID=3 INVALID value
+                 */
+                SecretStatus.Status = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "STATUS_UNSPECIFIED"] = 0;
+                    values[valuesById[1] = "UNKNOWN"] = 1;
+                    values[valuesById[2] = "VALID"] = 2;
+                    values[valuesById[3] = "INVALID"] = 3;
+                    return values;
+                })();
+    
+                return SecretStatus;
+            })();
+    
+            /**
+             * SecretKind enum.
+             * @name grafeas.v1.SecretKind
+             * @enum {number}
+             * @property {number} SECRET_KIND_UNSPECIFIED=0 SECRET_KIND_UNSPECIFIED value
+             * @property {number} SECRET_KIND_UNKNOWN=1 SECRET_KIND_UNKNOWN value
+             * @property {number} SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY=2 SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY value
+             */
+            v1.SecretKind = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "SECRET_KIND_UNSPECIFIED"] = 0;
+                values[valuesById[1] = "SECRET_KIND_UNKNOWN"] = 1;
+                values[valuesById[2] = "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY"] = 2;
+                return values;
+            })();
+    
             v1.UpgradeNote = (function() {
     
                 /**
@@ -31631,12 +33924,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UpgradeNote.decode = function decode(reader, length) {
+                UpgradeNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.UpgradeNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message["package"] = reader.string();
@@ -31936,12 +34231,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UpgradeDistribution.decode = function decode(reader, length) {
+                UpgradeDistribution.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.UpgradeDistribution();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cpeUri = reader.string();
@@ -32261,12 +34558,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WindowsUpdate.decode = function decode(reader, length) {
+                WindowsUpdate.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.WindowsUpdate();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.identity = $root.grafeas.v1.WindowsUpdate.Identity.decode(reader, reader.uint32());
@@ -32590,12 +34889,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Identity.decode = function decode(reader, length) {
+                    Identity.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.WindowsUpdate.Identity();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.updateId = reader.string();
@@ -32817,12 +35118,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Category.decode = function decode(reader, length) {
+                    Category.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.WindowsUpdate.Category();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.categoryId = reader.string();
@@ -33069,12 +35372,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UpgradeOccurrence.decode = function decode(reader, length) {
+                UpgradeOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.UpgradeOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message["package"] = reader.string();
@@ -33390,12 +35695,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                VulnerabilityAssessmentNote.decode = function decode(reader, length) {
+                VulnerabilityAssessmentNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -33700,12 +36007,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Publisher.decode = function decode(reader, length) {
+                    Publisher.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote.Publisher();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -33964,12 +36273,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Product.decode = function decode(reader, length) {
+                    Product.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote.Product();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -34291,12 +36602,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Assessment.decode = function decode(reader, length) {
+                    Assessment.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote.Assessment();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.cve = reader.string();
@@ -34712,12 +37025,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Justification.decode = function decode(reader, length) {
+                        Justification.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote.Assessment.Justification();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.justificationType = reader.int32();
@@ -35011,12 +37326,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Remediation.decode = function decode(reader, length) {
+                        Remediation.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityAssessmentNote.Assessment.Remediation();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.remediationType = reader.int32();
@@ -35392,12 +37709,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                VulnerabilityNote.decode = function decode(reader, length) {
+                VulnerabilityNote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityNote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.cvssScore = reader.float();
@@ -35938,12 +38257,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Detail.decode = function decode(reader, length) {
+                    Detail.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityNote.Detail();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.severityName = reader.string();
@@ -36353,12 +38674,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    WindowsDetail.decode = function decode(reader, length) {
+                    WindowsDetail.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityNote.WindowsDetail();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.cpeUri = reader.string();
@@ -36621,12 +38944,14 @@
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        KnowledgeBase.decode = function decode(reader, length) {
+                        KnowledgeBase.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityNote.WindowsDetail.KnowledgeBase();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.name = reader.string();
@@ -36990,12 +39315,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                VulnerabilityOccurrence.decode = function decode(reader, length) {
+                VulnerabilityOccurrence.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityOccurrence();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -37605,12 +39932,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    PackageIssue.decode = function decode(reader, length) {
+                    PackageIssue.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityOccurrence.PackageIssue();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.affectedCpeUri = reader.string();
@@ -38069,12 +40398,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    VexAssessment.decode = function decode(reader, length) {
+                    VexAssessment.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.grafeas.v1.VulnerabilityOccurrence.VexAssessment();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.cve = reader.string();
@@ -38488,12 +40819,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Any.decode = function decode(reader, length) {
+                Any.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Any();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type_url = reader.string();
@@ -38724,12 +41057,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Timestamp.decode = function decode(reader, length) {
+                Timestamp.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -38958,12 +41293,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Struct.decode = function decode(reader, length) {
+                Struct.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Struct(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (message.fields === $util.emptyObject)
@@ -39268,12 +41605,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Value.decode = function decode(reader, length) {
+                Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.nullValue = reader.int32();
@@ -39605,12 +41944,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ListValue.decode = function decode(reader, length) {
+                ListValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ListValue();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.values && message.values.length))
@@ -39829,12 +42170,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorSet.decode = function decode(reader, length) {
+                FileDescriptorSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.file && message.file.length))
@@ -40229,12 +42572,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileDescriptorProto.decode = function decode(reader, length) {
+                FileDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -40896,12 +43241,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DescriptorProto.decode = function decode(reader, length) {
+                DescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -41381,12 +43728,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ExtensionRange.decode = function decode(reader, length) {
+                    ExtensionRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ExtensionRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -41625,12 +43974,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ReservedRange.decode = function decode(reader, length) {
+                    ReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.DescriptorProto.ReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -41881,12 +44232,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ExtensionRangeOptions.decode = function decode(reader, length) {
+                ExtensionRangeOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 999: {
                                 if (!(message.uninterpretedOption && message.uninterpretedOption.length))
@@ -42226,12 +44579,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Declaration.decode = function decode(reader, length) {
+                    Declaration.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ExtensionRangeOptions.Declaration();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.number = reader.int32();
@@ -42605,12 +44960,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldDescriptorProto.decode = function decode(reader, length) {
+                FieldDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43130,12 +45487,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofDescriptorProto.decode = function decode(reader, length) {
+                OneofDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43401,12 +45760,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumDescriptorProto.decode = function decode(reader, length) {
+                EnumDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -43720,12 +46081,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EnumReservedRange.decode = function decode(reader, length) {
+                    EnumReservedRange.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumDescriptorProto.EnumReservedRange();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.start = reader.int32();
@@ -43961,12 +46324,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueDescriptorProto.decode = function decode(reader, length) {
+                EnumValueDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -44218,12 +46583,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceDescriptorProto.decode = function decode(reader, length) {
+                ServiceDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -44526,12 +46893,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodDescriptorProto.decode = function decode(reader, length) {
+                MethodDescriptorProto.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodDescriptorProto();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -45030,12 +47399,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FileOptions.decode = function decode(reader, length) {
+                FileOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FileOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.javaPackage = reader.string();
@@ -45650,12 +48021,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageOptions.decode = function decode(reader, length) {
+                MessageOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MessageOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageSetWireFormat = reader.bool();
@@ -46098,12 +48471,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
-                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length)
                         for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
-                            writer.int32(message[".google.api.fieldBehavior"][i]);
-                        writer.ldelim();
-                    }
+                            writer.uint32(/* id 1052, wireType 0 =*/8416).int32(message[".google.api.fieldBehavior"][i]);
                     if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
                         $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
@@ -46133,12 +48503,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldOptions.decode = function decode(reader, length) {
+                FieldOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.ctype = reader.int32();
@@ -46864,12 +49236,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    EditionDefault.decode = function decode(reader, length) {
+                    EditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldOptions.EditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -47160,12 +49534,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                OneofOptions.decode = function decode(reader, length) {
+                OneofOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.OneofOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -47446,12 +49822,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumOptions.decode = function decode(reader, length) {
+                EnumOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 message.allowAlias = reader.bool();
@@ -47758,12 +50136,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                EnumValueOptions.decode = function decode(reader, length) {
+                EnumValueOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.EnumValueOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.deprecated = reader.bool();
@@ -47949,6 +50329,7 @@
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] ServiceOptions uninterpretedOption
                  * @property {string|null} [".google.api.defaultHost"] ServiceOptions .google.api.defaultHost
                  * @property {string|null} [".google.api.oauthScopes"] ServiceOptions .google.api.oauthScopes
+                 * @property {string|null} [".google.api.apiVersion"] ServiceOptions .google.api.apiVersion
                  */
     
                 /**
@@ -48008,6 +50389,14 @@
                 ServiceOptions.prototype[".google.api.oauthScopes"] = "";
     
                 /**
+                 * ServiceOptions .google.api.apiVersion.
+                 * @member {string} .google.api.apiVersion
+                 * @memberof google.protobuf.ServiceOptions
+                 * @instance
+                 */
+                ServiceOptions.prototype[".google.api.apiVersion"] = "";
+    
+                /**
                  * Creates a new ServiceOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.ServiceOptions
@@ -48042,6 +50431,8 @@
                         writer.uint32(/* id 1049, wireType 2 =*/8394).string(message[".google.api.defaultHost"]);
                     if (message[".google.api.oauthScopes"] != null && Object.hasOwnProperty.call(message, ".google.api.oauthScopes"))
                         writer.uint32(/* id 1050, wireType 2 =*/8402).string(message[".google.api.oauthScopes"]);
+                    if (message[".google.api.apiVersion"] != null && Object.hasOwnProperty.call(message, ".google.api.apiVersion"))
+                        writer.uint32(/* id 525000001, wireType 2 =*/4200000010).string(message[".google.api.apiVersion"]);
                     return writer;
                 };
     
@@ -48069,12 +50460,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ServiceOptions.decode = function decode(reader, length) {
+                ServiceOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.ServiceOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 34: {
                                 message.features = $root.google.protobuf.FeatureSet.decode(reader, reader.uint32());
@@ -48096,6 +50489,10 @@
                             }
                         case 1050: {
                                 message[".google.api.oauthScopes"] = reader.string();
+                                break;
+                            }
+                        case 525000001: {
+                                message[".google.api.apiVersion"] = reader.string();
                                 break;
                             }
                         default:
@@ -48156,6 +50553,9 @@
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         if (!$util.isString(message[".google.api.oauthScopes"]))
                             return ".google.api.oauthScopes: string expected";
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        if (!$util.isString(message[".google.api.apiVersion"]))
+                            return ".google.api.apiVersion: string expected";
                     return null;
                 };
     
@@ -48192,6 +50592,8 @@
                         message[".google.api.defaultHost"] = String(object[".google.api.defaultHost"]);
                     if (object[".google.api.oauthScopes"] != null)
                         message[".google.api.oauthScopes"] = String(object[".google.api.oauthScopes"]);
+                    if (object[".google.api.apiVersion"] != null)
+                        message[".google.api.apiVersion"] = String(object[".google.api.apiVersion"]);
                     return message;
                 };
     
@@ -48215,6 +50617,7 @@
                         object.features = null;
                         object[".google.api.defaultHost"] = "";
                         object[".google.api.oauthScopes"] = "";
+                        object[".google.api.apiVersion"] = "";
                     }
                     if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                         object.deprecated = message.deprecated;
@@ -48229,6 +50632,8 @@
                         object[".google.api.defaultHost"] = message[".google.api.defaultHost"];
                     if (message[".google.api.oauthScopes"] != null && message.hasOwnProperty(".google.api.oauthScopes"))
                         object[".google.api.oauthScopes"] = message[".google.api.oauthScopes"];
+                    if (message[".google.api.apiVersion"] != null && message.hasOwnProperty(".google.api.apiVersion"))
+                        object[".google.api.apiVersion"] = message[".google.api.apiVersion"];
                     return object;
                 };
     
@@ -48405,12 +50810,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodOptions.decode = function decode(reader, length) {
+                MethodOptions.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.MethodOptions();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 33: {
                                 message.deprecated = reader.bool();
@@ -48822,12 +51229,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                UninterpretedOption.decode = function decode(reader, length) {
+                UninterpretedOption.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.name && message.name.length))
@@ -49161,12 +51570,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NamePart.decode = function decode(reader, length) {
+                    NamePart.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.UninterpretedOption.NamePart();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.namePart = reader.string();
@@ -49437,12 +51848,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSet.decode = function decode(reader, length) {
+                FeatureSet.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSet();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fieldPresence = reader.int32();
@@ -49972,12 +52385,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FeatureSetDefaults.decode = function decode(reader, length) {
+                FeatureSetDefaults.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.defaults && message.defaults.length))
@@ -50356,12 +52771,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FeatureSetEditionDefault.decode = function decode(reader, length) {
+                    FeatureSetEditionDefault.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 3: {
                                     message.edition = reader.int32();
@@ -50646,12 +53063,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SourceCodeInfo.decode = function decode(reader, length) {
+                SourceCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.location && message.location.length))
@@ -50921,12 +53340,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Location.decode = function decode(reader, length) {
+                    Location.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.SourceCodeInfo.Location();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -51232,12 +53653,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GeneratedCodeInfo.decode = function decode(reader, length) {
+                GeneratedCodeInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.annotation && message.annotation.length))
@@ -51500,12 +53923,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    Annotation.decode = function decode(reader, length) {
+                    Annotation.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.GeneratedCodeInfo.Annotation();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     if (!(message.path && message.path.length))
@@ -51826,12 +54251,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Duration.decode = function decode(reader, length) {
+                Duration.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Duration();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.seconds = reader.int64();
@@ -52045,12 +54472,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Empty.decode = function decode(reader, length) {
+                Empty.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         default:
                             reader.skipType(tag & 7);
@@ -52233,12 +54662,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FieldMask.decode = function decode(reader, length) {
+                FieldMask.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.FieldMask();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.paths && message.paths.length))
@@ -52503,12 +54934,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Http.decode = function decode(reader, length) {
+                Http.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Http();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.rules && message.rules.length))
@@ -52853,12 +55286,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HttpRule.decode = function decode(reader, length) {
+                HttpRule.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.HttpRule();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -53237,12 +55672,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomHttpPattern.decode = function decode(reader, length) {
+                CustomHttpPattern.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CustomHttpPattern();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.kind = reader.string();
@@ -53469,12 +55906,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CommonLanguageSettings.decode = function decode(reader, length) {
+                CommonLanguageSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CommonLanguageSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.referenceDocsUri = reader.string();
@@ -53838,12 +56277,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ClientLibrarySettings.decode = function decode(reader, length) {
+                ClientLibrarySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ClientLibrarySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.version = reader.string();
@@ -54182,6 +56623,7 @@
                  * @property {google.api.ClientLibraryOrganization|null} [organization] Publishing organization
                  * @property {Array.<google.api.IClientLibrarySettings>|null} [librarySettings] Publishing librarySettings
                  * @property {string|null} [protoReferenceDocumentationUri] Publishing protoReferenceDocumentationUri
+                 * @property {string|null} [restReferenceDocumentationUri] Publishing restReferenceDocumentationUri
                  */
     
                 /**
@@ -54283,6 +56725,14 @@
                 Publishing.prototype.protoReferenceDocumentationUri = "";
     
                 /**
+                 * Publishing restReferenceDocumentationUri.
+                 * @member {string} restReferenceDocumentationUri
+                 * @memberof google.api.Publishing
+                 * @instance
+                 */
+                Publishing.prototype.restReferenceDocumentationUri = "";
+    
+                /**
                  * Creates a new Publishing instance using the specified properties.
                  * @function create
                  * @memberof google.api.Publishing
@@ -54329,6 +56779,8 @@
                             $root.google.api.ClientLibrarySettings.encode(message.librarySettings[i], writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
                     if (message.protoReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "protoReferenceDocumentationUri"))
                         writer.uint32(/* id 110, wireType 2 =*/882).string(message.protoReferenceDocumentationUri);
+                    if (message.restReferenceDocumentationUri != null && Object.hasOwnProperty.call(message, "restReferenceDocumentationUri"))
+                        writer.uint32(/* id 111, wireType 2 =*/890).string(message.restReferenceDocumentationUri);
                     return writer;
                 };
     
@@ -54356,12 +56808,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Publishing.decode = function decode(reader, length) {
+                Publishing.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.Publishing();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 2: {
                                 if (!(message.methodSettings && message.methodSettings.length))
@@ -54407,6 +56861,10 @@
                             }
                         case 110: {
                                 message.protoReferenceDocumentationUri = reader.string();
+                                break;
+                            }
+                        case 111: {
+                                message.restReferenceDocumentationUri = reader.string();
                                 break;
                             }
                         default:
@@ -54501,6 +56959,9 @@
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         if (!$util.isString(message.protoReferenceDocumentationUri))
                             return "protoReferenceDocumentationUri: string expected";
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        if (!$util.isString(message.restReferenceDocumentationUri))
+                            return "restReferenceDocumentationUri: string expected";
                     return null;
                 };
     
@@ -54595,6 +57056,8 @@
                     }
                     if (object.protoReferenceDocumentationUri != null)
                         message.protoReferenceDocumentationUri = String(object.protoReferenceDocumentationUri);
+                    if (object.restReferenceDocumentationUri != null)
+                        message.restReferenceDocumentationUri = String(object.restReferenceDocumentationUri);
                     return message;
                 };
     
@@ -54624,6 +57087,7 @@
                         object.docTagPrefix = "";
                         object.organization = options.enums === String ? "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" : 0;
                         object.protoReferenceDocumentationUri = "";
+                        object.restReferenceDocumentationUri = "";
                     }
                     if (message.methodSettings && message.methodSettings.length) {
                         object.methodSettings = [];
@@ -54654,6 +57118,8 @@
                     }
                     if (message.protoReferenceDocumentationUri != null && message.hasOwnProperty("protoReferenceDocumentationUri"))
                         object.protoReferenceDocumentationUri = message.protoReferenceDocumentationUri;
+                    if (message.restReferenceDocumentationUri != null && message.hasOwnProperty("restReferenceDocumentationUri"))
+                        object.restReferenceDocumentationUri = message.restReferenceDocumentationUri;
                     return object;
                 };
     
@@ -54795,12 +57261,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                JavaSettings.decode = function decode(reader, length) {
+                JavaSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.JavaSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.libraryPackage = reader.string();
@@ -55062,12 +57530,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CppSettings.decode = function decode(reader, length) {
+                CppSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.CppSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -55270,12 +57740,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PhpSettings.decode = function decode(reader, length) {
+                PhpSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PhpSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -55478,12 +57950,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PythonSettings.decode = function decode(reader, length) {
+                PythonSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.PythonSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -55686,12 +58160,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NodeSettings.decode = function decode(reader, length) {
+                NodeSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.NodeSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -55959,12 +58435,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                DotnetSettings.decode = function decode(reader, length) {
+                DotnetSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.DotnetSettings(), key, value;
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -56338,12 +58816,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RubySettings.decode = function decode(reader, length) {
+                RubySettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.RubySettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -56546,12 +59026,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                GoSettings.decode = function decode(reader, length) {
+                GoSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.GoSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.common = $root.google.api.CommonLanguageSettings.decode(reader, reader.uint32());
@@ -56778,12 +59260,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MethodSettings.decode = function decode(reader, length) {
+                MethodSettings.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selector = reader.string();
@@ -57056,12 +59540,14 @@
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LongRunning.decode = function decode(reader, length) {
+                    LongRunning.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.MethodSettings.LongRunning();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.initialPollDelay = $root.google.protobuf.Duration.decode(reader, reader.uint32());
@@ -57455,12 +59941,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceDescriptor.decode = function decode(reader, length) {
+                ResourceDescriptor.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -57850,12 +60338,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ResourceReference.decode = function decode(reader, length) {
+                ResourceReference.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.type = reader.string();
@@ -58102,12 +60592,14 @@
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Status.decode = function decode(reader, length) {
+                Status.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.code = reader.int32();

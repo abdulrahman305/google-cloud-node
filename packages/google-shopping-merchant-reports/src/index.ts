@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +16,14 @@
 // ** https://github.com/googleapis/synthtool **
 // ** All changes to this file may be overwritten. **
 
+import * as v1 from './v1';
+import * as v1alpha from './v1alpha';
 import * as v1beta from './v1beta';
 
-const ReportServiceClient = v1beta.ReportServiceClient;
-type ReportServiceClient = v1beta.ReportServiceClient;
+const ReportServiceClient = v1.ReportServiceClient;
+type ReportServiceClient = v1.ReportServiceClient;
 
-export {v1beta, ReportServiceClient};
-export default {v1beta, ReportServiceClient};
+export {v1, v1alpha, v1beta, ReportServiceClient};
+export default {v1, v1alpha, v1beta, ReportServiceClient};
 import * as protos from '../protos/protos';
 export {protos};

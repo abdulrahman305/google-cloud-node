@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,6 +34,12 @@ function main(name) {
    *  `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
    */
   // const name = 'abc123'
+  /**
+   *  Optional. If set to true, child resources of this reasoning engine will
+   *  also be deleted. Otherwise, the request will fail with FAILED_PRECONDITION
+   *  error when the reasoning engine has undeleted child resources.
+   */
+  // const force = true
 
   // Imports the Aiplatform library
   const {ReasoningEngineServiceClient} = require('@google-cloud/aiplatform').v1beta1;

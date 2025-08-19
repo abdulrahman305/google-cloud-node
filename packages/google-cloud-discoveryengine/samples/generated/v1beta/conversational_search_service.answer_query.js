@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,6 +57,10 @@ function main(servingConfig, query) {
    */
   // const relatedQuestionsSpec = {}
   /**
+   *  Optional. Grounding specification.
+   */
+  // const groundingSpec = {}
+  /**
    *  Answer generation specification.
    */
   // const answerGenerationSpec = {}
@@ -69,17 +73,6 @@ function main(servingConfig, query) {
    */
   // const queryUnderstandingSpec = {}
   /**
-   *  Asynchronous mode control.
-   *  If enabled, the response will be returned with answer/session resource
-   *  name without final answer. The API users need to do the polling to get
-   *  the latest status of answer/session by calling
-   *  ConversationalSearchService.GetAnswer google.cloud.discoveryengine.v1beta.ConversationalSearchService.GetAnswer 
-   *  or
-   *  ConversationalSearchService.GetSession google.cloud.discoveryengine.v1beta.ConversationalSearchService.GetSession 
-   *  method.
-   */
-  // const asynchronousMode = true
-  /**
    *  A unique identifier for tracking visitors. For example, this could be
    *  implemented with an HTTP cookie, which should be able to uniquely identify
    *  a visitor on a single device. This unique identifier should not change if
@@ -89,6 +82,24 @@ function main(servingConfig, query) {
    *  characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
    */
   // const userPseudoId = 'abc123'
+  /**
+   *  The user labels applied to a resource must meet the following requirements:
+   *  * Each resource can have multiple labels, up to a maximum of 64.
+   *  * Each label must be a key-value pair.
+   *  * Keys have a minimum length of 1 character and a maximum length of 63
+   *    characters and cannot be empty. Values can be empty and have a maximum
+   *    length of 63 characters.
+   *  * Keys and values can contain only lowercase letters, numeric characters,
+   *    underscores, and dashes. All characters must use UTF-8 encoding, and
+   *    international characters are allowed.
+   *  * The key portion of a label must be unique. However, you can use the same
+   *    key with multiple resources.
+   *  * Keys must start with a lowercase letter or international character.
+   *  See Google Cloud
+   *  Document (https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+   *  for more details.
+   */
+  // const userLabels = [1,2,3,4]
 
   // Imports the Discoveryengine library
   const {ConversationalSearchServiceClient} = require('@google-cloud/discoveryengine').v1beta;

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,6 +51,7 @@ function main(parent, deliveryVehicleId, deliveryVehicle) {
   /**
    *  Required. The `DeliveryVehicle` entity to create. When creating a new
    *  delivery vehicle, you may set the following optional fields:
+   *  * type
    *  * last_location
    *  * attributes
    *  Note: The DeliveryVehicle's `name` field is ignored. All other

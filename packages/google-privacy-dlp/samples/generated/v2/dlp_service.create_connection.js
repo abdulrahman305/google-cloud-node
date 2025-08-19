@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,8 +29,13 @@ function main(parent, connection) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource name in the format:
-   *  `projects/{project}/locations/{location}`.
+   *  Required. Parent resource name.
+   *  The format of this value varies depending on the scope of the request
+   *  (project or organization):
+   *  + Projects scope:
+   *    `projects/{project_id}/locations/{location_id}`
+   *  + Organizations scope:
+   *    `organizations/{org_id}/locations/{location_id}`
    */
   // const parent = 'abc123'
   /**

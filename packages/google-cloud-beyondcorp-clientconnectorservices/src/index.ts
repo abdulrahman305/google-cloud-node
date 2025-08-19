@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,8 @@
 
 import * as v1 from './v1';
 
-const ClientConnectorServicesServiceClient =
-  v1.ClientConnectorServicesServiceClient;
-type ClientConnectorServicesServiceClient =
-  v1.ClientConnectorServicesServiceClient;
+const ClientConnectorServicesServiceClient = v1.ClientConnectorServicesServiceClient;
+type ClientConnectorServicesServiceClient = v1.ClientConnectorServicesServiceClient;
 
 export {v1, ClientConnectorServicesServiceClient};
 export default {v1, ClientConnectorServicesServiceClient};

@@ -44,7 +44,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Maps Platform Datasets API API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
+1.  [Set up authentication][auth] so you can access the
     API from your local workstation.
 
 ### Installing the client library
@@ -115,6 +115,7 @@ Samples are in the [`samples/`](https://github.com/googleapis/google-cloud-node/
 | --------------------------- | --------------------------------- | ------ |
 | Maps_platform_datasets.create_dataset | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.create_dataset.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.create_dataset.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
 | Maps_platform_datasets.delete_dataset | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.delete_dataset.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.delete_dataset.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
+| Maps_platform_datasets.fetch_dataset_errors | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.fetch_dataset_errors.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.fetch_dataset_errors.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
 | Maps_platform_datasets.get_dataset | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.get_dataset.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.get_dataset.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
 | Maps_platform_datasets.list_datasets | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.list_datasets.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.list_datasets.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
 | Maps_platform_datasets.update_dataset_metadata | [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.update_dataset_metadata.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-maps-mapsplatformdatasets/samples/generated/v1/maps_platform_datasets.update_dataset_metadata.js,packages/google-maps-mapsplatformdatasets/samples/README.md) |
@@ -195,4 +196,4 @@ See [LICENSE](https://github.com/googleapis/google-cloud-node/blob/main/LICENSE)
 [projects]: https://console.cloud.google.com/project
 [billing]: https://support.google.com/cloud/answer/6293499#enable-billing
 [enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=mapsplatformdatasets.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[auth]: https://cloud.google.com/docs/authentication/external/set-up-adc-local

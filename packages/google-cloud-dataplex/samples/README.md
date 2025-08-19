@@ -12,10 +12,12 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Catalog_service.cancel_metadata_job](#catalog_service.cancel_metadata_job)
   * [Catalog_service.create_aspect_type](#catalog_service.create_aspect_type)
   * [Catalog_service.create_entry](#catalog_service.create_entry)
   * [Catalog_service.create_entry_group](#catalog_service.create_entry_group)
   * [Catalog_service.create_entry_type](#catalog_service.create_entry_type)
+  * [Catalog_service.create_metadata_job](#catalog_service.create_metadata_job)
   * [Catalog_service.delete_aspect_type](#catalog_service.delete_aspect_type)
   * [Catalog_service.delete_entry](#catalog_service.delete_entry)
   * [Catalog_service.delete_entry_group](#catalog_service.delete_entry_group)
@@ -24,16 +26,23 @@
   * [Catalog_service.get_entry](#catalog_service.get_entry)
   * [Catalog_service.get_entry_group](#catalog_service.get_entry_group)
   * [Catalog_service.get_entry_type](#catalog_service.get_entry_type)
+  * [Catalog_service.get_metadata_job](#catalog_service.get_metadata_job)
   * [Catalog_service.list_aspect_types](#catalog_service.list_aspect_types)
   * [Catalog_service.list_entries](#catalog_service.list_entries)
   * [Catalog_service.list_entry_groups](#catalog_service.list_entry_groups)
   * [Catalog_service.list_entry_types](#catalog_service.list_entry_types)
+  * [Catalog_service.list_metadata_jobs](#catalog_service.list_metadata_jobs)
   * [Catalog_service.lookup_entry](#catalog_service.lookup_entry)
   * [Catalog_service.search_entries](#catalog_service.search_entries)
   * [Catalog_service.update_aspect_type](#catalog_service.update_aspect_type)
   * [Catalog_service.update_entry](#catalog_service.update_entry)
   * [Catalog_service.update_entry_group](#catalog_service.update_entry_group)
   * [Catalog_service.update_entry_type](#catalog_service.update_entry_type)
+  * [Cmek_service.create_encryption_config](#cmek_service.create_encryption_config)
+  * [Cmek_service.delete_encryption_config](#cmek_service.delete_encryption_config)
+  * [Cmek_service.get_encryption_config](#cmek_service.get_encryption_config)
+  * [Cmek_service.list_encryption_configs](#cmek_service.list_encryption_configs)
+  * [Cmek_service.update_encryption_config](#cmek_service.update_encryption_config)
   * [Content_service.create_content](#content_service.create_content)
   * [Content_service.delete_content](#content_service.delete_content)
   * [Content_service.get_content](#content_service.get_content)
@@ -125,6 +134,23 @@ Before running the samples, make sure you've followed the steps outlined in
 
 
 
+### Catalog_service.cancel_metadata_job
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.cancel_metadata_job.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/catalog_service.cancel_metadata_job.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.cancel_metadata_job.js`
+
+
+-----
+
+
+
+
 ### Catalog_service.create_aspect_type
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.create_aspect_type.js).
@@ -186,6 +212,23 @@ __Usage:__
 
 
 `node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.create_entry_type.js`
+
+
+-----
+
+
+
+
+### Catalog_service.create_metadata_job
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.create_metadata_job.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/catalog_service.create_metadata_job.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.create_metadata_job.js`
 
 
 -----
@@ -329,6 +372,23 @@ __Usage:__
 
 
 
+### Catalog_service.get_metadata_job
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.get_metadata_job.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/catalog_service.get_metadata_job.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.get_metadata_job.js`
+
+
+-----
+
+
+
+
 ### Catalog_service.list_aspect_types
 
 View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.list_aspect_types.js).
@@ -390,6 +450,23 @@ __Usage:__
 
 
 `node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.list_entry_types.js`
+
+
+-----
+
+
+
+
+### Catalog_service.list_metadata_jobs
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/catalog_service.list_metadata_jobs.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/catalog_service.list_metadata_jobs.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.list_metadata_jobs.js`
 
 
 -----
@@ -492,6 +569,91 @@ __Usage:__
 
 
 `node packages/google-cloud-dataplex/samples/generated/v1/catalog_service.update_entry_type.js`
+
+
+-----
+
+
+
+
+### Cmek_service.create_encryption_config
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/cmek_service.create_encryption_config.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/cmek_service.create_encryption_config.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/cmek_service.create_encryption_config.js`
+
+
+-----
+
+
+
+
+### Cmek_service.delete_encryption_config
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/cmek_service.delete_encryption_config.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/cmek_service.delete_encryption_config.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/cmek_service.delete_encryption_config.js`
+
+
+-----
+
+
+
+
+### Cmek_service.get_encryption_config
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/cmek_service.get_encryption_config.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/cmek_service.get_encryption_config.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/cmek_service.get_encryption_config.js`
+
+
+-----
+
+
+
+
+### Cmek_service.list_encryption_configs
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/cmek_service.list_encryption_configs.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/cmek_service.list_encryption_configs.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/cmek_service.list_encryption_configs.js`
+
+
+-----
+
+
+
+
+### Cmek_service.update_encryption_config
+
+View the [source code](https://github.com/googleapis/google-cloud-node/blob/main/packages/google-cloud-dataplex/samples/generated/v1/cmek_service.update_encryption_config.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-cloud-node&page=editor&open_in_editor=packages/google-cloud-dataplex/samples/generated/v1/cmek_service.update_encryption_config.js,samples/README.md)
+
+__Usage:__
+
+
+`node packages/google-cloud-dataplex/samples/generated/v1/cmek_service.update_encryption_config.js`
 
 
 -----
