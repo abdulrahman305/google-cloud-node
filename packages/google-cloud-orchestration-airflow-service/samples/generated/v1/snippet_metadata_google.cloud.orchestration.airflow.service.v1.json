@@ -1,7 +1,7 @@
 {
     "clientLibrary": {
         "name": "nodejs-service",
-        "version": "3.4.0",
+        "version": "4.3.0",
         "language": "TYPESCRIPT",
         "apis": [
             {
@@ -399,7 +399,7 @@
             "regionTag": "composer_v1_generated_Environments_ListWorkloads_async",
             "title": "Environments listWorkloads Sample",
             "origin": "API_DEFINITION",
-            "description": " Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
             "canonical": true,
             "file": "environments.list_workloads.js",
             "language": "JAVASCRIPT",
@@ -448,10 +448,54 @@
             }
         },
         {
+            "regionTag": "composer_v1_generated_Environments_CheckUpgrade_async",
+            "title": "Environments checkUpgrade Sample",
+            "origin": "API_DEFINITION",
+            "description": " Check if an upgrade operation on the environment will succeed. In case of problems detailed info can be found in the returned Operation.",
+            "canonical": true,
+            "file": "environments.check_upgrade.js",
+            "language": "JAVASCRIPT",
+            "segments": [
+                {
+                    "start": 25,
+                    "end": 79,
+                    "type": "FULL"
+                }
+            ],
+            "clientMethod": {
+                "shortName": "CheckUpgrade",
+                "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.CheckUpgrade",
+                "async": true,
+                "parameters": [
+                    {
+                        "name": "environment",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "image_version",
+                        "type": "TYPE_STRING"
+                    }
+                ],
+                "resultType": ".google.longrunning.Operation",
+                "client": {
+                    "shortName": "EnvironmentsClient",
+                    "fullName": "google.cloud.orchestration.airflow.service.v1.EnvironmentsClient"
+                },
+                "method": {
+                    "shortName": "CheckUpgrade",
+                    "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.CheckUpgrade",
+                    "service": {
+                        "shortName": "Environments",
+                        "fullName": "google.cloud.orchestration.airflow.service.v1.Environments"
+                    }
+                }
+            }
+        },
+        {
             "regionTag": "composer_v1_generated_Environments_CreateUserWorkloadsSecret_async",
             "title": "Environments createUserWorkloadsSecret Sample",
             "origin": "API_DEFINITION",
-            "description": " Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.create_user_workloads_secret.js",
             "language": "JAVASCRIPT",
@@ -495,7 +539,7 @@
             "regionTag": "composer_v1_generated_Environments_GetUserWorkloadsSecret_async",
             "title": "Environments getUserWorkloadsSecret Sample",
             "origin": "API_DEFINITION",
-            "description": " Gets an existing user workloads Secret. Values of the \"data\" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Gets an existing user workloads Secret. Values of the \"data\" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.get_user_workloads_secret.js",
             "language": "JAVASCRIPT",
@@ -535,7 +579,7 @@
             "regionTag": "composer_v1_generated_Environments_ListUserWorkloadsSecrets_async",
             "title": "Environments listUserWorkloadsSecrets Sample",
             "origin": "API_DEFINITION",
-            "description": " Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.list_user_workloads_secrets.js",
             "language": "JAVASCRIPT",
@@ -583,7 +627,7 @@
             "regionTag": "composer_v1_generated_Environments_UpdateUserWorkloadsSecret_async",
             "title": "Environments updateUserWorkloadsSecret Sample",
             "origin": "API_DEFINITION",
-            "description": " Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.update_user_workloads_secret.js",
             "language": "JAVASCRIPT",
@@ -623,7 +667,7 @@
             "regionTag": "composer_v1_generated_Environments_DeleteUserWorkloadsSecret_async",
             "title": "Environments deleteUserWorkloadsSecret Sample",
             "origin": "API_DEFINITION",
-            "description": " Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.delete_user_workloads_secret.js",
             "language": "JAVASCRIPT",
@@ -663,7 +707,7 @@
             "regionTag": "composer_v1_generated_Environments_CreateUserWorkloadsConfigMap_async",
             "title": "Environments createUserWorkloadsConfigMap Sample",
             "origin": "API_DEFINITION",
-            "description": " Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.create_user_workloads_config_map.js",
             "language": "JAVASCRIPT",
@@ -707,7 +751,7 @@
             "regionTag": "composer_v1_generated_Environments_GetUserWorkloadsConfigMap_async",
             "title": "Environments getUserWorkloadsConfigMap Sample",
             "origin": "API_DEFINITION",
-            "description": " Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.get_user_workloads_config_map.js",
             "language": "JAVASCRIPT",
@@ -747,7 +791,7 @@
             "regionTag": "composer_v1_generated_Environments_ListUserWorkloadsConfigMaps_async",
             "title": "Environments listUserWorkloadsConfigMaps Sample",
             "origin": "API_DEFINITION",
-            "description": " Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.list_user_workloads_config_maps.js",
             "language": "JAVASCRIPT",
@@ -795,7 +839,7 @@
             "regionTag": "composer_v1_generated_Environments_UpdateUserWorkloadsConfigMap_async",
             "title": "Environments updateUserWorkloadsConfigMap Sample",
             "origin": "API_DEFINITION",
-            "description": " Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.update_user_workloads_config_map.js",
             "language": "JAVASCRIPT",
@@ -835,7 +879,7 @@
             "regionTag": "composer_v1_generated_Environments_DeleteUserWorkloadsConfigMap_async",
             "title": "Environments deleteUserWorkloadsConfigMap Sample",
             "origin": "API_DEFINITION",
-            "description": " Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+            "description": " Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
             "canonical": true,
             "file": "environments.delete_user_workloads_config_map.js",
             "language": "JAVASCRIPT",

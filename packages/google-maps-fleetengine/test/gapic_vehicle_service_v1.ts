@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -208,11 +208,11 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            client.initialize().catch(err => {throw err});
             assert(client.vehicleServiceStub);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has close method for the non-initialized client', done => {
@@ -223,7 +223,7 @@ describe('v1.VehicleServiceClient', () => {
             assert.strictEqual(client.vehicleServiceStub, undefined);
             client.close().then(() => {
                 done();
-            });
+            }).catch(err => {throw err});
         });
 
         it('has getProjectId method', async () => {
@@ -265,7 +265,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateVehicleRequest()
             );
@@ -291,7 +291,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateVehicleRequest()
             );
@@ -328,7 +328,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateVehicleRequest()
             );
@@ -351,14 +351,14 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.CreateVehicleRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.createVehicle(request), expectedError);
         });
     });
@@ -369,7 +369,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetVehicleRequest()
             );
@@ -395,7 +395,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetVehicleRequest()
             );
@@ -432,7 +432,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetVehicleRequest()
             );
@@ -455,15 +455,119 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.GetVehicleRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.getVehicle(request), expectedError);
+        });
+    });
+
+    describe('deleteVehicle', () => {
+        it('invokes deleteVehicle without error', async () => {
+            const client = new vehicleserviceModule.v1.VehicleServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteVehicle = stubSimpleCall(expectedResponse);
+            const [response] = await client.deleteVehicle(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteVehicle without error using callback', async () => {
+            const client = new vehicleserviceModule.v1.VehicleServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedResponse = generateSampleMessage(
+              new protos.google.protobuf.Empty()
+            );
+            client.innerApiCalls.deleteVehicle = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.deleteVehicle(
+                    request,
+                    (err?: Error|null, result?: protos.google.protobuf.IEmpty|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            const actualRequest = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteVehicle with error', async () => {
+            const client = new vehicleserviceModule.v1.VehicleServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
+            const expectedError = new Error('expected');
+            client.innerApiCalls.deleteVehicle = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.deleteVehicle(request), expectedError);
+            const actualRequest = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[0];
+            assert.deepStrictEqual(actualRequest, request);
+            const actualHeaderRequestParams = (client.innerApiCalls.deleteVehicle as SinonStub)
+                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
+            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
+        });
+
+        it('invokes deleteVehicle with closed client', async () => {
+            const client = new vehicleserviceModule.v1.VehicleServiceClient({
+              credentials: {client_email: 'bogus', private_key: 'bogus'},
+              projectId: 'bogus',
+            });
+            await client.initialize();
+            const request = generateSampleMessage(
+              new protos.maps.fleetengine.v1.DeleteVehicleRequest()
+            );
+            // path template: {provider_id=providers/*}
+            request.name = 'providers/value';
+            const expectedError = new Error('The client has already been closed.');
+            client.close().catch(err => {throw err});
+            await assert.rejects(client.deleteVehicle(request), expectedError);
         });
     });
 
@@ -473,7 +577,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleRequest()
             );
@@ -499,7 +603,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleRequest()
             );
@@ -536,7 +640,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleRequest()
             );
@@ -559,127 +663,15 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.updateVehicle(request), expectedError);
-        });
-    });
-
-    describe('updateVehicleLocation', () => {
-        it('invokes updateVehicleLocation without error', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.UpdateVehicleLocationRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.name = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = generateSampleMessage(
-              new protos.maps.fleetengine.v1.VehicleLocation()
-            );
-            client.innerApiCalls.updateVehicleLocation = stubSimpleCall(expectedResponse);
-            const [response] = await client.updateVehicleLocation(request);
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes updateVehicleLocation without error using callback', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.UpdateVehicleLocationRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.name = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = generateSampleMessage(
-              new protos.maps.fleetengine.v1.VehicleLocation()
-            );
-            client.innerApiCalls.updateVehicleLocation = stubSimpleCallWithCallback(expectedResponse);
-            const promise = new Promise((resolve, reject) => {
-                 client.updateVehicleLocation(
-                    request,
-                    (err?: Error|null, result?: protos.maps.fleetengine.v1.IVehicleLocation|null) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(result);
-                        }
-                    });
-            });
-            const response = await promise;
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes updateVehicleLocation with error', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.UpdateVehicleLocationRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.name = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedError = new Error('expected');
-            client.innerApiCalls.updateVehicleLocation = stubSimpleCall(undefined, expectedError);
-            await assert.rejects(client.updateVehicleLocation(request), expectedError);
-            assert(stub.calledOnce);
-            const actualRequest = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.updateVehicleLocation as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes updateVehicleLocation with closed client', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.UpdateVehicleLocationRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.name = 'providers/value';
-            const expectedError = new Error('The client has already been closed.');
-            client.close();
-            await assert.rejects(client.updateVehicleLocation(request), expectedError);
-            assert(stub.calledOnce);
         });
     });
 
@@ -689,7 +681,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleAttributesRequest()
             );
@@ -715,7 +707,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleAttributesRequest()
             );
@@ -752,7 +744,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleAttributesRequest()
             );
@@ -775,14 +767,14 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.UpdateVehicleAttributesRequest()
             );
             // path template: {provider_id=providers/*}
             request.name = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.updateVehicleAttributes(request), expectedError);
         });
     });
@@ -793,7 +785,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchVehiclesRequest()
             );
@@ -819,7 +811,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchVehiclesRequest()
             );
@@ -856,7 +848,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchVehiclesRequest()
             );
@@ -879,127 +871,15 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.SearchVehiclesRequest()
             );
             // path template: {provider_id=providers/*}
             request.parent = 'providers/value';
             const expectedError = new Error('The client has already been closed.');
-            client.close();
+            client.close().catch(err => {throw err});
             await assert.rejects(client.searchVehicles(request), expectedError);
-        });
-    });
-
-    describe('searchFuzzedVehicles', () => {
-        it('invokes searchFuzzedVehicles without error', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesResponse()
-            );
-            client.innerApiCalls.searchFuzzedVehicles = stubSimpleCall(expectedResponse);
-            const [response] = await client.searchFuzzedVehicles(request);
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchFuzzedVehicles without error using callback', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedResponse = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesResponse()
-            );
-            client.innerApiCalls.searchFuzzedVehicles = stubSimpleCallWithCallback(expectedResponse);
-            const promise = new Promise((resolve, reject) => {
-                 client.searchFuzzedVehicles(
-                    request,
-                    (err?: Error|null, result?: protos.maps.fleetengine.v1.ISearchVehiclesResponse|null) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(result);
-                        }
-                    });
-            });
-            const response = await promise;
-            assert(stub.calledOnce);
-            assert.deepStrictEqual(response, expectedResponse);
-            const actualRequest = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchFuzzedVehicles with error', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedHeaderRequestParams = 'provider_id=providers%2Fvalue';
-            const expectedError = new Error('expected');
-            client.innerApiCalls.searchFuzzedVehicles = stubSimpleCall(undefined, expectedError);
-            await assert.rejects(client.searchFuzzedVehicles(request), expectedError);
-            assert(stub.calledOnce);
-            const actualRequest = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[0];
-            assert.deepStrictEqual(actualRequest, request);
-            const actualHeaderRequestParams = (client.innerApiCalls.searchFuzzedVehicles as SinonStub)
-                .getCall(0).args[1].otherArgs.headers['x-goog-request-params'];
-            assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
-        });
-
-        it('invokes searchFuzzedVehicles with closed client', async () => {
-            const client = new vehicleserviceModule.v1.VehicleServiceClient({
-              credentials: {client_email: 'bogus', private_key: 'bogus'},
-              projectId: 'bogus',
-            });
-            const stub = sinon.stub(client, 'warn');
-            client.initialize();
-            const request = generateSampleMessage(
-              new protos.maps.fleetengine.v1.SearchVehiclesRequest()
-            );
-            // path template: {provider_id=providers/*}
-            request.parent = 'providers/value';
-            const expectedError = new Error('The client has already been closed.');
-            client.close();
-            await assert.rejects(client.searchFuzzedVehicles(request), expectedError);
-            assert(stub.calledOnce);
         });
     });
 
@@ -1009,7 +889,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1036,7 +916,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1074,7 +954,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1097,7 +977,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1140,7 +1020,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1178,7 +1058,7 @@ describe('v1.VehicleServiceClient', () => {
               credentials: {client_email: 'bogus', private_key: 'bogus'},
               projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1213,7 +1093,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             const request = generateSampleMessage(
               new protos.maps.fleetengine.v1.ListVehiclesRequest()
             );
@@ -1243,7 +1123,7 @@ describe('v1.VehicleServiceClient', () => {
 
     describe('Path templates', () => {
 
-        describe('trip', () => {
+        describe('trip', async () => {
             const fakePath = "/rendered/path/trip";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1253,7 +1133,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.tripPathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.tripPathTemplate.match =
@@ -1281,7 +1161,7 @@ describe('v1.VehicleServiceClient', () => {
             });
         });
 
-        describe('vehicle', () => {
+        describe('vehicle', async () => {
             const fakePath = "/rendered/path/vehicle";
             const expectedParameters = {
                 provider: "providerValue",
@@ -1291,7 +1171,7 @@ describe('v1.VehicleServiceClient', () => {
                 credentials: {client_email: 'bogus', private_key: 'bogus'},
                 projectId: 'bogus',
             });
-            client.initialize();
+            await client.initialize();
             client.pathTemplates.vehiclePathTemplate.render =
                 sinon.stub().returns(fakePath);
             client.pathTemplates.vehiclePathTemplate.match =

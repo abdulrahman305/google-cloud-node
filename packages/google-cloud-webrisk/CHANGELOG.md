@@ -4,6 +4,65 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/web-risk?activeTab=versions
 
+## [5.3.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.2.0...web-risk-v5.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6424](https://github.com/googleapis/google-cloud-node/issues/6424)) ([9a595a6](https://github.com/googleapis/google-cloud-node/commit/9a595a658b5fc2a02a18ffbca618190eb64d8013))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [5.2.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.1.0...web-risk-v5.2.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6304](https://github.com/googleapis/google-cloud-node/issues/6304)) ([132240f](https://github.com/googleapis/google-cloud-node/commit/132240fbf6cb29b309b76c1d60f0611720590847))
+
+## [5.1.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.0.1...web-risk-v5.1.0) (2025-05-09)
+
+
+### Features
+
+* [webrisk] A new method_signature `parent,submission` is added to method `SubmitUri` in service `WebRiskService` ([#6236](https://github.com/googleapis/google-cloud-node/issues/6236)) ([03dbe6c](https://github.com/googleapis/google-cloud-node/commit/03dbe6ca245435b0ed60ae33bac202e09706df91))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [5.0.1](https://github.com/googleapis/google-cloud-node/compare/web-risk-v5.0.0...web-risk-v5.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6189](https://github.com/googleapis/google-cloud-node/issues/6189)) ([0eab6d4](https://github.com/googleapis/google-cloud-node/commit/0eab6d40a12aa7f387a4621c6611aa4cbc86e178))
+
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v4.3.1...web-risk-v5.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [4.3.1](https://github.com/googleapis/google-cloud-node/compare/web-risk-v4.3.0...web-risk-v4.3.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6019](https://github.com/googleapis/google-cloud-node/issues/6019)) ([734397c](https://github.com/googleapis/google-cloud-node/commit/734397c6b98d0aafe8832544da3f483b1eade1b2))
+
 ## [4.3.0](https://github.com/googleapis/google-cloud-node/compare/web-risk-v4.2.0...web-risk-v4.3.0) (2024-05-21)
 
 
@@ -226,160 +285,4 @@
 
 ### Features
 
-* drop node8 support ([#139](https://www.github.com/googleapis/nodejs-web-risk/issues/139)) ([f6fa067](https://www.github.com/googleapis/nodejs-web-risk/commit/f6fa067f6f45c12b58986511bb8dcba0aa1c56cb))
-
-
-### Bug Fixes
-
-* export explicit version from protos.js ([#144](https://www.github.com/googleapis/nodejs-web-risk/issues/144)) ([c6d1391](https://www.github.com/googleapis/nodejs-web-risk/commit/c6d13916395a28e0304ad3bb06cc1d597cb55a55))
-* regen protos and tests, formatting ([#157](https://www.github.com/googleapis/nodejs-web-risk/issues/157)) ([d53c859](https://www.github.com/googleapis/nodejs-web-risk/commit/d53c85997cbe5aa1d354c487614480e6a516eefa))
-* remove eslint, update gax, fix generated protos, run the generator ([#148](https://www.github.com/googleapis/nodejs-web-risk/issues/148)) ([f23b8fd](https://www.github.com/googleapis/nodejs-web-risk/commit/f23b8fd6f2952fe36c4398585eeefa78ee11360b))
-* remove unused files ([#151](https://www.github.com/googleapis/nodejs-web-risk/issues/151)) ([72134c3](https://www.github.com/googleapis/nodejs-web-risk/commit/72134c312f78bb141c9244cf9f49f23eb828252d))
-* synth.py clean up for multiple version ([#160](https://www.github.com/googleapis/nodejs-web-risk/issues/160)) ([c1d0bb7](https://www.github.com/googleapis/nodejs-web-risk/commit/c1d0bb781ff10e959217f3630eaa0872fa0d9694))
-
-## [1.7.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.6.0...v1.7.0) (2020-03-24)
-
-
-### Features
-
-* adds the v1 API surface ([#134](https://www.github.com/googleapis/nodejs-web-risk/issues/134)) ([34ca53c](https://www.github.com/googleapis/nodejs-web-risk/commit/34ca53c2fcb767874a011f9f86e9f24839398995))
-
-## [1.6.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.5.0...v1.6.0) (2020-03-06)
-
-
-### Features
-
-* deferred client initialization ([#123](https://www.github.com/googleapis/nodejs-web-risk/issues/123)) ([ebafd9f](https://www.github.com/googleapis/nodejs-web-risk/commit/ebafd9fade2cf3bd3d464e55216fcd2c57225c40))
-* export protos in src/index.ts ([4003c2c](https://www.github.com/googleapis/nodejs-web-risk/commit/4003c2cbc5a235d49e56165331fd85f58e5d9373))
-
-## [1.5.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.4.1...v1.5.0) (2020-01-30)
-
-
-### Features
-
-* bump release level to GA ([#101](https://www.github.com/googleapis/nodejs-web-risk/issues/101)) ([a3ee7c4](https://www.github.com/googleapis/nodejs-web-risk/commit/a3ee7c4eaae0864360c3c46eaa97ddb3ae3f692b))
-
-### [1.4.1](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.4.0...v1.4.1) (2020-01-28)
-
-
-### Bug Fixes
-
-* enum, bytes, and Long types now accept strings ([e832c00](https://www.github.com/googleapis/nodejs-web-risk/commit/e832c00e75ac0600d145509db5473f8787f32a3a))
-
-## [1.4.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.3.3...v1.4.0) (2020-01-04)
-
-
-### Features
-
-* move library to typescript code generation ([#83](https://www.github.com/googleapis/nodejs-web-risk/issues/83)) ([01f2db5](https://www.github.com/googleapis/nodejs-web-risk/commit/01f2db54a4124b229f7b14d52ea29e2ae4b3796b))
-
-
-### Bug Fixes
-
-* better client close() ([790b033](https://www.github.com/googleapis/nodejs-web-risk/commit/790b0339c339e5fdba83a9a181f1b5550ee6b6f9))
-
-### [1.3.3](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.3.2...v1.3.3) (2019-12-05)
-
-
-### Bug Fixes
-
-* import long type into proto ts declaration file ([#77](https://www.github.com/googleapis/nodejs-web-risk/issues/77)) ([2b15305](https://www.github.com/googleapis/nodejs-web-risk/commit/2b1530507108780089a1ce8abd3b303c09a70979))
-* **deps:** pin TypeScript below 3.7.0 ([75f591e](https://www.github.com/googleapis/nodejs-web-risk/commit/75f591ea06f8145040b5f159e9dc7b7b2251fc4d))
-
-### [1.3.2](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.3.1...v1.3.2) (2019-11-14)
-
-
-### Bug Fixes
-
-* **docs:** snippets are now replaced in jsdoc comments ([#73](https://www.github.com/googleapis/nodejs-web-risk/issues/73)) ([30ae72f](https://www.github.com/googleapis/nodejs-web-risk/commit/30ae72f3f327c8df6024479d106f01edff6363a4))
-
-### [1.3.1](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.3.0...v1.3.1) (2019-10-22)
-
-
-### Bug Fixes
-
-* **deps:** bump google-gax to 1.7.5 ([#68](https://www.github.com/googleapis/nodejs-web-risk/issues/68)) ([ecc7f6d](https://www.github.com/googleapis/nodejs-web-risk/commit/ecc7f6d7488f443b1edff545deac8a88ac730bbf))
-
-## [1.3.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.2.0...v1.3.0) (2019-10-09)
-
-
-### Bug Fixes
-
-* use compatible version of google-gax ([4bf2998](https://www.github.com/googleapis/nodejs-web-risk/commit/4bf2998))
-
-
-### Features
-
-* .d.ts for protos ([#58](https://www.github.com/googleapis/nodejs-web-risk/issues/58)) ([891da5c](https://www.github.com/googleapis/nodejs-web-risk/commit/891da5c))
-* add required field behaviors ([#67](https://www.github.com/googleapis/nodejs-web-risk/issues/67)) ([5242189](https://www.github.com/googleapis/nodejs-web-risk/commit/5242189))
-
-## [1.2.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.1.4...v1.2.0) (2019-09-16)
-
-
-### Bug Fixes
-
-* include node version with headers ([#47](https://www.github.com/googleapis/nodejs-web-risk/issues/47)) ([60b21af](https://www.github.com/googleapis/nodejs-web-risk/commit/60b21af))
-* **docs:** stop linking reference documents to anchor ([6b4d509](https://www.github.com/googleapis/nodejs-web-risk/commit/6b4d509))
-
-
-### Features
-
-* load protos from JSON, grpc-fallback support ([4a3c550](https://www.github.com/googleapis/nodejs-web-risk/commit/4a3c550))
-
-### [1.1.4](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.1.3...v1.1.4) (2019-08-02)
-
-
-### Bug Fixes
-
-* allow calls with no request, add JSON proto ([0030bcd](https://www.github.com/googleapis/nodejs-web-risk/commit/0030bcd))
-
-### [1.1.3](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.1.2...v1.1.3) (2019-06-27)
-
-
-### Bug Fixes
-
-* **docs:** link to reference docs section on googleapis.dev ([#35](https://www.github.com/googleapis/nodejs-web-risk/issues/35)) ([c5b01ba](https://www.github.com/googleapis/nodejs-web-risk/commit/c5b01ba))
-
-### [1.1.2](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.1.1...v1.1.2) (2019-06-24)
-
-
-### Bug Fixes
-
-* **build:** switch to using GitHub magic proxy ([#29](https://www.github.com/googleapis/nodejs-web-risk/issues/29)) ([876eea9](https://www.github.com/googleapis/nodejs-web-risk/commit/876eea9))
-
-### [1.1.1](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.1.0...v1.1.1) (2019-06-15)
-
-
-### Bug Fixes
-
-* **docs:** move to new client docs URL ([#27](https://www.github.com/googleapis/nodejs-web-risk/issues/27)) ([00e3b96](https://www.github.com/googleapis/nodejs-web-risk/commit/00e3b96))
-
-## [1.1.0](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.0.1...v1.1.0) (2019-06-06)
-
-
-### Features
-
-* support apiEndpoint override in client constructor ([#24](https://www.github.com/googleapis/nodejs-web-risk/issues/24)) ([0dc8cde](https://www.github.com/googleapis/nodejs-web-risk/commit/0dc8cde))
-
-### [1.0.1](https://www.github.com/googleapis/nodejs-web-risk/compare/v1.0.0...v1.0.1) (2019-05-14)
-
-
-### Bug Fixes
-
-* **deps:** update dependency google-gax to v1 ([#11](https://www.github.com/googleapis/nodejs-web-risk/issues/11)) ([ce72bb1](https://www.github.com/googleapis/nodejs-web-risk/commit/ce72bb1))
-* update package name ([#12](https://www.github.com/googleapis/nodejs-web-risk/issues/12)) ([e5fee02](https://www.github.com/googleapis/nodejs-web-risk/commit/e5fee02))
-* **deps:** update dependency google-gax to ^0.26.0 ([#8](https://www.github.com/googleapis/nodejs-web-risk/issues/8)) ([2f066da](https://www.github.com/googleapis/nodejs-web-risk/commit/2f066da))
-
-## 1.0.0 (2019-05-13)
-
-
-### Bug Fixes
-
-* DEADLINE_EXCEEDED is idempotent ([#5](https://www.github.com/googleapis/nodejs-web-risk/issues/5)) ([dfe31b9](https://www.github.com/googleapis/nodejs-web-risk/commit/dfe31b9))
-
-
-### Features
-
-* initial commit of library for review ([7a08281](https://www.github.com/googleapis/nodejs-web-risk/commit/7a08281))
-* initial generation of library ([#1](https://www.github.com/googleapis/nodejs-web-risk/issues/1)) ([adfb92f](https://www.github.com/googleapis/nodejs-web-risk/commit/adfb92f))
-* write quickstart sample and generate READMEs ([#2](https://www.github.com/googleapis/nodejs-web-risk/issues/2)) ([c2ef972](https://www.github.com/googleapis/nodejs-web-risk/commit/c2ef972))
+* drop node8 support ([#139

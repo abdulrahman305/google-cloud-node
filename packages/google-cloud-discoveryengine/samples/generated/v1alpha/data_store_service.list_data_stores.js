@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ function main(parent) {
    */
   // const pageToken = 'abc123'
   /**
-   *  Filter by solution type.
+   *  Filter by solution type .
    *  For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
    */
   // const filter = 'abc123'

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,13 +22,17 @@ export {ConversationalSearchServiceClient} from './conversational_search_service
 export {DataStoreServiceClient} from './data_store_service_client';
 export {DocumentServiceClient} from './document_service_client';
 export {EngineServiceClient} from './engine_service_client';
+export {EvaluationServiceClient} from './evaluation_service_client';
 export {GroundedGenerationServiceClient} from './grounded_generation_service_client';
 export {ProjectServiceClient} from './project_service_client';
 export {RankServiceClient} from './rank_service_client';
 export {RecommendationServiceClient} from './recommendation_service_client';
+export {SampleQueryServiceClient} from './sample_query_service_client';
+export {SampleQuerySetServiceClient} from './sample_query_set_service_client';
 export {SchemaServiceClient} from './schema_service_client';
 export {SearchServiceClient} from './search_service_client';
 export {SearchTuningServiceClient} from './search_tuning_service_client';
 export {ServingConfigServiceClient} from './serving_config_service_client';
+export {SessionServiceClient} from './session_service_client';
 export {SiteSearchEngineServiceClient} from './site_search_engine_service_client';
 export {UserEventServiceClient} from './user_event_service_client';

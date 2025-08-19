@@ -5,6 +5,216 @@
   "protoPackage": "google.cloud.networkconnectivity.v1",
   "libraryPackage": "@google-cloud/network-connectivity",
   "services": {
+    "CrossNetworkAutomationService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "CrossNetworkAutomationServiceClient",
+          "rpcs": {
+            "GetServiceConnectionMap": {
+              "methods": [
+                "getServiceConnectionMap"
+              ]
+            },
+            "GetServiceConnectionPolicy": {
+              "methods": [
+                "getServiceConnectionPolicy"
+              ]
+            },
+            "GetServiceClass": {
+              "methods": [
+                "getServiceClass"
+              ]
+            },
+            "GetServiceConnectionToken": {
+              "methods": [
+                "getServiceConnectionToken"
+              ]
+            },
+            "CreateServiceConnectionMap": {
+              "methods": [
+                "createServiceConnectionMap"
+              ]
+            },
+            "UpdateServiceConnectionMap": {
+              "methods": [
+                "updateServiceConnectionMap"
+              ]
+            },
+            "DeleteServiceConnectionMap": {
+              "methods": [
+                "deleteServiceConnectionMap"
+              ]
+            },
+            "CreateServiceConnectionPolicy": {
+              "methods": [
+                "createServiceConnectionPolicy"
+              ]
+            },
+            "UpdateServiceConnectionPolicy": {
+              "methods": [
+                "updateServiceConnectionPolicy"
+              ]
+            },
+            "DeleteServiceConnectionPolicy": {
+              "methods": [
+                "deleteServiceConnectionPolicy"
+              ]
+            },
+            "UpdateServiceClass": {
+              "methods": [
+                "updateServiceClass"
+              ]
+            },
+            "DeleteServiceClass": {
+              "methods": [
+                "deleteServiceClass"
+              ]
+            },
+            "CreateServiceConnectionToken": {
+              "methods": [
+                "createServiceConnectionToken"
+              ]
+            },
+            "DeleteServiceConnectionToken": {
+              "methods": [
+                "deleteServiceConnectionToken"
+              ]
+            },
+            "ListServiceConnectionMaps": {
+              "methods": [
+                "listServiceConnectionMaps",
+                "listServiceConnectionMapsStream",
+                "listServiceConnectionMapsAsync"
+              ]
+            },
+            "ListServiceConnectionPolicies": {
+              "methods": [
+                "listServiceConnectionPolicies",
+                "listServiceConnectionPoliciesStream",
+                "listServiceConnectionPoliciesAsync"
+              ]
+            },
+            "ListServiceClasses": {
+              "methods": [
+                "listServiceClasses",
+                "listServiceClassesStream",
+                "listServiceClassesAsync"
+              ]
+            },
+            "ListServiceConnectionTokens": {
+              "methods": [
+                "listServiceConnectionTokens",
+                "listServiceConnectionTokensStream",
+                "listServiceConnectionTokensAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "CrossNetworkAutomationServiceClient",
+          "rpcs": {
+            "GetServiceConnectionMap": {
+              "methods": [
+                "getServiceConnectionMap"
+              ]
+            },
+            "GetServiceConnectionPolicy": {
+              "methods": [
+                "getServiceConnectionPolicy"
+              ]
+            },
+            "GetServiceClass": {
+              "methods": [
+                "getServiceClass"
+              ]
+            },
+            "GetServiceConnectionToken": {
+              "methods": [
+                "getServiceConnectionToken"
+              ]
+            },
+            "CreateServiceConnectionMap": {
+              "methods": [
+                "createServiceConnectionMap"
+              ]
+            },
+            "UpdateServiceConnectionMap": {
+              "methods": [
+                "updateServiceConnectionMap"
+              ]
+            },
+            "DeleteServiceConnectionMap": {
+              "methods": [
+                "deleteServiceConnectionMap"
+              ]
+            },
+            "CreateServiceConnectionPolicy": {
+              "methods": [
+                "createServiceConnectionPolicy"
+              ]
+            },
+            "UpdateServiceConnectionPolicy": {
+              "methods": [
+                "updateServiceConnectionPolicy"
+              ]
+            },
+            "DeleteServiceConnectionPolicy": {
+              "methods": [
+                "deleteServiceConnectionPolicy"
+              ]
+            },
+            "UpdateServiceClass": {
+              "methods": [
+                "updateServiceClass"
+              ]
+            },
+            "DeleteServiceClass": {
+              "methods": [
+                "deleteServiceClass"
+              ]
+            },
+            "CreateServiceConnectionToken": {
+              "methods": [
+                "createServiceConnectionToken"
+              ]
+            },
+            "DeleteServiceConnectionToken": {
+              "methods": [
+                "deleteServiceConnectionToken"
+              ]
+            },
+            "ListServiceConnectionMaps": {
+              "methods": [
+                "listServiceConnectionMaps",
+                "listServiceConnectionMapsStream",
+                "listServiceConnectionMapsAsync"
+              ]
+            },
+            "ListServiceConnectionPolicies": {
+              "methods": [
+                "listServiceConnectionPolicies",
+                "listServiceConnectionPoliciesStream",
+                "listServiceConnectionPoliciesAsync"
+              ]
+            },
+            "ListServiceClasses": {
+              "methods": [
+                "listServiceClasses",
+                "listServiceClassesStream",
+                "listServiceClassesAsync"
+              ]
+            },
+            "ListServiceConnectionTokens": {
+              "methods": [
+                "listServiceConnectionTokens",
+                "listServiceConnectionTokensStream",
+                "listServiceConnectionTokensAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
     "HubService": {
       "clients": {
         "grpc": {
@@ -70,9 +280,24 @@
                 "acceptHubSpoke"
               ]
             },
+            "AcceptSpokeUpdate": {
+              "methods": [
+                "acceptSpokeUpdate"
+              ]
+            },
+            "RejectSpokeUpdate": {
+              "methods": [
+                "rejectSpokeUpdate"
+              ]
+            },
             "DeleteSpoke": {
               "methods": [
                 "deleteSpoke"
+              ]
+            },
+            "UpdateGroup": {
+              "methods": [
+                "updateGroup"
               ]
             },
             "ListHubs": {
@@ -87,6 +312,13 @@
                 "listHubSpokes",
                 "listHubSpokesStream",
                 "listHubSpokesAsync"
+              ]
+            },
+            "QueryHubStatus": {
+              "methods": [
+                "queryHubStatus",
+                "queryHubStatusStream",
+                "queryHubStatusAsync"
               ]
             },
             "ListSpokes": {
@@ -182,9 +414,24 @@
                 "acceptHubSpoke"
               ]
             },
+            "AcceptSpokeUpdate": {
+              "methods": [
+                "acceptSpokeUpdate"
+              ]
+            },
+            "RejectSpokeUpdate": {
+              "methods": [
+                "rejectSpokeUpdate"
+              ]
+            },
             "DeleteSpoke": {
               "methods": [
                 "deleteSpoke"
+              ]
+            },
+            "UpdateGroup": {
+              "methods": [
+                "updateGroup"
               ]
             },
             "ListHubs": {
@@ -199,6 +446,13 @@
                 "listHubSpokes",
                 "listHubSpokesStream",
                 "listHubSpokesAsync"
+              ]
+            },
+            "QueryHubStatus": {
+              "methods": [
+                "queryHubStatus",
+                "queryHubStatusStream",
+                "queryHubStatusAsync"
               ]
             },
             "ListSpokes": {
@@ -227,6 +481,74 @@
                 "listGroups",
                 "listGroupsStream",
                 "listGroupsAsync"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "InternalRangeService": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "InternalRangeServiceClient",
+          "rpcs": {
+            "GetInternalRange": {
+              "methods": [
+                "getInternalRange"
+              ]
+            },
+            "CreateInternalRange": {
+              "methods": [
+                "createInternalRange"
+              ]
+            },
+            "UpdateInternalRange": {
+              "methods": [
+                "updateInternalRange"
+              ]
+            },
+            "DeleteInternalRange": {
+              "methods": [
+                "deleteInternalRange"
+              ]
+            },
+            "ListInternalRanges": {
+              "methods": [
+                "listInternalRanges",
+                "listInternalRangesStream",
+                "listInternalRangesAsync"
+              ]
+            }
+          }
+        },
+        "grpc-fallback": {
+          "libraryClient": "InternalRangeServiceClient",
+          "rpcs": {
+            "GetInternalRange": {
+              "methods": [
+                "getInternalRange"
+              ]
+            },
+            "CreateInternalRange": {
+              "methods": [
+                "createInternalRange"
+              ]
+            },
+            "UpdateInternalRange": {
+              "methods": [
+                "updateInternalRange"
+              ]
+            },
+            "DeleteInternalRange": {
+              "methods": [
+                "deleteInternalRange"
+              ]
+            },
+            "ListInternalRanges": {
+              "methods": [
+                "listInternalRanges",
+                "listInternalRangesStream",
+                "listInternalRangesAsync"
               ]
             }
           }

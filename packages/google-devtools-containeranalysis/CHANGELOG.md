@@ -4,6 +4,64 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/containeranalysis?activeTab=versions
 
+## [6.3.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.2.0...containeranalysis-v6.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6425](https://github.com/googleapis/google-cloud-node/issues/6425)) ([c920e8d](https://github.com/googleapis/google-cloud-node/commit/c920e8d0d43be81fc171bc5f7d59800b66b830b8))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [6.2.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.1.0...containeranalysis-v6.2.0) (2025-05-09)
+
+
+### Features
+
+* [containeranalysis] add ExportSBOM API method for v1 ([#6210](https://github.com/googleapis/google-cloud-node/issues/6210)) ([c02b122](https://github.com/googleapis/google-cloud-node/commit/c02b1222a127a8229ae1da81e07fc2ba386dfd11))
+* [containeranalysis] add new location-specific bindings ([#6222](https://github.com/googleapis/google-cloud-node/issues/6222)) ([6c8ef35](https://github.com/googleapis/google-cloud-node/commit/6c8ef3521ba94048741a9c33c4a66506bd057812))
+
+## [6.1.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v6.0.0...containeranalysis-v6.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6190](https://github.com/googleapis/google-cloud-node/issues/6190)) ([f4866df](https://github.com/googleapis/google-cloud-node/commit/f4866dfa6ab481163150f54928a9857d2dfef948))
+* **deps:** Update dependency @google-cloud/grafeas to v6 ([#6172](https://github.com/googleapis/google-cloud-node/issues/6172)) ([f91a34f](https://github.com/googleapis/google-cloud-node/commit/f91a34f796895397c51e02f87197b601214d82f9))
+
+## [6.0.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v5.6.0...containeranalysis-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* Add request/response debug logging to gapics, update templates to gax 5 and node 18 ([#1671](https://github.com/googleapis/google-cloud-node/issues/1671)) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Bug Fixes
+
+* Add json files to tsconfig templates ([#1692](https://github.com/googleapis/google-cloud-node/issues/1692)) (ba6be1d) ([7a23322](https://github.com/googleapis/google-cloud-node/commit/7a23322530b610eec2fe4c18fe1854048f31c811))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [5.6.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v5.5.0...containeranalysis-v5.6.0) (2024-08-09)
+
+
+### Features
+
+* [containeranalysis] A new field `version` is added to message `.grafeas.v1.ComplianceOccurrence` ([#5586](https://github.com/googleapis/google-cloud-node/issues/5586)) ([f60f2f9](https://github.com/googleapis/google-cloud-node/commit/f60f2f901ce9aa4e51237246f359a6acf7f3d5b1))
+
 ## [5.5.0](https://github.com/googleapis/google-cloud-node/compare/containeranalysis-v5.4.0...containeranalysis-v5.5.0) (2024-05-21)
 
 

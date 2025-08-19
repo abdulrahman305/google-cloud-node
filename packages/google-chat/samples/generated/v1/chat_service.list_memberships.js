@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,13 +58,18 @@ function main(parent) {
    *  and type
    *  (`member.type` (https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
    *  To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
-   *  To filter by type, set `member.type` to `HUMAN` or `BOT`.
+   *  To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also
+   *  filter for `member.type` using the `!=` operator.
    *  To filter by both role and type, use the `AND` operator. To filter by
    *  either role or type, use the `OR` operator.
+   *  Either `member.type = "HUMAN"` or `member.type != "BOT"` is required
+   *  when `use_admin_access` is set to true. Other member type filters will be
+   *  rejected.
    *  For example, the following queries are valid:
    *  ```
    *  role = "ROLE_MANAGER" OR role = "ROLE_MEMBER"
    *  member.type = "HUMAN" AND role = "ROLE_MANAGER"
+   *  member.type != "BOT"
    *  ```
    *  The following queries are invalid:
    *  ```
@@ -95,6 +100,18 @@ function main(parent) {
    *  authentication (https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
    */
   // const showInvited = true
+  /**
+   *  Optional. When `true`, the method runs using the user's Google Workspace
+   *  administrator privileges.
+   *  The calling user must be a Google Workspace administrator with the
+   *  manage chat and spaces conversations
+   *  privilege (https://support.google.com/a/answer/13369245).
+   *  Requires either the `chat.admin.memberships.readonly` or
+   *  `chat.admin.memberships` OAuth 2.0
+   *  scope (https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+   *  Listing app memberships in a space isn't supported when using admin access.
+   */
+  // const useAdminAccess = true
 
   // Imports the Chat library
   const {ChatServiceClient} = require('@google-apps/chat').v1;

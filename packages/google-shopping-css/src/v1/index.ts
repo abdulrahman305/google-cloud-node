@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,3 +20,4 @@ export {AccountLabelsServiceClient} from './account_labels_service_client';
 export {AccountsServiceClient} from './accounts_service_client';
 export {CssProductInputsServiceClient} from './css_product_inputs_service_client';
 export {CssProductsServiceClient} from './css_products_service_client';
+export {QuotaServiceClient} from './quota_service_client';

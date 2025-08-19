@@ -20,6 +20,11 @@
                 "getTrip"
               ]
             },
+            "DeleteTrip": {
+              "methods": [
+                "deleteTrip"
+              ]
+            },
             "ReportBillableTrip": {
               "methods": [
                 "reportBillableTrip"
@@ -50,6 +55,11 @@
             "GetTrip": {
               "methods": [
                 "getTrip"
+              ]
+            },
+            "DeleteTrip": {
+              "methods": [
+                "deleteTrip"
               ]
             },
             "ReportBillableTrip": {
@@ -88,14 +98,14 @@
                 "getVehicle"
               ]
             },
+            "DeleteVehicle": {
+              "methods": [
+                "deleteVehicle"
+              ]
+            },
             "UpdateVehicle": {
               "methods": [
                 "updateVehicle"
-              ]
-            },
-            "UpdateVehicleLocation": {
-              "methods": [
-                "updateVehicleLocation"
               ]
             },
             "UpdateVehicleAttributes": {
@@ -106,11 +116,6 @@
             "SearchVehicles": {
               "methods": [
                 "searchVehicles"
-              ]
-            },
-            "SearchFuzzedVehicles": {
-              "methods": [
-                "searchFuzzedVehicles"
               ]
             },
             "ListVehicles": {
@@ -135,14 +140,14 @@
                 "getVehicle"
               ]
             },
+            "DeleteVehicle": {
+              "methods": [
+                "deleteVehicle"
+              ]
+            },
             "UpdateVehicle": {
               "methods": [
                 "updateVehicle"
-              ]
-            },
-            "UpdateVehicleLocation": {
-              "methods": [
-                "updateVehicleLocation"
               ]
             },
             "UpdateVehicleAttributes": {
@@ -153,11 +158,6 @@
             "SearchVehicles": {
               "methods": [
                 "searchVehicles"
-              ]
-            },
-            "SearchFuzzedVehicles": {
-              "methods": [
-                "searchFuzzedVehicles"
               ]
             },
             "ListVehicles": {

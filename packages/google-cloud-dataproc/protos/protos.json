@@ -570,6 +570,14 @@
                         "nextPageToken": {
                           "type": "string",
                           "id": 2
+                        },
+                        "unreachable": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -963,6 +971,20 @@
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
+                        },
+                        "autotuningConfig": {
+                          "type": "AutotuningConfig",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "cohort": {
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -1047,6 +1069,13 @@
                         "stagingBucket": {
                           "type": "string",
                           "id": 10,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "authenticationConfig": {
+                          "type": "AuthenticationConfig",
+                          "id": 11,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -1421,6 +1450,50 @@
                         }
                       }
                     },
+                    "AuthenticationConfig": {
+                      "fields": {
+                        "userWorkloadAuthenticationType": {
+                          "type": "AuthenticationType",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "AuthenticationType": {
+                          "values": {
+                            "AUTHENTICATION_TYPE_UNSPECIFIED": 0,
+                            "SERVICE_ACCOUNT": 1,
+                            "END_USER_CREDENTIALS": 2
+                          }
+                        }
+                      }
+                    },
+                    "AutotuningConfig": {
+                      "fields": {
+                        "scenarios": {
+                          "rule": "repeated",
+                          "type": "Scenario",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "Scenario": {
+                          "values": {
+                            "SCENARIO_UNSPECIFIED": 0,
+                            "SCALING": 2,
+                            "BROADCAST_HASH_JOIN": 3,
+                            "MEMORY": 4,
+                            "NONE": 5,
+                            "AUTO": 6
+                          }
+                        }
+                      }
+                    },
                     "RepositoryConfig": {
                       "fields": {
                         "pypiRepositoryConfig": {
@@ -1447,13 +1520,16 @@
                       "values": {
                         "COMPONENT_UNSPECIFIED": 0,
                         "ANACONDA": 5,
+                        "DELTA": 20,
                         "DOCKER": 13,
                         "DRUID": 9,
                         "FLINK": 14,
                         "HBASE": 11,
                         "HIVE_WEBHCAT": 3,
                         "HUDI": 18,
+                        "ICEBERG": 19,
                         "JUPYTER": 1,
+                        "PIG": 21,
                         "PRESTO": 6,
                         "TRINO": 17,
                         "RANGER": 12,
@@ -1745,6 +1821,13 @@
                     },
                     "ClusterConfig": {
                       "fields": {
+                        "clusterTier": {
+                          "type": "ClusterTier",
+                          "id": 29,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
                         "configBucket": {
                           "type": "string",
                           "id": 1,
@@ -1859,6 +1942,15 @@
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
                         }
+                      },
+                      "nested": {
+                        "ClusterTier": {
+                          "values": {
+                            "CLUSTER_TIER_UNSPECIFIED": 0,
+                            "CLUSTER_TIER_STANDARD": 1,
+                            "CLUSTER_TIER_PREMIUM": 2
+                          }
+                        }
                       }
                     },
                     "VirtualClusterConfig": {
@@ -1948,6 +2040,14 @@
                           "id": 1,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "kmsKey": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
+                            "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKey"
                           }
                         }
                       }
@@ -2313,6 +2413,13 @@
                     },
                     "InstanceFlexibilityPolicy": {
                       "fields": {
+                        "provisioningModelMix": {
+                          "type": "ProvisioningModelMix",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
                         "instanceSelectionList": {
                           "rule": "repeated",
                           "type": "InstanceSelection",
@@ -2331,6 +2438,38 @@
                         }
                       },
                       "nested": {
+                        "ProvisioningModelMix": {
+                          "oneofs": {
+                            "_standardCapacityBase": {
+                              "oneof": [
+                                "standardCapacityBase"
+                              ]
+                            },
+                            "_standardCapacityPercentAboveBase": {
+                              "oneof": [
+                                "standardCapacityPercentAboveBase"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "standardCapacityBase": {
+                              "type": "int32",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            },
+                            "standardCapacityPercentAboveBase": {
+                              "type": "int32",
+                              "id": 2,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "proto3_optional": true
+                              }
+                            }
+                          }
+                        },
                         "InstanceSelection": {
                           "fields": {
                             "machineTypes": {
@@ -2397,6 +2536,18 @@
                       }
                     },
                     "DiskConfig": {
+                      "oneofs": {
+                        "_bootDiskProvisionedIops": {
+                          "oneof": [
+                            "bootDiskProvisionedIops"
+                          ]
+                        },
+                        "_bootDiskProvisionedThroughput": {
+                          "oneof": [
+                            "bootDiskProvisionedThroughput"
+                          ]
+                        }
+                      },
                       "fields": {
                         "bootDiskType": {
                           "type": "string",
@@ -2424,6 +2575,22 @@
                           "id": 4,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "bootDiskProvisionedIops": {
+                          "type": "int64",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
+                            "proto3_optional": true
+                          }
+                        },
+                        "bootDiskProvisionedThroughput": {
+                          "type": "int64",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL",
+                            "proto3_optional": true
                           }
                         }
                       }
@@ -2816,7 +2983,8 @@
                             "YARN": 4,
                             "SPARK_HISTORY_SERVER": 5,
                             "HIVESERVER2": 6,
-                            "HIVEMETASTORE": 7
+                            "HIVEMETASTORE": 7,
+                            "FLINK": 8
                           }
                         },
                         "Metric": {
@@ -3162,6 +3330,13 @@
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
                         },
+                        "tarballAccess": {
+                          "type": "TarballAccess",
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
                         "diagnosisInterval": {
                           "type": "google.type.Interval",
                           "id": 6,
@@ -3183,6 +3358,15 @@
                           "id": 11,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "TarballAccess": {
+                          "values": {
+                            "TARBALL_ACCESS_UNSPECIFIED": 0,
+                            "GOOGLE_CLOUD_SUPPORT": 1,
+                            "GOOGLE_DATAPROC_DIAGNOSE": 2
                           }
                         }
                       }
@@ -4221,6 +4405,64 @@
                         }
                       }
                     },
+                    "FlinkJob": {
+                      "oneofs": {
+                        "driver": {
+                          "oneof": [
+                            "mainJarFileUri",
+                            "mainClass"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "mainJarFileUri": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "mainClass": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "args": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "jarFileUris": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "savepointUri": {
+                          "type": "string",
+                          "id": 9,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "properties": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "loggingConfig": {
+                          "type": "LoggingConfig",
+                          "id": 8,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
                     "JobPlacement": {
                       "fields": {
                         "clusterName": {
@@ -4380,7 +4622,8 @@
                             "sparkRJob",
                             "sparkSqlJob",
                             "prestoJob",
-                            "trinoJob"
+                            "trinoJob",
+                            "flinkJob"
                           ]
                         }
                       },
@@ -4458,6 +4701,13 @@
                         "trinoJob": {
                           "type": "TrinoJob",
                           "id": 28,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "flinkJob": {
+                          "type": "FlinkJob",
+                          "id": 29,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -4778,6 +5028,14 @@
                           "id": 2,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "unreachable": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
                         }
                       }
@@ -5204,7 +5462,8 @@
                       "oneofs": {
                         "sessionConfig": {
                           "oneof": [
-                            "jupyterSession"
+                            "jupyterSession",
+                            "sparkConnectSession"
                           ]
                         }
                       },
@@ -5233,6 +5492,13 @@
                         "jupyterSession": {
                           "type": "JupyterConfig",
                           "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "sparkConnectSession": {
+                          "type": "SparkConnectConfig",
+                          "id": 11,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -5548,7 +5814,8 @@
                       "oneofs": {
                         "sessionConfig": {
                           "oneof": [
-                            "jupyterSession"
+                            "jupyterSession",
+                            "sparkConnectSession"
                           ]
                         }
                       },
@@ -5577,6 +5844,13 @@
                         "jupyterSession": {
                           "type": "JupyterConfig",
                           "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "sparkConnectSession": {
+                          "type": "SparkConnectConfig",
+                          "id": 17,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -5726,6 +6000,9 @@
                           }
                         }
                       }
+                    },
+                    "SparkConnectConfig": {
+                      "fields": {}
                     },
                     "WorkflowTemplateService": {
                       "options": {
@@ -6003,6 +6280,27 @@
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
+                        },
+                        "encryptionConfig": {
+                          "type": "EncryptionConfig",
+                          "id": 11,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "EncryptionConfig": {
+                          "fields": {
+                            "kmsKey": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OPTIONAL",
+                                "(google.api.resource_reference).type": "cloudkms.googleapis.com/CryptoKey"
+                              }
+                            }
+                          }
                         }
                       }
                     },
@@ -6082,7 +6380,9 @@
                             "pigJob",
                             "sparkRJob",
                             "sparkSqlJob",
-                            "prestoJob"
+                            "prestoJob",
+                            "trinoJob",
+                            "flinkJob"
                           ]
                         }
                       },
@@ -6146,6 +6446,20 @@
                         "prestoJob": {
                           "type": "PrestoJob",
                           "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "trinoJob": {
+                          "type": "TrinoJob",
+                          "id": 13,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "flinkJob": {
+                          "type": "FlinkJob",
+                          "id": 14,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -6602,6 +6916,14 @@
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
+                        },
+                        "unreachable": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       }
                     },
@@ -6743,6 +7065,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -6851,6 +7178,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -7026,7 +7357,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -7132,6 +7466,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -7141,6 +7476,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -7156,6 +7492,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7173,18 +7510,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -7225,6 +7556,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7307,6 +7639,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -7380,6 +7713,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7459,6 +7793,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7471,6 +7806,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7512,6 +7848,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7528,6 +7865,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7545,6 +7883,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -7579,6 +7918,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -7720,6 +8060,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -7793,6 +8134,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -7854,10 +8196,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -7941,6 +8280,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -7960,6 +8300,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -8003,6 +8344,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -8036,6 +8378,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -8062,6 +8405,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -8104,6 +8448,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -8153,6 +8498,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -8225,8 +8571,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -8282,6 +8640,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -8313,6 +8672,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -8326,12 +8686,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -8351,6 +8717,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -8364,7 +8731,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

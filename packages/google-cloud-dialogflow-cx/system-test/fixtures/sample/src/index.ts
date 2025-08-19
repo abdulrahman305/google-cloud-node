@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,25 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {
-  AgentsClient,
-  ChangelogsClient,
-  DeploymentsClient,
-  EntityTypesClient,
-  EnvironmentsClient,
-  ExperimentsClient,
-  FlowsClient,
-  GeneratorsClient,
-  IntentsClient,
-  PagesClient,
-  SecuritySettingsServiceClient,
-  SessionEntityTypesClient,
-  SessionsClient,
-  TestCasesClient,
-  TransitionRouteGroupsClient,
-  VersionsClient,
-  WebhooksClient,
-} from '@google-cloud/dialogflow-cx';
+import {AgentsClient, ChangelogsClient, DeploymentsClient, EntityTypesClient, EnvironmentsClient, ExperimentsClient, FlowsClient, GeneratorsClient, IntentsClient, PagesClient, SecuritySettingsServiceClient, SessionEntityTypesClient, SessionsClient, TestCasesClient, TransitionRouteGroupsClient, VersionsClient, WebhooksClient} from '@google-cloud/dialogflow-cx';
 
 // check that the client class type name can be used
 function doStuffWithAgentsClient(client: AgentsClient) {
@@ -67,9 +49,7 @@ function doStuffWithIntentsClient(client: IntentsClient) {
 function doStuffWithPagesClient(client: PagesClient) {
   client.close();
 }
-function doStuffWithSecuritySettingsServiceClient(
-  client: SecuritySettingsServiceClient
-) {
+function doStuffWithSecuritySettingsServiceClient(client: SecuritySettingsServiceClient) {
   client.close();
 }
 function doStuffWithSessionEntityTypesClient(client: SessionEntityTypesClient) {
@@ -81,9 +61,7 @@ function doStuffWithSessionsClient(client: SessionsClient) {
 function doStuffWithTestCasesClient(client: TestCasesClient) {
   client.close();
 }
-function doStuffWithTransitionRouteGroupsClient(
-  client: TransitionRouteGroupsClient
-) {
+function doStuffWithTransitionRouteGroupsClient(client: TransitionRouteGroupsClient) {
   client.close();
 }
 function doStuffWithVersionsClient(client: VersionsClient) {

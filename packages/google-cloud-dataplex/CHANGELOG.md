@@ -1,5 +1,121 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v4.2.0...dataplex-v5.0.0) (2025-07-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto`
+* Remove field `restricted` within encryption enforcement config.
+
+### Features
+
+* A new field `semantic_search` is added to `message.google.cloud.dataplex.v1.SearchEntriesRequest` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add backdate duration ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `DeliverInfo.GoogleServiceType` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `Status` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.CrossProjectMetadata` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum `VpcFlowLogsConfig.TargetResourceState` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `AbortInfo.Cause.GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum value `RouteInfo.NextHopType.SECURE_WEB_PROXY_GATEWAY` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add enum values `NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS`, `TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED`, `NO_MATCHING_NAT64_GATEWAY`, `LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH`, and `NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION` to `DropInfo.Cause` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `google_service_type` to message `DeliverInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `policy_priority` to message `NetworkInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `running` to message `InstanceInfo` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add field `service_uri` to message `Endpoint.CloudRunRevisionEndpoint` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add fields `cross_project_metadata`, `target_resource_state`, `network`, and `subnet` to message `VpcFlowLogsConfig` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add http additional_bindings ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add isolation support to prevent cross-region overflow by adding a new field "isolation_config" to message "ServiceLbPolicy" ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add message `Endpoint.SingleEdgeResponse` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add new field `restriction_mode` for encryption enforcement config in message Bucket ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add RDN sequence ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add rpc `VpcFlowLogsService.QueryOrgVpcFlowLogsConfigs` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add safebrowsing proto defs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add service `OrganizationVpcFlowLogsService` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Add User Defined Access URLs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Adds tbs_certificate_digest to CertificateDescription ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Enable organization-level support for VPC Flow Logs ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1 API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update Compute Engine v1beta API to revision 20250626 ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Update libraries and clients for Managed Kafka ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+
+### Bug Fixes
+
+* Correct resource reference type for `parent` field in `data_chat_service.proto` ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Pagination response for Compute Subnetworks.ListUsable (39952d9) ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+* Remove field `restricted` within encryption enforcement config. ([7e3d10b](https://github.com/googleapis/google-cloud-node/commit/7e3d10b075bb9b7c8f9e88a47e77b6d55a80bf31))
+
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v4.1.0...dataplex-v4.2.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v4.0.1...dataplex-v4.1.0) (2025-05-09)
+
+
+### Features
+
+* [dataplex] Add Data Discovery result statistics ([#6235](https://github.com/googleapis/google-cloud-node/issues/6235)) ([8d5fcaf](https://github.com/googleapis/google-cloud-node/commit/8d5fcafb028a0bbc38af5b3b34de317f9be2a180))
+* [dataplex] Add Data Discovery result statistics ([#6257](https://github.com/googleapis/google-cloud-node/issues/6257)) ([b883d1d](https://github.com/googleapis/google-cloud-node/commit/b883d1dc78d8fb8805952b1b093b89af5c24e05a))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/dataplex-v4.0.0...dataplex-v4.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6184](https://github.com/googleapis/google-cloud-node/issues/6184)) ([2fcd202](https://github.com/googleapis/google-cloud-node/commit/2fcd2029c35e8fb2199d03ac6e61e2d821ddf72e))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.14.0...dataplex-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.14.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.13.0...dataplex-v3.14.0) (2025-02-12)
+
+
+### Features
+
+* [dataplex] Added value `NONE` to  the `SyncMode` enum ([#6022](https://github.com/googleapis/google-cloud-node/issues/6022)) ([b363570](https://github.com/googleapis/google-cloud-node/commit/b363570e21e346f39025d586d6851e5b9b8d2f67))
+
+## [3.13.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.12.0...dataplex-v3.13.0) (2025-01-11)
+
+
+### Features
+
+* [dataplex] A new field `force` is added to message `.google.cloud.dataplex.v1.DeleteDataScanRequest` ([#5902](https://github.com/googleapis/google-cloud-node/issues/5902)) ([cb0f5d4](https://github.com/googleapis/google-cloud-node/commit/cb0f5d4d13496f147d057c23fc7926bf4a133b7b))
+
+## [3.12.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.11.0...dataplex-v3.12.0) (2024-11-21)
+
+
+### Features
+
+* [dataplex] update Go Datastore import path ([#5818](https://github.com/googleapis/google-cloud-node/issues/5818)) ([020c59a](https://github.com/googleapis/google-cloud-node/commit/020c59a19460baff4ea7bbabef5d00d9becead94))
+
+## [3.11.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.10.0...dataplex-v3.11.0) (2024-06-27)
+
+
+### Features
+
+* [dataplex] expose data scan execution create time to customers ([#5510](https://github.com/googleapis/google-cloud-node/issues/5510)) ([03bfa5d](https://github.com/googleapis/google-cloud-node/commit/03bfa5d4314e3c2e97e50d0c09b98cffe3669d9b))
+
+## [3.10.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.9.0...dataplex-v3.10.0) (2024-06-21)
+
+
+### Features
+
+* [dataplex] exposing EntrySource.location field that contains location of a resource in the source system ([#5483](https://github.com/googleapis/google-cloud-node/issues/5483)) ([00ad685](https://github.com/googleapis/google-cloud-node/commit/00ad68517838b0e231cac523dc0cc4adbf20621e))
+
 ## [3.9.0](https://github.com/googleapis/google-cloud-node/compare/dataplex-v3.8.0...dataplex-v3.9.0) (2024-05-21)
 
 

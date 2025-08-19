@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,9 +29,8 @@ function main(name, targetSnapshotId) {
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required.
+   *  Required. The resource name of the instance, in the format
    *  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
-   *  The resource name of the instance, in the format
    */
   // const name = 'abc123'
   /**

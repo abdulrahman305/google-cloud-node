@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -1094,6 +1094,9 @@ export namespace google {
 
                     /** CryptoKey cryptoKeyBackend */
                     cryptoKeyBackend?: (string|null);
+
+                    /** CryptoKey keyAccessJustificationsPolicy */
+                    keyAccessJustificationsPolicy?: (google.cloud.kms.v1.IKeyAccessJustificationsPolicy|null);
                 }
 
                 /** Represents a CryptoKey. */
@@ -1137,6 +1140,9 @@ export namespace google {
 
                     /** CryptoKey cryptoKeyBackend. */
                     public cryptoKeyBackend: string;
+
+                    /** CryptoKey keyAccessJustificationsPolicy. */
+                    public keyAccessJustificationsPolicy?: (google.cloud.kms.v1.IKeyAccessJustificationsPolicy|null);
 
                     /** CryptoKey rotationSchedule. */
                     public rotationSchedule?: "rotationPeriod";
@@ -1342,7 +1348,7 @@ export namespace google {
                     format?: (google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat|keyof typeof google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat|null);
 
                     /** KeyOperationAttestation content */
-                    content?: (Uint8Array|string|null);
+                    content?: (Uint8Array|Buffer|string|null);
 
                     /** KeyOperationAttestation certChains */
                     certChains?: (google.cloud.kms.v1.KeyOperationAttestation.ICertificateChains|null);
@@ -1361,7 +1367,7 @@ export namespace google {
                     public format: (google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat|keyof typeof google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat);
 
                     /** KeyOperationAttestation content. */
-                    public content: (Uint8Array|string);
+                    public content: (Uint8Array|Buffer|string);
 
                     /** KeyOperationAttestation certChains. */
                     public certChains?: (google.cloud.kms.v1.KeyOperationAttestation.ICertificateChains|null);
@@ -1789,7 +1795,9 @@ export namespace google {
                         HMAC_SHA384 = 34,
                         HMAC_SHA512 = 35,
                         HMAC_SHA224 = 36,
-                        EXTERNAL_SYMMETRIC_ENCRYPTION = 18
+                        EXTERNAL_SYMMETRIC_ENCRYPTION = 18,
+                        PQ_SIGN_ML_DSA_65 = 56,
+                        PQ_SIGN_SLH_DSA_SHA2_128S = 57
                     }
 
                     /** CryptoKeyVersionState enum. */
@@ -1814,6 +1822,109 @@ export namespace google {
                     }
                 }
 
+                /** Properties of a ChecksummedData. */
+                interface IChecksummedData {
+
+                    /** ChecksummedData data */
+                    data?: (Uint8Array|Buffer|string|null);
+
+                    /** ChecksummedData crc32cChecksum */
+                    crc32cChecksum?: (google.protobuf.IInt64Value|null);
+                }
+
+                /** Represents a ChecksummedData. */
+                class ChecksummedData implements IChecksummedData {
+
+                    /**
+                     * Constructs a new ChecksummedData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.kms.v1.IChecksummedData);
+
+                    /** ChecksummedData data. */
+                    public data: (Uint8Array|Buffer|string);
+
+                    /** ChecksummedData crc32cChecksum. */
+                    public crc32cChecksum?: (google.protobuf.IInt64Value|null);
+
+                    /**
+                     * Creates a new ChecksummedData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ChecksummedData instance
+                     */
+                    public static create(properties?: google.cloud.kms.v1.IChecksummedData): google.cloud.kms.v1.ChecksummedData;
+
+                    /**
+                     * Encodes the specified ChecksummedData message. Does not implicitly {@link google.cloud.kms.v1.ChecksummedData.verify|verify} messages.
+                     * @param message ChecksummedData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.kms.v1.IChecksummedData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ChecksummedData message, length delimited. Does not implicitly {@link google.cloud.kms.v1.ChecksummedData.verify|verify} messages.
+                     * @param message ChecksummedData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.kms.v1.IChecksummedData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ChecksummedData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ChecksummedData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.kms.v1.ChecksummedData;
+
+                    /**
+                     * Decodes a ChecksummedData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ChecksummedData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.kms.v1.ChecksummedData;
+
+                    /**
+                     * Verifies a ChecksummedData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ChecksummedData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ChecksummedData
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.kms.v1.ChecksummedData;
+
+                    /**
+                     * Creates a plain object from a ChecksummedData message. Also converts values to other types if specified.
+                     * @param message ChecksummedData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.kms.v1.ChecksummedData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ChecksummedData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ChecksummedData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a PublicKey. */
                 interface IPublicKey {
 
@@ -1831,6 +1942,12 @@ export namespace google {
 
                     /** PublicKey protectionLevel */
                     protectionLevel?: (google.cloud.kms.v1.ProtectionLevel|keyof typeof google.cloud.kms.v1.ProtectionLevel|null);
+
+                    /** PublicKey publicKeyFormat */
+                    publicKeyFormat?: (google.cloud.kms.v1.PublicKey.PublicKeyFormat|keyof typeof google.cloud.kms.v1.PublicKey.PublicKeyFormat|null);
+
+                    /** PublicKey publicKey */
+                    publicKey?: (google.cloud.kms.v1.IChecksummedData|null);
                 }
 
                 /** Represents a PublicKey. */
@@ -1856,6 +1973,12 @@ export namespace google {
 
                     /** PublicKey protectionLevel. */
                     public protectionLevel: (google.cloud.kms.v1.ProtectionLevel|keyof typeof google.cloud.kms.v1.ProtectionLevel);
+
+                    /** PublicKey publicKeyFormat. */
+                    public publicKeyFormat: (google.cloud.kms.v1.PublicKey.PublicKeyFormat|keyof typeof google.cloud.kms.v1.PublicKey.PublicKeyFormat);
+
+                    /** PublicKey publicKey. */
+                    public publicKey?: (google.cloud.kms.v1.IChecksummedData|null);
 
                     /**
                      * Creates a new PublicKey instance using the specified properties.
@@ -1933,6 +2056,16 @@ export namespace google {
                      * @returns The default type url
                      */
                     public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace PublicKey {
+
+                    /** PublicKeyFormat enum. */
+                    enum PublicKeyFormat {
+                        PUBLIC_KEY_FORMAT_UNSPECIFIED = 0,
+                        PEM = 1,
+                        NIST_PQC = 3
+                    }
                 }
 
                 /** Properties of an ImportJob. */
@@ -2308,6 +2441,103 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a KeyAccessJustificationsPolicy. */
+                interface IKeyAccessJustificationsPolicy {
+
+                    /** KeyAccessJustificationsPolicy allowedAccessReasons */
+                    allowedAccessReasons?: (google.cloud.kms.v1.AccessReason[]|null);
+                }
+
+                /** Represents a KeyAccessJustificationsPolicy. */
+                class KeyAccessJustificationsPolicy implements IKeyAccessJustificationsPolicy {
+
+                    /**
+                     * Constructs a new KeyAccessJustificationsPolicy.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.kms.v1.IKeyAccessJustificationsPolicy);
+
+                    /** KeyAccessJustificationsPolicy allowedAccessReasons. */
+                    public allowedAccessReasons: google.cloud.kms.v1.AccessReason[];
+
+                    /**
+                     * Creates a new KeyAccessJustificationsPolicy instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns KeyAccessJustificationsPolicy instance
+                     */
+                    public static create(properties?: google.cloud.kms.v1.IKeyAccessJustificationsPolicy): google.cloud.kms.v1.KeyAccessJustificationsPolicy;
+
+                    /**
+                     * Encodes the specified KeyAccessJustificationsPolicy message. Does not implicitly {@link google.cloud.kms.v1.KeyAccessJustificationsPolicy.verify|verify} messages.
+                     * @param message KeyAccessJustificationsPolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.kms.v1.IKeyAccessJustificationsPolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified KeyAccessJustificationsPolicy message, length delimited. Does not implicitly {@link google.cloud.kms.v1.KeyAccessJustificationsPolicy.verify|verify} messages.
+                     * @param message KeyAccessJustificationsPolicy message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.kms.v1.IKeyAccessJustificationsPolicy, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a KeyAccessJustificationsPolicy message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns KeyAccessJustificationsPolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.kms.v1.KeyAccessJustificationsPolicy;
+
+                    /**
+                     * Decodes a KeyAccessJustificationsPolicy message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns KeyAccessJustificationsPolicy
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.kms.v1.KeyAccessJustificationsPolicy;
+
+                    /**
+                     * Verifies a KeyAccessJustificationsPolicy message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a KeyAccessJustificationsPolicy message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns KeyAccessJustificationsPolicy
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.kms.v1.KeyAccessJustificationsPolicy;
+
+                    /**
+                     * Creates a plain object from a KeyAccessJustificationsPolicy message. Also converts values to other types if specified.
+                     * @param message KeyAccessJustificationsPolicy
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.kms.v1.KeyAccessJustificationsPolicy, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this KeyAccessJustificationsPolicy to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for KeyAccessJustificationsPolicy
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** ProtectionLevel enum. */
                 enum ProtectionLevel {
                     PROTECTION_LEVEL_UNSPECIFIED = 0,
@@ -2315,6 +2545,22 @@ export namespace google {
                     HSM = 2,
                     EXTERNAL = 3,
                     EXTERNAL_VPC = 4
+                }
+
+                /** AccessReason enum. */
+                enum AccessReason {
+                    REASON_UNSPECIFIED = 0,
+                    CUSTOMER_INITIATED_SUPPORT = 1,
+                    GOOGLE_INITIATED_SERVICE = 2,
+                    THIRD_PARTY_DATA_REQUEST = 3,
+                    GOOGLE_INITIATED_REVIEW = 4,
+                    CUSTOMER_INITIATED_ACCESS = 5,
+                    GOOGLE_INITIATED_SYSTEM_OPERATION = 6,
+                    REASON_NOT_EXPECTED = 7,
+                    MODIFIED_CUSTOMER_INITIATED_ACCESS = 8,
+                    MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION = 9,
+                    GOOGLE_RESPONSE_TO_PRODUCTION_ALERT = 10,
+                    CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING = 11
                 }
             }
         }
@@ -2975,6 +3221,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -3015,6 +3264,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -7233,6 +7485,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -7481,7 +7736,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -7512,7 +7767,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -9527,7 +9782,7 @@ export namespace google {
         interface IBytesValue {
 
             /** BytesValue value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents a BytesValue. */
@@ -9540,7 +9795,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IBytesValue);
 
             /** BytesValue value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new BytesValue instance using the specified properties.

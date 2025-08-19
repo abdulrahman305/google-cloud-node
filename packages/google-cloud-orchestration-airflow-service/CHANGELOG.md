@@ -1,5 +1,68 @@
 # Changelog
 
+## [4.3.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v4.2.0...orchestration-airflow-v4.3.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6422](https://github.com/googleapis/google-cloud-node/issues/6422)) ([1e17ea2](https://github.com/googleapis/google-cloud-node/commit/1e17ea2496a502905259010a6702e7cc68f9d1ba))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [4.2.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v4.1.0...orchestration-airflow-v4.2.0) (2025-06-03)
+
+
+### Features
+
+* Add protobufjs 2023 edition support ([#6302](https://github.com/googleapis/google-cloud-node/issues/6302)) ([abc35be](https://github.com/googleapis/google-cloud-node/commit/abc35be4817709467e6c6b2a12ac4e749ffed72d))
+
+## [4.1.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v4.0.1...orchestration-airflow-v4.1.0) (2025-05-09)
+
+
+### Features
+
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [4.0.1](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v4.0.0...orchestration-airflow-v4.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6187](https://github.com/googleapis/google-cloud-node/issues/6187)) ([b33692d](https://github.com/googleapis/google-cloud-node/commit/b33692d64bd42b99f37d0f919f2b0c06a673ab7f))
+
+## [4.0.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v3.6.1...orchestration-airflow-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [3.6.1](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v3.6.0...orchestration-airflow-v3.6.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* [Many APIs] finalize fixing typings for headers in generator ([#6013](https://github.com/googleapis/google-cloud-node/issues/6013)) ([cd3a2d4](https://github.com/googleapis/google-cloud-node/commit/cd3a2d44fc7a9b3798346162ba19df1c748fba58))
+
+## [3.6.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v3.5.0...orchestration-airflow-v3.6.0) (2024-09-13)
+
+
+### Features
+
+* [orchestration] A new method `CheckUpgrade` is added to service `Environments` ([#5673](https://github.com/googleapis/google-cloud-node/issues/5673)) ([6f8373d](https://github.com/googleapis/google-cloud-node/commit/6f8373d0d04cda5593be12b8cc192a4447cdeb08))
+* [orchestration] add `satisfies_pzi` to `Environment` ([#5676](https://github.com/googleapis/google-cloud-node/issues/5676)) ([66ef73a](https://github.com/googleapis/google-cloud-node/commit/66ef73a560ba5566d263c99ce3940f2f7f2f4a82))
+
+## [3.5.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v3.4.0...orchestration-airflow-v3.5.0) (2024-07-22)
+
+
+### Features
+
+* [orchestration] add `airflow_database_retention_days` and `airflow_metadata_retention_config` to message `DataRetentionConfig` ([#5537](https://github.com/googleapis/google-cloud-node/issues/5537)) ([5ed36be](https://github.com/googleapis/google-cloud-node/commit/5ed36be19d66d18562c6a41441558cba4d84aa5f))
+
 ## [3.4.0](https://github.com/googleapis/google-cloud-node/compare/orchestration-airflow-v3.3.0...orchestration-airflow-v3.4.0) (2024-05-21)
 
 

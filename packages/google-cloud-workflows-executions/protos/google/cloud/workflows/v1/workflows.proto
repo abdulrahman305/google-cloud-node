@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,6 +32,10 @@ option java_package = "com.google.cloud.workflows.v1";
 option (google.api.resource_definition) = {
   type: "cloudkms.googleapis.com/CryptoKey"
   pattern: "projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}"
+};
+option (google.api.resource_definition) = {
+  type: "cloudkms.googleapis.com/CryptoKeyVersion"
+  pattern: "projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}"
 };
 
 // Workflows is used to deploy and execute workflow programs.
@@ -107,6 +111,14 @@ service Workflows {
       metadata_type: "OperationMetadata"
     };
   }
+
+  // Lists revisions for a given workflow.
+  rpc ListWorkflowRevisions(ListWorkflowRevisionsRequest)
+      returns (ListWorkflowRevisionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/{name=projects/*/locations/*/workflows/*}:listRevisions"
+    };
+  }
 }
 
 // Workflow program to be executed by Workflows.
@@ -164,11 +176,13 @@ message Workflow {
   }
 
   // The resource name of the workflow.
-  // Format: projects/{project}/locations/{location}/workflows/{workflow}
+  // Format: projects/{project}/locations/{location}/workflows/{workflow}.
+  // This is a workflow-wide field and is not tied to a specific revision.
   string name = 1;
 
   // Description of the workflow provided by the user.
-  // Must be at most 1000 unicode characters long.
+  // Must be at most 1000 Unicode characters long.
+  // This is a workflow-wide field and is not tied to a specific revision.
   string description = 2;
 
   // Output only. State of the workflow deployment.
@@ -188,10 +202,12 @@ message Workflow {
   string revision_id = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The timestamp for when the workflow was created.
+  // This is a workflow-wide field and is not tied to a specific revision.
   google.protobuf.Timestamp create_time = 5
       [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The timestamp for when the workflow was last updated.
+  // This is a workflow-wide field and is not tied to a specific revision.
   google.protobuf.Timestamp update_time = 6
       [(google.api.field_behavior) = OUTPUT_ONLY];
 
@@ -205,6 +221,7 @@ message Workflow {
   // than 63 characters and can only contain lowercase letters, numeric
   // characters, underscores, and dashes. Label keys must start with a letter.
   // International characters are allowed.
+  // This is a workflow-wide field and is not tied to a specific revision.
   map<string, string> labels = 8;
 
   // The service account associated with the latest workflow version.
@@ -260,10 +277,51 @@ message Workflow {
 
   // Optional. User-defined environment variables associated with this workflow
   // revision. This map has a maximum length of 20. Each string can take up to
-  // 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or
-  // “WORKFLOWS".
+  // 4KiB. Keys cannot be empty strings and cannot start with "GOOGLE" or
+  // "WORKFLOWS".
   map<string, string> user_env_vars = 14
       [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Describes the execution history level to apply to this workflow.
+  ExecutionHistoryLevel execution_history_level = 15
+      [(google.api.field_behavior) = OPTIONAL];
+
+  // Output only. A list of all KMS crypto keys used to encrypt or decrypt the
+  // data associated with the workflow.
+  repeated string all_kms_keys = 16 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKey"
+    }
+  ];
+
+  // Output only. A list of all KMS crypto key versions used to encrypt or
+  // decrypt the data associated with the workflow.
+  repeated string all_kms_keys_versions = 17 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKeyVersion"
+    }
+  ];
+
+  // Output only. The resource name of a KMS crypto key version used to encrypt
+  // or decrypt the data associated with the workflow.
+  //
+  // Format:
+  // projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
+  string crypto_key_version = 18 [
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKeyVersion"
+    }
+  ];
+
+  // Optional. Input only. Immutable. Tags associated with this workflow.
+  map<string, string> tags = 19 [
+    (google.api.field_behavior) = INPUT_ONLY,
+    (google.api.field_behavior) = IMMUTABLE,
+    (google.api.field_behavior) = OPTIONAL
+  ];
 }
 
 // Request for the
@@ -293,6 +351,16 @@ message ListWorkflowsRequest {
   string page_token = 3;
 
   // Filter to restrict results to specific workflows.
+  // For details, see <a href="https://google.aip.dev/160"
+  // class="external">AIP-160</a>.
+  //
+  // For example, if you are using the Google APIs Explorer:
+  //
+  // `state="SUCCEEDED"`
+  //
+  // or
+  //
+  // `createTime>"2023-08-01" AND state="FAILED"`
   string filter = 4;
 
   // Comma-separated list of fields that specify the order of the results.
@@ -365,45 +433,4 @@ message CreateWorkflowRequest {
 }
 
 // Request for the
-// [DeleteWorkflow][google.cloud.workflows.v1.Workflows.DeleteWorkflow]
-// method.
-message DeleteWorkflowRequest {
-  // Required. Name of the workflow to be deleted.
-  // Format: projects/{project}/locations/{location}/workflows/{workflow}
-  string name = 1 [
-    (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = {
-      type: "workflows.googleapis.com/Workflow"
-    }
-  ];
-}
-
-// Request for the
-// [UpdateWorkflow][google.cloud.workflows.v1.Workflows.UpdateWorkflow]
-// method.
-message UpdateWorkflowRequest {
-  // Required. Workflow to be updated.
-  Workflow workflow = 1 [(google.api.field_behavior) = REQUIRED];
-
-  // List of fields to be updated. If not present, the entire workflow
-  // will be updated.
-  google.protobuf.FieldMask update_mask = 2;
-}
-
-// Represents the metadata of the long-running operation.
-message OperationMetadata {
-  // The time the operation was created.
-  google.protobuf.Timestamp create_time = 1;
-
-  // The time the operation finished running.
-  google.protobuf.Timestamp end_time = 2;
-
-  // Server-defined resource path for the target of the operation.
-  string target = 3;
-
-  // Name of the verb executed by the operation.
-  string verb = 4;
-
-  // API version used to start the operation.
-  string api_version = 5;
-}
+// [DeleteWorkflow][google.cloud.workfl

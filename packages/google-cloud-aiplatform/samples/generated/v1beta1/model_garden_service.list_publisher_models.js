@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -61,10 +61,14 @@ function main(parent) {
   // const orderBy = 'abc123'
   /**
    *  Optional. The IETF BCP-47 language code representing the language in which
-   *  the publisher models' text information should be written in (see go/bcp47).
-   *  If not set, by default English (en).
+   *  the publisher models' text information should be written in. If not set, by
+   *  default English (en).
    */
   // const languageCode = 'abc123'
+  /**
+   *  Optional. List all publisher model versions if the flag is set to true.
+   */
+  // const listAllVersions = true
 
   // Imports the Aiplatform library
   const {ModelGardenServiceClient} = require('@google-cloud/aiplatform').v1beta1;

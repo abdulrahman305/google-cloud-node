@@ -192,6 +192,64 @@
                             }
                           ]
                         },
+                        "AddIpOverride": {
+                          "requestType": "AddIpOverrideRequest",
+                          "responseType": "AddIpOverrideResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1/{name=projects/*/keys/*}:addIpOverride",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,ip_override_data"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1/{name=projects/*/keys/*}:addIpOverride",
+                                "body": "*"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name,ip_override_data"
+                            }
+                          ]
+                        },
+                        "RemoveIpOverride": {
+                          "requestType": "RemoveIpOverrideRequest",
+                          "responseType": "RemoveIpOverrideResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1/{name=projects/*/keys/*}:removeIpOverride",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,ip_override_data"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1/{name=projects/*/keys/*}:removeIpOverride",
+                                "body": "*"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name,ip_override_data"
+                            }
+                          ]
+                        },
+                        "ListIpOverrides": {
+                          "requestType": "ListIpOverridesRequest",
+                          "responseType": "ListIpOverridesResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1/{parent=projects/*/keys/*}:listIpOverrides",
+                            "(google.api.method_signature)": "parent"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1/{parent=projects/*/keys/*}:listIpOverrides"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "parent"
+                            }
+                          ]
+                        },
                         "GetMetrics": {
                           "requestType": "GetMetricsRequest",
                           "responseType": "Metrics",
@@ -740,6 +798,20 @@
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
+                        },
+                        "phoneFraudAssessment": {
+                          "type": "PhoneFraudAssessment",
+                          "id": 12,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "assessmentEnvironment": {
+                          "type": "AssessmentEnvironment",
+                          "id": 14,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -813,6 +885,13 @@
                         "ja3": {
                           "type": "string",
                           "id": 10,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "ja4": {
+                          "type": "string",
+                          "id": 18,
                           "options": {
                             "(google.api.field_behavior)": "OPTIONAL"
                           }
@@ -1211,6 +1290,13 @@
                           "options": {
                             "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
+                        },
+                        "challenge": {
+                          "type": "Challenge",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       },
                       "nested": {
@@ -1224,6 +1310,14 @@
                             "LOW_CONFIDENCE_SCORE": 5,
                             "SUSPECTED_CARDING": 6,
                             "SUSPECTED_CHARGEBACK": 7
+                          }
+                        },
+                        "Challenge": {
+                          "values": {
+                            "CHALLENGE_UNSPECIFIED": 0,
+                            "NOCAPTCHA": 1,
+                            "PASSED": 2,
+                            "FAILED": 3
                           }
                         }
                       }
@@ -1417,6 +1511,44 @@
                                 "UNEXPECTED_LOCATION": 3
                               }
                             }
+                          }
+                        }
+                      }
+                    },
+                    "SmsTollFraudVerdict": {
+                      "fields": {
+                        "risk": {
+                          "type": "float",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        },
+                        "reasons": {
+                          "rule": "repeated",
+                          "type": "SmsTollFraudReason",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "SmsTollFraudReason": {
+                          "values": {
+                            "SMS_TOLL_FRAUD_REASON_UNSPECIFIED": 0,
+                            "INVALID_PHONE_NUMBER": 1
+                          }
+                        }
+                      }
+                    },
+                    "PhoneFraudAssessment": {
+                      "fields": {
+                        "smsTollFraudVerdict": {
+                          "type": "SmsTollFraudVerdict",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
                           }
                         }
                       }
@@ -1762,7 +1894,8 @@
                           "oneof": [
                             "webSettings",
                             "androidSettings",
-                            "iosSettings"
+                            "iosSettings",
+                            "expressSettings"
                           ]
                         }
                       },
@@ -1792,6 +1925,10 @@
                         "iosSettings": {
                           "type": "IOSKeySettings",
                           "id": 5
+                        },
+                        "expressSettings": {
+                          "type": "ExpressKeySettings",
+                          "id": 11
                         },
                         "labels": {
                           "keyType": "string",
@@ -1960,6 +2097,9 @@
                           }
                         }
                       }
+                    },
+                    "ExpressKeySettings": {
+                      "fields": {}
                     },
                     "AppleDeveloperId": {
                       "fields": {
@@ -2307,6 +2447,89 @@
                         }
                       }
                     },
+                    "AddIpOverrideRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "recaptchaenterprise.googleapis.com/Key"
+                          }
+                        },
+                        "ipOverrideData": {
+                          "type": "IpOverrideData",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "AddIpOverrideResponse": {
+                      "fields": {}
+                    },
+                    "RemoveIpOverrideRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "recaptchaenterprise.googleapis.com/Key"
+                          }
+                        },
+                        "ipOverrideData": {
+                          "type": "IpOverrideData",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "RemoveIpOverrideResponse": {
+                      "fields": {}
+                    },
+                    "ListIpOverridesRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "recaptchaenterprise.googleapis.com/Key"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "ListIpOverridesResponse": {
+                      "fields": {
+                        "ipOverrides": {
+                          "rule": "repeated",
+                          "type": "IpOverrideData",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
                     "RelatedAccountGroupMembership": {
                       "options": {
                         "(google.api.resource).type": "recaptchaenterprise.googleapis.com/RelatedAccountGroupMembership",
@@ -2384,7 +2607,53 @@
                             "WAF_SERVICE_UNSPECIFIED": 0,
                             "CA": 1,
                             "FASTLY": 3,
-                            "CLOUDFLARE": 4
+                            "CLOUDFLARE": 4,
+                            "AKAMAI": 5
+                          }
+                        }
+                      }
+                    },
+                    "AssessmentEnvironment": {
+                      "fields": {
+                        "client": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "version": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        }
+                      }
+                    },
+                    "IpOverrideData": {
+                      "fields": {
+                        "ip": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_info).format": "IPV4_OR_IPV6",
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "overrideType": {
+                          "type": "OverrideType",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      },
+                      "nested": {
+                        "OverrideType": {
+                          "values": {
+                            "OVERRIDE_TYPE_UNSPECIFIED": 0,
+                            "ALLOW": 1
                           }
                         }
                       }
@@ -2984,19 +3253,31 @@
                       "fields": {
                         "transactionRisk": {
                           "type": "float",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "stolenInstrumentVerdict": {
                           "type": "StolenInstrumentVerdict",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "cardTestingVerdict": {
                           "type": "CardTestingVerdict",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "behavioralTrustVerdict": {
                           "type": "BehavioralTrustVerdict",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         }
                       },
                       "nested": {
@@ -3004,7 +3285,10 @@
                           "fields": {
                             "risk": {
                               "type": "float",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         },
@@ -3012,7 +3296,10 @@
                           "fields": {
                             "risk": {
                               "type": "float",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         },
@@ -3020,7 +3307,10 @@
                           "fields": {
                             "trust": {
                               "type": "float",
-                              "id": 1
+                              "id": 1,
+                              "options": {
+                                "(google.api.field_behavior)": "OUTPUT_ONLY"
+                              }
                             }
                           }
                         }
@@ -3165,6 +3455,11 @@
               "id": 1050,
               "extend": "google.protobuf.ServiceOptions"
             },
+            "apiVersion": {
+              "type": "string",
+              "id": 525000001,
+              "extend": "google.protobuf.ServiceOptions"
+            },
             "CommonLanguageSettings": {
               "fields": {
                 "referenceDocsUri": {
@@ -3273,6 +3568,10 @@
                 "protoReferenceDocumentationUri": {
                   "type": "string",
                   "id": 110
+                },
+                "restReferenceDocumentationUri": {
+                  "type": "string",
+                  "id": 111
                 }
               }
             },
@@ -3448,7 +3747,10 @@
               "rule": "repeated",
               "type": "google.api.FieldBehavior",
               "id": 1052,
-              "extend": "google.protobuf.FieldOptions"
+              "extend": "google.protobuf.FieldOptions",
+              "options": {
+                "packed": false
+              }
             },
             "FieldBehavior": {
               "values": {
@@ -3578,6 +3880,7 @@
           },
           "nested": {
             "FileDescriptorSet": {
+              "edition": "proto2",
               "fields": {
                 "file": {
                   "rule": "repeated",
@@ -3587,6 +3890,7 @@
               }
             },
             "Edition": {
+              "edition": "proto2",
               "values": {
                 "EDITION_UNKNOWN": 0,
                 "EDITION_PROTO2": 998,
@@ -3602,6 +3906,7 @@
               }
             },
             "FileDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3619,18 +3924,12 @@
                 "publicDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 10,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 10
                 },
                 "weakDependency": {
                   "rule": "repeated",
                   "type": "int32",
-                  "id": 11,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 11
                 },
                 "messageType": {
                   "rule": "repeated",
@@ -3671,6 +3970,7 @@
               }
             },
             "DescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3753,6 +4053,7 @@
               }
             },
             "ExtensionRangeOptions": {
+              "edition": "proto2",
               "fields": {
                 "uninterpretedOption": {
                   "rule": "repeated",
@@ -3826,6 +4127,7 @@
               }
             },
             "FieldDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3905,6 +4207,7 @@
               }
             },
             "OneofDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3917,6 +4220,7 @@
               }
             },
             "EnumDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3958,6 +4262,7 @@
               }
             },
             "EnumValueDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3974,6 +4279,7 @@
               }
             },
             "ServiceDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -3991,6 +4297,7 @@
               }
             },
             "MethodDescriptorProto": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "type": "string",
@@ -4025,6 +4332,7 @@
               }
             },
             "FileOptions": {
+              "edition": "proto2",
               "fields": {
                 "javaPackage": {
                   "type": "string",
@@ -4166,6 +4474,7 @@
               }
             },
             "MessageOptions": {
+              "edition": "proto2",
               "fields": {
                 "messageSetWireFormat": {
                   "type": "bool",
@@ -4239,6 +4548,7 @@
               ]
             },
             "FieldOptions": {
+              "edition": "proto2",
               "fields": {
                 "ctype": {
                   "type": "CType",
@@ -4300,10 +4610,7 @@
                 "targets": {
                   "rule": "repeated",
                   "type": "OptionTargetType",
-                  "id": 19,
-                  "options": {
-                    "packed": false
-                  }
+                  "id": 19
                 },
                 "editionDefaults": {
                   "rule": "repeated",
@@ -4387,6 +4694,7 @@
               }
             },
             "OneofOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4406,6 +4714,7 @@
               ]
             },
             "EnumOptions": {
+              "edition": "proto2",
               "fields": {
                 "allowAlias": {
                   "type": "bool",
@@ -4449,6 +4758,7 @@
               ]
             },
             "EnumValueOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4482,6 +4792,7 @@
               ]
             },
             "ServiceOptions": {
+              "edition": "proto2",
               "fields": {
                 "features": {
                   "type": "FeatureSet",
@@ -4508,6 +4819,7 @@
               ]
             },
             "MethodOptions": {
+              "edition": "proto2",
               "fields": {
                 "deprecated": {
                   "type": "bool",
@@ -4550,6 +4862,7 @@
               }
             },
             "UninterpretedOption": {
+              "edition": "proto2",
               "fields": {
                 "name": {
                   "rule": "repeated",
@@ -4599,6 +4912,7 @@
               }
             },
             "FeatureSet": {
+              "edition": "proto2",
               "fields": {
                 "fieldPresence": {
                   "type": "FieldPresence",
@@ -4671,8 +4985,20 @@
                   1001
                 ],
                 [
+                  1002,
+                  1002
+                ],
+                [
+                  9990,
+                  9990
+                ],
+                [
                   9995,
                   9999
+                ],
+                [
+                  10000,
+                  10000
                 ]
               ],
               "reserved": [
@@ -4728,6 +5054,7 @@
               }
             },
             "FeatureSetDefaults": {
+              "edition": "proto2",
               "fields": {
                 "defaults": {
                   "rule": "repeated",
@@ -4759,6 +5086,7 @@
               }
             },
             "SourceCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "location": {
                   "rule": "repeated",
@@ -4772,12 +5100,18 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "span": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 2
+                      "id": 2,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "leadingComments": {
                       "type": "string",
@@ -4797,6 +5131,7 @@
               }
             },
             "GeneratedCodeInfo": {
+              "edition": "proto2",
               "fields": {
                 "annotation": {
                   "rule": "repeated",
@@ -4810,7 +5145,10 @@
                     "path": {
                       "rule": "repeated",
                       "type": "int32",
-                      "id": 1
+                      "id": 1,
+                      "options": {
+                        "packed": true
+                      }
                     },
                     "sourceFile": {
                       "type": "string",

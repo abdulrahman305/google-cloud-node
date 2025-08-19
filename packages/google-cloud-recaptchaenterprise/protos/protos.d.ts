@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -171,6 +171,48 @@ export namespace google {
                      * @returns Promise
                      */
                     public migrateKey(request: google.cloud.recaptchaenterprise.v1.IMigrateKeyRequest): Promise<google.cloud.recaptchaenterprise.v1.Key>;
+
+                    /**
+                     * Calls AddIpOverride.
+                     * @param request AddIpOverrideRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and AddIpOverrideResponse
+                     */
+                    public addIpOverride(request: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest, callback: google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.AddIpOverrideCallback): void;
+
+                    /**
+                     * Calls AddIpOverride.
+                     * @param request AddIpOverrideRequest message or plain object
+                     * @returns Promise
+                     */
+                    public addIpOverride(request: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest): Promise<google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse>;
+
+                    /**
+                     * Calls RemoveIpOverride.
+                     * @param request RemoveIpOverrideRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and RemoveIpOverrideResponse
+                     */
+                    public removeIpOverride(request: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest, callback: google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.RemoveIpOverrideCallback): void;
+
+                    /**
+                     * Calls RemoveIpOverride.
+                     * @param request RemoveIpOverrideRequest message or plain object
+                     * @returns Promise
+                     */
+                    public removeIpOverride(request: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest): Promise<google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse>;
+
+                    /**
+                     * Calls ListIpOverrides.
+                     * @param request ListIpOverridesRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListIpOverridesResponse
+                     */
+                    public listIpOverrides(request: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest, callback: google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService.ListIpOverridesCallback): void;
+
+                    /**
+                     * Calls ListIpOverrides.
+                     * @param request ListIpOverridesRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listIpOverrides(request: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest): Promise<google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse>;
 
                     /**
                      * Calls GetMetrics.
@@ -377,6 +419,27 @@ export namespace google {
                      * @param [response] Key
                      */
                     type MigrateKeyCallback = (error: (Error|null), response?: google.cloud.recaptchaenterprise.v1.Key) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|addIpOverride}.
+                     * @param error Error, if any
+                     * @param [response] AddIpOverrideResponse
+                     */
+                    type AddIpOverrideCallback = (error: (Error|null), response?: google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|removeIpOverride}.
+                     * @param error Error, if any
+                     * @param [response] RemoveIpOverrideResponse
+                     */
+                    type RemoveIpOverrideCallback = (error: (Error|null), response?: google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|listIpOverrides}.
+                     * @param error Error, if any
+                     * @param [response] ListIpOverridesResponse
+                     */
+                    type ListIpOverridesCallback = (error: (Error|null), response?: google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse) => void;
 
                     /**
                      * Callback as used by {@link google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService|getMetrics}.
@@ -709,7 +772,7 @@ export namespace google {
                     accountId?: (string|null);
 
                     /** AnnotateAssessmentRequest hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
 
                     /** AnnotateAssessmentRequest transactionEvent */
                     transactionEvent?: (google.cloud.recaptchaenterprise.v1.ITransactionEvent|null);
@@ -737,7 +800,7 @@ export namespace google {
                     public accountId: string;
 
                     /** AnnotateAssessmentRequest hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /** AnnotateAssessmentRequest transactionEvent. */
                     public transactionEvent?: (google.cloud.recaptchaenterprise.v1.ITransactionEvent|null);
@@ -1196,16 +1259,16 @@ export namespace google {
                 interface IPrivatePasswordLeakVerification {
 
                     /** PrivatePasswordLeakVerification lookupHashPrefix */
-                    lookupHashPrefix?: (Uint8Array|string|null);
+                    lookupHashPrefix?: (Uint8Array|Buffer|string|null);
 
                     /** PrivatePasswordLeakVerification encryptedUserCredentialsHash */
-                    encryptedUserCredentialsHash?: (Uint8Array|string|null);
+                    encryptedUserCredentialsHash?: (Uint8Array|Buffer|string|null);
 
                     /** PrivatePasswordLeakVerification encryptedLeakMatchPrefixes */
                     encryptedLeakMatchPrefixes?: (Uint8Array[]|null);
 
                     /** PrivatePasswordLeakVerification reencryptedUserCredentialsHash */
-                    reencryptedUserCredentialsHash?: (Uint8Array|string|null);
+                    reencryptedUserCredentialsHash?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a PrivatePasswordLeakVerification. */
@@ -1218,16 +1281,16 @@ export namespace google {
                     constructor(properties?: google.cloud.recaptchaenterprise.v1.IPrivatePasswordLeakVerification);
 
                     /** PrivatePasswordLeakVerification lookupHashPrefix. */
-                    public lookupHashPrefix: (Uint8Array|string);
+                    public lookupHashPrefix: (Uint8Array|Buffer|string);
 
                     /** PrivatePasswordLeakVerification encryptedUserCredentialsHash. */
-                    public encryptedUserCredentialsHash: (Uint8Array|string);
+                    public encryptedUserCredentialsHash: (Uint8Array|Buffer|string);
 
                     /** PrivatePasswordLeakVerification encryptedLeakMatchPrefixes. */
                     public encryptedLeakMatchPrefixes: Uint8Array[];
 
                     /** PrivatePasswordLeakVerification reencryptedUserCredentialsHash. */
-                    public reencryptedUserCredentialsHash: (Uint8Array|string);
+                    public reencryptedUserCredentialsHash: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new PrivatePasswordLeakVerification instance using the specified properties.
@@ -1339,6 +1402,12 @@ export namespace google {
 
                     /** Assessment fraudSignals */
                     fraudSignals?: (google.cloud.recaptchaenterprise.v1.IFraudSignals|null);
+
+                    /** Assessment phoneFraudAssessment */
+                    phoneFraudAssessment?: (google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment|null);
+
+                    /** Assessment assessmentEnvironment */
+                    assessmentEnvironment?: (google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment|null);
                 }
 
                 /** Represents an Assessment. */
@@ -1379,6 +1448,12 @@ export namespace google {
 
                     /** Assessment fraudSignals. */
                     public fraudSignals?: (google.cloud.recaptchaenterprise.v1.IFraudSignals|null);
+
+                    /** Assessment phoneFraudAssessment. */
+                    public phoneFraudAssessment?: (google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment|null);
+
+                    /** Assessment assessmentEnvironment. */
+                    public assessmentEnvironment?: (google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment|null);
 
                     /**
                      * Creates a new Assessment instance using the specified properties.
@@ -1477,7 +1552,7 @@ export namespace google {
                     expectedAction?: (string|null);
 
                     /** Event hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
 
                     /** Event express */
                     express?: (boolean|null);
@@ -1490,6 +1565,9 @@ export namespace google {
 
                     /** Event ja3 */
                     ja3?: (string|null);
+
+                    /** Event ja4 */
+                    ja4?: (string|null);
 
                     /** Event headers */
                     headers?: (string[]|null);
@@ -1532,7 +1610,7 @@ export namespace google {
                     public expectedAction: string;
 
                     /** Event hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /** Event express. */
                     public express: boolean;
@@ -1545,6 +1623,9 @@ export namespace google {
 
                     /** Event ja3. */
                     public ja3: string;
+
+                    /** Event ja4. */
+                    public ja4: string;
 
                     /** Event headers. */
                     public headers: string[];
@@ -1739,9 +1820,6 @@ export namespace google {
 
                     /** TransactionData gatewayInfo. */
                     public gatewayInfo?: (google.cloud.recaptchaenterprise.v1.TransactionData.IGatewayInfo|null);
-
-                    /** TransactionData _transactionId. */
-                    public _transactionId?: "transactionId";
 
                     /**
                      * Creates a new TransactionData instance using the specified properties.
@@ -2540,6 +2618,9 @@ export namespace google {
 
                     /** RiskAnalysis extendedVerdictReasons */
                     extendedVerdictReasons?: (string[]|null);
+
+                    /** RiskAnalysis challenge */
+                    challenge?: (google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge|keyof typeof google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge|null);
                 }
 
                 /** Represents a RiskAnalysis. */
@@ -2559,6 +2640,9 @@ export namespace google {
 
                     /** RiskAnalysis extendedVerdictReasons. */
                     public extendedVerdictReasons: string[];
+
+                    /** RiskAnalysis challenge. */
+                    public challenge: (google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge|keyof typeof google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge);
 
                     /**
                      * Creates a new RiskAnalysis instance using the specified properties.
@@ -2650,6 +2734,14 @@ export namespace google {
                         LOW_CONFIDENCE_SCORE = 5,
                         SUSPECTED_CARDING = 6,
                         SUSPECTED_CHARGEBACK = 7
+                    }
+
+                    /** Challenge enum. */
+                    enum Challenge {
+                        CHALLENGE_UNSPECIFIED = 0,
+                        NOCAPTCHA = 1,
+                        PASSED = 2,
+                        FAILED = 3
                     }
                 }
 
@@ -3524,6 +3616,215 @@ export namespace google {
                             UNEXPECTED_LOCATION = 3
                         }
                     }
+                }
+
+                /** Properties of a SmsTollFraudVerdict. */
+                interface ISmsTollFraudVerdict {
+
+                    /** SmsTollFraudVerdict risk */
+                    risk?: (number|null);
+
+                    /** SmsTollFraudVerdict reasons */
+                    reasons?: (google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason[]|null);
+                }
+
+                /** Represents a SmsTollFraudVerdict. */
+                class SmsTollFraudVerdict implements ISmsTollFraudVerdict {
+
+                    /**
+                     * Constructs a new SmsTollFraudVerdict.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict);
+
+                    /** SmsTollFraudVerdict risk. */
+                    public risk: number;
+
+                    /** SmsTollFraudVerdict reasons. */
+                    public reasons: google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason[];
+
+                    /**
+                     * Creates a new SmsTollFraudVerdict instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SmsTollFraudVerdict instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict): google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict;
+
+                    /**
+                     * Encodes the specified SmsTollFraudVerdict message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.verify|verify} messages.
+                     * @param message SmsTollFraudVerdict message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SmsTollFraudVerdict message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.verify|verify} messages.
+                     * @param message SmsTollFraudVerdict message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SmsTollFraudVerdict message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SmsTollFraudVerdict
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict;
+
+                    /**
+                     * Decodes a SmsTollFraudVerdict message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SmsTollFraudVerdict
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict;
+
+                    /**
+                     * Verifies a SmsTollFraudVerdict message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SmsTollFraudVerdict message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SmsTollFraudVerdict
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict;
+
+                    /**
+                     * Creates a plain object from a SmsTollFraudVerdict message. Also converts values to other types if specified.
+                     * @param message SmsTollFraudVerdict
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SmsTollFraudVerdict to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SmsTollFraudVerdict
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace SmsTollFraudVerdict {
+
+                    /** SmsTollFraudReason enum. */
+                    enum SmsTollFraudReason {
+                        SMS_TOLL_FRAUD_REASON_UNSPECIFIED = 0,
+                        INVALID_PHONE_NUMBER = 1
+                    }
+                }
+
+                /** Properties of a PhoneFraudAssessment. */
+                interface IPhoneFraudAssessment {
+
+                    /** PhoneFraudAssessment smsTollFraudVerdict */
+                    smsTollFraudVerdict?: (google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict|null);
+                }
+
+                /** Represents a PhoneFraudAssessment. */
+                class PhoneFraudAssessment implements IPhoneFraudAssessment {
+
+                    /**
+                     * Constructs a new PhoneFraudAssessment.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment);
+
+                    /** PhoneFraudAssessment smsTollFraudVerdict. */
+                    public smsTollFraudVerdict?: (google.cloud.recaptchaenterprise.v1.ISmsTollFraudVerdict|null);
+
+                    /**
+                     * Creates a new PhoneFraudAssessment instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns PhoneFraudAssessment instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment): google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment;
+
+                    /**
+                     * Encodes the specified PhoneFraudAssessment message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.verify|verify} messages.
+                     * @param message PhoneFraudAssessment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified PhoneFraudAssessment message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment.verify|verify} messages.
+                     * @param message PhoneFraudAssessment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IPhoneFraudAssessment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a PhoneFraudAssessment message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns PhoneFraudAssessment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment;
+
+                    /**
+                     * Decodes a PhoneFraudAssessment message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns PhoneFraudAssessment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment;
+
+                    /**
+                     * Verifies a PhoneFraudAssessment message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a PhoneFraudAssessment message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns PhoneFraudAssessment
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment;
+
+                    /**
+                     * Creates a plain object from a PhoneFraudAssessment message. Also converts values to other types if specified.
+                     * @param message PhoneFraudAssessment
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this PhoneFraudAssessment to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for PhoneFraudAssessment
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
                 /** Properties of an AccountDefenderAssessment. */
@@ -5580,6 +5881,9 @@ export namespace google {
                     /** Key iosSettings */
                     iosSettings?: (google.cloud.recaptchaenterprise.v1.IIOSKeySettings|null);
 
+                    /** Key expressSettings */
+                    expressSettings?: (google.cloud.recaptchaenterprise.v1.IExpressKeySettings|null);
+
                     /** Key labels */
                     labels?: ({ [k: string]: string }|null);
 
@@ -5617,6 +5921,9 @@ export namespace google {
                     /** Key iosSettings. */
                     public iosSettings?: (google.cloud.recaptchaenterprise.v1.IIOSKeySettings|null);
 
+                    /** Key expressSettings. */
+                    public expressSettings?: (google.cloud.recaptchaenterprise.v1.IExpressKeySettings|null);
+
                     /** Key labels. */
                     public labels: { [k: string]: string };
 
@@ -5630,7 +5937,7 @@ export namespace google {
                     public wafSettings?: (google.cloud.recaptchaenterprise.v1.IWafSettings|null);
 
                     /** Key platformSettings. */
-                    public platformSettings?: ("webSettings"|"androidSettings"|"iosSettings");
+                    public platformSettings?: ("webSettings"|"androidSettings"|"iosSettings"|"expressSettings");
 
                     /**
                      * Creates a new Key instance using the specified properties.
@@ -6175,6 +6482,97 @@ export namespace google {
 
                     /**
                      * Gets the default type url for IOSKeySettings
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an ExpressKeySettings. */
+                interface IExpressKeySettings {
+                }
+
+                /** Represents an ExpressKeySettings. */
+                class ExpressKeySettings implements IExpressKeySettings {
+
+                    /**
+                     * Constructs a new ExpressKeySettings.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IExpressKeySettings);
+
+                    /**
+                     * Creates a new ExpressKeySettings instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExpressKeySettings instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IExpressKeySettings): google.cloud.recaptchaenterprise.v1.ExpressKeySettings;
+
+                    /**
+                     * Encodes the specified ExpressKeySettings message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ExpressKeySettings.verify|verify} messages.
+                     * @param message ExpressKeySettings message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IExpressKeySettings, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExpressKeySettings message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ExpressKeySettings.verify|verify} messages.
+                     * @param message ExpressKeySettings message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IExpressKeySettings, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExpressKeySettings message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExpressKeySettings
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.ExpressKeySettings;
+
+                    /**
+                     * Decodes an ExpressKeySettings message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExpressKeySettings
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.ExpressKeySettings;
+
+                    /**
+                     * Verifies an ExpressKeySettings message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExpressKeySettings message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExpressKeySettings
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.ExpressKeySettings;
+
+                    /**
+                     * Creates a plain object from an ExpressKeySettings message. Also converts values to other types if specified.
+                     * @param message ExpressKeySettings
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.ExpressKeySettings, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExpressKeySettings to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExpressKeySettings
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -7960,7 +8358,7 @@ export namespace google {
                     accountId?: (string|null);
 
                     /** SearchRelatedAccountGroupMembershipsRequest hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
 
                     /** SearchRelatedAccountGroupMembershipsRequest pageSize */
                     pageSize?: (number|null);
@@ -7985,7 +8383,7 @@ export namespace google {
                     public accountId: string;
 
                     /** SearchRelatedAccountGroupMembershipsRequest hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /** SearchRelatedAccountGroupMembershipsRequest pageSize. */
                     public pageSize: number;
@@ -8174,6 +8572,606 @@ export namespace google {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of an AddIpOverrideRequest. */
+                interface IAddIpOverrideRequest {
+
+                    /** AddIpOverrideRequest name */
+                    name?: (string|null);
+
+                    /** AddIpOverrideRequest ipOverrideData */
+                    ipOverrideData?: (google.cloud.recaptchaenterprise.v1.IIpOverrideData|null);
+                }
+
+                /** Represents an AddIpOverrideRequest. */
+                class AddIpOverrideRequest implements IAddIpOverrideRequest {
+
+                    /**
+                     * Constructs a new AddIpOverrideRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest);
+
+                    /** AddIpOverrideRequest name. */
+                    public name: string;
+
+                    /** AddIpOverrideRequest ipOverrideData. */
+                    public ipOverrideData?: (google.cloud.recaptchaenterprise.v1.IIpOverrideData|null);
+
+                    /**
+                     * Creates a new AddIpOverrideRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AddIpOverrideRequest instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest): google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest;
+
+                    /**
+                     * Encodes the specified AddIpOverrideRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest.verify|verify} messages.
+                     * @param message AddIpOverrideRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AddIpOverrideRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest.verify|verify} messages.
+                     * @param message AddIpOverrideRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IAddIpOverrideRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AddIpOverrideRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AddIpOverrideRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest;
+
+                    /**
+                     * Decodes an AddIpOverrideRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AddIpOverrideRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest;
+
+                    /**
+                     * Verifies an AddIpOverrideRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AddIpOverrideRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AddIpOverrideRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest;
+
+                    /**
+                     * Creates a plain object from an AddIpOverrideRequest message. Also converts values to other types if specified.
+                     * @param message AddIpOverrideRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.AddIpOverrideRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AddIpOverrideRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AddIpOverrideRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AddIpOverrideResponse. */
+                interface IAddIpOverrideResponse {
+                }
+
+                /** Represents an AddIpOverrideResponse. */
+                class AddIpOverrideResponse implements IAddIpOverrideResponse {
+
+                    /**
+                     * Constructs a new AddIpOverrideResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse);
+
+                    /**
+                     * Creates a new AddIpOverrideResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AddIpOverrideResponse instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse): google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse;
+
+                    /**
+                     * Encodes the specified AddIpOverrideResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse.verify|verify} messages.
+                     * @param message AddIpOverrideResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AddIpOverrideResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse.verify|verify} messages.
+                     * @param message AddIpOverrideResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IAddIpOverrideResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AddIpOverrideResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AddIpOverrideResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse;
+
+                    /**
+                     * Decodes an AddIpOverrideResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AddIpOverrideResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse;
+
+                    /**
+                     * Verifies an AddIpOverrideResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AddIpOverrideResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AddIpOverrideResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse;
+
+                    /**
+                     * Creates a plain object from an AddIpOverrideResponse message. Also converts values to other types if specified.
+                     * @param message AddIpOverrideResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.AddIpOverrideResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AddIpOverrideResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AddIpOverrideResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RemoveIpOverrideRequest. */
+                interface IRemoveIpOverrideRequest {
+
+                    /** RemoveIpOverrideRequest name */
+                    name?: (string|null);
+
+                    /** RemoveIpOverrideRequest ipOverrideData */
+                    ipOverrideData?: (google.cloud.recaptchaenterprise.v1.IIpOverrideData|null);
+                }
+
+                /** Represents a RemoveIpOverrideRequest. */
+                class RemoveIpOverrideRequest implements IRemoveIpOverrideRequest {
+
+                    /**
+                     * Constructs a new RemoveIpOverrideRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest);
+
+                    /** RemoveIpOverrideRequest name. */
+                    public name: string;
+
+                    /** RemoveIpOverrideRequest ipOverrideData. */
+                    public ipOverrideData?: (google.cloud.recaptchaenterprise.v1.IIpOverrideData|null);
+
+                    /**
+                     * Creates a new RemoveIpOverrideRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RemoveIpOverrideRequest instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest;
+
+                    /**
+                     * Encodes the specified RemoveIpOverrideRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest.verify|verify} messages.
+                     * @param message RemoveIpOverrideRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RemoveIpOverrideRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest.verify|verify} messages.
+                     * @param message RemoveIpOverrideRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RemoveIpOverrideRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RemoveIpOverrideRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest;
+
+                    /**
+                     * Decodes a RemoveIpOverrideRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RemoveIpOverrideRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest;
+
+                    /**
+                     * Verifies a RemoveIpOverrideRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RemoveIpOverrideRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RemoveIpOverrideRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest;
+
+                    /**
+                     * Creates a plain object from a RemoveIpOverrideRequest message. Also converts values to other types if specified.
+                     * @param message RemoveIpOverrideRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RemoveIpOverrideRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RemoveIpOverrideRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RemoveIpOverrideResponse. */
+                interface IRemoveIpOverrideResponse {
+                }
+
+                /** Represents a RemoveIpOverrideResponse. */
+                class RemoveIpOverrideResponse implements IRemoveIpOverrideResponse {
+
+                    /**
+                     * Constructs a new RemoveIpOverrideResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse);
+
+                    /**
+                     * Creates a new RemoveIpOverrideResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RemoveIpOverrideResponse instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse;
+
+                    /**
+                     * Encodes the specified RemoveIpOverrideResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse.verify|verify} messages.
+                     * @param message RemoveIpOverrideResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RemoveIpOverrideResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse.verify|verify} messages.
+                     * @param message RemoveIpOverrideResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IRemoveIpOverrideResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RemoveIpOverrideResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RemoveIpOverrideResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse;
+
+                    /**
+                     * Decodes a RemoveIpOverrideResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RemoveIpOverrideResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse;
+
+                    /**
+                     * Verifies a RemoveIpOverrideResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RemoveIpOverrideResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RemoveIpOverrideResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse;
+
+                    /**
+                     * Creates a plain object from a RemoveIpOverrideResponse message. Also converts values to other types if specified.
+                     * @param message RemoveIpOverrideResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.RemoveIpOverrideResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RemoveIpOverrideResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RemoveIpOverrideResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListIpOverridesRequest. */
+                interface IListIpOverridesRequest {
+
+                    /** ListIpOverridesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListIpOverridesRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListIpOverridesRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListIpOverridesRequest. */
+                class ListIpOverridesRequest implements IListIpOverridesRequest {
+
+                    /**
+                     * Constructs a new ListIpOverridesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest);
+
+                    /** ListIpOverridesRequest parent. */
+                    public parent: string;
+
+                    /** ListIpOverridesRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListIpOverridesRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListIpOverridesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListIpOverridesRequest instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest): google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest;
+
+                    /**
+                     * Encodes the specified ListIpOverridesRequest message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest.verify|verify} messages.
+                     * @param message ListIpOverridesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListIpOverridesRequest message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest.verify|verify} messages.
+                     * @param message ListIpOverridesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IListIpOverridesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListIpOverridesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListIpOverridesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest;
+
+                    /**
+                     * Decodes a ListIpOverridesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListIpOverridesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest;
+
+                    /**
+                     * Verifies a ListIpOverridesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListIpOverridesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListIpOverridesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest;
+
+                    /**
+                     * Creates a plain object from a ListIpOverridesRequest message. Also converts values to other types if specified.
+                     * @param message ListIpOverridesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListIpOverridesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListIpOverridesRequest
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ListIpOverridesResponse. */
+                interface IListIpOverridesResponse {
+
+                    /** ListIpOverridesResponse ipOverrides */
+                    ipOverrides?: (google.cloud.recaptchaenterprise.v1.IIpOverrideData[]|null);
+
+                    /** ListIpOverridesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListIpOverridesResponse. */
+                class ListIpOverridesResponse implements IListIpOverridesResponse {
+
+                    /**
+                     * Constructs a new ListIpOverridesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse);
+
+                    /** ListIpOverridesResponse ipOverrides. */
+                    public ipOverrides: google.cloud.recaptchaenterprise.v1.IIpOverrideData[];
+
+                    /** ListIpOverridesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListIpOverridesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListIpOverridesResponse instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse): google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse;
+
+                    /**
+                     * Encodes the specified ListIpOverridesResponse message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.verify|verify} messages.
+                     * @param message ListIpOverridesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListIpOverridesResponse message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse.verify|verify} messages.
+                     * @param message ListIpOverridesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IListIpOverridesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListIpOverridesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListIpOverridesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse;
+
+                    /**
+                     * Decodes a ListIpOverridesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListIpOverridesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse;
+
+                    /**
+                     * Verifies a ListIpOverridesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListIpOverridesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListIpOverridesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse;
+
+                    /**
+                     * Creates a plain object from a ListIpOverridesResponse message. Also converts values to other types if specified.
+                     * @param message ListIpOverridesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.ListIpOverridesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListIpOverridesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ListIpOverridesResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a RelatedAccountGroupMembership. */
                 interface IRelatedAccountGroupMembership {
 
@@ -8184,7 +9182,7 @@ export namespace google {
                     accountId?: (string|null);
 
                     /** RelatedAccountGroupMembership hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
                 }
 
                 /** Represents a RelatedAccountGroupMembership. */
@@ -8203,7 +9201,7 @@ export namespace google {
                     public accountId: string;
 
                     /** RelatedAccountGroupMembership hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /**
                      * Creates a new RelatedAccountGroupMembership instance using the specified properties.
@@ -8499,7 +9497,223 @@ export namespace google {
                         WAF_SERVICE_UNSPECIFIED = 0,
                         CA = 1,
                         FASTLY = 3,
-                        CLOUDFLARE = 4
+                        CLOUDFLARE = 4,
+                        AKAMAI = 5
+                    }
+                }
+
+                /** Properties of an AssessmentEnvironment. */
+                interface IAssessmentEnvironment {
+
+                    /** AssessmentEnvironment client */
+                    client?: (string|null);
+
+                    /** AssessmentEnvironment version */
+                    version?: (string|null);
+                }
+
+                /** Represents an AssessmentEnvironment. */
+                class AssessmentEnvironment implements IAssessmentEnvironment {
+
+                    /**
+                     * Constructs a new AssessmentEnvironment.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment);
+
+                    /** AssessmentEnvironment client. */
+                    public client: string;
+
+                    /** AssessmentEnvironment version. */
+                    public version: string;
+
+                    /**
+                     * Creates a new AssessmentEnvironment instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AssessmentEnvironment instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment): google.cloud.recaptchaenterprise.v1.AssessmentEnvironment;
+
+                    /**
+                     * Encodes the specified AssessmentEnvironment message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.verify|verify} messages.
+                     * @param message AssessmentEnvironment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AssessmentEnvironment message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.AssessmentEnvironment.verify|verify} messages.
+                     * @param message AssessmentEnvironment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IAssessmentEnvironment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AssessmentEnvironment message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AssessmentEnvironment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.AssessmentEnvironment;
+
+                    /**
+                     * Decodes an AssessmentEnvironment message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AssessmentEnvironment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.AssessmentEnvironment;
+
+                    /**
+                     * Verifies an AssessmentEnvironment message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AssessmentEnvironment message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AssessmentEnvironment
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.AssessmentEnvironment;
+
+                    /**
+                     * Creates a plain object from an AssessmentEnvironment message. Also converts values to other types if specified.
+                     * @param message AssessmentEnvironment
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.AssessmentEnvironment, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AssessmentEnvironment to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AssessmentEnvironment
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an IpOverrideData. */
+                interface IIpOverrideData {
+
+                    /** IpOverrideData ip */
+                    ip?: (string|null);
+
+                    /** IpOverrideData overrideType */
+                    overrideType?: (google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType|keyof typeof google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType|null);
+                }
+
+                /** Represents an IpOverrideData. */
+                class IpOverrideData implements IIpOverrideData {
+
+                    /**
+                     * Constructs a new IpOverrideData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.recaptchaenterprise.v1.IIpOverrideData);
+
+                    /** IpOverrideData ip. */
+                    public ip: string;
+
+                    /** IpOverrideData overrideType. */
+                    public overrideType: (google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType|keyof typeof google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType);
+
+                    /**
+                     * Creates a new IpOverrideData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns IpOverrideData instance
+                     */
+                    public static create(properties?: google.cloud.recaptchaenterprise.v1.IIpOverrideData): google.cloud.recaptchaenterprise.v1.IpOverrideData;
+
+                    /**
+                     * Encodes the specified IpOverrideData message. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.IpOverrideData.verify|verify} messages.
+                     * @param message IpOverrideData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.recaptchaenterprise.v1.IIpOverrideData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified IpOverrideData message, length delimited. Does not implicitly {@link google.cloud.recaptchaenterprise.v1.IpOverrideData.verify|verify} messages.
+                     * @param message IpOverrideData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.recaptchaenterprise.v1.IIpOverrideData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an IpOverrideData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns IpOverrideData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.recaptchaenterprise.v1.IpOverrideData;
+
+                    /**
+                     * Decodes an IpOverrideData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns IpOverrideData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.recaptchaenterprise.v1.IpOverrideData;
+
+                    /**
+                     * Verifies an IpOverrideData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an IpOverrideData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns IpOverrideData
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.recaptchaenterprise.v1.IpOverrideData;
+
+                    /**
+                     * Creates a plain object from an IpOverrideData message. Also converts values to other types if specified.
+                     * @param message IpOverrideData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.recaptchaenterprise.v1.IpOverrideData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this IpOverrideData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for IpOverrideData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                namespace IpOverrideData {
+
+                    /** OverrideType enum. */
+                    enum OverrideType {
+                        OVERRIDE_TYPE_UNSPECIFIED = 0,
+                        ALLOW = 1
                     }
                 }
             }
@@ -8830,7 +10044,7 @@ export namespace google {
                     reasons?: (google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentRequest.Reason[]|null);
 
                     /** AnnotateAssessmentRequest hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
 
                     /** AnnotateAssessmentRequest transactionEvent */
                     transactionEvent?: (google.cloud.recaptchaenterprise.v1beta1.ITransactionEvent|null);
@@ -8855,7 +10069,7 @@ export namespace google {
                     public reasons: google.cloud.recaptchaenterprise.v1beta1.AnnotateAssessmentRequest.Reason[];
 
                     /** AnnotateAssessmentRequest hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /** AnnotateAssessmentRequest transactionEvent. */
                     public transactionEvent?: (google.cloud.recaptchaenterprise.v1beta1.ITransactionEvent|null);
@@ -9064,7 +10278,7 @@ export namespace google {
                 interface IPasswordLeakVerification {
 
                     /** PasswordLeakVerification hashedUserCredentials */
-                    hashedUserCredentials?: (Uint8Array|string|null);
+                    hashedUserCredentials?: (Uint8Array|Buffer|string|null);
 
                     /** PasswordLeakVerification credentialsLeaked */
                     credentialsLeaked?: (boolean|null);
@@ -9083,7 +10297,7 @@ export namespace google {
                     constructor(properties?: google.cloud.recaptchaenterprise.v1beta1.IPasswordLeakVerification);
 
                     /** PasswordLeakVerification hashedUserCredentials. */
-                    public hashedUserCredentials: (Uint8Array|string);
+                    public hashedUserCredentials: (Uint8Array|Buffer|string);
 
                     /** PasswordLeakVerification credentialsLeaked. */
                     public credentialsLeaked: boolean;
@@ -9342,7 +10556,7 @@ export namespace google {
                     expectedAction?: (string|null);
 
                     /** Event hashedAccountId */
-                    hashedAccountId?: (Uint8Array|string|null);
+                    hashedAccountId?: (Uint8Array|Buffer|string|null);
 
                     /** Event transactionData */
                     transactionData?: (google.cloud.recaptchaenterprise.v1beta1.ITransactionData|null);
@@ -9376,7 +10590,7 @@ export namespace google {
                     public expectedAction: string;
 
                     /** Event hashedAccountId. */
-                    public hashedAccountId: (Uint8Array|string);
+                    public hashedAccountId: (Uint8Array|Buffer|string);
 
                     /** Event transactionData. */
                     public transactionData?: (google.cloud.recaptchaenterprise.v1beta1.ITransactionData|null);
@@ -9562,9 +10776,6 @@ export namespace google {
 
                     /** TransactionData gatewayInfo. */
                     public gatewayInfo?: (google.cloud.recaptchaenterprise.v1beta1.TransactionData.IGatewayInfo|null);
-
-                    /** TransactionData _transactionId. */
-                    public _transactionId?: "transactionId";
 
                     /**
                      * Creates a new TransactionData instance using the specified properties.
@@ -11443,6 +12654,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri */
             protoReferenceDocumentationUri?: (string|null);
+
+            /** Publishing restReferenceDocumentationUri */
+            restReferenceDocumentationUri?: (string|null);
         }
 
         /** Represents a Publishing. */
@@ -11483,6 +12697,9 @@ export namespace google {
 
             /** Publishing protoReferenceDocumentationUri. */
             public protoReferenceDocumentationUri: string;
+
+            /** Publishing restReferenceDocumentationUri. */
+            public restReferenceDocumentationUri: string;
 
             /**
              * Creates a new Publishing instance using the specified properties.
@@ -15813,6 +17030,9 @@ export namespace google {
 
             /** ServiceOptions .google.api.oauthScopes */
             ".google.api.oauthScopes"?: (string|null);
+
+            /** ServiceOptions .google.api.apiVersion */
+            ".google.api.apiVersion"?: (string|null);
         }
 
         /** Represents a ServiceOptions. */
@@ -16061,7 +17281,7 @@ export namespace google {
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|string|null);
+            stringValue?: (Uint8Array|Buffer|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -16092,7 +17312,7 @@ export namespace google {
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: (Uint8Array|string);
+            public stringValue: (Uint8Array|Buffer|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -17522,7 +18742,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|string|null);
+            value?: (Uint8Array|Buffer|string|null);
         }
 
         /** Represents an Any. */
@@ -17538,7 +18758,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: (Uint8Array|string);
+            public value: (Uint8Array|Buffer|string);
 
             /**
              * Creates a new Any instance using the specified properties.

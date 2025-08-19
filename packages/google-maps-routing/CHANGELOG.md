@@ -1,5 +1,45 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-cloud-node/compare/routing-v2.0.1...routing-v2.1.0) (2025-07-09)
+
+
+### Features
+
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6425](https://github.com/googleapis/google-cloud-node/issues/6425)) ([c920e8d](https://github.com/googleapis/google-cloud-node/commit/c920e8d0d43be81fc171bc5f7d59800b66b830b8))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+## [2.0.1](https://github.com/googleapis/google-cloud-node/compare/routing-v2.0.0...routing-v2.0.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6190](https://github.com/googleapis/google-cloud-node/issues/6190)) ([f4866df](https://github.com/googleapis/google-cloud-node/commit/f4866dfa6ab481163150f54928a9857d2dfef948))
+
+## [2.0.0](https://github.com/googleapis/google-cloud-node/compare/routing-v1.4.0...routing-v2.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [Many APIs] add request/response debug logging to gapics ([388b4e2](https://github.com/googleapis/google-cloud-node/commit/388b4e20329b7f6fc0dd061dddff573c45104213))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [1.4.0](https://github.com/googleapis/google-cloud-node/compare/routing-v1.3.0...routing-v1.4.0) (2024-12-18)
+
+
+### Features
+
+* [routing] add API for experimental flyover and narrow road polyline details ([#5865](https://github.com/googleapis/google-cloud-node/issues/5865)) ([24d7341](https://github.com/googleapis/google-cloud-node/commit/24d7341b387fc8f6d286ff945bc9aed54ddcc7df))
+* [routing] add API for shorter distance reference routes ([#5842](https://github.com/googleapis/google-cloud-node/issues/5842)) ([99b489f](https://github.com/googleapis/google-cloud-node/commit/99b489f1170ceb45d3ce6cb8d56c8c7aa671ad03))
+
 ## [1.3.0](https://github.com/googleapis/google-cloud-node/compare/routing-v1.2.0...routing-v1.3.0) (2024-05-21)
 
 

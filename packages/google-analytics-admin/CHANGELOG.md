@@ -1,5 +1,67 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-cloud-node/compare/admin-v8.2.0...admin-v8.3.0) (2025-07-09)
+
+
+### Features
+
+* [analytics-admin] add the `GetSubpropertySyncConfigRequest` method ([#6415](https://github.com/googleapis/google-cloud-node/issues/6415)) ([0b0c0e1](https://github.com/googleapis/google-cloud-node/commit/0b0c0e19e05b22928fff600f98238973b839df02))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6417](https://github.com/googleapis/google-cloud-node/issues/6417)) ([0d6d584](https://github.com/googleapis/google-cloud-node/commit/0d6d584a0c5c8f9f96daf3ede46f9440758e0f35))
+* [Many APIs] add methods from gax to cache proto root and process custom error details ([#6419](https://github.com/googleapis/google-cloud-node/issues/6419)) ([f8a324c](https://github.com/googleapis/google-cloud-node/commit/f8a324ca5c3bc0f730e4ed67d9407c44f2414936))
+* Add protobufjs 2023 edition support ([#6303](https://github.com/googleapis/google-cloud-node/issues/6303)) ([4a0cba1](https://github.com/googleapis/google-cloud-node/commit/4a0cba1e41a9aeb9c15ad31487ef013c8277cfef))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google-auth-library to v10 ([#6409](https://github.com/googleapis/google-cloud-node/issues/6409)) ([152edb5](https://github.com/googleapis/google-cloud-node/commit/152edb50d2db399560d5014f9b61797603b5a4b1))
+* **deps:** Update dependency google-gax to v5 ([#6414](https://github.com/googleapis/google-cloud-node/issues/6414)) ([dca6154](https://github.com/googleapis/google-cloud-node/commit/dca61547fedb1e712389ffd6dce00ec4395865ed))
+
+## [8.2.0](https://github.com/googleapis/google-cloud-node/compare/admin-v8.1.0...admin-v8.2.0) (2025-05-09)
+
+
+### Features
+
+* [analytics-admin] add the `CreateReportingDataAnnotation` method ([#6266](https://github.com/googleapis/google-cloud-node/issues/6266)) ([4309d7e](https://github.com/googleapis/google-cloud-node/commit/4309d7ee462728f082ae3e6fe6d2a0ceca7e2ebc))
+* Multiple ai-platform updates ([0b8b1a7](https://github.com/googleapis/google-cloud-node/commit/0b8b1a75f33bdf94000321d239834b9b10757862))
+
+## [8.1.0](https://github.com/googleapis/google-cloud-node/compare/admin-v8.0.0...admin-v8.1.0) (2025-03-19)
+
+
+### Features
+
+* [Many APIs] await/catch promises, and update listOperationsAsync return type ([#6182](https://github.com/googleapis/google-cloud-node/issues/6182)) ([c41ff07](https://github.com/googleapis/google-cloud-node/commit/c41ff0729b65a1207978b4029d6369cc0552e0bf))
+
+## [8.0.0](https://github.com/googleapis/google-cloud-node/compare/admin-v7.6.0...admin-v8.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096))
+
+### Features
+
+* [analytics-admin] added support for KeyEvents AdminAPI ChangeHistory ([#6113](https://github.com/googleapis/google-cloud-node/issues/6113)) ([beba36b](https://github.com/googleapis/google-cloud-node/commit/beba36b9f0ef1655bef50d1c063b5f1b54e15a93))
+* [Many APIs] add request/response debug logging to gapics, update templates to gax 5  ([54a73fe](https://github.com/googleapis/google-cloud-node/commit/54a73fe74eab0675c006f24d5f1e4574c44d829b))
+
+
+### Miscellaneous Chores
+
+* Upgrade to Node 18 ([#6096](https://github.com/googleapis/google-cloud-node/issues/6096)) ([eadae64](https://github.com/googleapis/google-cloud-node/commit/eadae64d54e07aa2c65097ea52e65008d4e87436))
+
+## [7.6.0](https://github.com/googleapis/google-cloud-node/compare/admin-v7.5.0...admin-v7.6.0) (2024-08-09)
+
+
+### Features
+
+* [analytics-admin] add `GetKeyEvent`, `CreateKeyEvent`, `ListKeyEvents`, `UpdateKeyEvent`, and `DeleteKeyEvent` methods ([#5597](https://github.com/googleapis/google-cloud-node/issues/5597)) ([178789b](https://github.com/googleapis/google-cloud-node/commit/178789bd72d0303fc369c823bdbd9a6f2fcd723b))
+
+## [7.5.0](https://github.com/googleapis/google-cloud-node/compare/admin-v7.4.0...admin-v7.5.0) (2024-07-22)
+
+
+### Features
+
+* [analytics-admin] add `GetKeyEvent`, `CreateKeyEvent`, `ListKeyEvents`, `UpdateKeyEvent`, `DeleteKeyEvent` methods to the Admin API v1beta ([#5556](https://github.com/googleapis/google-cloud-node/issues/5556)) ([f0403d5](https://github.com/googleapis/google-cloud-node/commit/f0403d546bbc3775b9d4b7dd15df74b6809084e7))
+
 ## [7.4.0](https://github.com/googleapis/google-cloud-node/compare/admin-v7.3.0...admin-v7.4.0) (2024-05-21)
 
 

@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import type {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallba
 import {Transform} from 'stream';
 import * as protos from '../../protos/protos';
 import jsonProtos = require('../../protos/protos.json');
+import {loggingUtils as logging, decodeAnyProtosInArray} from 'google-gax';
 
 /**
  * Client JSON configuration object, loaded from
@@ -46,6 +47,8 @@ export class VehicleServiceClient {
   private _defaults: {[method: string]: gax.CallSettings};
   private _universeDomain: string;
   private _servicePath: string;
+  private _log = logging.log('fleetengine');
+
   auth: gax.GoogleAuth;
   descriptors: Descriptors = {
     page: {},
@@ -80,7 +83,7 @@ export class VehicleServiceClient {
    *     Developer's Console, e.g. 'grape-spaceship-123'. We will also check
    *     the environment variable GCLOUD_PROJECT for your project ID. If your
    *     app is running in an environment which supports
-   *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
+   *     {@link https://cloud.google.com/docs/authentication/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
@@ -233,7 +236,7 @@ export class VehicleServiceClient {
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
     const vehicleServiceStubMethods =
-        ['createVehicle', 'getVehicle', 'updateVehicle', 'updateVehicleLocation', 'updateVehicleAttributes', 'listVehicles', 'searchVehicles', 'searchFuzzedVehicles'];
+        ['createVehicle', 'getVehicle', 'deleteVehicle', 'updateVehicle', 'updateVehicleAttributes', 'listVehicles', 'searchVehicles'];
     for (const methodName of vehicleServiceStubMethods) {
       const callPromise = this.vehicleServiceStub.then(
         stub => (...args: Array<{}>) => {
@@ -483,8 +486,32 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.createVehicle(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('createVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.ICreateVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('createVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.createVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.ICreateVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('createVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Returns a vehicle from the Fleet Engine.
@@ -581,8 +608,146 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.getVehicle(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('getVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.IGetVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('getVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.getVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.IGetVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('getVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
+  }
+/**
+ * Deletes a Vehicle from the Fleet Engine.
+ *
+ * Returns FAILED_PRECONDITION if the Vehicle has active Trips.
+ * assigned to it.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {maps.fleetengine.v1.RequestHeader} [request.header]
+ *   Optional. The standard Fleet Engine request header.
+ * @param {string} request.name
+ *   Required. Must be in the format
+ *   `providers/{provider}/vehicles/{vehicle}`.
+ *   The {provider} must be the Project ID (for example, `sample-cloud-project`)
+ *   of the Google Cloud Project of which the service account making
+ *   this call is a member.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing {@link protos.google.protobuf.Empty|Empty}.
+ *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
+ *   for more details and examples.
+ * @example <caption>include:samples/generated/v1/vehicle_service.delete_vehicle.js</caption>
+ * region_tag:fleetengine_v1_generated_VehicleService_DeleteVehicle_async
+ */
+  deleteVehicle(
+      request?: protos.maps.fleetengine.v1.IDeleteVehicleRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.v1.IDeleteVehicleRequest|undefined, {}|undefined
+      ]>;
+  deleteVehicle(
+      request: protos.maps.fleetengine.v1.IDeleteVehicleRequest,
+      options: CallOptions,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.v1.IDeleteVehicleRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteVehicle(
+      request: protos.maps.fleetengine.v1.IDeleteVehicleRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.v1.IDeleteVehicleRequest|null|undefined,
+          {}|null|undefined>): void;
+  deleteVehicle(
+      request?: protos.maps.fleetengine.v1.IDeleteVehicleRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.v1.IDeleteVehicleRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.maps.fleetengine.v1.IDeleteVehicleRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.v1.IDeleteVehicleRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    let routingParameter = {};
+    {
+      const fieldValue = request.name;
+      if (fieldValue !== undefined && fieldValue !== null) {
+        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
+        if (match) {
+          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
+          Object.assign(routingParameter, { provider_id: parameterValue });
+        }
+      }
+    }
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = this._gaxModule.routingHeader.fromParams(
+      routingParameter
+    );
+    this.initialize().catch(err => {throw err});
+    this._log.info('deleteVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.v1.IDeleteVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('deleteVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.deleteVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.google.protobuf.IEmpty,
+        protos.maps.fleetengine.v1.IDeleteVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('deleteVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Writes updated vehicle data to the Fleet Engine.
@@ -704,104 +869,32 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.updateVehicle(request, options, callback);
-  }
-/**
- * Deprecated: Use the `UpdateVehicle` method instead.
- * UpdateVehicleLocation updates the location of the vehicle.
- *
- * @param {Object} request
- *   The request object that will be sent.
- * @param {maps.fleetengine.v1.RequestHeader} request.header
- *   The standard Fleet Engine request header.
- * @param {string} request.name
- *   Required. Must be in the format
- *   `providers/{provider}/vehicles/{vehicle}`.
- *   The {provider} must be the Project ID (for example, `sample-cloud-project`)
- *   of the Google Cloud Project of which the service account making
- *   this call is a member.
- * @param {maps.fleetengine.v1.VehicleLocation} request.currentLocation
- *   Required. The vehicle's most recent location.  The `location` and
- *   `update_time` subfields are required.
- * @param {maps.fleetengine.v1.VehicleState} request.currentState
- *   Set the vehicle's state to either `ONLINE` or `OFFLINE`.
- *   If set to `UNKNOWN_VEHICLE_STATE`, the vehicle's state will not be altered.
- * @param {object} [options]
- *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
- * @returns {Promise} - The promise which resolves to an array.
- *   The first element of the array is an object representing {@link protos.maps.fleetengine.v1.VehicleLocation|VehicleLocation}.
- *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
- *   for more details and examples.
- * @example <caption>include:samples/generated/v1/vehicle_service.update_vehicle_location.js</caption>
- * region_tag:fleetengine_v1_generated_VehicleService_UpdateVehicleLocation_async
- * @deprecated UpdateVehicleLocation is deprecated and may be removed in a future version.
- */
-  updateVehicleLocation(
-      request?: protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest,
-      options?: CallOptions):
-      Promise<[
-        protos.maps.fleetengine.v1.IVehicleLocation,
-        protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|undefined, {}|undefined
-      ]>;
-  updateVehicleLocation(
-      request: protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest,
-      options: CallOptions,
-      callback: Callback<
-          protos.maps.fleetengine.v1.IVehicleLocation,
-          protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|null|undefined,
-          {}|null|undefined>): void;
-  updateVehicleLocation(
-      request: protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest,
-      callback: Callback<
-          protos.maps.fleetengine.v1.IVehicleLocation,
-          protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|null|undefined,
-          {}|null|undefined>): void;
-  updateVehicleLocation(
-      request?: protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest,
-      optionsOrCallback?: CallOptions|Callback<
-          protos.maps.fleetengine.v1.IVehicleLocation,
-          protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|null|undefined,
-          {}|null|undefined>,
-      callback?: Callback<
-          protos.maps.fleetengine.v1.IVehicleLocation,
-          protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|null|undefined,
-          {}|null|undefined>):
-      Promise<[
-        protos.maps.fleetengine.v1.IVehicleLocation,
-        protos.maps.fleetengine.v1.IUpdateVehicleLocationRequest|undefined, {}|undefined
-      ]>|void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    }
-    else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    let routingParameter = {};
-    {
-      const fieldValue = request.name;
-      if (fieldValue !== undefined && fieldValue !== null) {
-        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
-        if (match) {
-          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
-          Object.assign(routingParameter, { provider_id: parameterValue });
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateVehicle request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.IUpdateVehicleRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateVehicle response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
         }
-      }
-    }
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = this._gaxModule.routingHeader.fromParams(
-      routingParameter
-    );
-    this.initialize();
-    this.warn('DEP$VehicleService-$UpdateVehicleLocation','UpdateVehicleLocation is deprecated and may be removed in a future version.', 'DeprecationWarning');
-    return this.innerApiCalls.updateVehicleLocation(request, options, callback);
+      : undefined;
+    return this.innerApiCalls.updateVehicle(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.v1.IVehicle,
+        protos.maps.fleetengine.v1.IUpdateVehicleRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateVehicle response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Partially updates a vehicle's attributes.
@@ -893,8 +986,32 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.updateVehicleAttributes(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    this._log.info('updateVehicleAttributes request %j', request);
+    const wrappedCallback: Callback<
+        protos.maps.fleetengine.v1.IUpdateVehicleAttributesResponse,
+        protos.maps.fleetengine.v1.IUpdateVehicleAttributesRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('updateVehicleAttributes response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    return this.innerApiCalls.updateVehicleAttributes(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.v1.IUpdateVehicleAttributesResponse,
+        protos.maps.fleetengine.v1.IUpdateVehicleAttributesRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('updateVehicleAttributes response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 /**
  * Returns a list of vehicles that match the request options.
@@ -1105,222 +1222,32 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.searchVehicles(request, options, callback);
-  }
-/**
- * Deprecated: Use `SearchVehicles` instead.
- *
- * @param {Object} request
- *   The request object that will be sent.
- * @param {maps.fleetengine.v1.RequestHeader} request.header
- *   The standard Fleet Engine request header.
- * @param {string} request.parent
- *   Required. Must be in the format `providers/{provider}`.
- *   The provider must be the Project ID (for example, `sample-cloud-project`)
- *   of the Google Cloud Project of which the service account making
- *   this call is a member.
- * @param {maps.fleetengine.v1.TerminalLocation} request.pickupPoint
- *   Required. The pickup point to search near.
- * @param {maps.fleetengine.v1.TerminalLocation} request.dropoffPoint
- *   The customer's intended dropoff location. The field is required if
- *   `trip_types` contains `TripType.SHARED`.
- * @param {number} request.pickupRadiusMeters
- *   Required. Defines the vehicle search radius around the pickup point. Only
- *   vehicles within the search radius will be returned. Value must be between
- *   400 and 10000 meters (inclusive).
- * @param {number} request.count
- *   Required. Specifies the maximum number of vehicles to return. The value
- *   must be between 1 and 50 (inclusive).
- * @param {number} request.minimumCapacity
- *   Required. Specifies the number of passengers being considered for a trip.
- *   The value must be greater than or equal to one. The driver is not
- *   considered in the capacity value.
- * @param {number[]} request.tripTypes
- *   Required. Represents the type of proposed trip. Must include exactly one
- *   type. `UNKNOWN_TRIP_TYPE` is not allowed. Restricts the search to only
- *   those vehicles that can support that trip type.
- * @param {google.protobuf.Duration} request.maximumStaleness
- *   Restricts the search to only those vehicles that have sent location updates
- *   to Fleet Engine within the specified duration. Stationary vehicles still
- *   transmitting their locations are not considered stale. If this field is not
- *   set, the server uses five minutes as the default value.
- * @param {number[]} request.vehicleTypes
- *   Required. Restricts the search to vehicles with one of the specified types.
- *   At least one vehicle type must be specified. VehicleTypes with a category
- *   of `UNKNOWN` are not allowed.
- * @param {number[]} request.requiredAttributes
- *   Callers can form complex logical operations using any combination of the
- *   `required_attributes`, `required_one_of_attributes`, and
- *   `required_one_of_attribute_sets` fields.
- *
- *   `required_attributes` is a list; `required_one_of_attributes` uses a
- *   message which allows a list of lists. In combination, the two fields allow
- *   the composition of this expression:
- *
- *   ```
- *   (required_attributes[0] AND required_attributes[1] AND ...)
- *   AND
- *   (required_one_of_attributes{@link protos.0|0} OR required_one_of_attributes{@link protos.1|0} OR
- *   ...)
- *   AND
- *   (required_one_of_attributes{@link protos.0|1} OR required_one_of_attributes{@link protos.1|1} OR
- *   ...)
- *   ```
- *
- *   Restricts the search to only those vehicles with the specified attributes.
- *   This field is a conjunction/AND operation. A max of 50 required_attributes
- *   is allowed. This matches the maximum number of attributes allowed on a
- *   vehicle.
- * @param {number[]} request.requiredOneOfAttributes
- *   Restricts the search to only those vehicles with at least one of
- *   the specified attributes in each `VehicleAttributeList`. Within each
- *   list, a vehicle must match at least one of the attributes. This field is an
- *   inclusive disjunction/OR operation in each `VehicleAttributeList` and a
- *   conjunction/AND operation across the collection of `VehicleAttributeList`.
- * @param {number[]} request.requiredOneOfAttributeSets
- *   `required_one_of_attribute_sets` provides additional functionality.
- *
- *   Similar to `required_one_of_attributes`, `required_one_of_attribute_sets`
- *   uses a message which allows a list of lists, allowing expressions such as
- *   this one:
- *
- *   ```
- *   (required_attributes[0] AND required_attributes[1] AND ...)
- *   AND
- *   (
- *     (required_one_of_attribute_sets{@link protos.0|0} AND
- *     required_one_of_attribute_sets{@link protos.1|0} AND
- *     ...)
- *     OR
- *     (required_one_of_attribute_sets{@link protos.0|1} AND
- *     required_one_of_attribute_sets{@link protos.1|1} AND
- *     ...)
- *   )
- *   ```
- *
- *   Restricts the search to only those vehicles with all the attributes in a
- *   `VehicleAttributeList`. Within each list, a
- *   vehicle must match all of the attributes. This field is a conjunction/AND
- *   operation in each `VehicleAttributeList` and inclusive disjunction/OR
- *   operation across the collection of `VehicleAttributeList`.
- * @param {maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder} request.orderBy
- *   Required. Specifies the desired ordering criterion for results.
- * @param {boolean} request.includeBackToBack
- *   This indicates if vehicles with a single active trip are eligible for this
- *   search. This field is only used when `current_trips_present` is
- *   unspecified. When `current_trips_present` is unspecified  and  this field
- *   is `false`, vehicles with assigned trips are excluded from the search
- *   results. When `current_trips_present` is unspecified and this field is
- *   `true`, search results can include vehicles with one active trip that has a
- *   status of `ENROUTE_TO_DROPOFF`. When `current_trips_present` is specified,
- *   this field cannot be set to true.
- *
- *   The default value is `false`.
- * @param {string} request.tripId
- *   Indicates the trip associated with this `SearchVehicleRequest`.
- * @param {maps.fleetengine.v1.SearchVehiclesRequest.CurrentTripsPresent} request.currentTripsPresent
- *   This indicates if vehicles with active trips are eligible for this search.
- *   This must be set to something other than
- *   `CURRENT_TRIPS_PRESENT_UNSPECIFIED` if `trip_type` includes `SHARED`.
- * @param {string} [request.filter]
- *   Optional. A filter query to apply when searching vehicles. See
- *   http://aip.dev/160 for examples of the filter syntax.
- *
- *   This field is designed to replace the `required_attributes`,
- *   `required_one_of_attributes`, and `required_one_of_attributes_sets` fields.
- *   If a non-empty value is specified here, the following fields must be empty:
- *   `required_attributes`, `required_one_of_attributes`, and
- *   `required_one_of_attributes_sets`.
- *
- *   This filter functions as an AND clause with other constraints,
- *   such as `minimum_capacity` or `vehicle_types`.
- *
- *   Note that the only queries supported are on vehicle attributes (for
- *   example, `attributes.<key> = <value>` or `attributes.<key1> = <value1> AND
- *   attributes.<key2> = <value2>`). The maximum number of restrictions allowed
- *   in a filter query is 50.
- *
- *   Also, all attributes are stored as strings, so the only supported
- *   comparisons against attributes are string comparisons. In order to compare
- *   against number or boolean values, the values must be explicitly quoted to
- *   be treated as strings (for example, `attributes.<key> = "10"` or
- *   `attributes.<key> = "true"`).
- * @param {object} [options]
- *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
- * @returns {Promise} - The promise which resolves to an array.
- *   The first element of the array is an object representing {@link protos.maps.fleetengine.v1.SearchVehiclesResponse|SearchVehiclesResponse}.
- *   Please see the {@link https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods | documentation }
- *   for more details and examples.
- * @example <caption>include:samples/generated/v1/vehicle_service.search_fuzzed_vehicles.js</caption>
- * region_tag:fleetengine_v1_generated_VehicleService_SearchFuzzedVehicles_async
- * @deprecated SearchFuzzedVehicles is deprecated and may be removed in a future version.
- */
-  searchFuzzedVehicles(
-      request?: protos.maps.fleetengine.v1.ISearchVehiclesRequest,
-      options?: CallOptions):
-      Promise<[
+    this.initialize().catch(err => {throw err});
+    this._log.info('searchVehicles request %j', request);
+    const wrappedCallback: Callback<
         protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-        protos.maps.fleetengine.v1.ISearchVehiclesRequest|undefined, {}|undefined
-      ]>;
-  searchFuzzedVehicles(
-      request: protos.maps.fleetengine.v1.ISearchVehiclesRequest,
-      options: CallOptions,
-      callback: Callback<
-          protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-          protos.maps.fleetengine.v1.ISearchVehiclesRequest|null|undefined,
-          {}|null|undefined>): void;
-  searchFuzzedVehicles(
-      request: protos.maps.fleetengine.v1.ISearchVehiclesRequest,
-      callback: Callback<
-          protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-          protos.maps.fleetengine.v1.ISearchVehiclesRequest|null|undefined,
-          {}|null|undefined>): void;
-  searchFuzzedVehicles(
-      request?: protos.maps.fleetengine.v1.ISearchVehiclesRequest,
-      optionsOrCallback?: CallOptions|Callback<
-          protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-          protos.maps.fleetengine.v1.ISearchVehiclesRequest|null|undefined,
-          {}|null|undefined>,
-      callback?: Callback<
-          protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-          protos.maps.fleetengine.v1.ISearchVehiclesRequest|null|undefined,
-          {}|null|undefined>):
-      Promise<[
-        protos.maps.fleetengine.v1.ISearchVehiclesResponse,
-        protos.maps.fleetengine.v1.ISearchVehiclesRequest|undefined, {}|undefined
-      ]>|void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    }
-    else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    let routingParameter = {};
-    {
-      const fieldValue = request.parent;
-      if (fieldValue !== undefined && fieldValue !== null) {
-        const match = fieldValue.toString().match(RegExp('(?<provider_id>providers/[^/]+)'));
-        if (match) {
-          const parameterValue = match.groups?.['provider_id'] ?? fieldValue;
-          Object.assign(routingParameter, { provider_id: parameterValue });
+        protos.maps.fleetengine.v1.ISearchVehiclesRequest|null|undefined,
+        {}|null|undefined>|undefined = callback
+      ? (error, response, options, rawResponse) => {
+          this._log.info('searchVehicles response %j', response);
+          callback!(error, response, options, rawResponse); // We verified callback above.
         }
-      }
-    }
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = this._gaxModule.routingHeader.fromParams(
-      routingParameter
-    );
-    this.initialize();
-    this.warn('DEP$VehicleService-$SearchFuzzedVehicles','SearchFuzzedVehicles is deprecated and may be removed in a future version.', 'DeprecationWarning');
-    return this.innerApiCalls.searchFuzzedVehicles(request, options, callback);
+      : undefined;
+    return this.innerApiCalls.searchVehicles(request, options, wrappedCallback)
+      ?.then(([response, options, rawResponse]: [
+        protos.maps.fleetengine.v1.ISearchVehiclesResponse,
+        protos.maps.fleetengine.v1.ISearchVehiclesRequest|undefined,
+        {}|undefined
+      ]) => {
+        this._log.info('searchVehicles response %j', response);
+        return [response, options, rawResponse];
+      }).catch((error: any) => {
+        if (error && 'statusDetails' in error && error.statusDetails instanceof Array) {
+          const protos = this._gaxModule.protobuf.Root.fromJSON(jsonProtos) as unknown as gax.protobuf.Type;
+          error.statusDetails = decodeAnyProtosInArray(error.statusDetails, protos);
+        }
+        throw error;
+      });
   }
 
  /**
@@ -1523,12 +1450,31 @@ export class VehicleServiceClient {
     ] = this._gaxModule.routingHeader.fromParams(
       routingParameter
     );
-    this.initialize();
-    return this.innerApiCalls.listVehicles(request, options, callback);
+    this.initialize().catch(err => {throw err});
+    const wrappedCallback: PaginationCallback<
+      protos.maps.fleetengine.v1.IListVehiclesRequest,
+      protos.maps.fleetengine.v1.IListVehiclesResponse|null|undefined,
+      protos.maps.fleetengine.v1.IVehicle>|undefined = callback
+      ? (error, values, nextPageRequest, rawResponse) => {
+          this._log.info('listVehicles values %j', values);
+          callback!(error, values, nextPageRequest, rawResponse); // We verified callback above.
+        }
+      : undefined;
+    this._log.info('listVehicles request %j', request);
+    return this.innerApiCalls
+      .listVehicles(request, options, wrappedCallback)
+      ?.then(([response, input, output]: [
+        protos.maps.fleetengine.v1.IVehicle[],
+        protos.maps.fleetengine.v1.IListVehiclesRequest|null,
+        protos.maps.fleetengine.v1.IListVehiclesResponse
+      ]) => {
+        this._log.info('listVehicles values %j', response);
+        return [response, input, output];
+      });
   }
 
 /**
- * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+ * Equivalent to `listVehicles`, but returns a NodeJS Stream object.
  * @param {Object} request
  *   The request object that will be sent.
  * @param {maps.fleetengine.v1.RequestHeader} request.header
@@ -1686,7 +1632,8 @@ export class VehicleServiceClient {
     );
     const defaultCallSettings = this._defaults['listVehicles'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listVehicles stream %j', request);
     return this.descriptors.page.listVehicles.createStream(
       this.innerApiCalls.listVehicles as GaxCall,
       request,
@@ -1856,7 +1803,8 @@ export class VehicleServiceClient {
     );
     const defaultCallSettings = this._defaults['listVehicles'];
     const callSettings = defaultCallSettings.merge(options);
-    this.initialize();
+    this.initialize().catch(err => {throw err});
+    this._log.info('listVehicles iterate %j', request);
     return this.descriptors.page.listVehicles.asyncIterate(
       this.innerApiCalls['listVehicles'] as GaxCall,
       request as {},
@@ -1948,6 +1896,7 @@ export class VehicleServiceClient {
   close(): Promise<void> {
     if (this.vehicleServiceStub && !this._terminated) {
       return this.vehicleServiceStub.then(stub => {
+        this._log.info('ending gRPC channel');
         this._terminated = true;
         stub.close();
       });
